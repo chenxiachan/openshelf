@@ -1,0 +1,16 @@
+name: Remove my post or site
+description: Ask for a post or a whole website to be removed from Openshelf.
+title: "Remove: "
+labels: ["removal"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Post or website link
+      placeholder: https://
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Reason (optional)

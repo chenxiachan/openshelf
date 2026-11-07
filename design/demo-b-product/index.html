@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Openshelf · demo B</title>
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../logo.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: "Schibsted Grotesk"; font-weight: 400 800; font-display: swap; src: url("../../site/static/fonts/schibsted-var.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212; }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-display: swap; src: url("../../site/static/fonts/plexmono-400.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212; }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-display: swap; src: url("../../site/static/fonts/plexmono-500.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212; }
+/* Celadon: quiet off-white paper, charcoal ink, one sage-green accent. Text pairs checked >= 4.5:1 in both modes. */
+:root {
+  --paper: #f7f8f5; --surface: #ffffff; --ink: #23282b; --muted: #646d6a; --rule: #e2e7e2; --rule-2: #d3dbd5;
+  --acc: #3a6b5b; --soft: #e3efe8; --soft-2: #d3e6db; --brand: #7fb5a0; --tile: #eef1ed;
+  --rebuttal: #a9503a; --replication: #8a6512; --extension: #4d7535; --discussion: #47659a;
+  --shadow: 0 1px 2px rgba(35, 40, 43, .04), 0 4px 14px rgba(35, 40, 43, .04);
+  --sans: "Schibsted Grotesk", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #121514; --surface: #191d1c; --ink: #e3e8e5; --muted: #9aa39f; --rule: #2a302e; --rule-2: #36403c;
+    --acc: #93cdb6; --soft: #20302a; --soft-2: #284036; --tile: #222826;
+    --rebuttal: #f08f78; --replication: #d9b25a; --extension: #9ccc7e; --discussion: #93b2ec; --shadow: none; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.6 var(--sans); }
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; text-decoration-color: var(--brand); text-underline-offset: 3px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; border-radius: 6px; }
+.demo-note { text-align: center; font-size: 12px; color: var(--muted); padding: 6px 16px; background: var(--soft); }
+
+/* top bar */
+.bar { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+.bar-in { max-width: 1160px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 18px; }
+.logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+.logo svg { width: 26px; height: 26px; }
+.search { flex: 1; max-width: 380px; display: flex; align-items: center; gap: 8px; border: 1px solid var(--rule); background: var(--surface); border-radius: 10px; padding: 0 10px; }
+.search svg { width: 15px; height: 15px; color: var(--muted); flex: none; }
+.search input { border: 0; outline: 0; background: transparent; font: inherit; font-size: 14px; color: var(--ink); padding: 7px 0; width: 100%; }
+.search:focus-within { border-color: var(--acc); }
+.nav { display: flex; gap: 18px; font-size: 14px; color: var(--muted); }
+.nav a.on { color: var(--ink); font-weight: 600; }
+.right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+.lang { border: 1px solid var(--rule); background: transparent; border-radius: 999px; padding: 2px 11px; font-size: 13px; }
+.submit { border: 1px solid var(--soft-2); background: var(--soft); color: var(--acc); border-radius: 10px; padding: 6px 14px; font-weight: 600; font-size: 14px; white-space: nowrap; }
+.submit:hover { background: var(--soft-2); }
+
+/* layout */
+.shell { max-width: 1160px; margin: 0 auto; padding: 0 20px 80px; }
+.hero { padding: 44px 0 26px; max-width: 720px; }
+.hero h1 { font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 10px; text-wrap: balance; }
+.hero p { margin: 0; color: var(--muted); font-size: 16px; max-width: 40em; }
+.hero .stats { margin-top: 14px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 32px; align-items: start; }
+
+/* filters */
+.filters { display: grid; gap: 10px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+.seg { display: inline-flex; background: var(--tile); border-radius: 10px; padding: 3px; gap: 2px; width: max-content; }
+.seg button { border: 0; background: transparent; padding: 4px 13px; border-radius: 8px; font-size: 13.5px; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: var(--shadow); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--rule); background: var(--surface); border-radius: 999px; padding: 2px 11px; font-size: 13px; color: var(--ink); }
+.chip .c { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin-left: 4px; }
+.chip[aria-pressed="true"] { background: var(--soft); border-color: var(--soft-2); color: var(--acc); font-weight: 600; }
+.chip[aria-pressed="true"] .c { color: var(--acc); }
+.count { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+/* day + cards */
+.day { padding-top: 26px; }
+.day h2 { font-size: 15px; font-weight: 600; margin: 0 0 12px; display: flex; gap: 10px; align-items: baseline; }
+.day h2 span { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--muted); }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 16px; margin-bottom: 10px; display: grid; grid-template-columns: 44px minmax(0, 1fr) 96px; gap: 14px; box-shadow: var(--shadow); }
+.fav { width: 44px; height: 44px; border-radius: 11px; background: var(--tile); color: var(--muted); display: grid; place-items: center; font-family: var(--mono); font-weight: 500; font-size: 17px; text-transform: lowercase; }
+.card.k-research .fav { background: var(--soft); color: var(--acc); }
+.kick { font-size: 12.5px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; }
+.kick .ty { color: var(--acc); font-weight: 600; }
+.card.k-explainer .kick .ty { color: var(--muted); }
+.card h3 { margin: 2px 0 4px; font-size: 16.5px; line-height: 1.35; font-weight: 650; overflow-wrap: anywhere; }
+.sum { margin: 0 0 8px; color: var(--ink); opacity: .86; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: 12.5px; color: var(--muted); }
+.dom { font-family: var(--mono); font-size: 12px; overflow-wrap: anywhere; }
+.tag { font-family: var(--mono); font-size: 11px; border-radius: 5px; padding: 0 6px; background: var(--tile); color: var(--muted); line-height: 1.75; }
+.tag.hot { background: var(--soft); color: var(--acc); }
+.via { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; font-size: 12px; color: var(--muted); margin-top: 6px; }
+.pill { font-family: var(--mono); font-size: 11px; border: 1px solid var(--rule); border-radius: 999px; padding: 0 8px; line-height: 1.8; color: var(--ink); white-space: nowrap; }
+.acts { display: grid; gap: 6px; align-content: start; }
+.act { border: 1px solid var(--rule); background: transparent; border-radius: 10px; padding: 5px 0 4px; font-size: 11.5px; color: var(--muted); display: grid; justify-items: center; line-height: 1.3; }
+.act strong { font-family: var(--mono); font-size: 16px; font-weight: 500; color: var(--ink); }
+.act.has { border-color: var(--soft-2); background: var(--soft); color: var(--acc); }
+.act.has strong { color: var(--acc); }
+.act[disabled] { cursor: default; opacity: .7; }
+.act.save[aria-pressed="true"] { border-color: var(--soft-2); color: var(--acc); background: var(--soft); }
+.act.save svg { width: 14px; height: 14px; }
+.more { margin-top: 16px; border: 1px solid var(--rule); background: var(--surface); border-radius: 10px; padding: 8px 18px; font-size: 14px; }
+.empty { padding: 40px 0; color: var(--muted); }
+
+/* thread: answers branch off the post */
+.thread { grid-column: 2 / 4; margin-top: 2px; }
+.thread ol { list-style: none; margin: 0; padding: 0 0 0 24px; position: relative; display: grid; gap: 8px; }
+.thread ol::before { content: ""; position: absolute; left: 6px; top: -6px; bottom: 18px; width: 2px; background: var(--brand); border-radius: 2px; opacity: .8; }
+.thread li { position: relative; border: 1px solid var(--rule); border-radius: 10px; padding: 8px 12px; background: var(--paper); }
+.thread li::before { content: ""; position: absolute; left: -18px; top: 17px; width: 17px; height: 2px; background: var(--rel); opacity: .8; }
+.thread li::after { content: ""; position: absolute; left: -23px; top: 13px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--rel); }
+.thread .rm { font-family: var(--mono); font-size: 11.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 2px 10px; }
+.thread .rel { color: var(--rel); font-weight: 500; }
+.thread .rt { font-weight: 600; font-size: 14px; line-height: 1.4; }
+.thread .rs { margin: 2px 0 0; font-size: 13.5px; color: var(--muted); }
+.thread .tog { border: 0; background: none; color: var(--acc); font-size: 13px; padding: 6px 0 0 24px; }
+.r-rebuttal { --rel: var(--rebuttal); } .r-replication { --rel: var(--replication); } .r-extension { --rel: var(--extension); } .r-discussion { --rel: var(--discussion); }
+
+/* sidebar */
+aside { display: grid; gap: 14px; position: sticky; top: 76px; padding-top: 4px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.panel h4 { margin: 0 0 6px; font-size: 14.5px; }
+.panel p { margin: 0 0 10px; font-size: 13.5px; color: var(--muted); }
+.panel .wide { width: 100%; border: 1px solid var(--soft-2); background: var(--soft); color: var(--acc); border-radius: 10px; padding: 8px; font-weight: 600; font-size: 14px; }
+.panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font-size: 13.5px; }
+.panel li small { display: block; font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+.panel li button { border: 0; background: none; padding: 0; text-align: left; font-weight: 600; }
+.ch { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; align-items: baseline; }
+.ch .bar-s { grid-column: 1 / 3; height: 4px; border-radius: 4px; background: var(--tile); overflow: hidden; }
+.ch .bar-s i { display: block; height: 100%; background: var(--brand); border-radius: 4px; }
+.ch .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+/* submit dialog */
+dialog { border: 1px solid var(--rule); border-radius: 16px; padding: 0; width: min(720px, calc(100vw - 32px)); background: var(--surface); color: var(--ink); box-shadow: 0 20px 60px rgba(0, 0, 0, .18); }
+dialog::backdrop { background: rgba(20, 24, 22, .32); }
+.dlg { display: grid; grid-template-columns: minmax(0, 1fr) 230px; }
+.dlg form { padding: 22px; display: grid; gap: 6px; }
+.dlg h3 { margin: 0 0 8px; font-size: 19px; }
+.tabs { display: inline-flex; background: var(--tile); border-radius: 10px; padding: 3px; width: max-content; margin-bottom: 6px; }
+.tabs button { border: 0; background: transparent; border-radius: 8px; padding: 4px 14px; font-size: 13.5px; color: var(--muted); }
+.tabs button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: var(--shadow); }
+.dlg label { font-size: 13.5px; font-weight: 600; margin-top: 6px; }
+.dlg label span { font-weight: 400; color: var(--muted); }
+.dlg input[type=url], .dlg textarea { font: inherit; font-size: 14px; border: 1px solid var(--rule-2); border-radius: 10px; padding: 8px 10px; background: var(--paper); color: var(--ink); width: 100%; }
+.dlg textarea { min-height: 64px; resize: vertical; }
+.dlg .chk { font-size: 13.5px; color: var(--muted); display: flex; gap: 6px; align-items: center; margin-top: 4px; }
+.dlg .btns { display: flex; gap: 8px; margin-top: 10px; }
+.dlg .btns button { border-radius: 10px; padding: 7px 16px; font-size: 14px; border: 1px solid var(--rule); background: transparent; }
+.dlg .btns .primary { border-color: var(--soft-2); background: var(--soft); color: var(--acc); font-weight: 600; }
+.dlg .side { background: var(--paper); border-left: 1px solid var(--rule); padding: 22px 18px; border-radius: 0 16px 16px 0; }
+.dlg ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: s; font-size: 13.5px; }
+.dlg ol li { counter-increment: s; display: grid; grid-template-columns: 22px 1fr; gap: 8px; }
+.dlg ol li::before { content: counter(s); width: 22px; height: 22px; border-radius: 50%; background: var(--soft); color: var(--acc); font-family: var(--mono); font-size: 12px; display: grid; place-items: center; }
+.dlg ol small { display: block; color: var(--muted); font-size: 12.5px; }
+.done { padding: 12px 14px; border-radius: 10px; background: var(--soft); color: var(--ink); font-size: 14px; margin-top: 10px; }
+
+@media (max-width: 920px) {
+  .cols { grid-template-columns: minmax(0, 1fr); }
+  aside { position: static; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .nav { display: none; }
+}
+@media (max-width: 600px) {
+  .bar-in { flex-wrap: wrap; gap: 10px; padding: 10px 16px; }
+  .search { order: 3; max-width: none; flex-basis: 100%; }
+  .shell { padding: 0 16px 60px; }
+  .hero { padding: 28px 0 18px; } .hero h1 { font-size: 26px; }
+  .card { grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 14px; }
+  .fav { width: 36px; height: 36px; font-size: 15px; border-radius: 9px; }
+  .acts { grid-column: 2; grid-auto-flow: column; justify-content: start; }
+  .act { padding: 3px 12px; grid-auto-flow: column; gap: 5px; align-items: baseline; }
+  .act strong { font-size: 13px; }
+  .thread { grid-column: 1 / 3; }
+  .dlg { grid-template-columns: 1fr; } .dlg .side { border-left: 0; border-top: 1px solid var(--rule); border-radius: 0 0 16px 16px; }
+}
+</style>
+</head>
+<body>
+<div class="demo-note" id="demo-note"></div>
+<header class="bar"><div class="bar-in">
+  <a class="logo" href="./"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="6" y="9" width="4.6" height="16.5" rx="1.3"/><rect x="12.6" y="13" width="4.6" height="12.5" rx="1.3"/></g><rect x="20" y="9.4" width="4.6" height="16.1" rx="1.3" fill="var(--brand)" transform="rotate(14 20 25.5)"/><rect x="4" y="25.6" width="24" height="2.4" rx="1.2" fill="currentColor"/></svg>Openshelf</a>
+  <label class="search"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input id="q" type="search" autocomplete="off"></label>
+  <nav class="nav"><a href="#" data-v="latest" id="nav-latest"></a><a href="#threads" data-v="threads" id="nav-threads"></a><a href="#sources" id="nav-sources"></a><a href="../../site/public/about/" id="nav-about"></a></nav>
+  <div class="right"><button class="lang" id="lang" type="button"></button><button class="submit" id="open-submit" type="button"></button></div>
+</div></header>
+
+<main class="shell">
+  <section class="hero"><h1 id="h1"></h1><p id="lede"></p><div class="stats" id="stats"></div></section>
+  <div class="cols">
+    <div>
+      <div class="filters">
+        <div class="seg" id="seg-type" role="group"></div>
+        <div class="chips" id="chips-topic"></div>
+        <div class="chips" id="chips-flag"></div>
+        <div class="count" id="count" aria-live="polite"></div>
+      </div>
+      <div id="days"></div>
+      <button class="more" id="more" type="button"></button>
+    </div>
+    <aside>
+      <div class="panel"><h4 id="sb-h"></h4><p id="sb-p"></p><button class="wide" id="open-submit-2" type="button"></button></div>
+      <div class="panel"><h4 id="shelf-h"></h4><div id="shelf"></div></div>
+      <div class="panel"><h4 id="th-h"></h4><ul id="thread-list"></ul></div>
+      <div class="panel" id="sources"><h4 id="src-h"></h4><ul id="channels"></ul></div>
+      <div class="panel"><h4 id="new-h"></h4><ul id="newsites"></ul></div>
+    </aside>
+  </div>
+</main>
+
+<dialog id="dlg"><div class="dlg">
+  <form method="dialog" id="form">
+    <h3 id="d-h"></h3>
+    <div class="tabs" id="d-tabs"></div>
+    <label for="d-link" id="d-link-l"></label><input type="url" id="d-link" required autofocus>
+    <label for="d-why" id="d-why-l"></label><textarea id="d-why"></textarea>
+    <label class="chk"><input type="checkbox" id="d-author"><span id="d-author-l"></span></label>
+    <div class="btns"><button class="primary" id="d-send" type="submit"></button><button id="d-cancel" type="button"></button></div>
+    <div class="done" id="d-done" hidden></div>
+  </form>
+  <div class="side"><ol id="d-steps"></ol></div>
+</div></dialog>
+
+<script src="../demo-data.js"></script>
+<script>
+(function () {
+  var S = window.SHELF, items = S.items;
+  var T = {
+    en: { h1: "Research people publish on their own sites", lede: "Collected every day from author feeds, archives, discussion sites and readers. Each post is checked, and answers are linked under the post they answer.",
+      stats: "{posts} posts · {sites} sites · {threads} threads", search: "Search posts, sites, topics", latest: "Latest", threads: "Threads", sources: "Sources", about: "About",
+      submit: "+ Submit", all: "All", research: "Research", explainer: "Explainers", interactive: "Interactive", code: "Code", arxiv: "arXiv", withresp: "Has responses",
+      ty_research: "Research", ty_explainer: "Explainer", b_interactive: "interactive", b_code: "code", via: "Found via", via_hn: "Hacker News · {p}", via_fork: "Homepage feed",
+      via_rs: "Rogue Scholar", via_rs_doi: "Rogue Scholar · DOI", responses: "responses", response: "response", save: "Save", saved: "Saved", more: "Show earlier days",
+      empty: "Nothing matches. Try fewer filters.", count: "{n} posts over {d} days", posts: "{n} posts", post: "1 post", days: "+{n} d", show_all: "Show all {n} responses", fewer: "Show fewer", more_topics: "+{n} more", fewer_topics: "Fewer topics",
+      sb_h: "Know a good post?", sb_p: "Share a post or a source you trust. Every submission is checked, and the decision is public.", sb_b: "Submit a post or a source",
+      shelf_h: "Your shelf", shelf_empty: "Save posts to read later. They stay in this browser only.", shelf_n: "{n} saved",
+      th_h: "Active threads", src_h: "Where posts come from", ch_fork: "Author homepage feeds", ch_rs: "Rogue Scholar archive", ch_hn: "Hacker News", ch_reader: "Reader submissions", ch_reader_n: "opens at launch",
+      new_h: "First seen this week", new_more: "and {n} more sites", lang: "中文",
+      d_h: "Submit to Openshelf", d_post: "A post", d_source: "A source", d_link: "Link", d_ph_post: "https://example.org/blog/my-result/", d_ph_src: "https://example.org/feed.xml, or the site address",
+      d_why: "Why is it worth reading?", d_opt: " optional, one line", d_author: "I am the author", d_send: "Submit", d_cancel: "Close",
+      d_steps: [["Automatic check", "Fetch the page, rule filter, LLM label and summary. A few minutes."], ["Listed as pending", "Visible on the Submissions page with what the check found."], ["Editor review if the site is new", "Sites already approved go straight in."], ["Published", "\"Submitted by a reader\" appears among the channels."]],
+      d_done: "This is a demo, so nothing was sent. On the live site your submission becomes a public GitHub issue, the check runs within minutes, and you get a link to follow it.",
+      note: "Design demo B · pilot data {from} to {to} · saving works in this browser; submissions are simulated" },
+    zh: { h1: "研究者发在自己网站上的研究", lede: "每天从作者订阅源、存档平台、讨论网站和读者提交中收集，逐条核对；有人写文章回应时，回应挂在原文下面。",
+      stats: "{posts} 篇 · {sites} 个网站 · {threads} 条回应链", search: "搜索文章、网站、主题", latest: "最新", threads: "回应", sources: "来源", about: "关于",
+      submit: "+ 提交", all: "全部", research: "研究报告", explainer: "解读", interactive: "带交互", code: "附代码", arxiv: "arXiv", withresp: "有回应",
+      ty_research: "研究报告", ty_explainer: "解读", b_interactive: "交互", b_code: "代码", via: "发现渠道", via_hn: "Hacker News · {p} 分", via_fork: "主页订阅源",
+      via_rs: "Rogue Scholar", via_rs_doi: "Rogue Scholar · DOI", responses: "个回应", response: "个回应", save: "收藏", saved: "已收藏", more: "更早的日期",
+      empty: "没有符合条件的文章，试试少选几个筛选。", count: "{d} 天，共 {n} 篇", posts: "{n} 篇", post: "1 篇", days: "+{n} 天", show_all: "展开全部 {n} 个回应", fewer: "收起", more_topics: "更多 {n} 个", fewer_topics: "收起主题",
+      sb_h: "看到好文章了？", sb_p: "提交一篇文章，或一个你信得过的来源。每条提交都会被核对，收不收的决定公开可查。", sb_b: "提交文章或来源",
+      shelf_h: "我的书架", shelf_empty: "收藏的文章放在这里，只保存在这个浏览器里。", shelf_n: "已收藏 {n} 篇",
+      th_h: "正在进行的回应", src_h: "文章从哪里来", ch_fork: "作者主页订阅源", ch_rs: "Rogue Scholar 存档", ch_hn: "Hacker News", ch_reader: "读者提交", ch_reader_n: "上线后开放",
+      new_h: "本周第一次出现的网站", new_more: "另有 {n} 个网站", lang: "English",
+      d_h: "提交到 Openshelf", d_post: "一篇文章", d_source: "一个来源", d_link: "链接", d_ph_post: "https://example.org/blog/my-result/", d_ph_src: "https://example.org/feed.xml，或网站地址",
+      d_why: "为什么值得读？", d_opt: " 可选，一句话", d_author: "我是作者", d_send: "提交", d_cancel: "关闭",
+      d_steps: [["自动检查", "抓取页面、规则初筛、LLM 标注和摘要，几分钟。"], ["显示为待审核", "在“提交”页可以看到检查结果。"], ["新网站需要编辑审核", "已经审过的网站直接上线。"], ["上线", "发现渠道里出现“读者提交”。"]],
+      d_done: "这是 demo，没有真的发送。正式网站上，提交会变成一个公开的 GitHub issue，几分钟内完成自动检查，并给你一个可以跟踪的链接。",
+      note: "设计 demo B · 试运行数据 {from} 至 {to} · 收藏只存在这个浏览器里；提交是模拟的" }
+  };
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  var qlang = (location.search.match(/[?&]lang=(en|zh)\b/) || [])[1];
+  var lang = qlang || (store("openshelf-lang") === "zh" ? "zh" : "en");
+  var saved = {}; try { saved = JSON.parse(store("openshelf-saved") || "{}") || {}; } catch (e) { saved = {}; }
+  var state = { type: "all", topic: "all", flags: {}, q: "", days: 5 };
+  var expanded = {};
+  function L() { return T[lang]; } function M() { return S.maps[lang]; }
+  function F(s, v) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && v[k] != null ? v[k] : m; }); }
+  function fmt(n) { return Number(n).toLocaleString("en-US"); }
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function A(href, text, cls) { var a = el("a", cls, text); if (/^https?:/.test(href)) { a.href = href; a.rel = "noopener"; a.target = "_blank"; } return a; }
+  function $(id) { return document.getElementById(id); }
+  var dayFmt = {};
+  function dayLabel(d) { var k = lang; dayFmt[k] = dayFmt[k] || new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US", { weekday: "long", month: "short", day: "numeric", timeZone: "UTC" }); return dayFmt[k].format(new Date(d + "T00:00:00Z")); }
+  var SAVE_SVG = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h8v11l-4-2.6-4 2.6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+
+  function matchQ(r) {
+    if (!state.q) return true;
+    var q = state.q.toLowerCase(), t = (M().topic[r.topic] || r.topic);
+    return (r.title + " " + r.domain + " " + r.s[lang] + " " + t).toLowerCase().indexOf(q) >= 0;
+  }
+  function has(r, f) { return f === "resp" ? r.resp.length > 0 : !!r[f]; }
+  function pass(r, skip) {
+    if (skip !== "type" && state.type !== "all" && r.cat !== state.type) return false;
+    if (skip !== "topic" && state.topic !== "all" && r.topic !== state.topic) return false;
+    for (var f in state.flags) if (state.flags[f] && skip !== f && !has(r, f)) return false;
+    return matchQ(r);
+  }
+
+  function viaPills(box, via) {
+    via.forEach(function (v) {
+      var p;
+      if (v.s === "hn") p = A("https://news.ycombinator.com/item?id=" + encodeURIComponent(v.id), F(L().via_hn, { p: fmt(v.p) }), "pill");
+      else if (v.s === "rs") p = v.doi ? A("https://doi.org/" + v.doi, L().via_rs_doi, "pill") : el("span", "pill", L().via_rs);
+      else p = el("span", "pill", L().via_fork);
+      box.appendChild(p);
+    });
+  }
+  function thread(r) {
+    var box = el("div", "thread"), all = !!expanded[r.id + ":all"], list = el("ol");
+    r.resp.slice(0, all ? r.resp.length : 3).forEach(function (x) {
+      var li = el("li", "r-" + x.rel), m = el("div", "rm");
+      m.appendChild(el("span", "rel", M().rel[x.rel] || x.rel));
+      m.appendChild(el("span", null, F(L().days, { n: x.days < 1 ? "<1" : Math.round(x.days) })));
+      m.appendChild(el("span", null, x.domain));
+      li.appendChild(m);
+      var t = el("div", "rt"); t.appendChild(A(x.url, x.title)); li.appendChild(t);
+      if (x.s[lang]) li.appendChild(el("p", "rs", x.s[lang]));
+      list.appendChild(li);
+    });
+    box.appendChild(list);
+    if (r.resp.length > 3) {
+      var b = el("button", "tog", all ? L().fewer : F(L().show_all, { n: r.resp.length })); b.type = "button";
+      b.addEventListener("click", function () { expanded[r.id + ":all"] = !all; render(); });
+      box.appendChild(b);
+    }
+    return box;
+  }
+  function card(r) {
+    var c = el("article", "card k-" + r.cat);
+    c.appendChild(el("div", "fav", r.domain.replace(/^www\./, "").charAt(0)));
+    var b = el("div"), k = el("div", "kick");
+    k.appendChild(el("span", "ty", r.cat === "research" ? L().ty_research : L().ty_explainer));
+    k.appendChild(el("span", null, M().topic[r.topic] || r.topic));
+    b.appendChild(k);
+    var h = el("h3"); h.appendChild(A(r.url, r.title)); b.appendChild(h);
+    if (r.s[lang]) b.appendChild(el("p", "sum", r.s[lang]));
+    var m = el("div", "meta"); m.appendChild(el("span", "dom", r.domain));
+    if (r.interactive) m.appendChild(el("span", "tag hot", L().b_interactive));
+    if (r.repo) m.appendChild(el("span", "tag", L().b_code));
+    if (r.arxiv) m.appendChild(el("span", "tag", "arXiv"));
+    if (r.doi) m.appendChild(el("span", "tag", "DOI"));
+    b.appendChild(m);
+    var v = el("div", "via"); v.appendChild(el("span", null, L().via)); viaPills(v, r.via); b.appendChild(v);
+    c.appendChild(b);
+    var acts = el("div", "acts"), n = r.resp.length;
+    if (n) {
+      var ra = el("button", "act has"); ra.type = "button";
+      ra.innerHTML = "<strong>" + n + "</strong>"; ra.appendChild(document.createTextNode(n === 1 ? L().response : L().responses));
+      ra.setAttribute("aria-expanded", expanded[r.id] || state.flags.resp ? "true" : "false");
+      ra.addEventListener("click", function () { expanded[r.id] = !expanded[r.id]; render(); });
+      acts.appendChild(ra);
+    }
+    var sv = el("button", "act save"); sv.type = "button"; sv.setAttribute("aria-pressed", saved[r.id] ? "true" : "false");
+    sv.innerHTML = SAVE_SVG; sv.appendChild(document.createTextNode(saved[r.id] ? L().saved : L().save));
+    sv.addEventListener("click", function () { if (saved[r.id]) delete saved[r.id]; else saved[r.id] = Date.now(); store("openshelf-saved", JSON.stringify(saved)); render(); });
+    acts.appendChild(sv);
+    c.appendChild(acts);
+    if (n && (expanded[r.id] || state.flags.resp)) c.appendChild(thread(r));
+    return c;
+  }
+  function chip(box, label, count, on, fn) {
+    var b = el("button", "chip", label); b.type = "button"; if (count != null) b.appendChild(el("span", "c", String(count)));
+    b.setAttribute("aria-pressed", on ? "true" : "false"); b.addEventListener("click", fn); box.appendChild(b);
+  }
+  function filters() {
+    var seg = $("seg-type"); seg.textContent = "";
+    [["all", L().all], ["research", L().research], ["explainer", L().explainer]].forEach(function (t) {
+      var b = el("button", null, t[1]); b.type = "button"; b.setAttribute("aria-pressed", state.type === t[0] ? "true" : "false");
+      b.addEventListener("click", function () { state.type = t[0]; state.days = 5; render(); }); seg.appendChild(b);
+    });
+    var tc = {}, pool = items.filter(function (r) { return pass(r, "topic"); }); pool.forEach(function (r) { tc[r.topic] = (tc[r.topic] || 0) + 1; });
+    var ct = $("chips-topic"); ct.textContent = "";
+    chip(ct, L().all, pool.length, state.topic === "all", function () { state.topic = "all"; state.days = 5; render(); });
+    var keys = Object.keys(tc).sort(function (a, b) { return tc[b] - tc[a]; });
+    var shown = state.allTopics ? keys : keys.slice(0, 7);
+    if (state.topic !== "all" && shown.indexOf(state.topic) < 0) shown.push(state.topic);
+    shown.forEach(function (k) {
+      chip(ct, M().topic[k] || k, tc[k], state.topic === k, function () { state.topic = state.topic === k ? "all" : k; state.days = 5; render(); });
+    });
+    if (keys.length > 7) chip(ct, state.allTopics ? L().fewer_topics : F(L().more_topics, { n: keys.length - 7 }), null, false, function () { state.allTopics = !state.allTopics; render(); });
+    var cf = $("chips-flag"); cf.textContent = "";
+    [["interactive", L().interactive], ["repo", L().code], ["arxiv", L().arxiv], ["resp", L().withresp]].forEach(function (f) {
+      var n = items.filter(function (r) { return pass(r, f[0]) && has(r, f[0]); }).length;
+      chip(cf, f[1], n, !!state.flags[f[0]], function () { state.flags[f[0]] = !state.flags[f[0]]; if (f[0] === "resp") syncHash(); state.days = 5; render(); });
+    });
+  }
+  function signals(r) { return (r.interactive ? 1 : 0) + (r.repo ? 1 : 0) + (r.arxiv ? 1 : 0) + (r.doi ? 1 : 0); }
+  function within(a, b) { return (a.cat === b.cat ? 0 : a.cat === "research" ? -1 : 1) || b.resp.length - a.resp.length || signals(b) - signals(a) || a.title.localeCompare(b.title); }
+  function sidebar() {
+    $("sb-h").textContent = L().sb_h; $("sb-p").textContent = L().sb_p; $("open-submit-2").textContent = L().sb_b;
+    $("shelf-h").textContent = L().shelf_h;
+    var sh = $("shelf"); sh.textContent = "";
+    var ids = Object.keys(saved).sort(function (a, b) { return saved[b] - saved[a]; });
+    if (!ids.length) sh.appendChild(el("p", null, L().shelf_empty));
+    else {
+      sh.appendChild(el("p", null, F(L().shelf_n, { n: ids.length })));
+      var ul = el("ul"); ids.slice(0, 4).forEach(function (id) { var r = items.filter(function (x) { return x.id === id; })[0]; if (!r) return; var li = el("li"); li.appendChild(A(r.url, r.title)); li.appendChild(el("small", null, r.domain)); ul.appendChild(li); }); sh.appendChild(ul);
+    }
+    $("th-h").textContent = L().th_h;
+    var th = $("thread-list"); th.textContent = "";
+    items.filter(function (r) { return r.resp.length; }).sort(function (a, b) { return b.resp.length - a.resp.length; }).forEach(function (r) {
+      var li = el("li"), b = el("button", null, r.title.length > 64 ? r.title.slice(0, 62) + "…" : r.title); b.type = "button";
+      b.addEventListener("click", function () { state.flags.resp = true; syncHash(); render(); window.scrollTo({ top: $("days").offsetTop - 90, behavior: "smooth" }); });
+      li.appendChild(b);
+      var by = {}; r.resp.forEach(function (x) { by[x.rel] = (by[x.rel] || 0) + 1; });
+      li.appendChild(el("small", null, r.resp.length + " " + (r.resp.length === 1 ? L().response : L().responses) + " · " + Object.keys(by).map(function (k) { return (M().rel[k] || k) + " " + by[k]; }).join(" · ")));
+      th.appendChild(li);
+    });
+    $("src-h").textContent = L().src_h;
+    var ch = $("channels"); ch.textContent = ""; var tot = items.length;
+    [["fork", L().ch_fork], ["rs", L().ch_rs], ["hn", L().ch_hn], ["reader", L().ch_reader]].forEach(function (c) {
+      var li = el("li", "ch"), n = S.channels[c[0]];
+      li.appendChild(el("span", null, c[1])); li.appendChild(el("span", "n", n == null ? L().ch_reader_n : fmt(n)));
+      var bar = el("div", "bar-s"), i = el("i"); i.style.width = (n ? Math.max(2, 100 * n / tot) : 0) + "%"; bar.appendChild(i); li.appendChild(bar);
+      ch.appendChild(li);
+    });
+    $("new-h").textContent = L().new_h;
+    var ns = $("newsites"); ns.textContent = "";
+    S.new_sites.slice(0, 6).forEach(function (s) { var li = el("li", null, s.domain); li.appendChild(el("small", null, s.date.slice(5) + " · " + (lang === "zh" ? s.n + " 篇" : s.n + (s.n === 1 ? " post" : " posts")))); ns.appendChild(li); });
+    if (S.new_sites.length > 6) ns.appendChild(el("li", null, F(L().new_more, { n: S.new_sites.length - 6 })));
+  }
+  function render() {
+    filters();
+    var list = items.filter(function (r) { return pass(r); }), by = {};
+    list.forEach(function (r) { (by[r.date] = by[r.date] || []).push(r); });
+    var days = Object.keys(by).sort().reverse();
+    $("count").textContent = F(L().count, { n: fmt(list.length), d: days.length });
+    var root = $("days"); root.textContent = "";
+    if (!list.length) root.appendChild(el("p", "empty", L().empty));
+    days.slice(0, state.days).forEach(function (d) {
+      var sec = el("section", "day"), h = el("h2", null, dayLabel(d)); h.appendChild(el("span", null, by[d].length === 1 ? L().post : F(L().posts, { n: by[d].length })));
+      sec.appendChild(h); by[d].sort(within).forEach(function (r) { sec.appendChild(card(r)); }); root.appendChild(sec);
+    });
+    $("more").hidden = state.days >= days.length; $("more").textContent = L().more;
+    $("nav-latest").classList.toggle("on", !state.flags.resp); $("nav-threads").classList.toggle("on", !!state.flags.resp);
+    sidebar();
+  }
+  function texts() {
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+    $("demo-note").textContent = F(L().note, { from: S.window[0], to: S.window[1] });
+    $("h1").textContent = L().h1; $("lede").textContent = L().lede;
+    $("stats").textContent = F(L().stats, { posts: fmt(S.figures.posts), sites: fmt(S.figures.sites), threads: S.figures.threads });
+    $("q").placeholder = L().search;
+    $("nav-latest").textContent = L().latest; $("nav-threads").textContent = L().threads; $("nav-sources").textContent = L().sources; $("nav-about").textContent = L().about;
+    $("lang").textContent = L().lang; $("open-submit").textContent = L().submit;
+    dialogTexts();
+  }
+  // ---------- submit dialog (simulated) ----------
+  var mode = "post";
+  function dialogTexts() {
+    $("d-h").textContent = L().d_h;
+    var tabs = $("d-tabs"); tabs.textContent = "";
+    [["post", L().d_post], ["source", L().d_source]].forEach(function (t) {
+      var b = el("button", null, t[1]); b.type = "button"; b.setAttribute("aria-pressed", mode === t[0] ? "true" : "false");
+      b.addEventListener("click", function () { mode = t[0]; dialogTexts(); }); tabs.appendChild(b);
+    });
+    $("d-link-l").textContent = L().d_link; $("d-link").placeholder = mode === "post" ? L().d_ph_post : L().d_ph_src;
+    $("d-why-l").textContent = L().d_why; $("d-why-l").appendChild(el("span", null, L().d_opt));
+    $("d-author-l").textContent = L().d_author; $("d-send").textContent = L().d_send; $("d-cancel").textContent = L().d_cancel;
+    var st = $("d-steps"); st.textContent = "";
+    L().d_steps.forEach(function (s) { var li = el("li"), d = el("div", null, s[0]); d.appendChild(el("small", null, s[1])); li.appendChild(d); st.appendChild(li); });
+  }
+  function openDlg() { $("d-done").hidden = true; $("form").reset(); dialogTexts(); $("dlg").showModal(); }
+  $("open-submit").addEventListener("click", openDlg); $("open-submit-2").addEventListener("click", openDlg);
+  $("d-cancel").addEventListener("click", function () { $("dlg").close(); });
+  $("form").addEventListener("submit", function (e) { e.preventDefault(); var d = $("d-done"); d.textContent = L().d_done; d.hidden = false; });
+
+  function syncHash() { var want = state.flags.resp ? "#threads" : ""; if ((location.hash || "") !== want) history.replaceState(null, "", want || location.pathname); }
+  window.addEventListener("hashchange", function () { state.flags.resp = location.hash === "#threads"; render(); });
+  $("nav-latest").addEventListener("click", function (e) { e.preventDefault(); state.flags.resp = false; syncHash(); render(); });
+  $("lang").addEventListener("click", function () { lang = lang === "en" ? "zh" : "en"; store("openshelf-lang", lang); texts(); render(); });
+  var qt; $("q").addEventListener("input", function (e) { clearTimeout(qt); qt = setTimeout(function () { state.q = e.target.value.trim(); state.days = 5; render(); }, 120); });
+  $("more").addEventListener("click", function () { state.days += 5; render(); });
+  state.flags.resp = location.hash === "#threads";
+  texts(); render();
+  if (location.hash === "#submit") openDlg();
+})();
+</script>
+</body>
+</html>

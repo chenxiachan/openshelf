@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>设计讨论板</title>
+<style>
+@font-face { font-family: "Schibsted Grotesk"; font-weight: 400 800; font-display: swap; src: url("../site/static/fonts/schibsted-var.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-display: swap; src: url("../site/static/fonts/plexmono-400.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-display: swap; src: url("../site/static/fonts/plexmono-500.woff2") format("woff2"); }
+:root { --bg: #ececea; --card: #ffffff; --ink: #18191b; --muted: #5d6066; --rule: #d9d9d5;
+  --sans: "Schibsted Grotesk", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 var(--sans); padding: 0 16px 80px; }
+.page { max-width: 1120px; margin: 0 auto; }
+header.top { padding: 36px 0 10px; }
+header.top h1 { margin: 0 0 6px; font-size: 32px; letter-spacing: -0.01em; }
+header.top p { margin: 0; color: var(--muted); max-width: 46em; }
+h2 { font-size: 22px; margin: 44px 0 6px; }
+h2 + p.sub { margin: 0 0 16px; color: var(--muted); max-width: 52em; }
+h3 { font-size: 16px; margin: 0 0 4px; }
+.card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 18px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.pc { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px; margin-top: 10px; }
+.pc b { display: block; font-size: 12px; color: var(--muted); font-weight: 600; }
+.pc ul { margin: 2px 0 0; padding-left: 1.1em; }
+.tag { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted); }
+.tag.rec { background: #18191b; color: #fff; border-color: #18191b; }
+.frame { border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; margin: 12px 0 6px; }
+.frame-cap { font-family: var(--mono); font-size: 12px; color: var(--muted); padding: 6px 12px; background: #f6f6f4; border-bottom: 1px solid var(--rule); display: flex; gap: 10px; }
+.note { font-size: 13px; color: var(--muted); }
+table.t { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); border-radius: 12px; overflow: hidden; }
+table.t th, table.t td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.t th { font-size: 12px; color: var(--muted); font-weight: 600; background: #f6f6f4; }
+.mono { font-family: var(--mono); }
+.ok { color: #1f6a3c; } .no { color: #a12a1f; } .uncertain { color: #8a5a00; }
+
+/* ---------- mock A: journal index ---------- */
+.mA { background: #f6f6f8; color: #14161c; padding: 20px 28px 26px; font-size: 13px; }
+.mA .bar { display: flex; gap: 14px; align-items: center; border-bottom: 1px solid #dfe1e8; padding-bottom: 10px; }
+.mA .bar b { font-size: 15px; } .mA .bar span { color: #5c6270; font-size: 12px; }
+.mA h4 { font-size: 26px; margin: 16px 0 4px; letter-spacing: -0.02em; }
+.mA .day { font-family: var(--mono); font-size: 11px; color: #5c6270; border-bottom: 1px solid #dfe1e8; padding: 14px 0 4px; text-transform: uppercase; }
+.mA .it { padding: 10px 0; border-bottom: 1px solid #dfe1e8; max-width: 620px; }
+.mA .it .k { font-size: 11px; color: #4a35c0; font-weight: 600; }
+.mA .it .ti { font-weight: 700; font-size: 14px; }
+.mA .it .m { font-family: var(--mono); font-size: 11px; color: #5c6270; }
+
+/* ---------- mock B: launch board ---------- */
+.mB { --p: #f6f6f2; --s: #fff; --i: #15171a; --mu: #5f6368; --r: #e1e1da; --a: #3d5c00; --f: #d9f24a;
+  background: var(--p); color: var(--i); font-size: 13px; padding: 0 0 22px; }
+.mB .bar { display: flex; gap: 14px; align-items: center; padding: 12px 24px; border-bottom: 1px solid var(--r); background: var(--s); }
+.mB .logo { display: inline-flex; gap: 7px; align-items: center; font-weight: 800; font-size: 15px; }
+.mB .logo i { width: 20px; height: 20px; border-radius: 6px; background: var(--i); display: inline-grid; place-items: center; }
+.mB .logo i::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--f); }
+.mB .search { flex: 1; max-width: 360px; border: 1px solid var(--r); border-radius: 8px; padding: 5px 10px; color: var(--mu); background: var(--p); }
+.mB nav { display: flex; gap: 14px; color: var(--mu); } .mB nav .on { color: var(--i); font-weight: 600; }
+.mB .btn { margin-left: auto; background: var(--f); color: var(--i); font-weight: 700; border-radius: 8px; padding: 5px 12px; border: 1px solid #b9d23a; white-space: nowrap; }
+.mB .hero { padding: 18px 24px 8px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.mB .hero h4 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.mB .hero span { color: var(--mu); }
+.mB .chips { padding: 0 24px 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+.mB .chip { border: 1px solid var(--r); border-radius: 999px; padding: 1px 10px; background: var(--s); font-size: 12px; }
+.mB .chip.on { background: var(--i); color: #fff; border-color: var(--i); }
+.mB .cols { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 18px; padding: 0 24px; }
+.mB .post { display: grid; grid-template-columns: 40px minmax(0, 1fr) 92px; gap: 12px; background: var(--s); border: 1px solid var(--r); border-radius: 10px; padding: 12px; margin-bottom: 8px; }
+.mB .fav { width: 40px; height: 40px; border-radius: 9px; background: #ecece6; display: grid; place-items: center; font-weight: 800; color: var(--mu); font-family: var(--mono); }
+.mB .post .ti { font-weight: 700; font-size: 14px; line-height: 1.35; }
+.mB .post .su { color: #2b2d30; margin: 2px 0 4px; }
+.mB .post .m { display: flex; flex-wrap: wrap; gap: 4px 6px; font-size: 11px; color: var(--mu); align-items: center; }
+.mB .b { font-family: var(--mono); font-size: 10.5px; background: #ecece6; border-radius: 4px; padding: 0 6px; }
+.mB .b.hot { background: var(--f); color: var(--i); }
+.mB .via { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--r); border-radius: 999px; padding: 0 7px; }
+.mB .side-act { display: grid; gap: 6px; align-content: start; justify-items: stretch; }
+.mB .act { border: 1px solid var(--r); border-radius: 8px; text-align: center; padding: 4px 0; font-size: 11px; color: var(--mu); background: var(--p); }
+.mB .act strong { display: block; font-size: 14px; color: var(--i); font-family: var(--mono); }
+.mB .act.th { border-color: var(--a); color: var(--a); }
+.mB .act.th strong { color: var(--a); }
+.mB .panel { background: var(--s); border: 1px solid var(--r); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+.mB .panel h5 { margin: 0 0 6px; font-size: 13px; }
+.mB .panel .in { border: 1px solid var(--r); border-radius: 7px; padding: 5px 8px; color: var(--mu); background: var(--p); margin-bottom: 6px; font-size: 12px; }
+.mB .panel .go { background: var(--i); color: #fff; border-radius: 7px; text-align: center; padding: 5px; font-weight: 600; font-size: 12px; }
+.mB .panel ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 12px; }
+.mB .panel li small { display: block; color: var(--mu); font-family: var(--mono); font-size: 10.5px; }
+
+/* ---------- mock C: git log ---------- */
+.mC { background: #0e1110; color: #d9e0dc; font-family: var(--mono); font-size: 12px; padding: 16px 22px 20px; line-height: 1.7; }
+.mC .prompt { color: #7f8a85; } .mC .prompt b { color: #d4f04a; font-weight: 500; }
+.mC .row { display: grid; grid-template-columns: 34px 64px 84px minmax(0, 1fr); gap: 8px; white-space: nowrap; }
+.mC .g { color: #d4f04a; } .mC .h { color: #e2ad48; } .mC .d { color: #7f8a85; }
+.mC .ti { color: #f2f5f3; overflow: hidden; text-overflow: ellipsis; }
+.mC .ti em { color: #7f8a85; font-style: normal; }
+.mC .rb { color: #ff8577; } .mC .rp { color: #e2ad48; } .mC .ex { color: #56c992; } .mC .di { color: #7eabff; }
+
+/* ---------- submit mock ---------- */
+.mS { background: #f6f6f2; padding: 20px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 18px; font-size: 13px; }
+.mS .form { background: #fff; border: 1px solid #e1e1da; border-radius: 12px; padding: 16px; }
+.mS .tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+.mS .tabs span { padding: 4px 12px; border-radius: 999px; border: 1px solid #e1e1da; }
+.mS .tabs .on { background: #15171a; color: #fff; border-color: #15171a; }
+.mS label { display: block; font-weight: 600; margin: 10px 0 4px; }
+.mS .in { border: 1px solid #d6d6cf; border-radius: 8px; padding: 7px 10px; color: #6b6e73; background: #fbfbf9; }
+.mS .in.tall { height: 54px; }
+.mS .chk { margin-top: 10px; color: #3b3d40; }
+.mS .go { margin-top: 12px; display: inline-block; background: #d9f24a; border: 1px solid #b9d23a; padding: 6px 16px; border-radius: 8px; font-weight: 700; }
+.mS .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.mS .steps li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; }
+.mS .steps .n { width: 24px; height: 24px; border-radius: 50%; background: #15171a; color: #fff; display: grid; place-items: center; font-family: var(--mono); font-size: 12px; }
+.mS .steps small { display: block; color: #6b6e73; }
+
+/* ---------- palettes ---------- */
+.pal { padding: 0; overflow: hidden; }
+.pal .head { padding: 14px 16px 6px; }
+.sw { display: flex; gap: 6px; padding: 0 16px 10px; flex-wrap: wrap; }
+.sw span { display: grid; gap: 2px; font-family: var(--mono); font-size: 10.5px; color: var(--muted); }
+.sw i { width: 46px; height: 30px; border-radius: 6px; border: 1px solid rgba(0,0,0,.08); display: block; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; }
+.duo > div { padding: 14px 16px; }
+.smp .ty { font-size: 11px; font-weight: 700; }
+.smp .ti { font-weight: 700; font-size: 13.5px; line-height: 1.35; margin: 2px 0 6px; text-decoration: underline; text-decoration-color: rgba(127,127,127,.4); text-underline-offset: 3px; }
+.smp .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.smp .bt { font-size: 12px; font-weight: 700; border-radius: 7px; padding: 3px 10px; }
+.smp .ch { font-size: 11px; border-radius: 999px; padding: 1px 9px; border: 1px solid; }
+.smp .mk { font-family: var(--mono); font-size: 10.5px; border-radius: 4px; padding: 0 6px; }
+
+/* ---------- logos ---------- */
+.logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.lg { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
+.lg .tiles { display: grid; grid-template-columns: 1fr 1fr; }
+.lg .tiles div { height: 96px; display: grid; place-items: center; }
+.lg .tiles svg { width: 46px; height: 46px; }
+.lg .wm { display: flex; align-items: center; gap: 8px; padding: 10px 12px 4px; font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
+.lg .wm svg { width: 22px; height: 22px; }
+.lg .fav { display: flex; gap: 8px; align-items: center; padding: 0 12px; font-size: 11px; color: var(--muted); font-family: var(--mono); }
+.lg .fav svg { width: 16px; height: 16px; }
+.lg p { margin: 4px 12px 12px; font-size: 13px; color: var(--muted); }
+.lg h3 { margin: 10px 12px 0; }
+@media (max-width: 760px) { .mB .cols, .mS { grid-template-columns: 1fr; } .mB .post { grid-template-columns: 40px minmax(0, 1fr); } .mB .side-act { grid-column: 2; grid-auto-flow: column; } .duo { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="page">
+<header class="top">
+  <h1>设计讨论板</h1>
+  <p>2026-11-06。三个版式方向、读者提交、五套配色、五个 logo、候选名字。mockup 里的内容取自试运行数据，界面文字用英文，因为网站以英文为主。B 里的"读者提交""新来源"和当天统计是示意，不是真实数据。</p>
+</header>
+
+<div class="card">
+  <h3>我对你这次要求的理解</h3>
+  <ul style="margin:6px 0 0;padding-left:1.2em">
+    <li>从"一份报告"变成"一个产品"：开源，读者可以提交自己看到的文章，也可以提交自己知道的来源（博客、实验室网站、订阅源）。</li>
+    <li>"竞价网站"我理解成 Product Hunt 那类产品站：每天上新、首页一目了然、提交入口醒目。如果你指的是别的，告诉我。</li>
+    <li>有一个冲突要先说清：Product Hunt 和 HN 都靠投票排序，而投票正是"名人效应、AI 话题霸榜"的来源，试运行数据已经证明了这一点（原文中位数 593 分，回应中位数 2 分）。所以我建议借用它的"产品感"，但不用投票排序，公开信号用"回应数"和"编辑精选"，"收藏"只给个人用。</li>
+  </ul>
+</div>
+
+<!-- ================================================= layout -->
+<h2>一、版式方向</h2>
+<p class="sub">三个方向用同样的数据。A 是现在的样子，B 是产品站，C 是开源/git 风格。我推荐 B 的结构，加上 C 的回应分支图。</p>
+
+<div class="frame">
+  <div class="frame-cap"><span>A · 期刊目录（现在）</span><span class="tag">安静 · 适合读</span></div>
+  <div class="mA">
+    <div class="bar"><b>GitPost</b><span>Latest</span><span>Threads</span><span>About &amp; method</span><span>Feed</span></div>
+    <h4>Research on the open web</h4>
+    <div class="day">Thu, Nov 5 · 8 posts</div>
+    <div class="it"><div class="k">Research report · Interpretability &amp; alignment</div><div class="ti">Kimi K3.1 Pro writes fake OpenAI ciphertext</div><div class="m">peterstran.com · interactive · code · arXiv · Found via Hacker News · 4 points</div></div>
+    <div class="it"><div class="k">Research report · AI / ML</div><div class="ti">Larger Tokenizers Suffer More Multi-Epoch Regret</div><div class="m">wenhaochai.com · interactive · code · arXiv · Found via Hacker News · 3 points</div></div>
+  </div>
+</div>
+<div class="pc card" style="margin-bottom:22px"><div><b>好处</b><ul><li>像期刊目录，信息密度高，读起来安静</li><li>手机上最好用</li></ul></div><div><b>问题</b><ul><li>不像产品，没有"提交"的位置</li><li>看不出这里有社区、有人在维护</li></ul></div></div>
+
+<div class="frame">
+  <div class="frame-cap"><span>B · 产品站（Product Hunt 式，但不投票）</span><span class="tag rec">推荐</span></div>
+  <div class="mB">
+    <div class="bar"><span class="logo"><i></i>GitPost</span><span class="search">Search posts, sites, topics</span><nav><span class="on">Today</span><span>Threads</span><span>Sources</span><span>About</span></nav><span class="btn">+ Submit</span></div>
+    <div class="hero"><h4>Today · Thu, Nov 5</h4><span>8 new posts from 8 sites · 1 new thread · 3 new sources</span></div>
+    <div class="chips"><span class="chip on">All</span><span class="chip">AI / ML</span><span class="chip">Mathematics</span><span class="chip">Biology</span><span class="chip">Physics</span><span class="chip">Security</span><span class="chip">Humanities</span><span class="chip">＋ Follow topics</span></div>
+    <div class="cols">
+      <div>
+        <div class="post"><div class="fav">R</div><div><div class="ti">Sparks of Weight-Space Programming: LLMs can natively read &amp; write neural network weights</div><div class="su">Finds that frontier LLMs can directly read and write neural network weights to improve Qwen.</div><div class="m"><span>rikiyat.github.io</span><span>· AI / ML ·</span><span class="b hot">interactive</span><span class="b">code</span><span class="b">arXiv</span><span class="via">Hacker News · 2,954</span><span class="via">Submitted by a reader</span></div></div><div class="side-act"><div class="act th"><strong>10</strong>responses</div><div class="act">☆ Save</div></div></div>
+        <div class="post"><div class="fav">O</div><div><div class="ti">PINN for passive myocardium hyperelasticity</div><div class="su">A project description of fitting passive myocardium hyperelastic constitutive models with PINNs.</div><div class="m"><span>osmangult.github.io</span><span>· Biology &amp; health ·</span><span class="b">code</span><span class="via">Homepage feed</span></div></div><div class="side-act"><div class="act"><strong>0</strong>responses</div><div class="act">☆ Save</div></div></div>
+        <div class="post"><div class="fav">T</div><div><div class="ti">Why the search for particle dark matter is really hopeless, part 2</div><div class="su">Argues that the search for particle dark matter is nearly hopeless given MOND phenomenology.</div><div class="m"><span>tritonstation.com</span><span>· Physics ·</span><span class="b">arXiv</span><span class="b">DOI</span><span class="via">Rogue Scholar · DOI</span><span class="via">Hacker News · 2</span></div></div><div class="side-act"><div class="act"><strong>0</strong>responses</div><div class="act">☆ Save</div></div></div>
+      </div>
+      <div>
+        <div class="panel"><h5>Know a good post?</h5><div class="in">https://…</div><div class="go">Submit a post or a source</div></div>
+        <div class="panel"><h5>Active threads</h5><ul><li>Weight-Space Programming<small>10 responses · 3 rebuttals · 3 replications</small></li><li>Neural Networks Are Already Clean<small>3 responses · 2 rebuttals</small></li></ul></div>
+        <div class="panel"><h5>New sources this week</h5><ul><li>blog.stephenturner.us<small>added by a reader · Rogue Scholar</small></li><li>alisorcorp.github.io<small>found through a response link</small></li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pc card" style="margin-bottom:22px"><div><b>好处</b><ul><li>一眼看出是产品：搜索、提交、关注主题、新来源</li><li>右栏把"回应"和"新来源"放在显眼处，这是我们和别家不同的地方</li><li>"发现渠道"里加一个"读者提交"，和其他来源同等地位</li></ul></div><div><b>问题</b><ul><li>需要每篇的网站图标或缩略图，要多抓一次 og:image 或 favicon</li><li>手机上右栏要折到列表下面</li><li>每天上新会让人想要排行榜，需要坚持不用投票</li></ul></div></div>
+
+<div class="frame">
+  <div class="frame-cap"><span>C · 开源 / git log 风格</span><span class="tag">个性最强</span></div>
+  <div class="mC">
+    <div class="prompt">$ <b>gitpost log --graph --since=2026-11-02</b></div>
+    <div class="row"><span class="g">●</span><span class="h">a1f3c9e</span><span class="d">11-05</span><span class="ti">Kimi K3.1 Pro writes fake OpenAI ciphertext <em>· peterstran.com · research · interp</em></span></div>
+    <div class="row"><span class="g">●</span><span class="h">7be210d</span><span class="d">11-05</span><span class="ti">Larger Tokenizers Suffer More Multi-Epoch Regret <em>· wenhaochai.com · research · ai-ml</em></span></div>
+    <div class="row"><span class="g">●</span><span class="h">50341174</span><span class="d">11-02</span><span class="ti">Sparks of Weight-Space Programming <em>· rikiyat.github.io · research · ai-ml</em></span></div>
+    <div class="row"><span class="g">├─●</span><span class="h">3c09e1a</span><span class="d">+0.7d</span><span class="ti"><span class="rb">rebuttal</span> The 'Astra can read and write weights…' post is misleading <em>· honnibal.dev</em></span></div>
+    <div class="row"><span class="g">├─●</span><span class="h">e44d7b0</span><span class="d">+1.0d</span><span class="ti"><span class="rp">replication</span> Qwen 3.8 27B on my laptop can interpret model weights, too <em>· simonwillison.net</em></span></div>
+    <div class="row"><span class="g">├─●</span><span class="h">19ab3f2</span><span class="d">+0.8d</span><span class="ti"><span class="ex">extension</span> What Qwen is thinking when it gets stuck saying "Wait" <em>· alisorcorp.github.io</em></span></div>
+    <div class="row"><span class="g">└─●</span><span class="h">c7d1e88</span><span class="d">+1.3d</span><span class="ti"><span class="di">discussion</span> AI Can Read Neural Network Weights. I Wasn't Ready for That. <em>· arcturus-labs.com</em></span></div>
+  </div>
+</div>
+<div class="pc card" style="margin-bottom:6px"><div><b>好处</b><ul><li>和 GitPost 这个名字、开源定位最契合，辨识度很高</li><li>回应链天然就是 git 分支图</li></ul></div><div><b>问题</b><ul><li>非程序员读者会觉得冷、门槛高，数学、生物、人文的作者可能不会来</li><li>适合当一个视图或点缀，不适合整站</li></ul></div></div>
+<p class="note">我的建议：整体用 B；回应链用 C 的分支图（现在网站上已经有这个雏形）；A 保留成"紧凑视图"，给喜欢扫列表的读者。</p>
+
+<!-- ================================================= submit -->
+<h2>二、读者提交</h2>
+<p class="sub">提交分两种：一篇文章，或一个来源（博客、实验室网站、订阅源）。提交的东西先走同一套自动检查，再按规则决定是否需要人工审核。</p>
+<div class="frame">
+  <div class="frame-cap"><span>提交面板</span></div>
+  <div class="mS">
+    <div class="form">
+      <div class="tabs"><span class="on">A post</span><span>A source</span></div>
+      <label>Link</label><div class="in">https://example.github.io/blog/2026/my-result/</div>
+      <label>Why is it worth reading? <span style="font-weight:400;color:#6b6e73">(optional, one line)</span></label><div class="in tall">Replicates the weight-space result on a 3B model and finds…</div>
+      <div class="chk">☐ I am the author &nbsp; ☐ Notify me when it is listed</div>
+      <span class="go">Submit</span>
+    </div>
+    <ol class="steps">
+      <li><span class="n">1</span><div>Automatic check<small>Fetch the page, rule filter, LLM label and summary. A few minutes.</small></div></li>
+      <li><span class="n">2</span><div>Listed as pending<small>Visible on the Submissions page, with what the check found.</small></div></li>
+      <li><span class="n">3</span><div>Editor review if the site is new<small>Sites already approved go straight in; a new site waits for one editor.</small></div></li>
+      <li><span class="n">4</span><div>Published<small>"Submitted by a reader" appears among the channels; you get a link.</small></div></li>
+    </ol>
+  </div>
+</div>
+<table class="t" style="margin-top:10px">
+  <tr><th>实现方式</th><th>读者要做什么</th><th>我们要维护什么</th><th>建议</th></tr>
+  <tr><td>GitHub Issue 表单</td><td>需要 GitHub 账号，提交完全公开</td><td>几乎为零；机器人读 issue，自动检查后开 PR</td><td><span class="tag rec">第一版</span></td></tr>
+  <tr><td>网站内表单（Cloudflare Worker）</td><td>不需要账号</td><td>一个小接口和防刷验证；后台还是转成 issue 或 PR</td><td><span class="tag">第二版</span></td></tr>
+  <tr><td>作者认领</td><td>在自己网站放一个标记文件</td><td>验证脚本；认领后作者可以改标签、合并重复</td><td><span class="tag">第二版</span></td></tr>
+</table>
+<p class="note">所有提交和编辑决定都留在 git 里，这就是"开源"的部分：谁提交了什么、为什么收或不收，任何人都能查。</p>
+
+<!-- ================================================= palettes -->
+<h2>三、配色</h2>
+<p class="sub">每套只有一个品牌色，其余是中性色。对比度都按 WCAG 计算：品牌色文字在浅色和深色背景上都达到 4.5:1 以上，按钮文字也是。回应类型的四个颜色（反驳红、复现琥珀、扩展绿、讨论蓝）另外保留，所以品牌色最好避开这四个色相。</p>
+<div class="grid2" id="pals"></div>
+
+<!-- ================================================= logos -->
+<h2>四、Logo</h2>
+<p class="sub">五个图形都和名字无关，可以配任何名字。每个都看了三种尺寸：大图、和字标并排、16 像素的浏览器标签图标。</p>
+<div class="logos" id="logos"></div>
+
+<!-- ================================================= names -->
+<h2>五、名字</h2>
+<p class="sub" id="names-sub">域名状态是 2026-11-06 用 RDAP / whois 查的，只说明"查不到注册记录"，最终能不能买、多少钱要以注册商为准。</p>
+<div id="names"></div>
+
+<h2>六、需要你选</h2>
+<div class="card"><ol style="margin:0;padding-left:1.3em">
+  <li>版式：同意"B 为主、C 的分支图、A 作紧凑视图"吗？</li>
+  <li>配色：选一套（或说想要的感觉，我再调）。</li>
+  <li>Logo：选一个图形。</li>
+  <li>名字：选两三个你喜欢的，我再细查商标和重名。</li>
+  <li>不用投票排序，公开信号只用回应数和编辑精选。这一条你同意吗？</li>
+</ol></div>
+</div>
+
+<script>
+// ---------- palettes ----------
+var PALS = [
+  { key: "citron", name: "墨 + 柠绿（Ink & Citron）", tag: "推荐", note: "黑白为主，柠绿只用在按钮、高亮和 logo 上，像开源工具和产品站。离 HN 的橙色和四个回应色都远。",
+    L: { paper: "#f6f6f2", surf: "#ffffff", ink: "#15171a", acc: "#3d5c00", fill: "#d9f24a", btnInk: "#15171a" },
+    D: { paper: "#101210", surf: "#171a17", ink: "#e8ece6", acc: "#d4f04a", fill: "#d4f04a", btnInk: "#101210" },
+    cr: "文字 7.1 / 13.7 · 按钮 14.3 / 14.7" },
+  { key: "cobalt", name: "钴蓝（Cobalt）", note: "最像科研和工具类产品，可信、稳。缺点是和讨论蓝接近，要把讨论改成灰青色。",
+    L: { paper: "#f5f7fb", surf: "#ffffff", ink: "#111827", acc: "#1f47d6", fill: "#1f47d6", btnInk: "#ffffff" },
+    D: { paper: "#0d1117", surf: "#151b24", ink: "#e6ebf3", acc: "#86a3ff", fill: "#4f74ff", btnInk: "#0d1117" },
+    cr: "文字 6.7 / 7.2 · 按钮 7.2 / 4.7" },
+  { key: "teal", name: "实验室青（Lab Teal）", note: "安静、科学感。和扩展绿有点近，扩展要改成橄榄绿或别的颜色。",
+    L: { paper: "#f4f7f6", surf: "#ffffff", ink: "#102020", acc: "#0b6e64", fill: "#0b6e64", btnInk: "#ffffff" },
+    D: { paper: "#0c1413", surf: "#131d1c", ink: "#e3ecea", acc: "#4fd1bf", fill: "#1f9e8e", btnInk: "#0c1413" },
+    cr: "文字 5.7 / 9.2 · 按钮 6.1 / 5.7" },
+  { key: "forest", name: "森林绿 + 暖纸（Forest on paper）", note: "最像期刊：米色纸面、深绿，学术、耐看。产品感最弱。",
+    L: { paper: "#f5f2ea", surf: "#fffdf8", ink: "#1b1a17", acc: "#1f6a3c", fill: "#1f6a3c", btnInk: "#ffffff" },
+    D: { paper: "#12130f", surf: "#1a1c17", ink: "#ece9e0", acc: "#7fd49e", fill: "#2f8f55", btnInk: "#12130f" },
+    cr: "文字 5.9 / 9.7 · 按钮 6.6 / 4.6" },
+  { key: "violet", name: "紫（现在）", note: "作参照。辨识度不错，但很多 AI 产品也用紫色。",
+    L: { paper: "#f6f6f8", surf: "#ffffff", ink: "#14161c", acc: "#4a35c0", fill: "#5b45d6", btnInk: "#ffffff" },
+    D: { paper: "#0f1115", surf: "#161a20", ink: "#e7eaf0", acc: "#b8adff", fill: "#a99cff", btnInk: "#0f1115" },
+    cr: "文字 7.6 / 8.7 · 按钮 6.4 / 8.0" }
+];
+function sample(t, dark) {
+  var chipOnBg = t.ink, chipOnInk = t.paper;
+  return '<div class="smp" style="background:' + t.paper + ';color:' + t.ink + '">' +
+    '<div class="ty" style="color:' + t.acc + '">Research report · AI / ML</div>' +
+    '<div class="ti">Sparks of Weight-Space Programming</div>' +
+    '<div class="row"><span class="bt" style="background:' + t.fill + ';color:' + t.btnInk + '">+ Submit</span>' +
+    '<span class="ch" style="background:' + chipOnBg + ';color:' + chipOnInk + ';border-color:' + chipOnBg + '">All</span>' +
+    '<span class="ch" style="border-color:' + (dark ? "#3a3f3a" : "#d8d8d2") + ';background:' + t.surf + '">Physics</span>' +
+    '<span class="mk" style="background:' + (t === undefined ? "" : (dark ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.06)")) + ';color:' + t.acc + '">10 responses</span></div></div>';
+}
+var pw = document.getElementById("pals");
+PALS.forEach(function (p) {
+  var c = document.createElement("div"); c.className = "card pal";
+  var sw = [["纸面", p.L.paper], ["墨", p.L.ink], ["品牌", p.L.fill], ["文字强调", p.L.acc], ["深色纸面", p.D.paper], ["深色强调", p.D.acc]]
+    .map(function (s) { return '<span><i style="background:' + s[1] + '"></i>' + s[0] + '<br>' + s[1] + '</span>'; }).join("");
+  c.innerHTML = '<div class="head"><h3>' + p.name + (p.tag ? ' <span class="tag rec">' + p.tag + '</span>' : '') + '</h3><div class="note">' + p.note + '</div><div class="note mono" style="margin-top:4px">对比度（浅 / 深）：' + p.cr + '</div></div>' +
+    '<div class="sw">' + sw + '</div><div class="duo"><div style="background:' + p.L.paper + '">' + sample(p.L, false) + '</div><div style="background:' + p.D.paper + '">' + sample(p.D, true) + '</div></div>';
+  pw.appendChild(c);
+});
+
+// ---------- logos ----------
+var MARKS = [
+  { name: "分支", fit: "GitPost、Branchline、Upstream", note: "原文是主干，回应从旁边分出去。现在用的就是这个思路，可以继续精修。",
+    svg: function (c, bg) { return '<svg viewBox="0 0 32 32"><path d="M11 6v20M11 13c0 5 10 3 10 8" stroke="' + c + '" stroke-width="2.8" fill="none" stroke-linecap="round"/><circle cx="11" cy="7" r="3.4" fill="' + c + '"/><circle cx="11" cy="25" r="3.4" fill="' + c + '"/><circle cx="21" cy="21.5" r="3.3" fill="' + bg + '" stroke="' + c + '" stroke-width="2.4"/></svg>'; } },
+  { name: "方括号 + 点", fit: "Sidenote、Findings、Readout", note: "像引用标记：从开放网络里把一篇文章\"框\"出来。简单，16 像素也清楚。",
+    svg: function (c) { return '<svg viewBox="0 0 32 32"><path d="M12 6H8v20h4M20 6h4v20h-4" stroke="' + c + '" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="16" r="3.6" fill="' + c + '"/></svg>'; } },
+  { name: "折角页", fit: "Labpost、Livepaper、Openshelf", note: "一页纸，右上角折起，里面两行字。直接表示\"一篇帖子\"，最好懂。",
+    svg: function (c) { return '<svg viewBox="0 0 32 32"><path d="M9 5h10l6 6v15a1.5 1.5 0 0 1-1.5 1.5h-14A1.5 1.5 0 0 1 8 26V6.5A1.5 1.5 0 0 1 9 5z" stroke="' + c + '" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M19 5v6h6" stroke="' + c + '" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M12 16h8M12 20.5h5" stroke="' + c + '" stroke-width="2.4" stroke-linecap="round"/></svg>'; } },
+  { name: "星号", fit: "任何名字", note: "三条线交于一点，像脚注的星号，也像\"开放\"。最中性，品牌感靠配色撑。",
+    svg: function (c) { return '<svg viewBox="0 0 32 32"><g stroke="' + c + '" stroke-width="3" stroke-linecap="round"><path d="M16 6v20"/><path d="M7.3 11l17.4 10"/><path d="M7.3 21l17.4-10"/></g></svg>'; } },
+  { name: "订阅流", fit: "Paperstream、Upstream、GitPost", note: "三条长短不一的横线加一个点，像 feed，也像一条时间线。",
+    svg: function (c) { return '<svg viewBox="0 0 32 32"><g stroke="' + c + '" stroke-width="3" stroke-linecap="round"><path d="M7 9h12"/><path d="M7 16h18"/><path d="M7 23h8"/></g><circle cx="24" cy="9" r="3.2" fill="' + c + '"/></svg>'; } }
+];
+var lw = document.getElementById("logos");
+MARKS.forEach(function (m) {
+  var d = document.createElement("div"); d.className = "lg";
+  d.innerHTML = '<div class="tiles"><div style="background:#f6f6f2">' + m.svg("#15171a", "#f6f6f2") + '</div><div style="background:#15171a">' + m.svg("#d4f04a", "#15171a") + '</div></div>' +
+    '<h3>' + m.name + '</h3><div class="wm">' + m.svg("#15171a", "#ffffff") + 'GitPost</div>' +
+    '<div class="fav"><span style="background:#15171a;border-radius:4px;display:inline-grid;padding:2px">' + m.svg("#d4f04a", "#15171a") + '</span>16 px 标签图标</div>' +
+    '<p>' + m.note + '<br>适合：' + m.fit + '</p>';
+  lw.appendChild(d);
+});
+</script>
+<script src="names.js"></script>
+</body>
+</html>

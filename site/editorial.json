@@ -1,0 +1,108 @@
+{
+ "_comment": "Editorial decisions applied at build time. 'exclude' removes items from the index and from all derived counts. Every entry needs a reason in both languages.",
+ "exclude": [
+  {
+   "domain": "jhspatial.github.io",
+   "decided": "2026-11-06",
+   "reason_en": "Automated daily digest written by an AI system, not authored research.",
+   "reason_zh": "每天由 AI 自动生成的综述，不是作者自己的研究。"
+  },
+  {
+   "domain": "tobiasstenzel.com",
+   "decided": "2026-11-06",
+   "reason_en": "Course study notes on data structures, not an explainer of research.",
+   "reason_zh": "数据结构课程笔记，不是对研究的解读。"
+  },
+  {
+   "domain": "114514547.github.io",
+   "decided": "2026-11-06",
+   "reason_en": "Personal tool troubleshooting notes, not research.",
+   "reason_zh": "个人工具排障记录，不是研究。"
+  },
+  {
+   "domain": "alphaxiv.org",
+   "decided": "2026-11-06",
+   "reason_en": "Mirror pages for arXiv papers, not the authors' own websites.",
+   "reason_zh": "arXiv 论文的镜像页，不是作者自己的网站。"
+  },
+  {
+   "domain": "emergentmind.com",
+   "decided": "2026-11-06",
+   "reason_en": "Paper aggregator page, not the authors' own website.",
+   "reason_zh": "论文聚合站的页面，不是作者自己的网站。"
+  },
+  {
+   "domain": "doi.org",
+   "decided": "2026-11-06",
+   "reason_en": "Link resolves to a preprint server, not the authors' own website.",
+   "reason_zh": "链接指向预印本平台，不是作者自己的网站。"
+  },
+  {
+   "domain": "theainewsreport.com",
+   "decided": "2026-11-06",
+   "reason_en": "News-explainer site that rewrites trending posts, not responses written by researchers.",
+   "reason_zh": "逐条改写热门帖子的新闻解读站，不是研究者自己写的回应。"
+  }
+ ],
+ "relabel": [],
+ "exclude_rules": {
+  "political": {
+   "label_en": "Main subject is a heated political issue",
+   "label_zh": "主题是政治议题",
+   "desc_en": "Elections, named politicians, partisan policy fights, migration, wars and geopolitical rivalry. Research that only touches on policy stays.",
+   "desc_zh": "选举、具体政治人物、党派之争、移民、战争和国家间对抗。只是涉及政策的研究会保留。",
+   "how": "LLM label 'political: strong' (data/llm/political_out.jsonl), checked by the editor"
+  }
+ },
+ "exclude_urls": [
+  {
+   "url": "https://www.csis.org/analysis/chinas-weaponization-dual-use-research-vessels-undersea-data-dominance",
+   "rule": "political",
+   "title": "China’s Weaponization of Dual-Use Research Vessels for Undersea Data Dominance",
+   "reason_en": "geopolitical rivalry: Chinese vessels and undersea data dominance",
+   "decided": "2026-11-06"
+  },
+  {
+   "url": "https://fluchtforschung.net/grenzmanagement-statt-fluchtursachen-wie-sich-migrationsbezogene-eu-entwicklungshilfe-veraendert/",
+   "rule": "political",
+   "title": "Grenzmanagement statt Fluchtursachen: Wie sich migrationsbezogene EU-Entwicklungshilfe verändert",
+   "reason_en": "EU migration and border management policy",
+   "decided": "2026-11-06"
+  },
+  {
+   "url": "https://soundstudiesblog.com/2026/11/02/flagrant-brocasting-trump-part-iii/",
+   "rule": "political",
+   "title": "Flagrant: Brocasting Trump, Part III",
+   "reason_en": "Trump as subject of media analysis",
+   "decided": "2026-11-06"
+  },
+  {
+   "url": "https://grantwitness.org/updates/lost-funds-data-update-for-october-15",
+   "rule": "political",
+   "title": "Lost Funds: Data Update for October 15",
+   "reason_en": "federal funding cuts disruption tracking",
+   "decided": "2026-11-06"
+  },
+  {
+   "url": "https://grantwitness.org/updates/lost-funds-data-update-for-october-1",
+   "rule": "political",
+   "title": "Lost Funds: Data Update for October 1",
+   "reason_en": "federal funding cuts disruption tracking",
+   "decided": "2026-11-06"
+  },
+  {
+   "url": "https://kieranhealy.org/blog/archives/2026/10/01/trump-tourism-effects/",
+   "rule": "political",
+   "title": "Trump Tourism Effects",
+   "reason_en": "Trump effects on tourism, named politician",
+   "decided": "2026-11-06"
+  },
+  {
+   "url": "https://agentsofinfluence.substack.com/p/i-built-an-ai-bot-to-fact-check-the",
+   "rule": "political",
+   "title": "I Built an AI Bot to Fact-Check the Midterms. Here's What I've Learned.",
+   "reason_en": "midterm elections fact-checking",
+   "decided": "2026-11-06"
+  }
+ ]
+}

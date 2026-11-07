@@ -1,0 +1,12 @@
+# secrets never go into git: keys live in the macOS Keychain locally and in GitHub Actions secrets in CI
+.env
+.env.*
+*.key
+secrets/
+# crawl output is large; snapshots are published as release assets instead
+data/
+# build output
+site/public/
+design/demo-b/
+__pycache__/
+.DS_Store

@@ -1,0 +1,168 @@
+{"key": "https://dlab.epfl.ch/2017-08-30-of-sheep-and-beer/", "summary_en": "A study of how early ratings create herding effects in product reviews."}
+{"key": "https://cameronmpalmer.com/blog/are-you-paying-for-useless-llm-prompts/", "summary_en": "An experiment assessing whether redundant LLM prompts are actually effective."}
+{"key": "https://www.bellingcat.com/resources/2026/10/22/can-llms-supercharge-geolocations-our-tests-show-big-improvements-but-humans-remain-key/", "summary_en": "Bellingcat evaluates how well LLMs perform at geolocation."}
+{"key": "https://vhamolya.com/blog/which-iphone-took-this-photo/", "summary_en": "Tests whether a single photo can identify an iPhone's camera fingerprint."}
+{"key": "https://www.arcblock.io/en/articles/when-coding-agents-stop-finishing/", "summary_en": "A field analysis of performance degradation in coding agents across vendors."}
+{"key": "https://institute.deepmind.com/essays/what-is-work-for-human-wellbeing-and-the-value-of-work-in-the-agi-era/", "summary_en": "DeepMind studies work and wellbeing in the era of AGI."}
+{"key": "https://www.fratepietro.com/2026/how-to-build-a-decision-model-like-jev/", "summary_en": "Explains how to build a decision model that quickly outputs calibrated probabilities."}
+{"key": "https://prefrontal.ai/news/lsa/", "summary_en": "Proposes LSA, a hierarchical clustering attention, to speed up ultra-long context."}
+{"key": "https://hxu296.github.io/ai-compute-landscape/", "summary_en": "Analyzes AI compute rents and commitments to judge whether neoclouds are a bubble."}
+{"key": "https://archytas-ai.com/blog/this-is-fine", "summary_en": "Studies how RL environments lead agents to falsely report task completion."}
+{"key": "https://huggingface.co/blog/ibm-research/cuga-harness", "summary_en": "Compares three agent harnesses: CUGA, Hermes, and Deep Agents."}
+{"key": "https://www.coreauto.com/hitchhikers-guide-to-training-on-compute-islands", "summary_en": "A position on fault-tolerant distributed training across data centers, with sparse MoE experiments."}
+{"key": "https://devblogs.microsoft.com/foundry-on-windows/coding-ai-on-windows-pcs-quality-efficiency/", "summary_en": "Uses low-bit quantization and speculative decoding to improve local coding AI efficiency on Windows."}
+{"key": "https://runanywhere.ai/blog/glm-5-3-flash-trainium2-nki-megakernels", "summary_en": "Serves GLM-5.3-Flash on a single Trainium2 machine and measures throughput."}
+{"key": "https://wenhaochai.com/blogs/vocab-multi-epoch.html", "summary_en": "Experiments show that larger tokenizers incur higher regret in multi-epoch training."}
+{"key": "https://veds12.github.io/git-swarm/", "summary_en": "Proposes GitSwarm, in which a swarm of agents shares a Git repository to accumulate attempts."}
+{"key": "https://nvlabs.github.io/Sana/Sol-Engine/StreamRender-H3/", "summary_en": "Proposes StreamRender-H3, which renders interactive coding worlds with streaming diffusion."}
+{"key": "https://sunovivid.github.io/correction-training/", "summary_en": "Proposes correction training for diffusion models to mitigate exposure bias."}
+{"key": "https://igort99.github.io/posts/2026/10/05/looped-cot-faithfulness/", "summary_en": "Experiments test whether the looped transformer Huginn actually uses its reasoning."}
+{"key": "https://nickdrozd.github.io/2026/10/20/blanking-beavers-results-and-open-problems.html", "summary_en": "Reports results and open problems for the Blanking Beavers Turing machine problem."}
+{"key": "https://jeff-kline.github.io/posts/economics-nobel-2026/index.html", "summary_en": "An interactive model explaining expectations and recessions in the 2026 Nobel Prize in Economics."}
+{"key": "https://heyyviv.github.io/blog/what-reel-you-will-get-next/", "summary_en": "Explains short-video recommendation system design by observing network requests."}
+{"key": "https://zzyzek.github.io/SolidGridGraphHamPathPaper/", "summary_en": "Proves that Hamiltonian paths in solid grid graphs can be decided in polynomial time."}
+{"key": "https://sandyresearch.github.io/benice/", "summary_en": "Research on narrowing the inference-memory gap of looped models through KV-sharing."}
+{"key": "https://daveremy.github.io/agent-scrum/", "summary_en": "An agent sprint method for AI coding agents, with observations from 324 sprints."}
+{"key": "https://yifanzhang-pro.github.io/recurrent-looped-tranformer/", "summary_en": "Project page on state tracking with the Recurrent Looped Transformer."}
+{"key": "https://fsdatalab.github.io/blog/agent-text-at-scale/", "summary_en": "Five principles for generating readable AI text in bulk."}
+{"key": "https://jax-ml.github.io/scaling-book/", "summary_en": "A systems-perspective tutorial on scaling LLMs on TPUs."}
+{"key": "https://tencent.github.io/WeVisCut", "summary_en": "Project page for WeVisCut, which uses an agent to edit long videos."}
+{"key": "https://maknee.github.io/blog/2026/Cuda-Checkpointing/", "summary_en": "A worklog on making CUDA checkpointing 15 times faster on a B300."}
+{"key": "https://0x4d31.github.io/airt/", "summary_en": "A free, open-source course on red teaming and defending AI systems."}
+{"key": "https://timvieira.github.io/testing-randomized-algorithms/", "summary_en": "Introduces ideas for testing randomized algorithms."}
+{"key": "https://anirudhb11.github.io/blog/scorpio/", "summary_en": "Analyzes the limits of using test-time compute for self-evaluation."}
+{"key": "https://jonneslin.github.io/weight-space-trigger-en.html", "summary_en": "Manually edits about 0.1% of Qwen3.5-0.8B's weights to implant a rule."}
+{"key": "https://imhgchoi.github.io/agentic-idea-manager/", "summary_en": "Proposes AIM, which uses agents to manage and explore ideas for automated research."}
+{"key": "https://infini-ai-lab.github.io/ServeLearnBench/", "summary_en": "Proposes ServeLearnBench to evaluate agents' self-improvement from serving experience."}
+{"key": "https://datascienceconfidential.github.io//economics/2026/10/04/induced-demand.html", "summary_en": "Explains the phenomenon of induced demand with simple models."}
+{"key": "https://efficient-agents.github.io/", "summary_en": "A survey of memory, tool learning, and planning for efficient agents."}
+{"key": "https://itsodeleo.github.io/posts/local-decision-workflow/", "summary_en": "Locally tests LLMs such as Qwen for decision making without fine-tuning and compares them with Jev."}
+{"key": "https://astralord.github.io/posts/speculative-decoding-the-art-of-guessing-well/", "summary_en": "Explains how speculative decoding speeds up LLM decoding."}
+{"key": "https://trainstation-project.github.io/blog/flat/", "summary_en": "Implements kernels such as linear attention on TPUs using Pallas."}
+{"key": "https://catarinagamboa.github.io/papers/barista/", "summary_en": "Barista: synthesizes typestate specifications with LLM agents (ASE 2026)."}
+{"key": "https://kellerjordan.github.io/posts/muon/", "summary_en": "Introduces the Muon optimizer for hidden layers and its training speed records."}
+{"key": "https://chessapig.github.io/Mahler", "summary_en": "Illustrates the ideas behind the AI proof of the Mahler conjecture."}
+{"key": "https://keenableai.github.io/needle/", "summary_en": "Releases Needle, an open-source real-time search engine benchmark for agents, with results."}
+{"key": "https://weights-exfil.github.io/model-weights-exfiltration/", "summary_en": "Shows a covert channel that steals model weights through token choices in LLM APIs."}
+{"key": "https://baidu-baige.github.io/LoongForge/projects/vlda.html", "summary_en": "Proposes VLDA, which uses compact deltas as the interface for robot manipulation."}
+{"key": "https://siimtolk.github.io/articles/llm-testing-overnight/", "summary_en": "Tests 18 local LLMs on two RTX 5060 Ti GPUs."}
+{"key": "https://zzyzek.github.io/R2K2ZZNPaper/", "summary_en": "Gives a forbidden-pattern characterization of Numberlink and a polynomial-time algorithm."}
+{"key": "https://leggedrobotics.github.io/rubik-skills/", "summary_en": "Project page on a quadruped robot that autonomously scans and solves a giant Rubik's cube."}
+{"key": "https://leesintheblindmonk1999.github.io/sas-landing/#hero", "summary_en": "A claimed deterministic AI structural audit framework with K_D=0.56."}
+{"key": "https://nvlabs.github.io/motionbricks/", "summary_en": "Project page for the MotionBricks real-time motion generation paper."}
+{"key": "https://lucastononro.github.io/how-you-could-have-invented-muon-from-memory/", "summary_en": "A tutorial deriving the Muon optimizer from the perspective of memory."}
+{"key": "https://rajabi2001.github.io/area/", "summary_en": "Project page for AReA, efficient attention for high-resolution diffusion transformers."}
+{"key": "https://zerobench.github.io/", "summary_en": "Proposes ZeroBench, a visual benchmark that is extremely hard for multimodal large models."}
+{"key": "http://karpathy.github.io/2015/05/21/rnn-effectiveness/", "summary_en": "A classic article introducing RNNs and character-level language model experiments."}
+{"key": "https://andrew-helmer.github.io/sz-matrix-construction/", "summary_en": "Gives a direct construction of SZ sequence matrices."}
+{"key": "https://flecart.github.io/posts/2026-11-03-i-tried-to-break-weight-programming/", "summary_en": "Replicates weight programming experiments and analyzes their complexity limits."}
+{"key": "https://osmangult.github.io/blog/2026/pinn-myocardium/", "summary_en": "A project description of fitting passive myocardium hyperelastic constitutive laws with a PINN."}
+{"key": "https://floriajin.github.io/blog/2026/is-the-multi-agent-system-another-hallucination/", "summary_en": "A survey of failure diagnosis research for LLM agents and multi-agent systems."}
+{"key": "https://panreta.github.io/blog/2026/KLDivergence/", "summary_en": "Explains the origins and properties of Bregman divergence, KL divergence, and entropy."}
+{"key": "https://dongxuanhe.github.io/blog/2026/toward-dexterous-mobile-manipulation/", "summary_en": "Notes from Nikolaus Correll's talk on dexterous mobile manipulation."}
+{"key": "https://dongxuanhe.github.io/blog/2026/statistical-inference-with-ai-generated-predictive-distributions/", "summary_en": "Notes from Emma Zhang's talk on statistical inference with AI predictive distributions."}
+{"key": "https://dongxuanhe.github.io/blog/2026/identifying-discrete-state-network-dynamics/", "summary_en": "Notes from Carolyn Beck's seminar on identifying discrete-state network dynamics."}
+{"key": "https://dongxuanhe.github.io/blog/2026/learning-causal-graphs-with-mixed-integer-optimization/", "summary_en": "Notes from Küçükyavuz's seminar on learning causal graphs with mixed-integer optimization."}
+{"key": "https://wenyaxie023.github.io/blog/2026/ml-conference-trends/", "summary_en": "Counts topic trends in accepted NeurIPS and ICLR papers from 2023 to 2026."}
+{"key": "https://mayaokawa.github.io/blog/2026/biased-consensus/", "summary_en": "Uses an Ising model to analyze how small biases amplify into unfair consensus in LLM debates."}
+{"key": "https://aopatric.github.io/blog/2026/recurrent-grokking/", "summary_en": "Studies serial depth in looped transformers and the monitorability of chain of thought."}
+{"key": "https://from-sea-to-summit.github.io/blog/2026/evaporation-measurements/", "summary_en": "Records the installation of evapotranspiration monitoring equipment and initial observations."}
+{"key": "https://bishnubhusal.com.np/blog/2026/clipping-geometry-private-muon/", "summary_en": "Uses a two-dimensional example to show how gradient clipping changes Muon's geometry."}
+{"key": "https://schiekiera.github.io/blog/2026/computational-swinging-lexical-network/", "summary_en": "Implements a computational model of the Swinging Lexical Network for word production."}
+{"key": "https://schiekiera.github.io/blog/2026/linear-pfn/", "summary_en": "Proposes a pretrained LinearPFN for variable selection in linear models with interactions."}
+{"key": "https://chandlersmith2.github.io/blog/2026/decoupling-inequality-proof-sketch/", "summary_en": "Gives a proof sketch of the inequality of de la Peña."}
+{"key": "https://boxiyu.github.io/writing/what-frontiercs-2-teaches-about-agent-results/", "summary_en": "Discusses what the pass rules of the FrontierCS 2 benchmark imply for interpreting agent results."}
+{"key": "https://zlatanajanovic.com/robot-autonomy-levels/", "summary_en": "Proposes a framework of robot autonomy levels for human-in-the-loop systems (book chapter)."}
+{"key": "https://www.tobiasstenzel.com/blog/2026/dsa-graphs/", "summary_en": "Data structures and algorithms notes: graphs."}
+{"key": "https://www.tobiasstenzel.com/blog/2026/dsa-sorting-searching/", "summary_en": "Data structures and algorithms notes: sorting and searching."}
+{"key": "https://www.tobiasstenzel.com/blog/2026/dsa-recursion-backtracking/", "summary_en": "Data structures and algorithms notes: recursion and backtracking."}
+{"key": "https://www.tobiasstenzel.com/blog/2026/dsa-hierarchical/", "summary_en": "Data structures and algorithms notes: hierarchical structures."}
+{"key": "https://www.tobiasstenzel.com/blog/2026/dsa-techniques/", "summary_en": "Data structures and algorithms notes: array and string techniques."}
+{"key": "https://www.tobiasstenzel.com/blog/2026/dsa-linear/", "summary_en": "Data structures and algorithms notes: linear structures."}
+{"key": "https://www.tobiasstenzel.com/blog/2026/dsa-foundations/", "summary_en": "Data structures and algorithms notes: algorithm foundations and complexity analysis."}
+{"key": "https://www.tobiasstenzel.com/blog/2026/dsa-overview/", "summary_en": "An overview of this series of notes on data structures and algorithms."}
+{"key": "https://fpoltronieri.github.io/blog/2026/teaching-a-car-to-drive-inside-its-own-dream/", "summary_en": "Records experiments teaching autonomous driving to drive inside a latent world model."}
+{"key": "https://elena6918.github.io/blog/2026/rules/", "summary_en": "Studies version flip-flopping in LLM-written security detection rules across iterations."}
+{"key": "https://eureka10shen.github.io/blog/quantum-computation-quantum-chemistry/", "summary_en": "Technical notes on the first step of quantum computation for quantum chemistry."}
+{"key": "https://anwoybarua.github.io/posts/2026/10/xarray-guidebook-part1/", "summary_en": "An introductory tutorial on processing multidimensional climate data with Xarray."}
+{"key": "https://114514547.github.io/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E6%9C%AC%E5%9C%B0AI%E5%8F%8D%E4%BB%A3%E8%BF%9B%E9%98%B6-%E4%BB%8Egcli2api%E5%87%AD%E8%AF%81%E6%A1%A5%E6%8E%A5%E5%88%B0Termux%E5%B8%B8%E9%A9%BB%E4%B8%8E503%E7%AE%97%E5%8A%9B%E8%80%97%E5%B0%BD%E6%8E%92%E6%9F%A5/", "summary_en": "Records running a gcli2api reverse proxy persistently on Termux and troubleshooting 503 errors."}
+{"key": "https://114514547.github.io/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E5%9C%A8%E5%AE%89%E5%8D%93%E5%B9%B3%E6%9D%BF%E4%B8%8A%E6%89%93%E9%80%A0C%E8%AF%AD%E8%A8%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83-Termux-PRoot-Debian%E4%B8%8EWeb-VSCode%E6%8E%92%E9%9A%9C%E5%AE%9E%E5%BD%95/", "summary_en": "Records setting up a C development environment on an Android tablet with Termux."}
+{"key": "https://114514547.github.io/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E4%BB%8E%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88%E6%8A%A5%E9%94%99%E5%88%B0%E7%90%86%E8%A7%A3%E9%9D%99%E6%80%81%E5%8F%91%E5%B8%83%E6%B5%81-Jekyll-Docker%E4%B8%8EGitHub-Pages-CICD%E6%97%B6%E5%BB%B6%E6%8E%A2%E7%A7%98/", "summary_en": "Records troubleshooting local preview and CI/CD for an AcademicPages homepage."}
+{"key": "https://114514547.github.io/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/Git%E5%A4%9A%E7%AB%AF%E5%90%8C%E6%AD%A5%E7%BF%BB%E8%BD%A6%E5%AE%9E%E5%BD%95-Obsidian%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E5%86%B2%E7%AA%81%E4%B8%8ETermux%E4%BA%BA%E5%B7%A5%E6%B6%88%E8%A7%A3%E6%8C%87%E5%8D%97/", "summary_en": "Records diagnosing and resolving Git conflicts in Obsidian configuration."}
+{"key": "https://114514547.github.io/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/Obsidian%E8%B7%A8%E8%AE%BE%E5%A4%87Git%E5%90%8C%E6%AD%A5%E5%AE%9E%E6%88%98-%E4%BB%8E%E5%8D%A1%E6%AD%BBGetting-status%E5%88%B0Termux%E5%BA%95%E5%B1%82%E6%8E%92%E9%94%99/", "summary_en": "Records troubleshooting an Obsidian Git sync hang on Termux."}
+{"key": "https://daudkhan2030.github.io/engineering/2026/10/23/Multithreading_Mutex_Thread_Synchronization.html", "summary_en": "Explains mutexes and condition variables in C++ multithreading."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-11-05/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-11-04/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-11-03/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-11-02/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-11-01/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-10-31/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-10-30/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-10-29/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-10-28/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://jhspatial.github.io/research/urban-research-2026-10-27/", "summary_en": "An AI-generated overview of research trends in smart city technology."}
+{"key": "https://inamullah-colab.github.io/posts/2026/10/risk-odds-and-causality/", "summary_en": "Explains risk, odds ratios, and causality in epidemiology and healthcare AI."}
+{"key": "https://ravulapallimanas.github.io/writing/2026/10/ideas-on-creating-artificial-life-in-silico/", "summary_en": "Summarizes lessons from building need-driven artificial life with homeostatic reinforcement learning."}
+{"key": "https://markssce.github.io/Mercury.github.io/posts/2026/10/blog-post-7/", "summary_en": "Study notes on LSTMs and deep learning."}
+{"key": "https://markssce.github.io/Mercury.github.io/posts/2026/10/blog-post-2/", "summary_en": "Explains how students' prior knowledge can both help and hinder learning."}
+{"key": "https://muzi2018.github.io/supermimic/", "summary_en": "Explains how SuperMimic uses a differentiable world model for humanoid whole-body tracking."}
+{"key": "https://muzi2018.github.io/system-0-1-2/", "summary_en": "Uses the System 0/1/2 framework to explain the division of labor in robot control."}
+{"key": "https://nunobrazz.github.io/posts/2026/canton-architecture/", "summary_en": "Introduces how the backend, participant nodes, and synchronizers cooperate in the Canton architecture."}
+{"key": "https://nunobrazz.github.io/posts/2026/canton-eutxo-vs-account-model/", "summary_en": "Compares the Ethereum account model with Canton's eUTXO model."}
+{"key": "https://nunobrazz.github.io/posts/2026/canton-decentralization/", "summary_en": "Explains how Canton decentralizes at the protocol layer and the application layer."}
+{"key": "https://geo-huanwang.com/posts/2026/10/monopile-moment-rotation-predictor/", "summary_en": "Proposes a general scaling law for monopiles in sand based on centrifuge tests, with an interactive prediction tool."}
+{"key": "https://ethan-jz.github.io//ppo-robot-reaching/", "summary_en": "Deploys a robotic arm reaching task using PPO reinforcement learning."}
+{"key": "https://tritonstation.com/2026/11/05/why-the-search-for-particle-dark-matter-is-really-hopeless-part-2/", "summary_en": "Argues that the search for particle dark matter is nearly hopeless given MOND phenomena (part 2)."}
+{"key": "https://fluchtforschung.net/grenzmanagement-statt-fluchtursachen-wie-sich-migrationsbezogene-eu-entwicklungshilfe-veraendert/", "summary_en": "Analyzes the EU's shift of migration-related development aid toward border management."}
+{"key": "https://soundstudiesblog.com/2026/11/02/flagrant-brocasting-trump-part-iii/", "summary_en": "A statistical analysis of Trump's appearances on podcasts and video shows."}
+{"key": "https://www.leidenmadtrics.nl/articles/tracking-r-d-funding-in-the-global-south-challenges-and-opportunities-in-india", "summary_en": "Analyzes the challenges and opportunities of tracking R&D funding in India."}
+{"key": "https://chem-bla-ics.linkedchemistry.info/2026/11/01/creating-preferred-iupac-names.html", "summary_en": "Explores using language models to generate preferred IUPAC names."}
+{"key": "https://jonswain.github.io/morg2smiles/", "summary_en": "Discusses generative recovery of SMILES strings from Morgan fingerprints."}
+{"key": "https://grantwitness.org/cdc/updates/methodology", "summary_en": "Explains the sources and methods of the CDC grant disruption data."}
+{"key": "https://irights.info/artikel/its-all-in-the-mix-labeling-and-licensing-materials-with-ai-content/32937", "summary_en": "Explains how to label and license open educational resources that contain AI content."}
+{"key": "https://blog.tib.eu/2026/10/29/faq-wie-publiziere-ich-rechtssicher-fuer-die-allgemeinheit/", "summary_en": "Answers how to publish results for the public in a legally safe way."}
+{"key": "https://www.scholcommlab.ca/2026/10/28/scrollytelling/", "summary_en": "Uses scrollytelling to show the story of data citation and reuse."}
+{"key": "https://thebibliomagician.wordpress.com/2026/10/26/ssrn-rankings-are-gone-how-to-read-your-own-numbers-without-rebuilding-them/", "summary_en": "Explains how to interpret download data after SSRN rankings were discontinued."}
+{"key": "https://tritonstation.com/2026/10/26/why-the-search-for-particle-dark-matter-is-hopeless-part-1/", "summary_en": "Argues why the search for particle dark matter is hopeless (part 1)."}
+{"key": "https://blog.stephenturner.us/p/ai-peer-reviews-beat-humans", "summary_en": "Introduces a demonstration that AI reviews may be no worse than human peer reviews."}
+{"key": "https://grantwitness.org/epa/updates/methodology", "summary_en": "Explains the sources and methods of the EPA grant disruption data."}
+{"key": "https://medical-education.pages.ub.uni-bielefeld.de/research/mes-blog/posts/2026-10-22-forschendes-lernen/", "summary_en": "Discusses why research-based learning needs guidance to be effective."}
+{"key": "https://grantwitness.org/updates/lost-funds-data-update-for-october-15", "summary_en": "Updates the Lost Funds data, measuring the scale of federal funding disruption."}
+{"key": "https://www.jeremykun.com/2026/10/21/ckks-key-switching-and-relinearization/", "summary_en": "A CKKS homomorphic encryption tutorial on key switching and relinearization."}
+{"key": "https://fluchtforschung.net/is-migration-choice-possible-during-the-migration-course-understanding-biographical-migration-projects/", "summary_en": "Distinguishes biographical migration projects from migration intentions and analyzes them."}
+{"key": "https://blog.front-matter.de/posts/what-content-categories-are-used-in-science-blogs/", "summary_en": "Analyzes the content categories of Rogue Scholar science blogs and proposes a taxonomy."}
+{"key": "https://shkspr.mobi/blog/2026/10/una-watch-totp-mfa-on-your-wrist/", "summary_en": "Builds a TOTP two-factor authentication device for the wrist."}
+{"key": "https://tzovar.as/codeberg-git-pages-with-lfs/", "summary_en": "Explains how to deploy with git lfs in Codeberg git-pages."}
+{"key": "https://chem-bla-ics.linkedchemistry.info/2026/10/17/peer-reviewed-articles-about-biological-processes.html", "summary_en": "Surveys peer-reviewed articles about biological processes in WikiPathways."}
+{"key": "https://grantwitness.org/nsf/updates/methodology", "summary_en": "Explains how NSF grant termination data is tracked."}
+{"key": "https://blog.bioconductor.org/posts/2026-10-15-cytometry-in-r/", "summary_en": "Introduces cytometry tools in R and Bioconductor."}
+{"key": "https://silsesquioxane.blogspot.com/2026/10/t12-dodecameric-silsesquioxanes.html", "summary_en": "Discusses the D6h and D2d isomers of the T12 POSS cage."}
+{"key": "https://metadatagamechangers.com/blog/2026/10/10/visualizing-crossref-repository-histories", "summary_en": "Visualizes the history of Crossref repository metadata."}
+{"key": "https://blog.tib.eu/2026/10/14/ganz-ohne-turnschuhe-administration-mit-opsi/", "summary_en": "Introduces IT administration with OPSI."}
+{"key": "https://winoda.de/2026/10/13/markdown-3-mein-obsidian-setup/", "summary_en": "Introduces the author's Obsidian setup."}
+{"key": "https://blog.pensoft.net/2026/10/13/not-only-boring-issues-what-fossil-bones-reveal-about-cretaceous-hateg-island/", "summary_en": "Introduces research in which fossil bone traces reveal the Cretaceous Haţeg Island."}
+{"key": "https://solomoneshun.com/posts/obsidian/", "summary_en": "Introduces organizing reading and writing notes with Obsidian."}
+{"key": "https://shkspr.mobi/blog/2026/10/i-paid-people-to-try-and-follow-my-readme/", "summary_en": "Pays people to follow a README to test the quality of the documentation."}
+{"key": "https://www.jeremykun.com/2026/10/11/ckks-addition-and-multiplication/", "summary_en": "Explains addition and multiplication in CKKS homomorphic encryption."}
+{"key": "https://aarontay.substack.com/p/when-ai-search-makes-up-the-query", "summary_en": "Explains AI search query rewriting such as HyDE and Query2doc."}
+{"key": "https://renebekkers.wordpress.com/2026/10/10/fast-but-incomplete-and-inaccurate-twelve-ai-powered-tools-for-literature-search/", "summary_en": "Evaluates twelve AI literature search tools and points out their shortcomings."}
+{"key": "https://grantwitness.org/nih/updates/methodology", "summary_en": "Explains how NIH and AHRQ grant disruption data is tracked."}
+{"key": "https://blog.tib.eu/2026/10/09/offen-forschen-gezielt-schuetzen/", "summary_en": "Explains how open science can be reconciled with intellectual property protection."}
+{"key": "https://x-dev.pages.jsc.fz-juelich.de/2026/10/08/scicoco-posters.html", "summary_en": "Presents posters from SciCoCo.nrw on LLM training and benchmarking."}
+{"key": "https://www.jeremykun.com/shortform/2026-10-08-1120/", "summary_en": "Reports that the HEIR compiler completes FHE hotword detection on a GPU in 350 ms."}
+{"key": "https://grantwitness.org/updates/lost-funds-data-update-for-october-1", "summary_en": "Updates the October 1 data on funding disruptions from Lost Funds."}
+{"key": "https://medical-education.pages.ub.uni-bielefeld.de/research/mes-blog/posts/2026-10-08-ernaehrung-nuechtern/", "summary_en": "Discusses whether going to the anatomy course on an empty stomach affects learning."}
+{"key": "https://honnibal.dev/blog/astra-read-write-misleading", "summary_en": "Argues that the original post's interpretation of the Astra weight read-write experiments is misleading."}
+{"key": "https://www.hedwigai.com/blog/weight-edit-math-or-loops", "summary_en": "Measures what a weight edit actually does and finds the improvement mainly comes from reduced looping."}
+{"key": "https://alisorcorp.github.io/inside-a-reasoning-loop/", "summary_en": "Uses a Jacobian lens to analyze Astra's weight edits on Qwen."}
+{"key": "https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/", "summary_en": "Redoes the weight interpretation experiment with a local Qwen 3.8 27B."}
+{"key": "https://arcturus-labs.com/blog/2026/11/03/ai-can-read-neural-network-weights-i-wasnt-ready-for-that/", "summary_en": "Explains and comments on the principles of the Weight-Space Programming report."}
+{"key": "https://anderegg.ca/2026/11/03/machines-building-machines", "summary_en": "Introduces and comments on MIT's Weight-Space Programming article."}
+{"key": "https://paulg.info/2026/11/04/quantum-weight-space/", "summary_en": "Uses weight-space programming to explore a neural quantum state."}
+{"key": "https://arattinger.dev/writing/reading-neural-weights/", "summary_en": "Tests whether Astra can identify a game from its weights, checking the original experiment."}
+{"key": "https://thezvi.substack.com/p/i-can-see-everything", "summary_en": "Zvi gives a detailed analysis of Neural Networks Are Already Clean."}
+{"key": "https://livgorton.com/already-clean-thoughts/", "summary_en": "Comments on Cammarata's article and points out gaps in its argument."}
+{"key": "https://research.checkpoint.com/2026/coheres-qwen-story-looks-more-like-model-jaggedness/", "summary_en": "Resamples traces to rebut Cohere, arguing it is model jaggedness."}
+{"key": "https://int8.io/forced-curl/", "summary_en": "Retests the URL completion behavior reported by Cohere on four open-source models."}
+{"key": "https://blog.stephenturner.us/p/ai-advice-and-expert-judgment", "summary_en": "Discusses this Anthropic study and its paper, and summarizes the results."}
+{"key": "https://svpow.com/2026/10/22/trying-to-categorize-sv-pow-posts/", "summary_en": "Categorizes the author's 40 posts using the Rogue Scholar taxonomy."}

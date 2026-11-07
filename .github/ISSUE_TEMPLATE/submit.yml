@@ -1,0 +1,23 @@
+name: Submit a website
+description: Suggest a personal, lab or company research website for Openshelf. Each submission is checked automatically.
+title: "Submit: "
+labels: ["submission"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Website or post link
+      description: A personal homepage, lab blog or company research site. Social media, news sites and paper platforms are not accepted.
+      placeholder: https://
+    validations:
+      required: true
+  - type: checkboxes
+    id: author
+    attributes:
+      label: Authorship
+      options:
+        - label: I am the author of this website
+  - type: textarea
+    id: note
+    attributes:
+      label: Anything we should know (optional)

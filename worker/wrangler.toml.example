@@ -1,0 +1,19 @@
+# Copy to wrangler.toml after creating the D1 database (npx wrangler d1 create openshelf) and fill in its id.
+# Secrets are set with wrangler, never written here:
+#   npx wrangler secret put SALT             (long random string; rotate to cut all visitor hashes)
+#   npx wrangler secret put PIPELINE_TOKEN   (the daily pipeline uses it to read /agg; also stored as a GitHub secret)
+name = "openshelf-events"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+ALLOW_ORIGIN = "https://openshelf.pub"
+RETENTION_DAYS = "90"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "openshelf"
+database_id = "REPLACE_WITH_ID"
+
+[triggers]
+crons = ["17 3 * * *"]

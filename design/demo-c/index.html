@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Openshelf · demo C</title>
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../logo.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-display: swap; src: url("../../site/static/fonts/plexmono-400.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212; }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-display: swap; src: url("../../site/static/fonts/plexmono-500.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212; }
+/* Celadon palette, text pairs >= 4.5:1 in both modes. Layout carries the meaning; explanations live in tooltips. */
+:root {
+  --paper: #f7f8f5; --ink: #23282b; --muted: #646d6a; --rule: #e2e7e2; --soft: #e3efe8; --soft-2: #d3e6db; --acc: #3a6b5b; --brand: #7fb5a0;
+  --rebuttal: #a9503a; --replication: #8a6512; --extension: #4d7535; --discussion: #47659a;
+  --heat-1: #8db7a3; --heat-2: #6a9d86; --heat-3: #4b8069; --heat-4: #31614f; --heat-5: #1c4637;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "PingFang SC", "Hiragino Sans GB", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #121514; --ink: #e3e8e5; --muted: #9aa39f; --rule: #2a302e; --soft: #20302a; --soft-2: #284036; --acc: #93cdb6;
+    --rebuttal: #f08f78; --replication: #d9b25a; --extension: #9ccc7e; --discussion: #93b2ec; color-scheme: dark;
+    --heat-1: #30574a; --heat-2: #3f6d5d; --heat-3: #5b917c; --heat-4: #7aae98; --heat-5: #a3cfbd; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 13.5px/1.75 var(--mono); }
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; text-decoration-color: var(--brand); text-underline-offset: 3px; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; border-radius: 4px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+.demo-note { text-align: center; font-size: 11.5px; color: var(--muted); padding: 4px 16px; background: var(--soft); }
+
+header { padding: 22px 0 0; }
+.top { display: flex; align-items: center; gap: 14px; }
+.logo { display: inline-flex; gap: 10px; align-items: center; font-weight: 600; font-size: 26px; letter-spacing: -0.01em; }
+.logo svg { width: 34px; height: 34px; }
+.signin { border: 1px solid var(--soft-2); background: var(--soft); color: var(--acc); border-radius: 999px; padding: 0 12px; font-size: 12px; cursor: pointer; margin-right: 8px; }
+dialog.login { border: 1px solid var(--rule); border-radius: 12px; background: var(--paper); color: var(--ink); padding: 22px 22px 16px; width: min(360px, calc(100vw - 32px)); }
+dialog.login:focus-visible { outline: none; }
+dialog.login::backdrop { background: rgba(18, 21, 20, .35); }
+.login h2 { font-size: 15px; font-weight: 500; margin: 0 0 14px; }
+.login .lg-btn { display: block; width: 100%; text-align: left; border: 1px solid var(--rule); background: transparent; border-radius: 8px; padding: 6px 12px; margin-bottom: 8px; cursor: pointer; }
+.login .lg-btn:hover { border-color: var(--acc); }
+.login .lg-note { color: var(--muted); font-size: 12px; margin: 6px 0 0; }
+.login .lg-x { position: absolute; top: 8px; right: 10px; border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 16px; }
+.top .sp { flex: 1; }
+.lang { border: 1px solid var(--rule); background: transparent; border-radius: 999px; padding: 0 10px; font-size: 12px; cursor: pointer; }
+.slogan { margin: 18px 0 14px; font-size: 18px; font-weight: 500; }
+
+.views { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 22px; border-bottom: 1px solid var(--rule); }
+.view { border: 0; background: none; padding: 4px 0 6px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; font-size: 14px; }
+.view:hover { color: var(--ink); }
+.view[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--acc); font-weight: 500; }
+.views .sp { flex: 1; }
+.views .flag { margin-left: 6px; }
+.controls { display: grid; gap: 6px; padding: 12px 0; border-bottom: 1px dashed var(--rule); }
+.flags { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; }
+.flags .gap { width: 10px; }
+.flag { border: 1px dashed var(--rule); background: transparent; padding: 0 7px; border-radius: 5px; font-size: 12.5px; color: var(--muted); cursor: pointer; }
+.flag:hover { border-color: var(--brand); color: var(--ink); }
+.flag[aria-pressed="true"] { border-style: solid; border-color: var(--soft-2); background: var(--soft); color: var(--acc); }
+.flag .c { margin-left: 5px; font-size: 11px; opacity: .7; }
+.search { border: 0; border-bottom: 1px solid var(--rule); background: transparent; padding: 2px 0; outline: 0; color: var(--ink); width: min(420px, 100%); }
+.search:focus { border-bottom-color: var(--acc); }
+
+main { padding: 6px 0 20px; }
+.sep { display: flex; align-items: center; gap: 10px; color: var(--muted); margin: 18px 0 4px; font-size: 12.5px; }
+.sep::after { content: ""; flex: 1; border-top: 1px solid var(--rule); }
+.sep b { color: var(--ink); font-weight: 500; }
+main.ranked { padding-top: 12px; }
+.row { display: grid; grid-template-columns: 3.2ch 22ch minmax(0, 1fr) auto auto; gap: 0 12px; align-items: baseline; padding: 2px 4px; margin: 0 -4px; border-radius: 4px; cursor: pointer; }
+.ranked .row { grid-template-columns: 3ch 3.2ch 22ch minmax(0, 1fr) auto auto; }
+.row:hover { background: color-mix(in srgb, var(--soft) 55%, transparent); }
+.row[aria-expanded="true"] { background: color-mix(in srgb, var(--soft) 40%, transparent); }
+.rank { color: var(--muted); text-align: right; }
+.g { white-space: pre; color: var(--muted); }
+.g.h1 { color: var(--heat-1); } .g.h2 { color: var(--heat-2); } .g.h3 { color: var(--heat-3); } .g.h4 { color: var(--heat-4); } .g.h5 { color: var(--heat-5); }
+.vote { display: inline-flex; align-items: baseline; gap: 2px; color: var(--muted); font-size: 12px; white-space: nowrap; }
+.vote button { border: 0; background: none; padding: 0 3px; color: var(--muted); cursor: pointer; font-size: 11px; line-height: 1; }
+.vote button:hover { color: var(--ink); }
+.vote button[aria-pressed="true"] { color: var(--acc); }
+.vote .n { min-width: 2ch; text-align: center; color: var(--ink); }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-left: 14px; }
+.seg button { border: 0; background: transparent; padding: 0 8px; font-size: 12px; color: var(--muted); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--soft); color: var(--acc); }
+.d { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t { min-width: 0; overflow-wrap: anywhere; }
+.row.k-research .t a { font-weight: 500; }
+.tags, .metrics { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.tags .on { color: var(--acc); }
+.metrics span + span { margin-left: 10px; }
+.metrics b { color: var(--ink); font-weight: 500; }
+.sm { grid-column: 3 / -1; color: var(--muted); font-size: 12.5px; line-height: 1.6; }
+.v { grid-column: 3 / -1; color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+.ranked .sm, .ranked .v { grid-column: 4 / -1; }
+.v a { color: var(--acc); }
+.resp .t .rel { margin-right: 8px; font-weight: 500; color: var(--rel); }
+.resp .g, .resp .off { color: var(--rel); }
+.r-rebuttal { --rel: var(--rebuttal); } .r-replication { --rel: var(--replication); } .r-extension { --rel: var(--extension); } .r-discussion { --rel: var(--discussion); }
+.more-resp { color: var(--acc); border: 0; background: none; padding: 0 0 0 calc(3.2ch + 12px); text-align: left; cursor: pointer; font-size: 12.5px; display: block; }
+.pager { display: block; margin: 14px 0; color: var(--acc); background: none; border: 0; padding: 0; cursor: pointer; }
+.pager[disabled] { color: var(--muted); cursor: default; }
+.empty { color: var(--muted); margin: 20px 0; }
+
+.submit { margin: 24px 0 48px; padding: 14px 0; border-top: 1px dashed var(--rule); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.sub-l { flex-basis: 100%; }
+.submit input { flex: 1; min-width: 220px; border: 0; border-bottom: 1px solid var(--rule); background: transparent; padding: 2px 0; outline: 0; color: var(--ink); }
+.submit input:focus { border-bottom-color: var(--acc); }
+.submit button { border: 1px solid var(--soft-2); background: var(--soft); color: var(--acc); border-radius: 6px; padding: 0 12px; cursor: pointer; }
+.out { flex-basis: 100%; margin: 4px 0 0; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; }
+  .row, .ranked .row { grid-template-columns: 3.2ch minmax(0, 1fr); }
+  .rank { text-align: left; }
+  .row > *:not(.g):not(.rank) { grid-column: 2 / 3; }
+  .tags, .metrics { white-space: normal; }
+}
+</style>
+</head>
+<body>
+<div class="demo-note" id="demo-note"></div>
+<div class="wrap">
+<header>
+  <div class="top">
+    <a class="logo" href="./"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="6" y="9" width="4.6" height="16.5" rx="1.3"/><rect x="12.6" y="13" width="4.6" height="12.5" rx="1.3"/></g><rect x="20" y="9.4" width="4.6" height="16.1" rx="1.3" fill="var(--brand)" transform="rotate(14 20 25.5)"/><rect x="4" y="25.6" width="24" height="2.4" rx="1.2" fill="currentColor"/></svg>openshelf</a>
+    <span class="sp"></span>
+    <button class="signin" id="signin" type="button"></button>
+    <button class="lang" id="lang" type="button"></button>
+  </div>
+  <h1 class="slogan" id="slogan"></h1>
+  <div class="views" id="views" role="tablist"></div>
+</header>
+<div class="controls">
+  <div class="flags" id="flags"></div>
+  <div class="flags" id="topics"></div>
+  <input class="search" id="q" type="search" autocomplete="off" spellcheck="false">
+</div>
+<main id="log"></main>
+<button class="pager" id="pager" type="button"></button>
+<form class="submit" id="sub"><label class="sub-l" for="sub-url" id="sub-l"></label><input id="sub-url" type="url" required placeholder="https://"><button type="submit" id="sub-btn"></button><p class="out" id="sub-out" hidden></p></form>
+<dialog class="login" id="login"><button class="lg-x" id="lg-x" type="button" aria-label="close">×</button><h2 id="lg-h"></h2>
+<button class="lg-btn" id="lg-gh" type="button"></button><button class="lg-btn" id="lg-gg" type="button"></button><button class="lg-btn" id="lg-pk" type="button"></button><p class="lg-note" id="lg-note"></p></dialog>
+</div>
+<script src="../analytics.js"></script>
+<script src="../demo-data.js"></script>
+<script>
+(function () {
+  var S = window.SHELF, items = S.items;
+  var T = {
+    en: { note: "demo · pilot data {from} to {to}", lang: "中文", slogan: "The latest research from people's own websites, collected every day.",
+      v_latest: "latest", v_trending: "trending", v_threads: "threads", r_week: "week", r_month: "month", compact: "compact", summary: "summary", heat: "heat {n}/5", up: "upvote", down: "downvote",
+      research: "research", explainer: "explainer", oneline: "one line", interactive: "interactive", code: "code", arxiv: "arXiv", topic_all: "all topics",
+      search: "search", posts: "{n} posts", post: "1 post", more: "show {n} earlier days", more_rank: "show more", end: "(END)", empty: "nothing matches",
+      found: "found via", open: "open ↗", hn: "hacker news {p} pts", feed: "homepage feed", rs: "rogue scholar", doi: "doi", resp_more: "… {n} more responses", resp_less: "show fewer",
+      m_resp: "responses from other posts", m_links: "independent sites linking to it", m_pts: "Hacker News points (counted on a log scale)",
+      sub_l: "Can't find your post? Enter your personal website. Other sites are not accepted.", sub_btn: "submit", sub_out: "Demo only, nothing was sent.", sub_bad: "That is not a personal website. Other sites are not accepted.", signin: "sign in", signed: "{name} · sign out", demo_user: "demo user", lg_h: "Sign in to vote", lg_gh: "Continue with GitHub", lg_gg: "Continue with Google", lg_pk: "Use a passkey",
+      lg_note: "Demo: this does not really connect to GitHub or Google, or create a passkey." },
+    zh: { note: "演示版 · 试运行数据 {from} 至 {to}", lang: "English", slogan: "研究者发在自己网站上的最新研究，每天收集。",
+      v_latest: "最新", v_trending: "最火", v_threads: "回应", r_week: "本周", r_month: "本月", compact: "单行", summary: "摘要", heat: "热度 {n}/5", up: "顶", down: "踩",
+      research: "研究报告", explainer: "解读", oneline: "单行", interactive: "带交互", code: "附代码", arxiv: "arXiv", topic_all: "全部主题",
+      search: "搜索", posts: "{n} 篇", post: "1 篇", more: "再显示 {n} 天", more_rank: "显示更多", end: "(END)", empty: "没有匹配的条目",
+      found: "发现渠道", open: "打开 ↗", hn: "hacker news {p} 分", feed: "主页订阅源", rs: "rogue scholar", doi: "doi", resp_more: "… 还有 {n} 个回应", resp_less: "收起",
+      m_resp: "其他文章的回应", m_links: "链接到它的独立网站", m_pts: "Hacker News 分数（按对数计入）",
+      sub_l: "没有找到你的文章？请提供你的个人主页地址，其他网站无效。", sub_btn: "提交", sub_out: "演示版，没有真的发送。", sub_bad: "这不是个人主页，其他网站无效。", signin: "登录", signed: "{name} · 退出", demo_user: "演示用户", lg_h: "登录后可以投票", lg_gh: "用 GitHub 登录", lg_gg: "用 Google 登录", lg_pk: "用 passkey 登录",
+      lg_note: "演示版：不会真的连接 GitHub 或 Google，也不会创建 passkey。" }
+  };
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  var qlang = (location.search.match(/[?&]lang=(en|zh)\b/) || [])[1];
+  var lang = qlang || (store("openshelf-lang") === "zh" ? "zh" : "en");
+  var VIEWS = ["latest", "trending", "threads"], MAX_DAYS = 15;
+  function viewFromHash() { var h = (location.hash || "").slice(1); return VIEWS.indexOf(h) >= 0 ? h : "latest"; }
+  var state = { view: viewFromHash(), range: 7, type: null, flags: {}, topic: "all", q: "", days: 5, shown: 20, oneline: true };
+  var open = {}, allResp = {};
+  function L() { return T[lang]; } function M() { return S.maps[lang]; }
+  function F(s, v) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && v[k] != null ? v[k] : m; }); }
+  function fmt(n) { return Number(n).toLocaleString("en-US"); }
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function A(href, text, cls) { var a = el("a", cls, text); if (/^https?:/.test(href)) { a.href = href; a.rel = "noopener"; a.target = "_blank"; } return a; }
+  function $(id) { return document.getElementById(id); }
+  var SHORT = { "ai-ml": "ai", "interpretability-alignment": "interp", "security-privacy": "security", "math-theory": "math", "systems-hardware": "systems",
+    "robotics-graphics": "graphics", "bio-health": "bio", "physics-earth": "physics", "econ-social": "econ", "engineering-env": "eng", "humanities": "humanities",
+    "scholarly-communication": "scholcomm", "other": "other" };
+  var df = {};
+  function dayLabel(d) { df[lang] = df[lang] || new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US", { weekday: "short", timeZone: "UTC" }); return df[lang].format(new Date(d + "T00:00:00Z")) + " " + d; }
+
+  // attention score: responses weigh most, then independent sites linking to the post, then HN points on a log scale
+  function hnPoints(r) { var v = r.via.filter(function (x) { return x.s === "hn"; })[0]; return v ? v.p : 0; }
+  function score(r) { return 3 * r.resp.length + 1.5 * (r.links || 0) + Math.log2(1 + hnPoints(r)); }
+  // heat = this score in five steps by percentile over all posts; reader votes are a separate signal
+  var QS = (function () { var v = items.map(score).sort(function (a, b) { return a - b; }); return [0.5, 0.75, 0.9, 0.97].map(function (q) { return v[Math.floor(q * (v.length - 1))]; }); })();
+  function heat(r) { var s = score(r), k = 1; QS.forEach(function (q) { if (s > q) k++; }); return k; }
+  function heatTitle(r) {
+    var p = [F(L().heat, { n: heat(r) })];
+    if (r.resp.length) p.push("↩ " + r.resp.length); if (r.links) p.push("↗ " + r.links); if (hnPoints(r)) p.push("hn " + fmt(hnPoints(r)));
+    return p.join(" · ");
+  }
+  // sign-in is simulated in this demo (no backend yet): GitHub OAuth and passkeys are the planned methods
+  function user() { try { return JSON.parse(store("openshelf-user") || "null"); } catch (e) { return null; } }
+  function T(type, d) { if (window.openshelfTrack) window.openshelfTrack(type, d); }
+  function signIn(via) { T("signin", { via: via }); store("openshelf-user", JSON.stringify({ via: via, demo: true })); $("login").close(); texts(); render(); }
+  var votes = {}; try { votes = JSON.parse(store("openshelf-votes") || "{}") || {}; } catch (e) { votes = {}; }
+  function voteBox(r) {
+    var box = el("span", "vote"), mine = votes[r.id] || 0;
+    function btn(dir, glyph, label) {
+      var b = el("button", null, glyph); b.type = "button"; b.title = label; b.setAttribute("aria-label", label); b.setAttribute("aria-pressed", mine === dir ? "true" : "false");
+      b.addEventListener("click", function (e) { e.stopPropagation(); if (!user()) { T("signin", { via: "prompt_from_vote" }); $("login").showModal(); return; } votes[r.id] = mine === dir ? 0 : dir; T("vote", { id: r.id, dir: votes[r.id] }); if (!votes[r.id]) delete votes[r.id]; store("openshelf-votes", JSON.stringify(votes)); render(); });
+      return b;
+    }
+    box.appendChild(btn(1, "▲", L().up)); box.appendChild(el("span", "n", String(mine))); box.appendChild(btn(-1, "▼", L().down));
+    return box;
+  }
+
+  function pass(r, skip) {
+    if (state.view === "threads" && !r.resp.length) return false;
+    if (state.type && r.cat !== state.type) return false;
+    if (skip !== "topic" && state.topic !== "all" && r.topic !== state.topic) return false;
+    for (var f in state.flags) if (state.flags[f] && !r[f]) return false;
+    if (state.q) { var q = state.q.toLowerCase(); if ((r.title + " " + r.domain + " " + r.s[lang]).toLowerCase().indexOf(q) < 0) return false; }
+    return true;
+  }
+  function flagBtn(box, label, on, fn, count) {
+    var b = el("button", "flag", label); b.type = "button"; if (count != null) b.appendChild(el("span", "c", String(count)));
+    b.setAttribute("aria-pressed", on ? "true" : "false"); b.addEventListener("click", fn); box.appendChild(b); return b;
+  }
+  function go() { state.days = 5; state.shown = 20; render(); }
+  function views() {
+    var v = $("views"); v.textContent = "";
+    [["latest", L().v_latest], ["trending", L().v_trending], ["threads", L().v_threads]].forEach(function (x) {
+      var b = el("button", "view", x[1]); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-selected", state.view === x[0] ? "true" : "false");
+      b.addEventListener("click", function () { T("view_switch", { to: x[0] }); state.view = x[0]; history.replaceState(null, "", x[0] === "latest" ? location.pathname + location.search : "#" + x[0]); go(); });
+      v.appendChild(b);
+    });
+    v.appendChild(el("span", "sp"));
+    if (state.view === "trending") {
+      [[7, L().r_week], [31, L().r_month]].forEach(function (x) { flagBtn(v, x[1], state.range === x[0], function () { T("range", { days: x[0] }); state.range = x[0]; go(); }); });
+    }
+    var seg = el("span", "seg");
+    [[true, L().compact], [false, L().summary]].forEach(function (x) {
+      var b = el("button", null, x[1]); b.type = "button"; b.setAttribute("aria-pressed", state.oneline === x[0] ? "true" : "false");
+      b.addEventListener("click", function () { T("layout", { compact: x[0] }); state.oneline = x[0]; open = {}; render(); }); seg.appendChild(b);
+    });
+    v.appendChild(seg);
+  }
+  function controls() {
+    var f = $("flags"); f.textContent = "";
+    flagBtn(f, L().research, state.type === "research", function () { state.type = state.type === "research" ? null : "research"; T("filter", { key: "type", value: state.type || "all" }); go(); });
+    flagBtn(f, L().explainer, state.type === "explainer", function () { state.type = state.type === "explainer" ? null : "explainer"; T("filter", { key: "type", value: state.type || "all" }); go(); });
+    f.appendChild(el("span", "gap"));
+    [["interactive", L().interactive], ["repo", L().code], ["arxiv", L().arxiv]].forEach(function (x) {
+      flagBtn(f, x[1], !!state.flags[x[0]], function () { state.flags[x[0]] = !state.flags[x[0]]; T("filter", { key: x[0], on: state.flags[x[0]] }); go(); });
+    });
+    var t = $("topics"); t.textContent = "";
+    var tc = {}, pool = items.filter(function (r) { return pass(r, "topic"); });
+    pool.forEach(function (r) { tc[r.topic] = (tc[r.topic] || 0) + 1; });
+    flagBtn(t, L().topic_all, state.topic === "all", function () { state.topic = "all"; T("topic", { topic: "all" }); go(); }, pool.length);
+    Object.keys(tc).sort(function (a, b) { return tc[b] - tc[a]; }).forEach(function (k) {
+      var b = flagBtn(t, lang === "zh" ? (M().topic[k] || k) : (SHORT[k] || k), state.topic === k, function () { state.topic = state.topic === k ? "all" : k; T("topic", { topic: state.topic }); go(); }, tc[k]);
+      b.title = M().topic[k] || k;
+    });
+  }
+  function tags(r) {
+    var t = el("span", "tags"), parts = [[SHORT[r.topic] || r.topic, false]];
+    if (r.interactive) parts.push(["interactive", true]);
+    if (r.repo) parts.push(["code", false]);
+    if (r.arxiv) parts.push(["arxiv", false]);
+    parts.forEach(function (p) { t.appendChild(el("span", p[1] ? "on" : null, "[" + p[0] + "]")); });
+    return t;
+  }
+  function metrics(r) {
+    var m = el("span", "metrics");
+    [[r.resp.length, "↩", L().m_resp], [r.links || 0, "↗", L().m_links], [hnPoints(r), "hn", L().m_pts]].forEach(function (x) {
+      if (!x[0]) return;
+      var s = el("span", null, x[1] + " "); s.appendChild(el("b", null, fmt(x[0]))); s.title = x[2]; m.appendChild(s);
+    });
+    return m;
+  }
+  function toggleable(row, key) {
+    row.tabIndex = 0; row.setAttribute("aria-expanded", open[key] ? "true" : "false");
+    function flip(e) { if (e.target.closest("a")) return; open[key] = !open[key]; if (open[key]) T("expand", { id: key, view: state.view }); render(); }
+    row.addEventListener("click", flip);
+    row.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(e); } });
+  }
+  function details(row, x) {
+    if ((!state.oneline || open[x.id]) && x.s[lang]) row.appendChild(el("span", "sm", x.s[lang]));
+  }
+  function entry(box, r, rank) {
+    var row = el("div", "row k-" + r.cat);
+    if (rank) row.appendChild(el("span", "rank", String(rank)));
+    var g = el("span", "g h" + heat(r), r.cat === "research" ? "●" : "○"); g.title = heatTitle(r); row.appendChild(g);
+    row.appendChild(el("span", "d", r.domain));
+    var t = el("span", "t"), ta = A(r.url, r.title); ta.dataset.id = r.id; ta.dataset.rank = rank || ""; t.appendChild(ta); row.appendChild(t);
+    row.appendChild(rank ? metrics(r) : tags(r));
+    row.appendChild(voteBox(r));
+    details(row, r); toggleable(row, r.id);
+    box.appendChild(row);
+    if (rank || !r.resp.length) return;
+    var show = allResp[r.id] || state.view === "threads" ? r.resp : r.resp.slice(0, 3);
+    show.forEach(function (x, i) {
+      var last = i === show.length - 1 && show.length === r.resp.length;
+      var rr = el("div", "row resp r-" + x.rel);
+      rr.appendChild(el("span", "g", last ? "└─●" : "├─●"));
+      var d = el("span", "d"); d.appendChild(el("span", "off", "+" + (x.days < 1 ? "<1" : Math.round(x.days)) + "d ")); d.appendChild(document.createTextNode(x.domain)); rr.appendChild(d);
+      var t2 = el("span", "t"); t2.appendChild(el("span", "rel", M().rel[x.rel] || x.rel)); t2.appendChild(A(x.url, x.title)); rr.appendChild(t2);
+      rr.appendChild(el("span", "tags")); rr.appendChild(el("span"));
+      details(rr, x); toggleable(rr, x.id);
+      box.appendChild(rr);
+    });
+    if (r.resp.length > 3 && state.view !== "threads") {
+      var b = el("button", "more-resp", allResp[r.id] ? L().resp_less : F(L().resp_more, { n: r.resp.length - 3 })); b.type = "button";
+      b.addEventListener("click", function () { allResp[r.id] = !allResp[r.id]; render(); });
+      box.appendChild(b);
+    }
+  }
+  function signals(r) { return (r.interactive ? 1 : 0) + (r.repo ? 1 : 0) + (r.arxiv ? 1 : 0) + (r.doi ? 1 : 0); }
+  function within(a, b) { return (a.cat === b.cat ? 0 : a.cat === "research" ? -1 : 1) || b.resp.length - a.resp.length || signals(b) - signals(a) || a.title.localeCompare(b.title); }
+  function render() {
+    views(); controls();
+    var root = $("log"), pg = $("pager"); root.textContent = ""; root.className = state.view === "trending" ? "ranked" : "";
+    var list = items.filter(function (r) { return pass(r); });
+    if (state.view === "trending") {
+      var start = new Date(new Date(S.latest + "T00:00:00Z").getTime() - (state.range - 1) * 86400000).toISOString().slice(0, 10);
+      list = list.filter(function (r) { return r.date >= start && score(r) > 0; }).sort(function (a, b) { return score(b) - score(a) || b.date.localeCompare(a.date); });
+      if (!list.length) root.appendChild(el("p", "empty", L().empty));
+      list.slice(0, state.shown).forEach(function (r, i) { entry(root, r, i + 1); });
+      pg.hidden = list.length <= state.shown; pg.disabled = false; pg.textContent = L().more_rank;
+      return;
+    }
+    var by = {};
+    list.forEach(function (r) { (by[r.date] = by[r.date] || []).push(r); });
+    var days = Object.keys(by).sort().reverse();
+    if (!list.length) root.appendChild(el("p", "empty", L().empty));
+    days.slice(0, state.days).forEach(function (d) {
+      var s = el("div", "sep"); s.appendChild(el("b", null, dayLabel(d))); s.appendChild(document.createTextNode("· " + (by[d].length === 1 ? L().post : F(L().posts, { n: by[d].length })))); root.appendChild(s);
+      by[d].sort(within).forEach(function (r) { entry(root, r, 0); });
+    });
+    var rest = Math.min(days.length, MAX_DAYS) - state.days;
+    pg.hidden = rest <= 0; pg.disabled = false;
+    if (rest > 0) pg.textContent = F(L().more, { n: Math.min(5, rest) });
+  }
+  function texts() {
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+    $("demo-note").textContent = F(L().note, { from: S.window[0], to: S.window[1] });
+    $("lang").textContent = L().lang; $("slogan").textContent = L().slogan;
+    $("q").placeholder = L().search; $("sub-l").textContent = L().sub_l; $("sub-btn").textContent = L().sub_btn;
+    var u = user(); $("signin").textContent = u ? F(L().signed, { name: L().demo_user }) : L().signin;
+    $("lg-h").textContent = L().lg_h; $("lg-gh").textContent = L().lg_gh; $("lg-gg").textContent = L().lg_gg; $("lg-pk").textContent = L().lg_pk; $("lg-note").textContent = L().lg_note;
+  }
+  $("signin").addEventListener("click", function () { if (user()) { try { localStorage.removeItem("openshelf-user"); } catch (e) {} texts(); render(); } else $("login").showModal(); });
+  $("lg-gh").addEventListener("click", function () { signIn("github"); });
+  $("lg-pk").addEventListener("click", function () { signIn("passkey"); });
+  $("lg-gg").addEventListener("click", function () { signIn("google"); });
+  $("lg-x").addEventListener("click", function () { $("login").close(); });
+  $("pager").addEventListener("click", function () { T("more", { view: state.view }); if (state.view === "trending") state.shown += 20; else state.days += 5; render(); });
+  $("lang").addEventListener("click", function () { lang = lang === "en" ? "zh" : "en"; T("lang", { to: lang }); store("openshelf-lang", lang); texts(); render(); $("sub-out").hidden = true; });
+  var qt, qt2; $("q").addEventListener("input", function (e) { clearTimeout(qt); qt = setTimeout(function () { state.q = e.target.value.trim(); go(); }, 120); clearTimeout(qt2); qt2 = setTimeout(function () { if (state.q) T("search", { q: state.q.toLowerCase(), results: items.filter(function (r) { return pass(r); }).length }); }, 1500); });
+  // personal websites only: social media, news, aggregators and paper platforms are refused
+  var NOT_PERSONAL = /(^|\.)(twitter\.com|x\.com|bsky\.app|threads\.net|mastodon\.social|linkedin\.com|facebook\.com|instagram\.com|tiktok\.com|youtube\.com|youtu\.be|reddit\.com|news\.ycombinator\.com|medium\.com|arxiv\.org|alphaxiv\.org|openreview\.net|doi\.org|researchgate\.net|semanticscholar\.org|scholar\.google\.com|ssrn\.com|zenodo\.org|github\.com|gist\.github\.com|huggingface\.co|wikipedia\.org|nytimes\.com|theguardian\.com|bbc\.co\.uk|bbc\.com|reuters\.com|bloomberg\.com|wired\.com|theverge\.com|techcrunch\.com|arstechnica\.com)$/i;
+  $("sub").addEventListener("submit", function (e) {
+    e.preventDefault(); var o = $("sub-out"), host = "";
+    try { host = new URL($("sub-url").value).hostname.replace(/^www\./, ""); } catch (err) { host = ""; }
+    var bad = !host || NOT_PERSONAL.test(host); T("submit", { host: host, accepted_by_form: !bad });
+    o.textContent = bad ? L().sub_bad : L().sub_out; o.hidden = false;
+  });
+  window.addEventListener("hashchange", function () { state.view = viewFromHash(); go(); });
+  texts(); render();
+  T("view", { view: state.view });
+  document.addEventListener("click", function (e) { var a = e.target.closest && e.target.closest("a[data-id]"); if (a) T("open", { id: a.dataset.id, rank: Number(a.dataset.rank) || 0, view: state.view }); }, true);
+  if (location.hash === "#login" && !user()) $("login").showModal();
+})();
+</script>
+</body>
+</html>

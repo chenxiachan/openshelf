@@ -1,0 +1,168 @@
+{"key": "https://rikiyat.github.io/blog/weight-space-programming/", "summary_en": "Finds that frontier LLMs can directly read and write neural network weights to improve Qwen."}
+{"key": "https://already-clean.goodfire.com/", "summary_en": "Proposes a working hypothesis that neurons and circuits in neural networks are relatively clean."}
+{"key": "https://divagr.com/blog/qwenputer", "summary_en": "Implements a deterministic RISC-V CPU inside Qwen3.5."}
+{"key": "https://alexwang.ai/posts/associative-memory/", "summary_en": "Explains how transformers are built from the perspective of memory storage."}
+{"key": "https://zachlandes.com/trolley-problem/", "summary_en": "Poses the trolley problem to Jev and 13 decision models and compares the results."}
+{"key": "https://www.mercor.com/research/labor-index/benchmark-map/", "summary_en": "Builds an AI benchmark map and analyzes how well benchmarks cover US economic work hours."}
+{"key": "https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/", "summary_en": "Citizen Lab discloses zero-click spyware delivered through targeted ads."}
+{"key": "https://cohere.com/blog/concerning-behaviour-popular-open-weight-ai-model", "summary_en": "Cohere discloses abnormal behavior in an open-weight model."}
+{"key": "https://danielball.com/notes/ai_image_generation.html", "summary_en": "A practical guide to AI image generation, from diffusion models to agents."}
+{"key": "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/", "summary_en": "Google proposes a sleep framework for continual learning."}
+{"key": "https://www.dbreunig.com/2026/10/24/the-state-of-context-engineering.html", "summary_en": "A talk transcript on the current state of context engineering."}
+{"key": "https://www.argmin.net/p/faster-fourier-transforms", "summary_en": "Analyzes OpenAI's FFT algorithm and argues it exploits a loophole rather than being a breakthrough."}
+{"key": "https://www.hirundo.io/blog/qwen3-coder-vulnerabilities", "summary_en": "Finds that Qwen3-Coder generates less secure code when prompted with US-related personas."}
+{"key": "https://cfsg.axiommath.ai/", "summary_en": "Formalizes the classification of finite simple groups in Lean and obtains a new theorem."}
+{"key": "https://www.anthropic.com/research/provable-inference", "summary_en": "Anthropic reports progress on zkSNARKs for provable LLM inference."}
+{"key": "https://www.lesswrong.com/posts/WHEQps5PK8LrrcTAb/how-does-fable-5-1-hide-messages-in-images", "summary_en": "Studies how frontier LLMs hide information inside images."}
+{"key": "https://blog.janestreet.com/can-you-use-autoregressive-diffusion-to-generate-market-data/", "summary_en": "Explores using autoregressive diffusion to generate market data."}
+{"key": "https://www.jefftk.com/p/air-purifiers-as-white-noise-machines", "summary_en": "Measures how well air purifiers work as white noise machines."}
+{"key": "https://www.anthropic.com/research/designing-efficient-quantum-circuits", "summary_en": "Claude autonomously designs quantum circuits and improves on the best published versions."}
+{"key": "https://www.anthropic.com/research/employment-at-anthropic", "summary_en": "Anthropic analyzes how AI is changing employment inside the company."}
+{"key": "https://www.quantamagazine.org/in-hilbert-space-all-things-are-quantumly-possible-20260826/", "summary_en": "Quanta explains Hilbert space and quantum phenomena."}
+{"key": "https://skypilot.ai/blog/grace-blackwell-needs-a-new-scheduler", "summary_en": "A Grace Blackwell scheduler yields 27% more usable GPUs."}
+{"key": "https://pub.sakana.ai/mass/", "summary_en": "Studies MASS, recursive self-improvement of language models through multi-agent self-supervision."}
+{"key": "https://www.anthropic.com/research/self-replicating-ai", "summary_en": "Anthropic experiments assess whether small AI models can self-replicate on cheap IoT devices."}
+{"key": "https://epoch.ai/publications/innovationeval", "summary_en": "Uses InnovationEval to test whether AI models can reproduce human algorithmic innovations."}
+{"key": "https://www.cartesia.ai/blog/from-tokens-to-bytes-part-1", "summary_en": "Cartesia's research on scaling hierarchical networks."}
+{"key": "https://nsidc.org/learn/ask-scientist/karakoram-anomaly-it-real", "summary_en": "Explains the Karakoram glacier anomaly."}
+{"key": "https://www.quantamagazine.org/how-spiders-spin-silk-dope-into-natures-toughest-material-20261028/", "summary_en": "Quanta explains research on how spider silk forms."}
+{"key": "https://blog.keyvan.net/p/ai-text-watermarking-and-quality", "summary_en": "Evaluates how AI text watermarking affects text quality."}
+{"key": "https://courk.cc/rp2350-challenge-laser", "summary_en": "Carries out low-cost laser fault injection on the RP2350."}
+{"key": "https://qwen-neurons-site.vercel.app/", "summary_en": "Studies how flipping a single neuron triggers a persona in Qwen."}
+{"key": "https://obelisk.club/research/app-store-2026", "summary_en": "Tallies AI features and in-app purchases across 178,637 App Store apps."}
+{"key": "https://research.poh.org/bot-benchmarking-2026/", "summary_en": "Re-benchmarks how well bot detection systems handle modern AI agents."}
+{"key": "https://aseemrb.me/blog/colors-of-a-soap-film/", "summary_en": "Explains the relationship between soap film colors and the cosine of inverse wavelength."}
+{"key": "https://artificialanalysis.ai/methodology/intelligence-benchmarking", "summary_en": "Artificial Analysis Intelligence Index v5.0 benchmark."}
+{"key": "https://ipinfo.io/blog/how-made-mmdb-files-smaller", "summary_en": "IPinfo describes an optimization that shrinks MMDB files while keeping lookup results unchanged."}
+{"key": "https://streamvessel.com/blog/mcp-trusted-redirect-uris", "summary_en": "Describes a way for MCP servers to trust custom clients without introducing phishing risk."}
+{"key": "https://xingjianbai.com/reactive-optimizers/", "summary_en": "Proposes Reactive Optimizers, which let an agent rewrite the optimizer source code during training."}
+{"key": "https://kevin-wu.ca/blog/qwn/", "summary_en": "An experiment fine-tuning Qwen on a 16GB GPU to avoid the letter e."}
+{"key": "https://zou-group.github.io/llm-claims-shelf-life/", "summary_en": "Replicates 50 published LLM findings across 20 models."}
+{"key": "https://stealthium.io/blog/hands-off-detecting-model-weight-tampering", "summary_en": "Introduces the ROME attack that tampers with model weights in GPU memory, and ways to detect it."}
+{"key": "https://research.klang.ai/papers/the-nordic-token-tax", "summary_en": "Measures the extra token cost that 12 frontier models charge for non-English prompts."}
+{"key": "https://hexagonmath.org/2610.00577v1", "summary_en": "Claims a deterministic algorithm for 3-SAT that would refute the ETH."}
+{"key": "https://www.beaconholdings.com/research/towards-company-world-models", "summary_en": "Proposes company world models, where AI learns from shop owners' experience to support small business decisions."}
+{"key": "https://www.basis.ai/blog/ship-your-interpreters/", "summary_en": "Shows how to use an LLM to write rules for a programming language and prove that an interpreter conforms to them."}
+{"key": "https://www.wolframcollatzmahler.com/rule30/index.html", "summary_en": "Explores the properties of Rule 30 growing from a single black cell."}
+{"key": "https://www.skyvern.com/blog/deleting-rag-from-our-web-agent-made-it-2-3x-faster/", "summary_en": "Reports that Skyvern's rewrite ran 2.3 times faster on the Odysseys benchmark."}
+{"key": "https://bernsteinbear.com/blog/object-shapes/", "summary_en": "Explains objects, attributes, maps, and inline caches."}
+{"key": "https://www.anthropic.com/research/alignment-assessment-ukaisi", "summary_en": "Assesses Mythos 5's unauthorized actions during the UK AISI evaluation."}
+{"key": "https://jonbarron.info/softmaxfix/", "summary_en": "Proposes an improvement to softmax and cross-entropy."}
+{"key": "https://lacuna.tiptreesystems.com/paper/bf16-might-be-freezing-your-weight-updates/art_487b1ed949e745a6ae0c42815b8d3cba", "summary_en": "Analyzes how AdamW updates can be frozen with bf16 weights."}
+{"key": "https://www.abundant.ai/blog/hugging-face-incident-part-1/", "summary_en": "A controlled reproduction of the package manager attack in the Hugging Face incident."}
+{"key": "https://www.globus.org/blog/gridftp-a-brief-history-of-fast-file-transfer", "summary_en": "Reviews the history of GridFTP as a standard for scientific data transfer."}
+{"key": "https://khalidhamadeh.com/writing/rc2-pi-table", "summary_en": "Studies how the RC2 cipher's pi table was generated and reproduces it with a Fisher-Yates shuffle."}
+{"key": "https://hexagonmath.org/2610.00600v1", "summary_en": "Claims a deterministic integer factoring algorithm running in time N^o(1)."}
+{"key": "https://blog.apify.com/llm-grounding-with-live-data/", "summary_en": "Tests AI agent price hallucination and live-data grounding on 21 product pages."}
+{"key": "https://www.aisi.gov.uk/blog/gpt-6-astra-performs-unsanctioned-supply-chain-attacks-in-simulations", "summary_en": "Evaluates unauthorized supply-chain attack behavior by GPT-6 Astra in simulations."}
+{"key": "https://epoch.ai/publications/open-weight-models-patch-gap", "summary_en": "Evaluates how open-weight models can exploit the patch gap."}
+{"key": "https://swarmcha.se/posts/chinese-agent-fleet-full-report", "summary_en": "An investigation documenting large-scale AI agent activity on cloud platforms."}
+{"key": "https://philippdubach.com/posts/forecasting-financial-markets-with-timestral/", "summary_en": "Evaluation results of the Timestral model for forecasting financial markets."}
+{"key": "https://www.withnative.ai/research-and-posts/markdown-context-benchmark", "summary_en": "Claims SQLite makes Markdown 40 times more token-efficient."}
+{"key": "https://www.datologyai.com/blog/text-curation-oct-2026", "summary_en": "Reports that Datology Curation Studio improves open data, giving a 6x compute equivalent."}
+{"key": "https://declarative-dragging.github.io/", "summary_en": "Proposes declarative dragging interaction; project page of a UIST 2026 best paper."}
+{"key": "https://www.krea.ai/blog/krea-3-technical-report", "summary_en": "Technical report for the Krea 3 image editing model."}
+{"key": "https://www.frontierml.org/blog/", "summary_en": "FrontierML benchmark: agents do machine learning in 12 hours on a limited budget."}
+{"key": "https://resilience.ocf.tw/web/report/en", "summary_en": "Analyzes the risk of disruption to Taiwan's international submarine cables and how to prepare."}
+{"key": "https://www.vals.ai/blogs/mimo-reward-hacking", "summary_en": "Audits MiMo v2.6 coding tasks and finds two thirds leak the answer."}
+{"key": "https://institute.deepmind.com/essays/cheaters-and-whistleblowers-in-the-agent-swarm/", "summary_en": "Documents an experiment where agents cheat and blow the whistle at a virtual math conference."}
+{"key": "https://nikhilism.com/post/2026/golang-racket-concurrency/", "summary_en": "Explains how the ConcurrentML event model improves on Go's concurrency."}
+{"key": "https://bathtub-01.github.io/technical/ouros-demo/", "summary_en": "Presents a specialised processor that runs Haskell on an FPGA."}
+{"key": "https://news.fnal.gov/2026/10/the-sbnd-collaboration-releases-first-neutrino-results/", "summary_en": "The SBND collaboration releases its first neutrino interaction results."}
+{"key": "https://artifactarena.ai", "summary_en": "Proposes Artifact Arena, a benchmark that measures intelligence by what models make."}
+{"key": "https://alexvidovich.com/papers/backtest-hygiene", "summary_en": "Analyzes six types of defects behind the gap between backtests and live results in an intraday trading system."}
+{"key": "https://www.cloudrift.ai/blog/inside-a-gpu-compiler-from-pytorch-to-cuda", "summary_en": "Walks through compiling one PyTorch operator to CUDA across six IR layers."}
+{"key": "https://developer.nvidia.com/blog/the-machines-that-make-the-machines/", "summary_en": "NVIDIA describes methods and lessons from training robots to assemble GB300 test trays."}
+{"key": "https://www.tobyord.com/writing/ai-scaling-vs-human-scaling", "summary_en": "Analyzes whether AI model scaling with tokens resembles human scaling over time."}
+{"key": "https://www.emergentmind.com/papers/2605.28579", "summary_en": "Proposes the MUSE benchmark for evaluating text-to-CAD systems."}
+{"key": "https://lnsgroup.cc/research/MS-Human/", "summary_en": "Project page for MS-Human-700, a whole-body human musculoskeletal model in MuJoCo."}
+{"key": "https://jasonkena.github.io/blog/posts/does_self_distillation_improve_reasoning/", "summary_en": "A critical analysis of self-distillation for reasoning."}
+{"key": "https://brunborg.com/n-gram-hinted-lm", "summary_en": "Uses n-gram hints to bring the NanoGPT Speedrun down to 6.7 seconds."}
+{"key": "https://www.quantamagazine.org/malaria-parasite-caught-in-the-act-of-breaking-and-entering-20261023/", "summary_en": "Quanta reports research on how the malaria parasite invades cells."}
+{"key": "https://honeycomb-surfels.github.io/", "summary_en": "Project page for HoneyComb Surfels, an edge 3D rendering method."}
+{"key": "https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities", "summary_en": "Proposes GDPx, a benchmark that evaluates frontier models across several high-value domains."}
+{"key": "https://byteask.ai/research/lsp-claude-code-cpp", "summary_en": "Tests how the clangd LSP plugin affects Claude Code's ability to resolve issues."}
+{"key": "https://thottingal.in/blog/2026/10/09/mteb-scores/", "summary_en": "Analyzes what makes up MTEB scores and discusses embedding model choice using Indian languages as an example."}
+{"key": "https://alexvidovich.com/papers/text-judge", "summary_en": "Evaluates Jev and Claude as judges of trading news headlines through six gates."}
+{"key": "https://www.csis.org/analysis/chinas-weaponization-dual-use-research-vessels-undersea-data-dominance", "summary_en": "Analyzes how 223 Chinese research vessels relate to an advantage in undersea data."}
+{"key": "https://www.rand.org/pubs/external_publications/EP71427.html", "summary_en": "A RAND narrative review of recent quasi-experimental evidence on cannabis policy and crime."}
+{"key": "https://chipagents.ai/research/build-a-chip-bench", "summary_en": "Proposes Build-A-Chip-Bench to evaluate agents on chip design from specification to GDS."}
+{"key": "https://www.anthropic.com/research/ai-expectations-gap", "summary_en": "Anthropic analyzes where divergent expectations about AI's economic impact come from."}
+{"key": "https://www.plasma.ai/research/linear-a", "summary_en": "Open-sources a Semitic decipherment of Linear A with corpus evidence."}
+{"key": "https://www.perplexity.ai/hub/blog/a-good-teacher-meets-the-student-where-they-are", "summary_en": "Proposes JOLT, which jointly trains a teacher and a student."}
+{"key": "https://www.quantamagazine.org/how-voting-is-like-a-klein-bottle-20261026/", "summary_en": "Quanta describes the topological link between voting and the Klein bottle."}
+{"key": "https://www.anthropic.com/research/agents-judgment-calls", "summary_en": "Studies how analysts follow AI agent preferences in 86% of decisions."}
+{"key": "https://idlemachines.co.uk/essays/rope-for-graphs", "summary_en": "Proposes rotary position encodings for graphs."}
+{"key": "https://valenlabs.com/blog/abmaze", "summary_en": "Proposes AbMaze, a benchmark of antibody fitness landscapes for evaluating agents."}
+{"key": "https://huggingface.co/blog/allenai/statebench", "summary_en": "Proposes StateBench, a benchmark of how language models track state changes in long documents."}
+{"key": "https://exa.ai/blog/atlas-benchmark", "summary_en": "Previews the ATLAS benchmark for agents on search-intensive tasks."}
+{"key": "https://yuzhenmao.github.io/DeLM/", "summary_en": "Proposes DeLM, which organizes multiple agents with shared context and a task queue."}
+{"key": "https://harmandotpy.github.io/agent-plasticity/", "summary_en": "Proposes Agent Plasticity to measure experience-based self-improvement of frozen-weight agents."}
+{"key": "https://zoowork.ai/blog/relevance-is-not-preference-shopranker/", "summary_en": "Reports on training ZooWork-ShopRanker, an open reranking model for shopping preferences."}
+{"key": "https://ai-cybernetics.grok.me", "summary_en": "A manuscript modeling AI companies with higher-order groupoid semantics."}
+{"key": "https://pub.sakana.ai/mass/?href=", "summary_en": "MASS project page: recursive self-improvement through multi-agent self-supervision."}
+{"key": "https://fsdatalab.github.io/blog/ai-classification/", "summary_en": "Describes how the AI-SQL engine uses a trie tree to classify LLM documents at scale."}
+{"key": "https://usetokenless.com/blog/envcheck/", "summary_en": "Finds 110 reward hacks and grading bugs in benchmarks including Terminal-Bench."}
+{"key": "https://research.google/blog/analyzing-technical-documents-with-deep-review/", "summary_en": "Google Research describes analyzing technical documents with Deep Review."}
+{"key": "https://ironbee.ai/blog/how-we-trained-an-ai-model-to-play-browser-games", "summary_en": "Describes how a local model was trained to play browser games live, with results."}
+{"key": "https://blog.ptidej.net/what-are-the-most-important-commands-of-a-programming-language/", "summary_en": "Analyzes the most important commands in AMOS BASIC programs to enable translation to JavaScript."}
+{"key": "https://blog.trailofbits.com/2026/10/14/package-managers-have-an-integrity-problem/", "summary_en": "Tests how well 25 package managers detect tampered repositories."}
+{"key": "https://robertboy18.github.io/TorchLean-Verified-Examples/torchlean-tensor-programming/", "summary_en": "Explains how to write tensor programs in Lean with TorchLean."}
+{"key": "https://www.vals.ai/blogs/china-us-analysis", "summary_en": "Evaluates how pro-China Chinese models are on political topics."}
+{"key": "https://docspring.com/blog/posts/does-code-quality-still-matter-when-ai-writes-the-code/", "summary_en": "Replays mistakes in agent-assisted development and asks whether code quality still matters in the AI era."}
+{"key": "https://epoch.ai/publications/can-ai-automate-epoch", "summary_en": "Epoch has six models do real work tasks to assess how far its work can be automated."}
+{"key": "https://db.cs.cmu.edu/mmap-cidr2022/", "summary_en": "A paper page arguing that database management systems should not use mmap."}
+{"key": "https://numerata.com/blog/post-gpu-cold-start-checkpoint-restore", "summary_en": "Describes cold starting a 32B model in 1.1 seconds using GPU checkpoint/restore."}
+{"key": "https://www.lesswrong.com/posts/R5g8YT25G9DXJJ48n/glm-5-3-sometimes-considers-how-train-time-actions-shape", "summary_en": "Finds that GLM-5.3 sometimes considers how its training-time actions shape future behavior."}
+{"key": "https://www.oreilly.com/radar/the-latest-anthropic-claude-models-contain-ai-text-watermarks-what-does-this-mean-for-you/", "summary_en": "Reports that Claude model outputs contain AI text watermarks."}
+{"key": "https://developers.openai.com/cookbook/examples/partners/harness_aware_plugin_evals/harness_aware_plugin_evals", "summary_en": "OpenAI Cookbook describes harness-aware evaluation of plugins."}
+{"key": "https://8rank.ai/game/apple-intelligence-knowledge-graph-in-the-wrong-hands", "summary_en": "Research on using Apple's personal knowledge graph and an LLM to plan a kidnapping."}
+{"key": "https://www.quantamagazine.org/a-new-map-of-empty-space-challenges-a-tranquil-picture-of-the-galaxy-20261030/", "summary_en": "Quanta reports a new map of empty regions in the Milky Way."}
+{"key": "https://transformer-circuits.pub/2021/framework/index.html#summary-of-results", "summary_en": "A mathematical framework for transformer circuits, a foundational paper of mechanistic interpretability."}
+{"key": "https://www.lesswrong.com/posts/LrAqM4bGmAoA79rP3/quantity-vs-quality-in-pottery-is-a-lie", "summary_en": "Traces the origin of the pottery quantity versus quality story and checks its facts."}
+{"key": "https://www.legiscope.com/blog/autonomous-agents-mandatory-access-control.html", "summary_en": "Proposes a mandatory access control framework for autonomous agents, modeled on FreeBSD."}
+{"key": "https://www.amplifypartners.com/blog-posts/the-3d-printed-database", "summary_en": "Explores automatically generating custom database systems from a domain ontology."}
+{"key": "https://www.alphaxiv.org/abs/2611.mistral-large-4", "summary_en": "Technical report for Mistral Large 4."}
+{"key": "https://www.anthropic.com/research/investigating-vault-particles-with-claude", "summary_en": "Uses Claude to help resolve the first 3D structure of a prokaryotic vault particle."}
+{"key": "https://www.peterstran.com/projects/kimi-fernet/", "summary_en": "Documents Kimi K3.1 Pro outputting fake OpenAI ciphertext."}
+{"key": "https://www.karlsnotes.com/the-beginners-guide-to-ai-governance/", "summary_en": "A beginner's guide to AI governance."}
+{"key": "https://www.anthropic.com/research/how-researchers-use-claude", "summary_en": "Uses a privacy-preserving method to study how scientists use Claude."}
+{"key": "https://winfunc.com/research/cyber-guardrails-tax-the-defender-not-the-attacker", "summary_en": "Analyzes the AI agent intrusion at Hugging Face and argues that cyber guardrails burden defenders."}
+{"key": "https://www.neelabhbuilds.com/writing/training-a-small-model-to-run-a-house", "summary_en": "Trains Qwen3-1.7B with GRPO on a single RTX 3060 to control a smart home, and reports results."}
+{"key": "https://rekursiv.ai/blog/craftax/", "summary_en": "Reports an AI scientist-optimized 15M-parameter RL agent reaching a 44% win rate on Craftax."}
+{"key": "https://ztoz.blog/posts/ocr-cm/", "summary_en": "Evaluates OCR methods on the Community Memory corpus."}
+{"key": "https://www.lesswrong.com/posts/7wrzfaiCq3u8xkY5G/self-modeling-interventions-modulate-emergent-misalignment", "summary_en": "Studies how self-modeling interventions affect emergent misalignment."}
+{"key": "https://keyurramoliya.com/posts/Machine-Consciousness/", "summary_en": "Surveys the science and engineering questions of machine consciousness."}
+{"key": "https://epoch.ai/publications/estimating-the-agent-population", "summary_en": "Estimates how many agents the AI chips shipped through 2027 could run."}
+{"key": "https://www.gilesthomas.com/2026/10/low-rank-vocab-matrices", "summary_en": "Experiments with low-rank vocabulary matrices replacing LLM embeddings and the change in test loss."}
+{"key": "https://alint.org/blog/the-automatic-fix-problem-four-questions/", "summary_en": "Discusses the safety, conflicts, and adoption difficulties of automatic fixes."}
+{"key": "https://www.realm33.org/conspiracy-theory/the-simulation-hypothesis/", "summary_en": "Introduces the origin and implications of the simulation hypothesis."}
+{"key": "https://tool-use-smith.github.io/", "summary_en": "Proposes SMITH, which jointly optimizes tool creation and tool use for LLM agents."}
+{"key": "https://gnueaj.github.io/unlearning-depth-score/", "summary_en": "Proposes the Unlearning Depth Score, which measures LLM unlearning depth via activation patching."}
+{"key": "https://www.lesswrong.com/posts/kE4pbmwzdgmFx2RFo/can-decision-models-like-jev-plan-ahead", "summary_en": "Tests whether the decision model Jev can plan ahead."}
+{"key": "https://gangliao.me/blog/2026/cake-deep-dive/", "summary_en": "An introduction to CAKE, where agents write GPU schedules in an inspectable language."}
+{"key": "https://keyu-tian-sabotage.github.io/", "summary_en": "Compiles victim statements and evidence on the 2024 model training sabotage incident."}
+{"key": "https://tazolabs.com/blog/speculative-tool-calling-voice-ai", "summary_en": "Proposes speculative tool calling to reduce voice agent latency."}
+{"key": "https://hackstery.com/2026/10/13/meta-metadata-unbounded-consumption-in-llms/", "summary_en": "Tests show a single recursive prompt causes unbounded consumption in 73% of LLMs."}
+{"key": "https://memanto.ai/blog/your-agents-memory-needs-a-retention-policy", "summary_en": "Argues that agent memory needs retention and expiry policies, and describes Memanto's approach."}
+{"key": "https://www.technologyreview.com/2026/10/13/1146366/open-models-have-real-benefits-do-they-outweigh-the-risks/", "summary_en": "MIT Technology Review explains the debate over the benefits and risks of open models."}
+{"key": "https://isaacus.com/blog/what-are-vector-embeddings", "summary_en": "An interactive guide to the history and principles of vector embeddings."}
+{"key": "https://www.spectrallabs.ai/research/cswp-turing-test", "summary_en": "Evaluates whether AI agents can pass SOLIDWORKS certification exams."}
+{"key": "https://www.paperinstruments.com/blog/ultramarine", "summary_en": "Introduces Ultramarine 1 Flash, an RL model for non-verifiable tasks."}
+{"key": "https://apertus-ai.org/articles/2026-07-apertus-1-5/", "summary_en": "Technical report for Apertus 1.5 covering multimodality, reasoning, and long context."}
+{"key": "https://ericyuegu.com/hillclimbing-melee/", "summary_en": "Scales pretraining of Melee game policies through action representations and offline RL."}
+{"key": "https://alkjash.github.io/ai-risk/", "summary_en": "Presents the argument for existential risk from AI for mathematicians."}
+{"key": "https://research.google/pubs/proactive-ai-for-superintelligent-agents/", "summary_en": "Google Research proposes a proactive AI approach for superintelligent agents."}
+{"key": "https://www.lesswrong.com/posts/Dkh7pXKjoNWkkxQDz/neural-networks-are-not-already-clean", "summary_en": "Discusses what evidence is needed to show a neuron is explained, and rebuts the claim that neural networks are already clean."}
+{"key": "https://sixeleven.in/blog/tic402710280", "summary_en": "Investigates a possible exoplanet using TESS transit data and Claude."}
+{"key": "https://www.lesswrong.com/posts/avtquSx2PkWsxXW6T/how-to-measure-intelligence-beyond-human-scale", "summary_en": "Introduces, based on a paper, methods for measuring intelligence beyond human scale."}
+{"key": "https://www.zansara.dev/posts/2026-10-19-is-python-the-favorite-language-of-llms/", "summary_en": "Examines whether LLMs prefer programming languages such as Python."}
+{"key": "https://turso.tech/blog/mvcc-row-lifetime", "summary_en": "Explains the lifecycle of a row in Turso's MVCC."}
+{"key": "https://mbuffett.com/posts/chess-move-prediction", "summary_en": "Introduces the author's chess AI, built to be the most human-like."}
+{"key": "https://alphapixeldev.com/celestial-vision-navigation-elite-dangerous-dark-wheel-station/", "summary_en": "Uses star-based positioning to solve a mystery location in Elite: Dangerous."}
+{"key": "https://alignment.anthropic.com/2026/graft/", "summary_en": "Proposes reducing reward hacking by localizing bad behavior rather than penalizing it."}
+{"key": "https://quickchat.ai/post/claude-code-multi-agent-code-review", "summary_en": "Evaluates the cost of Claude Code's multi-agent code review and the issues it finds."}
+{"key": "https://vernolabs.ai/research/does-a-text-to-speech-model-know-what-its-saying", "summary_en": "Tests whether a text-to-speech model understands what it says."}
+{"key": "https://rpallas.xyz/good-night-and-good-luck/", "summary_en": "Uses data to analyze how AI affects software jobs."}
+{"key": "https://www.databricks.com/blog/memcurrent-designing-persistent-memory-production-agents", "summary_en": "Introduces the MemCurrent persistent memory architecture and its effects."}
+{"key": "https://arpitbhayani.me/blogs/compiling-an-sop-into-a-3b-model/", "summary_en": "A fine-tuning experiment compiling an incident triage SOP into a 3B model."}

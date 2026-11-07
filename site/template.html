@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="{{html_lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{page_title}}</title>
+<meta name="description" content="{{meta_desc}}">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{brand}}">
+<meta property="og:title" content="{{page_title}}">
+<meta property="og:description" content="{{meta_desc}}">
+<meta property="og:locale" content="{{og_locale}}">
+{{head_extra}}
+<link rel="icon" href="{{root}}favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" href="{{feed_href}}" title="{{brand}}">
+<link rel="preload" href="{{root}}static/fonts/schibsted-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{root}}static/site.css">{{theme_css}}
+</head>
+<body>
+<a class="skip" href="#stream">{{nav_latest}}</a>
+{{topbar_html}}
+<div class="wrap">
+  <header class="intro">
+    <h1>{{h1}}</h1>
+    <p class="lede">{{lede}}</p>
+    <p class="status">{{status_line}}</p>
+    <div class="figures" id="figures"></div>
+  </header>
+
+  <main id="stream">
+    <noscript><p>JavaScript is needed for the interactive list. The full list is in the <a href="{{data_href}}">data file</a> and the <a href="{{feed_href}}">feed</a>. 交互式列表需要 JavaScript，完整列表见<a href="{{data_href}}">数据文件</a>和<a href="{{feed_href}}">订阅源</a>。</p></noscript>
+    <div class="controls" id="controls">
+      <div class="row-ctl" id="ctl-type"><span class="lbl">{{ctl_type}}</span></div>
+      <div class="row-ctl" id="ctl-topic"><span class="lbl">{{ctl_topic}}</span></div>
+      <div class="row-ctl" id="ctl-flag"><span class="lbl">{{ctl_flag}}</span></div>
+      <div class="row-ctl" id="ctl-via"><span class="lbl">{{ctl_via}}</span></div>
+      <div class="count-line" id="count" aria-live="polite"></div>
+    </div>
+    <p class="note" id="stream-note">{{stream_note}}</p>
+    <div id="days"></div>
+    <button class="more" id="more" type="button">{{earlier}}</button>
+  </main>
+</div>
+{{footer_html}}
+
+<script id="data" type="application/json">__DATA_JSON__</script>
+<script id="i18n" type="application/json">__I18N_JSON__</script>
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var L = JSON.parse(document.getElementById("i18n").textContent);
+  var LANG = document.documentElement.lang;
+  var TOPIC = L.topic, REL = L.rel, SRCNAME = L.src;
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function link(href, text, cls) { var a = el("a", cls, text); if (/^https?:\/\//.test(href || "")) { a.href = href; a.rel = "noopener"; } return a; }
+  function fmt(n) { return Number(n).toLocaleString("en-US"); }
+  function F(s, v) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && v[k] != null ? v[k] : m; }); }
+  function plural(n, one, many) { return n === 1 ? F(one, { n: 1 }) : F(many, { n: fmt(n) }); }
+  var dayFmt = new Intl.DateTimeFormat(LANG, { weekday: "short", month: "short", day: "numeric", timeZone: "UTC" });
+  function dayLabel(d) { return dayFmt.format(new Date(d + "T00:00:00Z")); }
+
+  var items = D.items;
+  var FG = document.getElementById("figures");
+  [[D.figures.posts, L.fig_posts], [D.figures.sites, L.fig_sites], [D.figures.sources, L.fig_sources], [D.figures.threads, L.fig_threads]].forEach(function (f) {
+    var d = el("div", "fig"); d.appendChild(el("span", "n", fmt(f[0]))); d.appendChild(el("span", "l", f[1])); FG.appendChild(d);
+  });
+
+  // ---------- channels where a post was found: fixed order, identical styling ----------
+  function viaPills(parent, via) {
+    via.forEach(function (v) {
+      if (v.s === "hn") {
+        var a = link("https://news.ycombinator.com/item?id=" + encodeURIComponent(v.id), (v.p === 1 ? L.via_hn_1 : F(L.via_hn, { p: fmt(v.p) })), "pill");
+        if (v.c != null) a.title = F(L.via_hn_title, { c: fmt(v.c) });
+        parent.appendChild(a);
+      } else if (v.s === "rs") {
+        parent.appendChild(v.doi ? link("https://doi.org/" + v.doi, L.via_rs_doi, "pill") : el("span", "pill", L.via_rs));
+      } else if (v.s === "fork") {
+        parent.appendChild(el("span", "pill", L.via_fork));
+      }
+    });
+  }
+  var BRANCH = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v5.256a2.25 2.25 0 1 0 1.5 0V9.5h3.25A2.75 2.75 0 0 0 11 6.75v-.378a2.25 2.25 0 1 0-1.5 0v.378c0 .69-.56 1.25-1.25 1.25H5V5.372ZM4.25 12a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5ZM10.25 4a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"/></svg>';
+
+  function threadBox(r, expanded) {
+    var box = el("div", "thread"), n = r.resp.length, SHOW = 3;
+    var btn = el("button", "thread-toggle"); btn.type = "button";
+    var list = el("ol", "resp-list");
+    function fill(all) {
+      list.textContent = "";
+      r.resp.slice(0, all ? n : SHOW).forEach(function (x) {
+        var li = el("li", "resp r-" + x.rel), m = el("div", "meta");
+        m.appendChild(el("span", "rel", REL[x.rel] || x.rel));
+        m.appendChild(el("span", "offset", F(L.days, { n: x.days < 1 ? "<1" : Math.round(x.days) })));
+        m.appendChild(el("span", null, x.domain));
+        li.appendChild(m);
+        var t = el("div", "rt"); t.appendChild(link(x.url, x.title)); li.appendChild(t);
+        if (x.summary) li.appendChild(el("p", "sum", x.summary));
+        var v = el("div", "via"); viaPills(v, x.via); if (v.childNodes.length) li.appendChild(v);
+        list.appendChild(li);
+      });
+      btn.innerHTML = BRANCH; btn.appendChild(document.createTextNode(plural(n, L.n_resp_1, L.n_resp)));
+      if (n > SHOW) btn.appendChild(document.createTextNode(" · " + (all ? L.hide_resp : F(L.show_resp, { n: n }))));
+      btn.setAttribute("aria-expanded", all || n <= SHOW ? "true" : "false");
+    }
+    var all = !!expanded;
+    btn.addEventListener("click", function () { if (n > SHOW) { all = !all; fill(all); } });
+    fill(all); box.appendChild(btn); box.appendChild(list);
+    return box;
+  }
+
+  // ---------- filters ----------
+  var state = { type: "all", topic: "all", flags: {}, via: "all", days: 7 };
+  var FLAGS = [["interactive", L.flag_interactive], ["repo", L.flag_repo], ["arxiv", L.flag_arxiv], ["resp", L.flag_responses]];
+  function has(r, f) { return f === "resp" ? r.resp.length > 0 : !!r[f]; }
+  function inType(r) { return state.type === "all" || r.cat === state.type; }
+  function inVia(r) { return state.via === "all" || r.via.some(function (v) { return v.s === state.via; }); }
+  function inFlags(r) { for (var k in state.flags) if (state.flags[k] && !has(r, k)) return false; return true; }
+  function inTopic(r) { return state.topic === "all" || r.topic === state.topic; }
+  function chip(parent, label, count, pressed, onClick) {
+    var b = el("button", "chip"); b.type = "button"; b.textContent = label;
+    if (count != null) b.appendChild(el("span", "c", String(count)));
+    b.setAttribute("aria-pressed", pressed ? "true" : "false"); b.addEventListener("click", onClick); parent.appendChild(b);
+  }
+  function reset(id) { var p = document.getElementById(id); while (p.children.length > 1) p.removeChild(p.lastChild); return p; }
+  function go() { state.days = 7; render(); }
+  function controls() {
+    var p = reset("ctl-type");
+    [["all", L.all], ["research", L.cat_research], ["explainer", L.cat_explainer]].forEach(function (c) {
+      var n = items.filter(function (r) { return (c[0] === "all" || r.cat === c[0]) && inVia(r) && inFlags(r) && inTopic(r); }).length;
+      chip(p, c[1], n, state.type === c[0], function () { state.type = c[0]; go(); });
+    });
+    p = reset("ctl-topic");
+    var pool = items.filter(function (r) { return inType(r) && inVia(r) && inFlags(r); }), tc = {};
+    pool.forEach(function (r) { tc[r.topic] = (tc[r.topic] || 0) + 1; });
+    chip(p, L.all, pool.length, state.topic === "all", function () { state.topic = "all"; go(); });
+    Object.keys(tc).sort(function (a, b) { return tc[b] - tc[a] || (TOPIC[a] || a).localeCompare(TOPIC[b] || b); }).forEach(function (k) {
+      chip(p, TOPIC[k] || k, tc[k], state.topic === k, function () { state.topic = k; go(); });
+    });
+    p = reset("ctl-flag");
+    FLAGS.forEach(function (f) {
+      var n = items.filter(function (r) { return inType(r) && inVia(r) && inTopic(r) && has(r, f[0]); }).length;
+      chip(p, f[1], n, !!state.flags[f[0]], function () { state.flags[f[0]] = !state.flags[f[0]]; syncHash(); go(); });
+    });
+    p = reset("ctl-via");
+    [["all", L.all], ["fork", SRCNAME.fork], ["rs", SRCNAME.rs], ["hn", SRCNAME.hn]].forEach(function (s) {
+      var n = items.filter(function (r) { return inType(r) && inFlags(r) && inTopic(r) && (s[0] === "all" || r.via.some(function (v) { return v.s === s[0]; })); }).length;
+      chip(p, s[1], n, state.via === s[0], function () { state.via = s[0]; go(); });
+    });
+  }
+
+  // ---------- day-by-day stream; points never affect order ----------
+  function signals(r) { return (r.interactive ? 1 : 0) + (r.repo ? 1 : 0) + (r.arxiv ? 1 : 0) + (r.doi ? 1 : 0); }
+  function within(a, b) {
+    return (a.cat === b.cat ? 0 : a.cat === "research" ? -1 : 1) || b.resp.length - a.resp.length || signals(b) - signals(a) || a.title.localeCompare(b.title);
+  }
+  function card(r) {
+    var li = el("li", "item k-" + r.cat), k = el("div", "kind");
+    k.appendChild(el("span", "ty", r.cat === "research" ? L.type_research : L.type_explainer));
+    k.appendChild(el("span", null, TOPIC[r.topic] || r.topic));
+    li.appendChild(k);
+    var h = el("h3", "t"); h.appendChild(link(r.url, r.title)); li.appendChild(h);
+    var b = el("div", "byline"); b.appendChild(el("span", "dom", r.domain));
+    if (r.interactive) b.appendChild(el("span", "badge hot", L.b_interactive));
+    if (r.repo) b.appendChild(el("span", "badge", L.b_repo));
+    if (r.arxiv) b.appendChild(el("span", "badge", "arXiv"));
+    if (r.doi) b.appendChild(el("span", "badge", "DOI"));
+    li.appendChild(b);
+    if (r.summary) li.appendChild(el("p", "sum", r.summary));
+    var v = el("div", "via"); v.appendChild(el("span", "vl", L.via_l)); viaPills(v, r.via); li.appendChild(v);
+    if (r.resp.length) li.appendChild(threadBox(r, state.flags.resp));
+    return li;
+  }
+  function render() {
+    controls();
+    var list = items.filter(function (r) { return inType(r) && inVia(r) && inFlags(r) && inTopic(r); });
+    var byDay = {}; list.forEach(function (r) { (byDay[r.date] = byDay[r.date] || []).push(r); });
+    var days = Object.keys(byDay).sort().reverse();
+    document.getElementById("count").textContent = F(L.count_stream, { n: fmt(list.length), d: days.length });
+    document.getElementById("stream-note").textContent = state.flags.resp ? L.threads_note : L.stream_note;
+    var root = document.getElementById("days"); root.textContent = "";
+    if (!list.length) root.appendChild(el("p", "empty", L.empty));
+    days.slice(0, state.days).forEach(function (d) {
+      var sec = el("section", "day"), h = el("h2", "day-h"), t = el("time", null, dayLabel(d)); t.dateTime = d;
+      h.appendChild(t); h.appendChild(el("span", null, plural(byDay[d].length, L.day_n_1, L.day_n))); sec.appendChild(h);
+      var ol = el("ol", "items"); byDay[d].sort(within).forEach(function (r) { ol.appendChild(card(r)); });
+      sec.appendChild(ol); root.appendChild(sec);
+    });
+    document.getElementById("more").hidden = state.days >= days.length;
+    document.querySelectorAll(".nav a[data-view]").forEach(function (a) {
+      var on = (a.dataset.view === "threads") === !!state.flags.resp;
+      a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+  }
+  function syncHash() {
+    var want = state.flags.resp ? "#threads" : "";
+    if ((location.hash || "") !== want) history.replaceState(null, "", want || location.pathname + location.search);
+  }
+  function fromHash() { state.flags.resp = location.hash === "#threads"; state.days = 7; render(); }
+  document.getElementById("more").addEventListener("click", function () { state.days += 7; render(); });
+  window.addEventListener("hashchange", fromHash);
+  fromHash();
+})();
+</script>
+</body>
+</html>
