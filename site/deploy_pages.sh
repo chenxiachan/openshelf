@@ -3,7 +3,10 @@
 # GitHub Pages serves that branch. Run from the repository root: sh site/deploy_pages.sh
 # Needs: gh logged in, the repo already created (origin remote set).
 set -e
-REPO=$(git remote get-url origin | sed -E 's#(git@github.com:|https://github.com/)##; s#\.git$##')
+URL=$(git remote get-url origin 2>/dev/null) || { echo "no 'origin' remote: create the GitHub repo and add it first" >&2; exit 1; }
+REPO=$(echo "$URL" | sed -E 's#(git@github.com:|https://github.com/)##; s#\.git$##')
+[ -n "$REPO" ] || { echo "cannot read owner/repo from origin ($URL)" >&2; exit 1; }
+gh api "repos/$REPO" >/dev/null 2>&1 || { echo "repo $REPO does not exist on GitHub yet" >&2; exit 1; }
 python3 site/build_openshelf.py
 TMP=$(mktemp -d)
 cp -R site/public/. "$TMP"/
