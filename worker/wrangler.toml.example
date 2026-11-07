@@ -17,3 +17,6 @@ database_id = "REPLACE_WITH_ID"
 
 [triggers]
 crons = ["17 3 * * *"]
+
+[observability]
+enabled = true

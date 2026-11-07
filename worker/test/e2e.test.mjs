@@ -125,3 +125,13 @@ assert.equal(env.DB.raw.prepare("SELECT net FROM votes WHERE item = 'old'").get(
 assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM votes WHERE item = 'old'").get().n, 1, "the vote itself is kept");
 
 console.log("all 7 analytics and vote tests passed", JSON.stringify(agg.totals));
+
+// 8. a write that fails once is retried, not lost
+{
+  const flaky = { ...env, DB: { ...env.DB, prepare: env.DB.prepare, batch: (() => { let n = 0; return (stmts) => { if (n++ === 0) throw new Error("D1 busy"); return env.DB.batch(stmts); }; })() } };
+  const before = env.DB.raw.prepare("SELECT COUNT(*) AS n FROM events").get().n;
+  const d = browser(); d.win.openshelfTrack("view", {}); d.win.openshelfFlush();
+  assert.equal((await ingest(req(d.beacons[0].body), flaky)).status, 204);
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM events").get().n, before + 1, "the retried batch is stored");
+  console.log("retry test passed");
+}

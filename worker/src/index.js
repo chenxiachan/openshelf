@@ -26,6 +26,15 @@ async function sha(text) {
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 16);
 }
 
+// D1 sometimes fails a write for a moment (a beacon cannot retry), so writes are tried three times
+async function retry(what, fn) {
+  for (let i = 0; ; i++) {
+    try { return await fn(); } catch (e) {
+      if (i >= 2) { console.error(`${what} failed`, String(e)); throw e; }
+      await new Promise((r) => setTimeout(r, 150 * (i + 1)));
+    }
+  }
+}
 function str(v, n) {
   return typeof v === "string" ? v.slice(0, n) : null;
 }
@@ -59,7 +68,9 @@ export async function ingest(req, env) {
     rows.push(stmt.bind(day, Math.min(Number(e.t) || now.getTime(), now.getTime()), visitor, str(e.s, 12), e.type, item,
       Number.isFinite(e.rank) ? e.rank : null, str(e.view, 12), str(page.lang, 8), str(page.path, 80), ref, country, JSON.stringify(extra)));
   }
-  if (rows.length) await env.DB.batch(rows);
+  if (rows.length) {
+    try { await retry("ingest", () => env.DB.batch(rows)); } catch { return new Response("storage unavailable", { status: 503 }); }
+  }
   return new Response(null, { status: 204 });
 }
 
@@ -78,14 +89,17 @@ export async function vote(req, env) {
   const used = await env.DB.prepare("SELECT COUNT(*) AS n FROM votes WHERE net = ? AND day = ?").bind(net, day).first();
   if ((used && used.n) >= VOTES_PER_NET_DAY) return new Response("too many votes today", { status: 429 });
   if (b.dir === 0) {
-    await env.DB.prepare("DELETE FROM votes WHERE item = ? AND voter = ?").bind(b.id, voter).run();
+    try { await retry("unvote", () => env.DB.prepare("DELETE FROM votes WHERE item = ? AND voter = ?").bind(b.id, voter).run()); }
+    catch { return new Response("storage unavailable", { status: 503 }); }
     return new Response(null, { status: 204 });
   }
   const others = await env.DB.prepare("SELECT COUNT(*) AS n FROM votes WHERE item = ? AND net = ? AND day = ? AND voter != ?").bind(b.id, net, day, voter).first();
   if ((others && others.n) >= VOTERS_PER_ITEM_NET_DAY) return new Response(null, { status: 204 });   // quietly not counted
-  await env.DB.prepare("INSERT INTO votes (item, voter, dir, net, day, ts) VALUES (?, ?, ?, ?, ?, ?) " +
-    "ON CONFLICT (item, voter) DO UPDATE SET dir = excluded.dir, net = excluded.net, day = excluded.day, ts = excluded.ts")
-    .bind(b.id, voter, b.dir, net, day, now.getTime()).run();
+  try {
+    await retry("vote", () => env.DB.prepare("INSERT INTO votes (item, voter, dir, net, day, ts) VALUES (?, ?, ?, ?, ?, ?) " +
+      "ON CONFLICT (item, voter) DO UPDATE SET dir = excluded.dir, net = excluded.net, day = excluded.day, ts = excluded.ts")
+      .bind(b.id, voter, b.dir, net, day, now.getTime()).run());
+  } catch { return new Response("storage unavailable", { status: 503 }); }
   return new Response(null, { status: 204 });
 }
 export async function tally(env) {
