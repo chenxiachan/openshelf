@@ -2,8 +2,10 @@ name: daily
 # Collect new posts, label them, link responses, then save the dataset and redeploy the site.
 # Errors open an "alert" issue (pipeline/runlog.py); a failed run also triggers GitHub's own failure email.
 on:
-  schedule:
-    - cron: "23 4 * * *"      # 04:23 UTC every day
+  schedule:                   # GitHub sometimes skips a scheduled run, so there are two backups;
+    - cron: "23 4 * * *"      # a backup exits at once when today's run is already done (state.json "last_run")
+    - cron: "23 9 * * *"
+    - cron: "23 15 * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -17,16 +19,26 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+      - name: Skip a backup run when today's run is done
+        id: gate
+        run: |
+          last=$(python3 -c "import json; print(json.load(open('state/state.json')).get('last_run', ''))")
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$last" = "$(date -u +%F)" ]; then
+            echo "skip=1" >> "$GITHUB_OUTPUT"; echo "today's run is already done ($last)"
+          fi
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.skip != '1'
         with:
           python-version: "3.12"
       - name: Collect, label and link
+        if: steps.gate.outputs.skip != '1'
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GITHUB_TOKEN: ${{ github.token }}
           ALERT_GITHUB_REPO: ${{ github.repository }}
         run: python3 pipeline/daily.py
       - name: Save dataset and state
+        if: steps.gate.outputs.skip != '1'
         run: |
           git config user.name "openshelf-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -34,12 +46,13 @@ jobs:
           git diff --cached --quiet || git commit -q -m "daily: $(date -u +%F)"
           git push -q
       - name: Build and deploy
+        if: steps.gate.outputs.skip != '1'
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GH_TOKEN: ${{ github.token }}
         run: sh site/deploy_pages.sh
       - name: Keep the run log
-        if: always()
+        if: always() && steps.gate.outputs.skip != '1'
         uses: actions/upload-artifact@v4
         with:
           name: run-log

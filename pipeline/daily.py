@@ -257,6 +257,7 @@ def main():
         state["hn_since"] = max([s["created_at_i"] for s in fresh] + [state["hn_since"]])
         state["rs_since"] = day(now - 86400)
         state["runs"] = state.get("runs", 0) + 1
+        state["last_run"] = day(now)                     # backup runs in the workflow skip when this is today
         jsave(LIVE, D)
         jsave(os.path.join(STATE, "state.json"), state)
         jsave(os.path.join(STATE, "seen.json"), sorted(seen), indent=0)
