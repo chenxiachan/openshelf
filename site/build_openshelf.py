@@ -31,7 +31,9 @@ def main():
         root = "../" if sub else ""
         vals = {"root": root, "lang": lang, "html_lang": "en" if lang == "en" else "zh-CN", "about_href": "about/",
                 "feed_href": "feed.xml", "meta_desc": B.esc(SLOGAN[lang]),
-                "features": json.dumps(feats), "analytics": json.dumps(analytics)}
+                "features": json.dumps(feats), "analytics": json.dumps(analytics),
+                "maintainer_link": (f' · <a href="{B.esc(CFG["maintainer"].get("url", ""))}">{B.esc(CFG["maintainer"]["name"])}</a>'
+                                    if (CFG.get("maintainer") or {}).get("name") else "")}
         page = tpl
         for k, v in vals.items():
             page = page.replace("{{" + k + "}}", v)

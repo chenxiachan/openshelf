@@ -218,6 +218,14 @@ def page_about(D, lang):
         subs["about_contact_html"] = "<p>" + esc(L["about_contact"]).replace("{contact}", f'<a href="{esc(target)}">{esc(label)}</a>') + "</p>"
     else:
         subs["about_contact_html"] = ""
+    m = CFG.get("maintainer") or {}
+    if m.get("name"):
+        txt = esc(L["maintainer"])
+        txt = txt.replace("{name}", f'<a href="{esc(m.get("url") or m.get("github", ""))}">{esc(m["name"])}</a>')
+        txt = txt.replace("{github}", f'<a href="{esc(m.get("github", ""))}">GitHub</a>' if m.get("github") else "GitHub")
+        subs["maintainer_html"] = "<p>" + txt + "</p>"
+    else:
+        subs["maintainer_html"] = ""
     ex = [e for e in D.get("editorial", []) if e["n"]]
     if ex:
         items = "".join("<li>" + esc(L["excluded_item"].format(domain=e["domain"], n=e["n"], reason=e["reason_" + lang])) + "</li>" for e in ex)

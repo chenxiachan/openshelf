@@ -4,5 +4,10 @@
  "contact": "",
  "issue": "issues/pilot.json",
  "domain": "",
- "analytics_endpoint": ""
+ "analytics_endpoint": "",
+ "maintainer": {
+  "name": "Xia Chen",
+  "url": "https://chenxiachan.github.io/",
+  "github": "https://github.com/chenxiachan"
+ }
 }
