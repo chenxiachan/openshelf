@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{html_lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{privacy_title}} · {{brand}}</title>
+<meta name="color-scheme" content="light dark">
+{{head_extra}}
+<link rel="icon" href="{{root}}favicon.svg" type="image/svg+xml">
+<link rel="preload" href="{{root}}static/fonts/schibsted-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{root}}static/site.css">{{theme_css}}
+<style>.privacy section.s { padding-block: 22px 0; } .privacy .sec-head { margin-bottom: 8px; } .page-h .updated { margin: 0; color: var(--muted); }</style>
+</head>
+<body>
+<a class="skip" href="#main">{{privacy_title}}</a>
+{{topbar_html}}
+<div class="wrap">
+  <header class="page-h">
+    <h1>{{privacy_title}}</h1>
+    <p class="updated">{{privacy_updated}}</p>
+  </header>
+  <main id="main" class="privacy">
+{{privacy_sections}}
+  </main>
+</div>
+{{footer_html}}
+</body>
+</html>

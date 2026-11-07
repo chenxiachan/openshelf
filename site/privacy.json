@@ -1,0 +1,70 @@
+{
+ "_comment": "Privacy notice (GDPR Art. 13 and 14) rendered by site/build.py at /privacy/ and /zh/privacy/. Placeholders: {brand} {maintainer} {issues} {remove} {about}. Links: [text](url). A section with \"when\" is shown only while that feature is on, and build.py refuses to build when a feature is on without its section. Change \"updated\" whenever the text changes.",
+ "updated": "2026-11-07",
+ "en": {
+  "title": "Privacy",
+  "updated": "Last updated {date}",
+  "sections": [
+   {"h": "Who is responsible", "p": [
+    "{brand} is a private, non-commercial project run by {maintainer}, who is responsible for the processing described here (the controller under the GDPR).",
+    "Contact: [open an issue on GitHub]({issues}). If your request involves personal details you do not want to make public, open an issue that only says you have a private request, and we will agree on a private channel there."
+   ]},
+   {"h": "Visiting the site", "p": [
+    "The site is hosted on GitHub Pages. When you open a page, GitHub (GitHub B.V., Netherlands, and GitHub, Inc., USA) processes your IP address and the usual request data, such as the page requested, the time and your browser, in order to deliver the page. GitHub states that it logs visitors' IP addresses for security purposes. {brand} has no access to these logs.",
+    "Legal basis: Art. 6(1)(f) GDPR, our legitimate interest in delivering the site securely. GitHub may transfer data to the USA. It is certified under the EU-U.S. Data Privacy Framework and also uses the EU standard contractual clauses. Details: [GitHub's privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)."
+   ]},
+   {"h": "No cookies, no tracking", "p": [
+    "The site sets no cookies and runs no analytics or tracking. Fonts, scripts and data all come from this site. Nothing is loaded from other servers, and there are no ads or social media embeds.",
+    "If you switch the language on the front page, the choice is saved in your browser's local storage under the key openshelf-lang. It stays on your device and is never sent anywhere. Storing it is strictly necessary for the function you asked for (§ 25(2) no. 2 TDDDG). You can delete it in your browser settings at any time.",
+    "Links to posts take you to other websites, where their own privacy policies apply."
+   ]},
+   {"h": "Submissions and removal requests", "p": [
+    "Submissions and removal requests are made through GitHub issues. Anything you write in an issue is public, and GitHub's privacy statement applies. We use what you send only to handle your request. Legal basis: Art. 6(1)(f) GDPR."
+   ]},
+   {"h": "Posts and their authors", "p": [
+    "{brand} lists research posts that are publicly available on websites. They are found through the websites' own feeds, [Hacker News](https://news.ycombinator.com/) (through the Algolia search API) and [Rogue Scholar](https://rogue-scholar.org/). Our crawler identifies itself as openshelf-crawler and links to the [About page]({about}).",
+    "For each post we store its title, address, website, date and topic, short summaries in English and Chinese, discussion counts from Hacker News, and which other websites link to it. We do not collect authors' names separately, but a name can appear in a web address, a title or a summary. We also keep a list of addresses already checked, so that no post is checked twice. Entries are kept until their removal is requested.",
+    "To decide whether a post is research and to write the summaries, the public text of the post (its description and roughly the first 320 words, and for responses the text around the link) is sent to language models through OpenRouter (OpenRouter, Inc., USA). OpenRouter passes it on to model providers that may be located outside the EU, for example in the USA or China. Only this public text is sent, never anything about visitors.",
+    "Legal basis: Art. 6(1)(f) GDPR. The interest is to make research published on personal websites easier to find, and to show how posts answer each other. Only what the authors have published themselves is used, and they can object at any time.",
+    "To object or to have a post removed, [send a removal request]({remove}). Once we have processed it, the post is deleted from the data and the site. If you ask, we also stop collecting from your whole website. Earlier versions of the data remain in the history of the public repository. Tell us if you want them removed there as well."
+   ]},
+   {"h": "Your rights", "p": [
+    "You have the right of access (Art. 15 GDPR), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18) and data portability (Art. 20), and the right to object to processing based on legitimate interests (Art. 21). To use them, see the contact above.",
+    "You also have the right to lodge a complaint with a data protection supervisory authority (Art. 77 GDPR), in particular in the EU member state where you live or work."
+   ]}
+  ]
+ },
+ "zh": {
+  "title": "隐私说明",
+  "updated": "最后更新：{date}",
+  "sections": [
+   {"h": "谁负责", "p": [
+    "{brand} 是由 {maintainer} 运营的个人非商业项目，本页所述的数据处理由其负责（即 GDPR 所称的控制者）。",
+    "联系方式：[在 GitHub 上提交 issue]({issues})。如果你的请求涉及不想公开的个人信息，请提交一个只写明“有私人请求”、不含细节的 issue，我们会在那里商定私下联系的方式。"
+   ]},
+   {"h": "访问本站", "p": [
+    "本站托管在 GitHub Pages 上。你打开页面时，GitHub（荷兰的 GitHub B.V. 和美国的 GitHub, Inc.）会处理你的 IP 地址和常规请求信息，例如请求的页面、时间和浏览器，用于把页面发送给你。GitHub 说明它会出于安全目的记录访问者的 IP 地址。{brand} 看不到这些日志。",
+    "法律依据：GDPR 第 6 条第 1 款 f 项，即安全提供网站的正当利益。GitHub 可能把数据传输到美国。它已通过欧盟-美国数据隐私框架（EU-U.S. Data Privacy Framework）认证，并同时使用欧盟标准合同条款。详见 [GitHub 隐私声明](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)。"
+   ]},
+   {"h": "不用 Cookie，不做追踪", "p": [
+    "本站不设置 Cookie，也不运行任何统计或追踪。字体、脚本和数据都来自本站，不从其他服务器加载任何内容，也没有广告和社交媒体插件。",
+    "如果你在首页切换语言，这个选择会保存在浏览器的本地存储里，键名是 openshelf-lang。它只留在你的设备上，不会发送到任何地方。保存它是提供你所要求的功能所必需的（德国 TDDDG 第 25 条第 2 款第 2 项）。你可以随时在浏览器设置里删除它。",
+    "文章链接会带你去其他网站，那里适用各自的隐私政策。"
+   ]},
+   {"h": "提交与删除请求", "p": [
+    "提交网站和删除请求都通过 GitHub issue 进行。你在 issue 里写的内容是公开的，并适用 GitHub 的隐私声明。我们只把你发来的信息用于处理你的请求。法律依据：GDPR 第 6 条第 1 款 f 项。"
+   ]},
+   {"h": "文章与作者", "p": [
+    "{brand} 收录公开发布在网站上的研究文章。来源包括各网站自己的订阅源、[Hacker News](https://news.ycombinator.com/)（通过 Algolia 搜索接口）和 [Rogue Scholar](https://rogue-scholar.org/)。我们的爬虫标识为 openshelf-crawler，并附有[关于页]({about})的链接。",
+    "每篇文章我们保存标题、网址、网站、日期和主题，中英文简短摘要，Hacker News 上的讨论数，以及有哪些其他网站链接到它。我们不单独收集作者姓名，但姓名可能出现在网址、标题或摘要里。我们还保存一份已检查过的网址清单，避免重复检查同一篇文章。收录的条目会一直保留，直到有人要求删除。",
+    "为了判断一篇文章是否属于研究并撰写摘要，文章的公开文字会通过 OpenRouter（OpenRouter, Inc.，美国）发送给语言模型。发送的内容是文章简介和大约前 320 个词，判断回应关系时还包括链接前后的文字。OpenRouter 会再转给模型服务商，它们可能位于欧盟以外，例如美国或中国。发送的只有这些公开文字，不含任何访问者信息。",
+    "法律依据：GDPR 第 6 条第 1 款 f 项。目的是让发表在个人网站上的研究更容易被找到，并展示文章之间如何相互回应。我们只使用作者自己公开发布的内容，作者可以随时提出反对。",
+    "如需反对或删除，请[提交删除请求]({remove})。我们处理之后，该文章会从数据和网站上删除。如果你要求，我们也会停止收集你整个网站的内容。旧版数据仍留在公开仓库的历史记录里，如需一并删除，请告诉我们。"
+   ]},
+   {"h": "你的权利", "p": [
+    "你有权查阅（GDPR 第 15 条）、更正（第 16 条）、删除（第 17 条）、限制处理（第 18 条）和数据可携（第 20 条），并有权反对基于正当利益的处理（第 21 条）。行使这些权利，请使用上面的联系方式。",
+    "你还有权向数据保护监管机构投诉（GDPR 第 77 条），尤其是你居住或工作所在的欧盟成员国的监管机构。"
+   ]}
+  ]
+ }
+}

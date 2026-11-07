@@ -10,7 +10,7 @@
 <meta name="description" content="{{meta_desc}}">
 <style>
 @font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-display: swap; src: url("{{root}}static/fonts/plexmono-400.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212; }
-@font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-display: swap; src: url("../../site/static/fonts/plexmono-500.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212; }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-display: swap; src: url("{{root}}static/fonts/plexmono-500.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212; }
 /* Celadon palette, text pairs >= 4.5:1 in both modes. Layout carries the meaning; explanations live in tooltips. */
 :root {
   --paper: #f7f8f5; --ink: #23282b; --muted: #646d6a; --rule: #e2e7e2; --soft: #e3efe8; --soft-2: #d3e6db; --acc: #3a6b5b; --brand: #7fb5a0;
@@ -145,7 +145,7 @@ main.ranked { padding-top: 12px; }
 <main id="log"></main>
 <button class="pager" id="pager" type="button"></button>
 <form class="submit" id="sub" style="margin-bottom:0"><label class="sub-l" for="sub-url" id="sub-l"></label><input id="sub-url" type="url" required placeholder="https://"><button type="submit" id="sub-btn"></button><p class="out" id="sub-out" hidden></p></form>
-<p class="legal"><span id="copy"></span> · <a id="contact" href="{{about_href}}#what"></a>{{maintainer_link}}</p>
+<p class="legal"><span id="copy"></span> · <a id="contact" href="{{about_href}}#what"></a> · <a id="privacy" href="{{privacy_href}}"></a>{{maintainer_link}}</p>
 <dialog class="login" id="login"><button class="lg-x" id="lg-x" type="button" aria-label="close">×</button><h2 id="lg-h"></h2>
 <button class="lg-btn" id="lg-gh" type="button"></button><button class="lg-btn" id="lg-gg" type="button"></button><button class="lg-btn" id="lg-pk" type="button"></button><p class="lg-note" id="lg-note"></p></dialog>
 </div>
@@ -162,7 +162,7 @@ main.ranked { padding-top: 12px; }
       search: "search", posts: "{n} posts", post: "1 post", more: "show {n} earlier days", more_rank: "show more", end: "(END)", empty: "nothing matches",
       found: "found via", open: "open ↗", hn: "hacker news {p} pts", feed: "homepage feed", rs: "rogue scholar", doi: "doi", resp_more: "… {n} more responses", resp_less: "show fewer",
       m_resp: "responses from other posts", m_links: "independent sites linking to it", m_pts: "Hacker News points (counted on a log scale)",
-      sub_l: "Can't find your post? Enter your personal website. Other sites are not accepted.", sub_btn: "submit", sub_out: "Demo only, nothing was sent.", sub_bad: "That is not a personal website. Other sites are not accepted.", about: "about", copy: "© 2026 Openshelf · posts belong to their authors · summaries CC BY 4.0", contact: "contact and removal", sub_gh: "Continue on GitHub to finish your submission.", signin: "sign in", signed: "{name} · sign out", demo_user: "demo user", lg_h: "Sign in to vote", lg_gh: "Continue with GitHub", lg_gg: "Continue with Google", lg_pk: "Use a passkey",
+      sub_l: "Can't find your post? Enter your personal website. Other sites are not accepted.", sub_btn: "submit", sub_out: "Demo only, nothing was sent.", sub_bad: "That is not a personal website. Other sites are not accepted.", about: "about", copy: "© 2026 Openshelf · posts belong to their authors · summaries CC BY 4.0", contact: "contact and removal", privacy: "privacy", sub_gh: "Continue on GitHub to finish your submission.", signin: "sign in", signed: "{name} · sign out", demo_user: "demo user", lg_h: "Sign in to vote", lg_gh: "Continue with GitHub", lg_gg: "Continue with Google", lg_pk: "Use a passkey",
       lg_note: "Demo: this does not really connect to GitHub or Google, or create a passkey." },
     zh: { note: "演示版 · 试运行数据 {from} 至 {to}", lang: "English", slogan: "研究者发在自己网站上的最新研究，每天收集。",
       v_latest: "最新", v_trending: "最火", v_threads: "回应", r_week: "本周", r_month: "本月", compact: "单行", summary: "摘要", heat: "热度 {n}/5", up: "顶", down: "踩",
@@ -170,7 +170,7 @@ main.ranked { padding-top: 12px; }
       search: "搜索", posts: "{n} 篇", post: "1 篇", more: "再显示 {n} 天", more_rank: "显示更多", end: "(END)", empty: "没有匹配的条目",
       found: "发现渠道", open: "打开 ↗", hn: "hacker news {p} 分", feed: "主页订阅源", rs: "rogue scholar", doi: "doi", resp_more: "… 还有 {n} 个回应", resp_less: "收起",
       m_resp: "其他文章的回应", m_links: "链接到它的独立网站", m_pts: "Hacker News 分数（按对数计入）",
-      sub_l: "没有找到你的文章？请提供你的个人主页地址，其他网站无效。", sub_btn: "提交", sub_out: "演示版，没有真的发送。", sub_bad: "这不是个人主页，其他网站无效。", about: "关于", copy: "© 2026 Openshelf · 文章版权归原作者 · 摘要采用 CC BY 4.0", contact: "联系与删除", sub_gh: "请在 GitHub 上完成提交。", signin: "登录", signed: "{name} · 退出", demo_user: "演示用户", lg_h: "登录后可以投票", lg_gh: "用 GitHub 登录", lg_gg: "用 Google 登录", lg_pk: "用 passkey 登录",
+      sub_l: "没有找到你的文章？请提供你的个人主页地址，其他网站无效。", sub_btn: "提交", sub_out: "演示版，没有真的发送。", sub_bad: "这不是个人主页，其他网站无效。", about: "关于", copy: "© 2026 Openshelf · 文章版权归原作者 · 摘要采用 CC BY 4.0", contact: "联系与删除", privacy: "隐私", sub_gh: "请在 GitHub 上完成提交。", signin: "登录", signed: "{name} · 退出", demo_user: "演示用户", lg_h: "登录后可以投票", lg_gh: "用 GitHub 登录", lg_gg: "用 Google 登录", lg_pk: "用 passkey 登录",
       lg_note: "演示版：不会真的连接 GitHub 或 Google，也不会创建 passkey。" }
   };
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
@@ -353,7 +353,7 @@ main.ranked { padding-top: 12px; }
     $("demo-note").textContent = F(L().note, { from: S.window[0], to: S.window[1] });
     $("lang").textContent = L().lang; $("slogan").textContent = L().slogan;
     $("q").placeholder = L().search; $("sub-l").textContent = L().sub_l; $("sub-btn").textContent = L().sub_btn;
-    $("signin").hidden = !FEATURES.login; $("about").textContent = L().about; $("copy").textContent = L().copy; $("contact").textContent = L().contact;
+    $("signin").hidden = !FEATURES.login; $("about").textContent = L().about; $("copy").textContent = L().copy; $("contact").textContent = L().contact; $("privacy").textContent = L().privacy;
     var u = user(); $("signin").textContent = u ? F(L().signed, { name: L().demo_user }) : L().signin;
     $("lg-h").textContent = L().lg_h; $("lg-gh").textContent = L().lg_gh; $("lg-gg").textContent = L().lg_gg; $("lg-pk").textContent = L().lg_pk; $("lg-note").textContent = L().lg_note;
   }

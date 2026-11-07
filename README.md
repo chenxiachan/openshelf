@@ -45,6 +45,8 @@ GitPost 的网站与数据管线（未来的 git 仓库根目录）。
   - `i18n.json`：中英文文案（两种语言的 key 必须一致）。`editorial.json`：编辑排除与改标，每条要写中英文理由。
   - `template.html`：首页，按天分组的信息流（筛选：类型、主题、交互/代码/arXiv/有回应、发现渠道；`#threads` 只看有回应的帖子）。
   - `about.html`：关于与方法页（来源表、主题热力图、试运行发现、方法步骤、编辑记录）。
+  - `privacy.json`、`privacy.html`：隐私说明（`/privacy/`、`/zh/privacy/`），按 GDPR 第 13、14 条写。改了正文要同时改 `updated` 日期。开启统计、登录或投票之前，必须先在 `privacy.json` 里加上 `"when": "analytics"`（或 `login`、`votes`）的段落，否则 `build.py` 拒绝构建。
+  - `optout.json`：要求退出的网站（`domains`，含子域名）和单篇文章（`urls`）。列入后不再抓取、不再标注，已有条目从 `issues/live.json` 删除，其他文章的外链统计里也去掉。和 `editorial.json` 不同，退出名单不在网站上公开列出。
   - `static/site.css`：两页共用样式；主色为紫色（不用 HN 的橙色），热力图色阶已用 dataviz 校验脚本验证浅色和深色。
   - `config.json`：`site_url`（上线后填，用于 canonical、hreflang 和 sitemap）、`repo_url`、`contact`。
   - `build.py`：生成 `public/`。英文首页 `/`、关于页 `/about/`；中文 `/zh/`、`/zh/about/`。另有数据下载 `data/issue-0.json`、中英文 Atom 订阅、404、robots。页面间都用相对链接，放在子目录下也能用。
@@ -58,6 +60,12 @@ python3 design/build_demos.py                           # 生成 demo C 用的 d
 python3 -m http.server 8765 --directory site/public    # 本地预览 http://127.0.0.1:8765/ （构建时只清空 public 里的内容，预览服务器不用重启）
 GH_TOKEN="$(gh auth token)" python3 crawl/backfill.py D # 续抓 HN 页面（可断点续抓）
 ```
+
+## 处理删除请求（removal issue）
+1. 单篇文章写进 `site/optout.json` 的 `urls`；要求停止收集整个网站时写进 `domains`。
+2. `python3 pipeline/optout.py` 立即从 `site/issues/live.json` 删除；不跑也行，下一次每日运行开始时会自动删除。
+3. 提交并推送，然后 `sh site/deploy_pages.sh` 重新部署（或者等第二天的定时运行）。在 issue 里回复已处理，并关闭 issue。
+4. 对方要求连 git 历史一起删除时，用 `git filter-repo` 改写 `site/issues/live.json` 的历史再强制推送，事先在 issue 里说明。
 
 ## 抓取限速（本机网络）
 - 默认并发 6、每分钟 90 次，代码里设了上限，不会超过。

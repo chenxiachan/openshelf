@@ -1,8 +1,9 @@
 # Build the static bilingual site into site/public/. Stdlib only.
-# Pages per language (English at /, Chinese at /zh/): the daily stream (index.html) and About & method (about/index.html).
+# Pages per language (English at /, Chinese at /zh/): the daily stream (index.html), About & method (about/index.html)
+# and the privacy notice (privacy/index.html, text in privacy.json).
 # Usage: python3 build.py            reads config.json, i18n.json, editorial.json, template.html, about.html and the issue file
 #        python3 build.py --out DIR --brand Openshelf --logo shelf --theme celadon     (a variant build, e.g. a design demo)
-import argparse, copy, html, json, os, re, shutil
+import argparse, copy, html, json, os, re, shutil, sys
 from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -12,10 +13,12 @@ I18N = json.load(open(os.path.join(HERE, "i18n.json")))
 ED = json.load(open(os.path.join(HERE, "editorial.json")))
 TPL_HOME = open(os.path.join(HERE, "template.html"), encoding="utf-8").read()
 TPL_ABOUT = open(os.path.join(HERE, "about.html"), encoding="utf-8").read()
+TPL_PRIVACY = open(os.path.join(HERE, "privacy.html"), encoding="utf-8").read()
+PRIV = json.load(open(os.path.join(HERE, "privacy.json"), encoding="utf-8"))
 ISSUE = json.load(open(os.path.join(HERE, CFG["issue"])))
 SITE = CFG.get("site_url", "").rstrip("/")
 LANGS = {"en": "", "zh": "zh/"}          # output folder per language
-PAGES = {"home": "", "about": "about/"}  # folder per page inside a language folder
+PAGES = {"home": "", "about": "about/", "privacy": "privacy/"}  # folder per page inside a language folder
 VIA_ORDER = ("fork", "rs", "hn")         # author's own feed, then archives, then discussion sites
 CAT = {"research_report": "research", "explainer": "explainer"}
 LOGOS = {
@@ -27,6 +30,9 @@ LOGOS = {
               '<rect x="4" y="25.6" width="24" height="2.4" rx="1.2" fill="currentColor"/></svg>'),
 }
 FAVICONS = {"branch": "favicon.svg", "shelf": "favicon-shelf.svg"}
+sys.path.insert(0, os.path.join(HERE, "..", "pipeline"))
+import optout  # noqa: E402  (authors who asked to be left out; never named on the site)
+BLOCKED = optout.blocker()
 BRAND, LOGO, THEME = CFG.get("brand", "GitPost"), CFG.get("logo", "branch"), CFG.get("theme", "")
 
 
@@ -78,6 +84,7 @@ def ukey(u):
 def apply_editorial(D):
     """Domain exclusions plus rule-based exclusions of single URLs (for example the political-topic filter)."""
     D = copy.deepcopy(D)
+    optout.purge(D, BLOCKED)              # normally already done by the daily run; silent, not counted
     ex = {e["domain"]: e for e in ED.get("exclude", [])}
     by_url = {ukey(e["url"]): e for e in ED.get("exclude_urls", [])}
     removed, hidden = {}, {}
@@ -188,7 +195,8 @@ def common(D, lang, page):
     repo = f'<a href="{esc(CFG["repo_url"])}">GitHub</a>' if CFG.get("repo_url") else ""
     subs["footer_html"] = (
         f'<footer><span>{esc(L["foot_generated"].replace("{date}", S.get("generated", "")))}</span>'
-        f'<span class="links"><a href="{esc(data_href)}">{esc(L["foot_data"])}</a><a href="{esc(feed_href)}">{esc(L["foot_feed"])}</a>{repo}</span>'
+        f'<span class="links"><a href="{esc(data_href)}">{esc(L["foot_data"])}</a><a href="{esc(feed_href)}">{esc(L["foot_feed"])}</a>{repo}'
+        f'<a href="{esc(rel(lang, page, lang, "privacy"))}"{cur("privacy")}>{esc(L["foot_privacy"])}</a></span>'
         f'<span>{esc(L["foot_license"])}</span></footer>')
     head = []
     if SITE:
@@ -241,6 +249,34 @@ def page_about(D, lang):
     else:
         subs["editorial_section_html"] = ""
     return fill(TPL_ABOUT, subs, D["stats"], lang)
+
+
+def privacy_enabled():
+    """Features that process visitors' data; each needs its own section in privacy.json before it can go live."""
+    f = CFG.get("features", {})
+    return {"analytics": bool(CFG.get("analytics_endpoint")), "login": bool(f.get("login")), "votes": bool(f.get("votes"))}
+
+
+def page_privacy(D, lang):
+    P, subs = PRIV[lang], common(D, lang, "privacy")
+    on = privacy_enabled()
+    missing = [k for k, v in on.items() if v and not any(s.get("when") == k for s in P["sections"])]
+    assert not missing, f"privacy.json ({lang}) has no section for {missing}; describe the new processing before turning it on"
+    repo, m = CFG.get("repo_url", "").rstrip("/"), CFG.get("maintainer") or {}
+    vals = {"brand": BRAND, "issues": repo + "/issues", "remove": repo + "/issues/new?template=remove.yml",
+            "about": rel(lang, "privacy", lang, "about"),
+            "maintainer": f'[{m["name"]}]({m.get("url") or m.get("github", "")})' if m.get("name") else BRAND}
+
+    def para(t):
+        t = esc(re.sub(r"\{(\w+)\}", lambda x: vals.get(x.group(1), x.group(0)), t))
+        return re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", r'<a href="\2">\1</a>', t)
+    subs["privacy_title"], subs["privacy_updated"] = esc(P["title"]), esc(P["updated"].format(date=PRIV["updated"]))
+    subs["privacy_sections"] = "\n".join(
+        f'  <section class="s prose"><div class="sec-head"><h2>{esc(s["h"])}</h2></div>' + "".join(f"<p>{para(t)}</p>" for t in s["p"]) + "</section>"
+        for s in P["sections"] if not s.get("when") or on.get(s["when"]))
+    out = re.sub(r"\{\{(\w+)\}\}", lambda x: subs[x.group(1)], TPL_PRIVACY)
+    assert "{" + "{" not in out and not re.search(r"\{(brand|maintainer|issues|remove|about)\}", out), "unfilled placeholder in privacy page"
+    return out
 
 
 def feed(D, lang):
@@ -316,6 +352,7 @@ def main(argv=None):
     for lang, sub in LANGS.items():
         write(os.path.join(OUT, sub, "index.html"), page_home(D, lang))
         write(os.path.join(OUT, sub, PAGES["about"], "index.html"), page_about(D, lang))
+        write(os.path.join(OUT, sub, PAGES["privacy"], "index.html"), page_privacy(D, lang))
         write(os.path.join(OUT, sub, "feed.xml"), feed(D, lang))
     json.dump(D, open(os.path.join(OUT, "data", D["issue"]["slug"] + ".json"), "w"), ensure_ascii=False, indent=1)
     shutil.copytree(os.path.join(HERE, "static"), os.path.join(OUT, "static"), ignore=shutil.ignore_patterns("favicon*.svg"))

@@ -1,0 +1,5 @@
+{
+ "_comment": "Authors who asked to be left out (removal issues). domains: a host and all its subdomains, e.g. example.com or someone.github.io. urls: single posts. Never shown on the site. See pipeline/optout.py.",
+ "domains": [],
+ "urls": []
+}

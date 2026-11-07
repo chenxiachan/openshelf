@@ -6,6 +6,7 @@
 #      every research/explainer label
 #   5. links to listed posts: count independent linking sites, and let the LLM judge which links are responses
 #   6. recompute counts, save the dataset and state; anything left unlabelled waits in state/queue.json for tomorrow
+# Sites and posts in site/optout.json are skipped everywhere and deleted from the dataset first (pipeline/optout.py).
 # Usage: python3 pipeline/daily.py [--dry-run] [--no-feeds]   (--dry-run: no LLM calls, nothing saved; --no-feeds: skip the weekly feed poll)
 import json, os, sys, time
 
@@ -15,6 +16,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "crawl"))
 from runlog import Run  # noqa: E402
 import sources as S  # noqa: E402
+import optout  # noqa: E402
 from common import dom, norm  # noqa: E402
 from candidates import classify as rule_class  # noqa: E402
 from pairs import reg  # noqa: E402
@@ -113,6 +115,9 @@ def main():
         D = jload(LIVE, None)
         if D is None:
             raise SystemExit("site/issues/live.json is missing; run site/init_live.py once")
+        blocked = optout.blocker()
+        run.count("optout_removed", optout.purge(D, blocked))
+        queue = [q for q in queue if not blocked(q["url"])]
         listed = {norm(r["url"]): r for r in D["reports"]}
         now = int(time.time())
 
@@ -131,7 +136,7 @@ def main():
                 s = by_hn.get(str(x.get("hn_id") or ""))
                 if s:
                     x["points"] = max(x.get("points") or 0, s.get("points") or 0)
-        fresh = [s for s in stories if s["created_at_i"] > state["hn_since"] - 3600 and S.eligible(s)]
+        fresh = [s for s in stories if s["created_at_i"] > state["hn_since"] - 3600 and S.eligible(s) and not blocked(s["url"])]
         best = {}
         for s in fresh:                                   # one submission per URL: the one with the most points
             k = norm(s["url"])
@@ -154,14 +159,14 @@ def main():
         run.count("hn_candidates", len(cands))
 
         # 3. supply side
-        rs = [x for x in S.rogue_posts(state["rs_since"]) if norm(x["url"]) not in seen and norm(x["url"]) not in listed]
+        rs = [x for x in S.rogue_posts(state["rs_since"]) if norm(x["url"]) not in seen and norm(x["url"]) not in listed and not blocked(x["url"])]
         run.count("rs_new_posts", len(rs))
         feeds_new, feed_status = [], {}
         if not NO_FEEDS and day(now - FEED_EVERY_DAYS * 86400) >= state.get("feeds_last", "1970-01-01"):
-            feeds = jload(os.path.join(ROOT, "sources", "feeds.json"), {"feeds": []})["feeds"]
+            feeds = [f for f in jload(os.path.join(ROOT, "sources", "feeds.json"), {"feeds": []})["feeds"] if not blocked(f["feed"]) and not blocked(f["site"])]
             titles = set(jload(os.path.join(ROOT, "sources", "template_titles.json"), {"titles": []})["titles"])
             feeds_new, feed_status, cache = S.feed_posts(feeds, state["feeds_since"], state.get("feed_cache", {}), titles)
-            feeds_new = [x for x in feeds_new if norm(x["url"]) not in seen and norm(x["url"]) not in listed]
+            feeds_new = [x for x in feeds_new if norm(x["url"]) not in seen and norm(x["url"]) not in listed and not blocked(x["url"])]
             ok = feed_status.get("ok", 0) + feed_status.get("not_modified", 0)
             run.check("most homepage feeds answered", ok >= 0.6 * max(1, len(feeds)), json.dumps(feed_status))
             if not DRY:

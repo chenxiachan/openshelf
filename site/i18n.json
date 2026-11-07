@@ -169,7 +169,8 @@
   "note_6": "On the front page, the channels where a post was found are listed in a fixed order: the author's own feed first, then archives, then discussion sites. Points from discussion sites are shown but never used for ordering.",
   "and": " and ",
   "via_hn_1": "Hacker News · 1 point",
-  "maintainer": "Openshelf is maintained by {name} ({github})."
+  "maintainer": "Openshelf is maintained by {name} ({github}).",
+  "foot_privacy": "Privacy"
  },
  "zh": {
   "html_lang": "zh-CN",
@@ -341,6 +342,7 @@
   "note_6": "首页上每篇文章的发现渠道按固定顺序列出：先是作者自己的订阅源，再是存档平台，最后是讨论网站。讨论网站的分数只展示，不用于排序。",
   "and": "和",
   "via_hn_1": "Hacker News · 1 分",
-  "maintainer": "Openshelf 由 {name} 维护（{github}）。"
+  "maintainer": "Openshelf 由 {name} 维护（{github}）。",
+  "foot_privacy": "隐私"
  }
 }

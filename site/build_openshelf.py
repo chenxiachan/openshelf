@@ -29,7 +29,7 @@ def main():
     tpl = open(os.path.join(HERE, "stream.html"), encoding="utf-8").read()
     for lang, sub in (("en", ""), ("zh", "zh/")):
         root = "../" if sub else ""
-        vals = {"root": root, "lang": lang, "html_lang": "en" if lang == "en" else "zh-CN", "about_href": "about/",
+        vals = {"root": root, "lang": lang, "html_lang": "en" if lang == "en" else "zh-CN", "about_href": "about/", "privacy_href": "privacy/",
                 "feed_href": "feed.xml", "meta_desc": B.esc(SLOGAN[lang]),
                 "features": json.dumps(feats), "analytics": json.dumps(analytics),
                 "maintainer_link": (f' · <a href="{B.esc(CFG["maintainer"].get("url", ""))}">{B.esc(CFG["maintainer"]["name"])}</a>'
@@ -54,6 +54,7 @@ def main():
 
 ## About
 - [About and method]({site}/about/)
+- [Privacy]({site}/privacy/)
 - [Source code and submissions]({repo})
 """)
     if CFG.get("domain"):
