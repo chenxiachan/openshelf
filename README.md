@@ -69,6 +69,13 @@ GH_TOKEN="$(gh auth token)" python3 crawl/backfill.py D # 续抓 HN 页面（可
 - 每天的健康检查：HN 有返回、页面失败率、订阅源回应率、OpenRouter 余额不少于 3 美元、没有漏标、费用不超过 0.50 美元、单日新增不超过 40 篇、连续三次运行都没有新增。
 - 运行记录：`state/runs.jsonl`（每次一行，进 git），详细日志在每次运行的 artifact 里保留 30 天。
 
+## 统计与投票（Cloudflare Worker，`worker/`）
+- 地址：`site/config.json` 的 `api`（现在是 https://openshelf-events.openshelf-pub.workers.dev）。统计发到 `/e`，投票是 `/vote` 和 `/votes`，读统计用 `/agg`（需要口令）。数据库是 D1 `openshelf`，在西欧（WEUR）。
+- 部署：`cd worker && npx wrangler deploy`（配置 `worker/wrangler.toml` 不进 git，从 `wrangler.toml.example` 复制）。改了 `schema.sql` 后：`npx wrangler d1 execute openshelf --remote --file=schema.sql`。
+- 密钥：`sh worker/set_secrets.sh` 生成并保存 SALT 和 PIPELINE_TOKEN（Cloudflare、钥匙串、GitHub secret），不会显示出来。重跑一次就是轮换。
+- 查看统计：`python3 pipeline/stats.py 7`。测试：`node worker/test/e2e.test.mjs`。
+- 打开或关闭：`config.json` 里的 `api`（统计）和 `features.votes`（投票）。隐私说明会跟着切换，缺段落时 `build.py` 拒绝构建。
+
 ## 处理删除请求（removal issue）
 1. 单篇文章写进 `site/optout.json` 的 `urls`；要求停止收集整个网站时写进 `domains`。
 2. `python3 pipeline/optout.py` 立即从 `site/issues/live.json` 删除；不跑也行，下一次每日运行开始时会自动删除。

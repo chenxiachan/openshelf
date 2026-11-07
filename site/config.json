@@ -9,5 +9,9 @@
   "name": "Xia Chen",
   "url": "https://chenxiachan.github.io/",
   "github": "https://github.com/chenxiachan"
+ },
+ "api": "https://openshelf-events.openshelf-pub.workers.dev",
+ "features": {
+  "votes": true
  }
 }
