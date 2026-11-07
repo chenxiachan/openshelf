@@ -198,14 +198,14 @@ main.ranked { padding-top: 12px; }
   }
   // sign-in is simulated in this demo (no backend yet): GitHub OAuth and passkeys are the planned methods
   function user() { try { return JSON.parse(store("openshelf-user") || "null"); } catch (e) { return null; } }
-  function T(type, d) { if (window.openshelfTrack) window.openshelfTrack(type, d); }
-  function signIn(via) { T("signin", { via: via }); store("openshelf-user", JSON.stringify({ via: via, demo: true })); $("login").close(); texts(); render(); }
+  function track(type, d) { if (window.openshelfTrack) window.openshelfTrack(type, d); }
+  function signIn(via) { track("signin", { via: via }); store("openshelf-user", JSON.stringify({ via: via, demo: true })); $("login").close(); texts(); render(); }
   var votes = {}; try { votes = JSON.parse(store("openshelf-votes") || "{}") || {}; } catch (e) { votes = {}; }
   function voteBox(r) {
     var box = el("span", "vote"), mine = votes[r.id] || 0;
     function btn(dir, glyph, label) {
       var b = el("button", null, glyph); b.type = "button"; b.title = label; b.setAttribute("aria-label", label); b.setAttribute("aria-pressed", mine === dir ? "true" : "false");
-      b.addEventListener("click", function (e) { e.stopPropagation(); if (!user()) { T("signin", { via: "prompt_from_vote" }); $("login").showModal(); return; } votes[r.id] = mine === dir ? 0 : dir; T("vote", { id: r.id, dir: votes[r.id] }); if (!votes[r.id]) delete votes[r.id]; store("openshelf-votes", JSON.stringify(votes)); render(); });
+      b.addEventListener("click", function (e) { e.stopPropagation(); if (!user()) { track("signin", { via: "prompt_from_vote" }); $("login").showModal(); return; } votes[r.id] = mine === dir ? 0 : dir; track("vote", { id: r.id, dir: votes[r.id] }); if (!votes[r.id]) delete votes[r.id]; store("openshelf-votes", JSON.stringify(votes)); render(); });
       return b;
     }
     box.appendChild(btn(1, "▲", L().up)); box.appendChild(el("span", "n", String(mine))); box.appendChild(btn(-1, "▼", L().down));
@@ -229,34 +229,34 @@ main.ranked { padding-top: 12px; }
     var v = $("views"); v.textContent = "";
     [["latest", L().v_latest], ["trending", L().v_trending], ["threads", L().v_threads]].forEach(function (x) {
       var b = el("button", "view", x[1]); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-selected", state.view === x[0] ? "true" : "false");
-      b.addEventListener("click", function () { T("view_switch", { to: x[0] }); state.view = x[0]; history.replaceState(null, "", x[0] === "latest" ? location.pathname + location.search : "#" + x[0]); go(); });
+      b.addEventListener("click", function () { track("view_switch", { to: x[0] }); state.view = x[0]; history.replaceState(null, "", x[0] === "latest" ? location.pathname + location.search : "#" + x[0]); go(); });
       v.appendChild(b);
     });
     v.appendChild(el("span", "sp"));
     if (state.view === "trending") {
-      [[7, L().r_week], [31, L().r_month]].forEach(function (x) { flagBtn(v, x[1], state.range === x[0], function () { T("range", { days: x[0] }); state.range = x[0]; go(); }); });
+      [[7, L().r_week], [31, L().r_month]].forEach(function (x) { flagBtn(v, x[1], state.range === x[0], function () { track("range", { days: x[0] }); state.range = x[0]; go(); }); });
     }
     var seg = el("span", "seg");
     [[true, L().compact], [false, L().summary]].forEach(function (x) {
       var b = el("button", null, x[1]); b.type = "button"; b.setAttribute("aria-pressed", state.oneline === x[0] ? "true" : "false");
-      b.addEventListener("click", function () { T("layout", { compact: x[0] }); state.oneline = x[0]; open = {}; render(); }); seg.appendChild(b);
+      b.addEventListener("click", function () { track("layout", { compact: x[0] }); state.oneline = x[0]; open = {}; render(); }); seg.appendChild(b);
     });
     v.appendChild(seg);
   }
   function controls() {
     var f = $("flags"); f.textContent = "";
-    flagBtn(f, L().research, state.type === "research", function () { state.type = state.type === "research" ? null : "research"; T("filter", { key: "type", value: state.type || "all" }); go(); });
-    flagBtn(f, L().explainer, state.type === "explainer", function () { state.type = state.type === "explainer" ? null : "explainer"; T("filter", { key: "type", value: state.type || "all" }); go(); });
+    flagBtn(f, L().research, state.type === "research", function () { state.type = state.type === "research" ? null : "research"; track("filter", { key: "type", value: state.type || "all" }); go(); });
+    flagBtn(f, L().explainer, state.type === "explainer", function () { state.type = state.type === "explainer" ? null : "explainer"; track("filter", { key: "type", value: state.type || "all" }); go(); });
     f.appendChild(el("span", "gap"));
     [["interactive", L().interactive], ["repo", L().code], ["arxiv", L().arxiv]].forEach(function (x) {
-      flagBtn(f, x[1], !!state.flags[x[0]], function () { state.flags[x[0]] = !state.flags[x[0]]; T("filter", { key: x[0], on: state.flags[x[0]] }); go(); });
+      flagBtn(f, x[1], !!state.flags[x[0]], function () { state.flags[x[0]] = !state.flags[x[0]]; track("filter", { key: x[0], on: state.flags[x[0]] }); go(); });
     });
     var t = $("topics"); t.textContent = "";
     var tc = {}, pool = items.filter(function (r) { return pass(r, "topic"); });
     pool.forEach(function (r) { tc[r.topic] = (tc[r.topic] || 0) + 1; });
-    flagBtn(t, L().topic_all, state.topic === "all", function () { state.topic = "all"; T("topic", { topic: "all" }); go(); }, pool.length);
+    flagBtn(t, L().topic_all, state.topic === "all", function () { state.topic = "all"; track("topic", { topic: "all" }); go(); }, pool.length);
     Object.keys(tc).sort(function (a, b) { return tc[b] - tc[a]; }).forEach(function (k) {
-      var b = flagBtn(t, lang === "zh" ? (M().topic[k] || k) : (SHORT[k] || k), state.topic === k, function () { state.topic = state.topic === k ? "all" : k; T("topic", { topic: state.topic }); go(); }, tc[k]);
+      var b = flagBtn(t, lang === "zh" ? (M().topic[k] || k) : (SHORT[k] || k), state.topic === k, function () { state.topic = state.topic === k ? "all" : k; track("topic", { topic: state.topic }); go(); }, tc[k]);
       b.title = M().topic[k] || k;
     });
   }
@@ -278,7 +278,7 @@ main.ranked { padding-top: 12px; }
   }
   function toggleable(row, key) {
     row.tabIndex = 0; row.setAttribute("aria-expanded", open[key] ? "true" : "false");
-    function flip(e) { if (e.target.closest("a")) return; open[key] = !open[key]; if (open[key]) T("expand", { id: key, view: state.view }); render(); }
+    function flip(e) { if (e.target.closest("a")) return; open[key] = !open[key]; if (open[key]) track("expand", { id: key, view: state.view }); render(); }
     row.addEventListener("click", flip);
     row.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(e); } });
   }
@@ -352,21 +352,21 @@ main.ranked { padding-top: 12px; }
   $("lg-pk").addEventListener("click", function () { signIn("passkey"); });
   $("lg-gg").addEventListener("click", function () { signIn("google"); });
   $("lg-x").addEventListener("click", function () { $("login").close(); });
-  $("pager").addEventListener("click", function () { T("more", { view: state.view }); if (state.view === "trending") state.shown += 20; else state.days += 5; render(); });
-  $("lang").addEventListener("click", function () { lang = lang === "en" ? "zh" : "en"; T("lang", { to: lang }); store("openshelf-lang", lang); texts(); render(); $("sub-out").hidden = true; });
-  var qt, qt2; $("q").addEventListener("input", function (e) { clearTimeout(qt); qt = setTimeout(function () { state.q = e.target.value.trim(); go(); }, 120); clearTimeout(qt2); qt2 = setTimeout(function () { if (state.q) T("search", { q: state.q.toLowerCase(), results: items.filter(function (r) { return pass(r); }).length }); }, 1500); });
+  $("pager").addEventListener("click", function () { track("more", { view: state.view }); if (state.view === "trending") state.shown += 20; else state.days += 5; render(); });
+  $("lang").addEventListener("click", function () { lang = lang === "en" ? "zh" : "en"; track("lang", { to: lang }); store("openshelf-lang", lang); texts(); render(); $("sub-out").hidden = true; });
+  var qt, qt2; $("q").addEventListener("input", function (e) { clearTimeout(qt); qt = setTimeout(function () { state.q = e.target.value.trim(); go(); }, 120); clearTimeout(qt2); qt2 = setTimeout(function () { if (state.q) track("search", { q: state.q.toLowerCase(), results: items.filter(function (r) { return pass(r); }).length }); }, 1500); });
   // personal websites only: social media, news, aggregators and paper platforms are refused
   var NOT_PERSONAL = /(^|\.)(twitter\.com|x\.com|bsky\.app|threads\.net|mastodon\.social|linkedin\.com|facebook\.com|instagram\.com|tiktok\.com|youtube\.com|youtu\.be|reddit\.com|news\.ycombinator\.com|medium\.com|arxiv\.org|alphaxiv\.org|openreview\.net|doi\.org|researchgate\.net|semanticscholar\.org|scholar\.google\.com|ssrn\.com|zenodo\.org|github\.com|gist\.github\.com|huggingface\.co|wikipedia\.org|nytimes\.com|theguardian\.com|bbc\.co\.uk|bbc\.com|reuters\.com|bloomberg\.com|wired\.com|theverge\.com|techcrunch\.com|arstechnica\.com)$/i;
   $("sub").addEventListener("submit", function (e) {
     e.preventDefault(); var o = $("sub-out"), host = "";
     try { host = new URL($("sub-url").value).hostname.replace(/^www\./, ""); } catch (err) { host = ""; }
-    var bad = !host || NOT_PERSONAL.test(host); T("submit", { host: host, accepted_by_form: !bad });
+    var bad = !host || NOT_PERSONAL.test(host); track("submit", { host: host, accepted_by_form: !bad });
     o.textContent = bad ? L().sub_bad : L().sub_out; o.hidden = false;
   });
   window.addEventListener("hashchange", function () { state.view = viewFromHash(); go(); });
   texts(); render();
-  T("view", { view: state.view });
-  document.addEventListener("click", function (e) { var a = e.target.closest && e.target.closest("a[data-id]"); if (a) T("open", { id: a.dataset.id, rank: Number(a.dataset.rank) || 0, view: state.view }); }, true);
+  track("view", { view: state.view });
+  document.addEventListener("click", function (e) { var a = e.target.closest && e.target.closest("a[data-id]"); if (a) track("open", { id: a.dataset.id, rank: Number(a.dataset.rank) || 0, view: state.view }); }, true);
   if (location.hash === "#login" && !user()) $("login").showModal();
 })();
 </script>

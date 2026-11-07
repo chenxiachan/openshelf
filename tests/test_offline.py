@@ -48,6 +48,15 @@ class Site(unittest.TestCase):
         for p in ("about/index.html", "zh/about/index.html"):
             self.assertRegex(read(PUB, p), r'href="[./]*(zh/)?privacy/"', p)
 
+    def test_no_name_declared_twice_in_page_scripts(self):
+        """A var and a function with the same name: the var wins and every call throws (the old T bug)."""
+        import re
+        for f in ("site/stream.html", "site/about.html", "design/demo-c/index.html"):
+            t = read(ROOT, f)
+            funcs = set(re.findall(r"\bfunction\s+([A-Za-z_$][\w$]*)\s*\(", t))
+            vars_ = set(re.findall(r"\bvar\s+([A-Za-z_$][\w$]*)\s*=", t))
+            self.assertFalse(funcs & vars_, f"{f}: declared both as var and function: {funcs & vars_}")
+
     def test_status_json(self):
         st = json.loads(read(PUB, "status.json"))
         self.assertGreater(st["posts"], 100)
