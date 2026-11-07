@@ -4,8 +4,8 @@
 import gzip, html, json, os, re, ssl, threading, time, urllib.request
 from urllib.parse import urlparse, urljoin
 
-CTX = ssl.create_default_context(cafile="/etc/ssl/cert.pem")
-UA = "Mozilla/5.0 (Macintosh) gitpost-research-crawler/0.2"
+CTX = ssl.create_default_context(cafile="/etc/ssl/cert.pem") if os.path.exists("/etc/ssl/cert.pem") else ssl.create_default_context()
+UA = "Mozilla/5.0 (compatible; openshelf-crawler/0.3; +https://chenxiachan.github.io/openshelf/about/)"
 HTML_HEADERS = {"User-Agent": UA, "Accept": "text/html,*/*;q=0.5"}
 
 EXCLUDE = set("""youtube.com youtu.be twitter.com x.com reddit.com old.reddit.com en.wikipedia.org github.com gist.github.com

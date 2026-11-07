@@ -1,0 +1,24 @@
+name: watchdog
+# Opens an "alert" issue when the daily workflow has not succeeded for 36 hours (it may not have run at all).
+on:
+  schedule:
+    - cron: "41 13 * * *"
+  workflow_dispatch:
+permissions:
+  actions: read
+  issues: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check the last successful daily run
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          DAILY_WORKFLOW: daily.yml
+          WATCHDOG_MAX_HOURS: "36"
+        run: python3 pipeline/watchdog.py

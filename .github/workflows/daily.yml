@@ -1,0 +1,47 @@
+name: daily
+# Collect new posts, label them, link responses, then save the dataset and redeploy the site.
+# Errors open an "alert" issue (pipeline/runlog.py); a failed run also triggers GitHub's own failure email.
+on:
+  schedule:
+    - cron: "23 4 * * *"      # 04:23 UTC every day
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: daily
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect, label and link
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          ALERT_GITHUB_REPO: ${{ github.repository }}
+        run: python3 pipeline/daily.py
+      - name: Save dataset and state
+        run: |
+          git config user.name "openshelf-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/issues/live.json state/
+          git diff --cached --quiet || git commit -q -m "daily: $(date -u +%F)"
+          git push -q
+      - name: Build and deploy
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+        run: sh site/deploy_pages.sh
+      - name: Keep the run log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-log
+          path: data/logs/
+          retention-days: 30

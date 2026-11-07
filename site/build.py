@@ -90,6 +90,9 @@ def apply_editorial(D):
         if e:
             hidden.setdefault(e["rule"], []).append(r["title"])
             return True
+        if r.get("political") == "strong" and "political" in ED.get("exclude_rules", {}):   # labelled by the daily pipeline
+            hidden.setdefault("political", []).append(r["title"])
+            return True
         return False
     D["reports"] = keep = [r for r in D["reports"] if not drop(r)]
     for c in D["chains"]:

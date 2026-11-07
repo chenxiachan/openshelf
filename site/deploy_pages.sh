@@ -12,11 +12,12 @@ TMP=$(mktemp -d)
 cp -R site/public/. "$TMP"/
 cd "$TMP"
 git init -q -b gh-pages
-git config user.name "$(git -C "$OLDPWD" config user.name)"
-git config user.email "$(git -C "$OLDPWD" config user.email)"
+git config user.name "$(git -C "$OLDPWD" config user.name || echo openshelf-bot)"
+git config user.email "$(git -C "$OLDPWD" config user.email || echo 41898282+github-actions[bot]@users.noreply.github.com)"
 git add -A
 git commit -q -m "Deploy site $(date -u +%Y-%m-%dT%H:%MZ)"
-git push -q -f "https://github.com/$REPO.git" gh-pages
+if [ -n "$GITHUB_ACTIONS" ] && [ -n "$GITHUB_TOKEN" ]; then PUSH_URL="https://x-access-token:$GITHUB_TOKEN@github.com/$REPO.git"; else PUSH_URL="https://github.com/$REPO.git"; fi
+git push -q -f "$PUSH_URL" gh-pages
 cd "$OLDPWD"
 rm -rf "$TMP"
 # enable Pages on the gh-pages branch (first time), or keep the existing setting

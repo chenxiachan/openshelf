@@ -29,19 +29,22 @@ from pairs import reg  # noqa: E402
 PROBE = os.path.join(HERE, "..", "..", "probe_hn_2026-11-06", "llm")
 def ukey(u): return u.split("#")[0].rstrip("/").lower().replace("://www.", "://")
 by_hn = {str(r.get("hn_id")): ukey(r["url"]) for r in D["reports"] if r.get("hn_id")}
-canon = json.load(open(os.path.join(PROBE, "canon.json")))
+canon = json.load(open(os.path.join(PROBE, "canon.json"))) if os.path.exists(os.path.join(PROBE, "canon.json")) else {}
 linkers = {}
 def add(target_key, src_dom, tgt_dom):
     if target_key and src_dom and reg(src_dom) != reg(tgt_dom):
         linkers.setdefault(target_key, set()).add(reg(src_dom))
-for l in open(os.path.join(HERE, "..", "data", "llm", "pairs_found.jsonl"), encoding="utf-8"):
-    q = json.loads(l); add(ukey(q["target_url"]), q["source_domain"], q["target_domain"])
-for l in open(os.path.join(PROBE, "pairs_all.jsonl"), encoding="utf-8"):
-    q = json.loads(l); t = canon.get(q["target_id"], q["target_id"]); add(by_hn.get(t) or by_hn.get(q["target_id"]), q["source_domain"], q["target_domain"])
+if not all("linkers" in r for r in D["reports"]):          # older datasets: compute from the local link scans
+    for l in open(os.path.join(HERE, "..", "data", "llm", "pairs_found.jsonl"), encoding="utf-8"):
+        q = json.loads(l); add(ukey(q["target_url"]), q["source_domain"], q["target_domain"])
+    for l in open(os.path.join(PROBE, "pairs_all.jsonl"), encoding="utf-8"):
+        q = json.loads(l); t = canon.get(q["target_id"], q["target_id"]); add(by_hn.get(t) or by_hn.get(q["target_id"]), q["source_domain"], q["target_domain"])
+stored = {ukey(r["url"]): r.get("linkers") for r in D["reports"]}
 for x in items:
     for r in x["resp"]:
         add(ukey(x["url"]), r["domain"], x["domain"])
-    x["links"] = len(linkers.get(ukey(x["url"]), ()))
+    st = stored.get(ukey(x["url"]))
+    x["links"] = len(st) if st is not None else len(linkers.get(ukey(x["url"]), ()))
 
 latest = max(i["date"] for i in items)
 week_start = (date.fromisoformat(latest) - timedelta(days=6)).isoformat()

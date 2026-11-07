@@ -18,6 +18,9 @@ TOPICS = {"ai-ml", "interpretability-alignment", "security-privacy", "math-theor
 POLITICAL = {"strong", "some", "none"}
 CONF = {"high", "medium", "low"}
 FIELDS = ("id", "hn_title", "page_title", "domain", "url", "site", "author", "description", "excerpt", "no_text")
+RELATIONS = {"rebuttal", "replication", "extension", "discussion", "coverage", "mention", "same_source", "unclear"}
+PAIR_FIELDS = ("pair_id", "source_title", "source_domain", "source_date", "source_site", "source_excerpt", "anchor", "link_context",
+               "target_title", "target_domain", "target_date")
 
 
 class LLMError(Exception):
@@ -33,16 +36,27 @@ def api_key():
     return k
 
 
-def instructions():
-    t = open(os.path.join(ROOT, "prompts", "classify.md"), encoding="utf-8").read()
-    return t.split("---", 1)[1].strip() + ('\n\nReturn only a JSON object of the form {"items": [ ... ]} with one object per input item, in input order, '
-                                           "each with the fields id, category, topic, political, summary_zh, summary_en, confidence. No other text.")
+def instructions(task="classify"):
+    t = open(os.path.join(ROOT, "prompts", f"{TASKS[task]['prompt']}.md"), encoding="utf-8").read().split("---", 1)[1].strip()
+    if task == "classify":
+        t += ('\n\nReturn only a JSON object of the form {"items": [ ... ]} with one object per input item, in input order, '
+              "each with the fields id, category, topic, political, summary_zh, summary_en, confidence. No other text.")
+    return t
 
 
 def valid(o):
     return (isinstance(o, dict) and o.get("category") in CATS and o.get("topic") in TOPICS and o.get("political") in POLITICAL
             and o.get("confidence") in CONF and isinstance(o.get("summary_zh"), str) and o["summary_zh"].strip()
             and isinstance(o.get("summary_en"), str) and o["summary_en"].strip())
+
+
+def valid_pair(o):
+    return (isinstance(o, dict) and o.get("relation") in RELATIONS and o.get("confidence") in CONF
+            and isinstance(o.get("summary_zh"), str) and o["summary_zh"].strip() and isinstance(o.get("summary_en"), str) and o["summary_en"].strip())
+
+
+TASKS = {"classify": {"prompt": "classify", "id": "id", "fields": FIELDS, "valid": valid},
+         "pairs": {"prompt": "pairs", "id": "pair_id", "fields": PAIR_FIELDS, "valid": valid_pair}}
 
 
 def parse(text):
@@ -59,20 +73,22 @@ def parse(text):
 
 
 class Client:
-    def __init__(self, run, chain=None, max_tokens=16000, timeout=300):
+    def __init__(self, run, chain=None, max_tokens=16000, timeout=300, task="classify"):
         self.run, self.chain, self.max_tokens, self.timeout = run, chain or CHAIN, max_tokens, timeout
+        self.task = TASKS[task]
+        self.task_name = task
         self.key = api_key()
         self.no_json_mode = set()
         self.dead = set()        # models that failed hard in this run (auth, removed, quota): skip them for the rest of the run
         self.tripped = set()     # circuit breaker: 3 failed calls in a row, skip for the rest of the run
         self.fails = {}
-        self.sys = instructions()
+        self.sys = instructions(task)
         self.force_fail = set(filter(None, os.environ.get("LLM_FORCE_FAIL", "").split(",")))   # test hook: pretend these models are down
 
     def _call(self, model, items):
         if model in self.force_fail:
             raise LLMError("forced failure (LLM_FORCE_FAIL)")
-        payload = [{f: it.get(f, "") for f in FIELDS} for it in items]
+        payload = [{f: it.get(f, "") for f in self.task["fields"]} for it in items]
         body = {"model": model, "temperature": 0, "max_tokens": self.max_tokens, "usage": {"include": True},
                 "messages": [{"role": "system", "content": self.sys}, {"role": "user", "content": json.dumps(payload, ensure_ascii=False)}]}
         if model not in self.no_json_mode:
@@ -100,27 +116,27 @@ class Client:
         self.run.count("llm_requests")
         self.run.count(f"llm_requests:{model}")
         out = parse(j["choices"][0]["message"].get("content"))
-        self.run.event("llm", "info", "call", model=model, n_in=len(items), n_out=len(out), seconds=round(time.time() - t0, 1),
+        self.run.event("llm", "info", "call", task=self.task_name, model=model, n_in=len(items), n_out=len(out), seconds=round(time.time() - t0, 1),
                        prompt_tokens=u.get("prompt_tokens"), completion_tokens=u.get("completion_tokens"), cost_usd=round(cost, 6),
                        finish=j["choices"][0].get("finish_reason"))
         return out
 
     def _try(self, model, items, retries=2):
         """Label items with one model; returns {id: label} for the ones that came back valid."""
-        good = {}
-        ids = {str(it["id"]) for it in items}
+        good, key = {}, self.task["id"]
+        ids = {str(it[key]) for it in items}
         for attempt in range(retries + 1):
-            todo = [it for it in items if str(it["id"]) not in good]
+            todo = [it for it in items if str(it[key]) not in good]
             if not todo or model in self.dead or model in self.tripped:
                 break
             try:
                 res = self._call(model, todo)
                 self.fails[model] = 0
                 for o in res:
-                    if isinstance(o, dict) and str(o.get("id")) in ids and valid(o):
-                        o["id"] = str(o["id"])
+                    if isinstance(o, dict) and str(o.get(key)) in ids and self.task["valid"](o):
+                        o[key] = str(o[key])
                         o["model"] = model
-                        good[o["id"]] = o
+                        good[o[key]] = o
             except LLMError as e:
                 self.run.event("llm", "warn", "call failed", model=model, attempt=attempt + 1, error=str(e)[:300])
                 self.fails[model] = self.fails.get(model, 0) + 1
@@ -138,11 +154,11 @@ class Client:
 
     def label(self, items, batch=10):
         """Label every item, walking down the chain. Returns (labels, unlabelled_items)."""
-        labels = {}
+        labels, key = {}, self.task["id"]
         for i in range(0, len(items), batch):
             chunk = items[i:i + batch]
             for depth, model in enumerate(self.chain):
-                todo = [it for it in chunk if str(it["id"]) not in labels]
+                todo = [it for it in chunk if str(it[key]) not in labels]
                 if not todo:
                     break
                 if model in self.dead or model in self.tripped:
@@ -153,7 +169,7 @@ class Client:
                     self.run.count("llm_items_by_fallback", len(got))
                     self.run.event("llm", "warn", "used fallback model", model=model, items=len(got))
             time.sleep(1.0)
-        left = [it for it in items if str(it["id"]) not in labels]
+        left = [it for it in items if str(it[key]) not in labels]
         self.run.count("llm_items_labelled", len(labels))
         if left:
             self.run.count("llm_items_unlabelled", len(left))
