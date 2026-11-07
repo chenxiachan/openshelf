@@ -1,5 +1,5 @@
 # Build the static bilingual site into site/public/. Stdlib only.
-# Pages per language (English at /, Chinese at /zh/): the daily stream (index.html), About & method (about/index.html)
+# Pages per language (English at /, Chinese at /zh/): the daily stream (index.html), About (about/index.html: what the site is and is not)
 # and the privacy notice (privacy/index.html, text in privacy.json).
 # Usage: python3 build.py            reads config.json, i18n.json, editorial.json, template.html, about.html and the issue file
 #        python3 build.py --out DIR --brand Openshelf --logo shelf --theme celadon     (a variant build, e.g. a design demo)

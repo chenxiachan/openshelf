@@ -54,7 +54,7 @@ def main():
 - [Atom feed, Chinese]({site}/zh/feed.xml)
 
 ## About
-- [About and method]({site}/about/)
+- [About]({site}/about/)
 - [Privacy]({site}/privacy/)
 - [Source code and submissions]({repo})
 """)

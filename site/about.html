@@ -18,195 +18,22 @@
 <link rel="stylesheet" href="{{root}}static/site.css">{{theme_css}}
 </head>
 <body>
-<a class="skip" href="#main">{{about_h1}}</a>
+<a class="skip" href="#main">{{about_h2}}</a>
 {{topbar_html}}
 <div class="wrap">
   <header class="page-h">
-    <h1>{{about_h1}}</h1>
-    <p class="lede">{{about_desc}}</p>
+    <h1>{{about_h2}}</h1>
   </header>
-
   <main id="main">
-  <section class="s prose" id="what">
-    <div class="sec-head">
-      <span class="kicker">{{about_kicker}}</span>
-      <h2>{{about_h2}}</h2>
-    </div>
+  <section class="s prose" id="what" style="padding-top: 8px">
     <p>{{about_1}}</p>
     <p>{{about_2}}</p>
     <p>{{about_3}}</p>
     {{about_contact_html}}
     {{maintainer_html}}
   </section>
-
-  <section class="s" id="sources">
-    <div class="sec-head">
-      <span class="kicker">{{sources_kicker}}</span>
-      <h2>{{sources_h2}}</h2>
-      <p>{{sources_p}}</p>
-    </div>
-    <div class="tbl-wrap"><table id="src-table"></table></div>
-    <p class="tbl-note">{{src_tbl_note}}</p>
-    <div class="callout" id="src-note"></div>
-    <h3 class="sub">{{heat_h3}}</h3>
-    <p class="tbl-note" style="margin:0 0 10px">{{heat_note}}</p>
-    <div class="tbl-wrap" id="heat-wrap"><table class="heat" id="heat"></table></div>
-    <div class="heat-legend" id="heat-legend"></div>
-  </section>
-
-  <section class="s" id="findings">
-    <div class="sec-head">
-      <span class="kicker">{{findings_kicker}}</span>
-      <h2>{{findings_h2}}</h2>
-      <p>{{chains_p}}</p>
-    </div>
-    <div class="callout" id="chain-note"></div>
-  </section>
-
-  <section class="s" id="method">
-    <div class="sec-head">
-      <span class="kicker">{{method_kicker}}</span>
-      <h2>{{method_h2}}</h2>
-    </div>
-    <div id="steps"></div>
-    <ul class="notes" id="notes"></ul>
-  </section>
-
-  {{editorial_section_html}}
   </main>
 </div>
 {{footer_html}}
-
-<script id="data" type="application/json">__DATA_JSON__</script>
-<script id="i18n" type="application/json">__I18N_JSON__</script>
-<script>
-(function () {
-  var S = JSON.parse(document.getElementById("data").textContent), SRC = S.sources;
-  var L = JSON.parse(document.getElementById("i18n").textContent);
-  var SRCNAME = L.src, TOPIC = L.topic;
-  var NEW_TOPICS = { "engineering-env": 1, "humanities": 1, "scholarly-communication": 1 };
-  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-  function fmt(n) { return Number(n).toLocaleString("en-US"); }
-  function pct(a, b) { return b ? Math.round(100 * a / b) + "%" : "–"; }
-  function F(s, v) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && v[k] != null ? v[k] : m; }); }
-
-  // ---------- sources ----------
-  var tbl = document.getElementById("src-table"), thead = el("thead"), hr = el("tr");
-  [[L.th_source, ""], [L.th_scope, ""], [L.th_window, "num"], [L.th_research, "num"], [L.th_explainer, "num"], [L.th_on_hn, "num"]].forEach(function (h) { var th = el("th", h[1], h[0]); th.scope = "col"; hr.appendChild(th); });
-  thead.appendChild(hr); tbl.appendChild(thead);
-  var tb = el("tbody");
-  [
-    [SRCNAME.fork, L.kind_fork, F(L.scope_fork, { forks: fmt(SRC.fork.forks), feeds: fmt(SRC.fork.feeds_ok) }), F(L.pool_fork, { n: fmt(SRC.fork.pool), sites: SRC.fork.pool_sites }), SRC.fork.research, SRC.fork.explainer, F(L.on_hn_n, { n: fmt(SRC.fork.on_hn) })],
-    [SRCNAME.rs, L.kind_rs, F(L.scope_rs, { n: SRC.rs.blogs }), F(L.pool_rs, { n: fmt(SRC.rs.pool) }), SRC.rs.research, SRC.rs.explainer, F(L.on_hn_n, { n: SRC.rs.on_hn })],
-    [SRCNAME.hn, L.kind_traffic, F(L.scope_hn, { n: fmt(S.stories) }), F(L.pool_hn, { n: fmt(SRC.hn.pool) }), SRC.hn.research, SRC.hn.explainer, "–"]
-  ].forEach(function (r) {
-    var tr = el("tr"), th = el("th", "src-name", r[0]); th.scope = "row"; th.appendChild(el("span", "src-kind", r[1])); tr.appendChild(th);
-    tr.appendChild(el("td", "scope", r[2]));
-    [r[3], fmt(r[4]), fmt(r[5]), r[6]].forEach(function (v, i) { tr.appendChild(el("td", i ? "num" : "num w", v)); });
-    tb.appendChild(tr);
-  });
-  tbl.appendChild(tb);
-
-  var TM = S.topic_matrix, TT = S.topic_totals, cols = ["fork", "rs", "hn"];
-  function aiShare(s) { var m = TM[s] || {}; return pct((m["ai-ml"] || 0) + (m["interpretability-alignment"] || 0), TT[s]); }
-  var sn = document.getElementById("src-note");
-  sn.appendChild(el("p", null, F(L.src_note_1, { n: fmt(SRC.fork.research + SRC.fork.explainer), sites: SRC.fork.re_sites })));
-  function topNonAI(s) {
-    var m = TM[s] || {};
-    return Object.keys(m).filter(function (k) { return k !== "ai-ml" && k !== "interpretability-alignment" && k !== "other"; })
-      .sort(function (a, b) { return m[b] - m[a]; }).slice(0, 2).map(function (k) { var t = TOPIC[k] || k; return document.documentElement.lang === "en" ? t.toLowerCase() : t; }).join(L.and);
-  }
-  sn.appendChild(el("p", null, F(L.src_note_2, { hn: aiShare("hn"), fork: aiShare("fork"), rs: aiShare("rs"), fork_top: topNonAI("fork"), rs_top: topNonAI("rs") })));
-
-  var topics = Object.keys(TOPIC).filter(function (k) { return cols.some(function (s) { return (TM[s] || {})[k]; }); });
-  topics.sort(function (a, b) {
-    var na = NEW_TOPICS[a] ? 1 : 0, nb = NEW_TOPICS[b] ? 1 : 0; if (na !== nb) return na - nb;
-    function tot(k) { return cols.reduce(function (s, c) { return s + ((TM[c] || {})[k] || 0) / (TT[c] || 1); }, 0); }
-    return tot(b) - tot(a);
-  });
-  function step(share) { return share <= 0 ? 0 : share < 0.05 ? 1 : share < 0.12 ? 2 : share < 0.25 ? 3 : share < 0.45 ? 4 : 5; }
-  var heat = document.getElementById("heat"), hh = el("thead"), htr = el("tr");
-  var th0 = el("th", null, L.th_topic); th0.scope = "col"; htr.appendChild(th0);
-  cols.forEach(function (c) { var th = el("th", null, SRCNAME[c] + " (" + TT[c] + ")"); th.scope = "col"; th.style.textAlign = "center"; htr.appendChild(th); });
-  hh.appendChild(htr); heat.appendChild(hh);
-  var hb = el("tbody"), wrap = document.getElementById("heat-wrap"), tip = el("div", "tip"); tip.hidden = true; wrap.appendChild(tip);
-  function showTip(td, text) {
-    tip.textContent = text; tip.hidden = false;
-    var w = wrap.getBoundingClientRect(), r = td.getBoundingClientRect();
-    var left = r.left - w.left + wrap.scrollLeft + r.width / 2 - tip.offsetWidth / 2;
-    left = Math.max(0, Math.min(left, wrap.scrollWidth - tip.offsetWidth));
-    tip.style.left = left + "px"; tip.style.top = (r.top - w.top - tip.offsetHeight - 6) + "px";
-  }
-  function hideTip() { tip.hidden = true; }
-  topics.forEach(function (k) {
-    var tr = el("tr"), th = el("th", null, (TOPIC[k] || k) + (NEW_TOPICS[k] ? " *" : "")); th.scope = "row"; tr.appendChild(th);
-    cols.forEach(function (c) {
-      var n = (TM[c] || {})[k] || 0, share = n / (TT[c] || 1), s = step(share);
-      var td = el("td", "cell " + (s ? "h" + s : "zero")), sp = el("span");
-      if (n) { sp.appendChild(document.createTextNode(Math.round(100 * share) + "%")); sp.appendChild(el("small", null, "(" + n + ")")); }
-      else sp.textContent = "–";
-      td.appendChild(sp);
-      var text = F(L.tip, { src: SRCNAME[c], topic: TOPIC[k] || k, n: n, pct: Math.round(100 * share) });
-      if (NEW_TOPICS[k] && c === "hn") text += L.tip_new_hn;
-      td.setAttribute("aria-label", text); td.tabIndex = 0;
-      td.addEventListener("mouseenter", function () { showTip(td, text); }); td.addEventListener("mouseleave", hideTip);
-      td.addEventListener("focus", function () { showTip(td, text); }); td.addEventListener("blur", hideTip);
-      tr.appendChild(td);
-    });
-    hb.appendChild(tr);
-  });
-  heat.appendChild(hb);
-  var lg = document.getElementById("heat-legend");
-  lg.appendChild(el("span", null, L.legend_share));
-  var sw = el("span", "sw"); [1, 2, 3, 4, 5].forEach(function (i) { var x = el("i"); x.style.background = "var(--heat-" + i + ")"; sw.appendChild(x); }); lg.appendChild(sw);
-  lg.appendChild(el("span", null, L.legend_bins));
-  lg.appendChild(el("span", null, L.legend_new));
-
-  // ---------- pilot finding: who gets read ----------
-  var hi = (S.resp_hi || []).map(function (r) { return F(L.pts_list_item, { d: r.domain, p: fmt(r.points) }); }).join(L.list_sep);
-  var note = document.getElementById("chain-note");
-  note.appendChild(el("p", null, F(L.chain_note_1, { orig: fmt(S.median_orig_points), resp: fmt(S.median_resp_points) }) +
-    (hi ? F(L.chain_note_hi, { n: fmt(S.resp_hi.length), list: hi, rest: fmt(S.median_resp_rest) }) : "") + L.chain_note_tail));
-  note.appendChild(el("p", null, L.chain_note_2));
-
-  // ---------- method ----------
-  var groups = [
-    [L.m_fork_g, [
-      [SRC.fork.forks, L.m_fork_1, F(L.m_fork_1s, { a: fmt(SRC.fork.forks_alfolio), b: fmt(SRC.fork.forks_academicpages) })],
-      [SRC.fork.selected, L.m_fork_2, L.m_fork_2s],
-      [SRC.fork.feeds_ok, L.m_fork_3, F(L.m_fork_3s, { sites: fmt(SRC.fork.sites_with_posts), t: SRC.fork.template_titles })],
-      [SRC.fork.pool, L.m_fork_4, F(L.m_fork_4s, { sites: SRC.fork.pool_sites })],
-      [SRC.fork.research + SRC.fork.explainer, L.m_kept, F(L.m_kept_s, { r: fmt(SRC.fork.research), e: fmt(SRC.fork.explainer) })]
-    ]],
-    [SRCNAME.rs, [
-      [SRC.rs.pool, L.m_rs_1, F(L.m_rs_1s, { blogs: SRC.rs.blogs, de: SRC.rs.german })],
-      [SRC.rs.research + SRC.rs.explainer, L.m_kept, F(L.m_rs_2s, { r: fmt(SRC.rs.research), e: fmt(SRC.rs.explainer), h: SRC.rs.re_on_hn })]
-    ]],
-    [SRCNAME.hn, [
-      [S.stories, L.m_hn_1, F(L.m_hn_1s, { with_url: fmt(S.with_url) })],
-      [S.first_crawl, L.m_hn_2, F(L.m_hn_2s, { parsed: fmt(S.parsed) })],
-      [S.candidates, L.m_hn_3, L.m_hn_3s],
-      [SRC.hn.research + SRC.hn.explainer, L.m_kept, F(L.m_kept_s, { r: fmt(SRC.hn.research), e: fmt(SRC.hn.explainer) })]
-    ]],
-    [L.m_chain_g, [
-      [S.chains, F(L.m_chain_1, { n: S.responses }), F(L.m_chain_1s, { pages: fmt(S.link_pages_scanned), pairs: fmt(S.pairs_total), same: fmt(S.pairs_auto_same) })]
-    ]]
-  ];
-  var stw = document.getElementById("steps");
-  groups.forEach(function (g) {
-    stw.appendChild(el("h3", "sub", g[0]));
-    var ol = el("ol", "steps");
-    g[1].forEach(function (s) { var li = el("li"); li.appendChild(el("span", "n", fmt(s[0]))); var d = el("span", "d", s[1]); if (s[2]) d.appendChild(el("small", null, s[2])); li.appendChild(d); ol.appendChild(li); });
-    stw.appendChild(ol);
-  });
-  var notes = [
-    L.note_6,
-    F(L.note_1, { n: fmt(S.manual_n), exact: pct(S.manual_exact, S.manual_n), binary: pct(S.manual_binary, S.manual_n) }),
-    F(L.note_2, { a: fmt(S.link_pages_scanned), b: fmt(S.link_pages_total) }),
-    L.note_3, L.note_4, L.note_5
-  ];
-  var nl = document.getElementById("notes"); notes.forEach(function (t) { nl.appendChild(el("li", null, t)); });
-})();
-</script>
 </body>
 </html>
