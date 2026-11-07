@@ -36,6 +36,19 @@ def api_key():
     return k
 
 
+def balance():
+    """Money left in USD as (account credits, this key's monthly limit); None where unknown or unlimited. Never raises."""
+    out = []
+    for path, left in (("credits", lambda d: d["total_credits"] - d["total_usage"]), ("key", lambda d: d.get("limit_remaining"))):
+        try:
+            req = urllib.request.Request("https://openrouter.ai/api/v1/" + path, headers={"Authorization": "Bearer " + api_key(), "User-Agent": "openshelf-pipeline"})
+            with urllib.request.urlopen(req, timeout=20, context=CTX) as r:
+                out.append(left(json.load(r)["data"]))
+        except Exception:
+            out.append(None)
+    return tuple(out)
+
+
 def instructions(task="classify"):
     t = open(os.path.join(ROOT, "prompts", f"{TASKS[task]['prompt']}.md"), encoding="utf-8").read().split("---", 1)[1].strip()
     if task == "classify":

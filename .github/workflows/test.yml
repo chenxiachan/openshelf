@@ -1,0 +1,19 @@
+name: test
+# Offline tests on every push and pull request: no network, no API keys. See tests/test_offline.py.
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["site/issues/live.json", "state/**"]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m unittest discover -s tests -v

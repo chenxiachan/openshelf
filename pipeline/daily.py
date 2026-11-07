@@ -6,6 +6,8 @@
 #      every research/explainer label
 #   5. links to listed posts: count independent linking sites, and let the LLM judge which links are responses
 #   6. recompute counts, save the dataset and state; anything left unlabelled waits in state/queue.json for tomorrow
+# Health checks (a failure opens an alert issue): HN answered, page errors, feeds answered, OpenRouter balance, nothing
+# left unlabelled, cost, not too many additions, and some additions in the last three runs. History: state/runs.jsonl.
 # Sites and posts in site/optout.json are skipped everywhere and deleted from the dataset first (pipeline/optout.py).
 # Usage: python3 pipeline/daily.py [--dry-run] [--no-feeds]   (--dry-run: no LLM calls, nothing saved; --no-feeds: skip the weekly feed poll)
 import json, os, sys, time
@@ -27,6 +29,8 @@ KEEP_CAT = {"research_report", "explainer"}
 KEEP_REL = {"rebuttal", "replication", "extension", "discussion"}
 SECOND = ["deepseek/deepseek-v4-flash-0731", "nvidia/nemotron-3-ultra-550b-a55b:free"]
 FEED_EVERY_DAYS = 7
+RUNS = os.path.join(STATE, "runs.jsonl")
+MIN_BALANCE, MAX_ADDED = 3.0, 40
 DRY = "--dry-run" in sys.argv
 NO_FEEDS = "--no-feeds" in sys.argv
 
@@ -107,7 +111,7 @@ def to_report(x, lab, story):
 
 def main():
     import llm
-    with Run("daily") as run:
+    with Run("daily", history=None if DRY else RUNS) as run:
         state = jload(os.path.join(STATE, "state.json"), {"hn_since": int(time.time()) - 86400, "rs_since": day(time.time() - 86400),
                                                            "feeds_since": day(time.time() - 7 * 86400), "feed_cache": {}, "runs": 0})
         seen = set(jload(os.path.join(STATE, "seen.json"), []))
@@ -183,6 +187,11 @@ def main():
         if DRY:
             run.event("daily", "info", "dry run: stopping before LLM calls", items=len(items))
             return
+        money = [x for x in llm.balance() if x is not None]
+        run.check(f"OpenRouter balance >= ${MIN_BALANCE:.0f}", not money or min(money) >= MIN_BALANCE,
+                  "left: " + (", ".join(f"${x:.2f}" for x in money) or "unknown") + " (account credits, key limit)")
+        if not money:
+            run.event("llm", "warn", "could not read the OpenRouter balance")
         labels, left = llm.Client(run).label(items) if items else ({}, [])
         # every research/explainer label needs a second model to agree (Qwen is lenient and often says "high")
         border = [it for it in items if it["id"] in labels and labels[it["id"]]["category"] in KEEP_CAT]
@@ -207,6 +216,10 @@ def main():
                 added += 1
                 run.count("added_" + rec["source"])
         run.count("posts_added", added)
+        run.check(f"at most {MAX_ADDED} posts added", added <= MAX_ADDED, f"{added} added; check whether a model became lenient")
+        prev = [json.loads(l) for l in open(RUNS, encoding="utf-8") if l.strip()][-2:] if os.path.exists(RUNS) else []
+        dry_spell = added == 0 and len(prev) == 2 and all(not (p.get("counts") or {}).get("posts_added") for p in prev)
+        run.check("posts added in the last three runs", not dry_spell, "nothing added three runs in a row; check the sources and the labels")
 
         # 5. links to listed posts: linking sites for every link, LLM-judged responses for the rest
         todo_pairs = []

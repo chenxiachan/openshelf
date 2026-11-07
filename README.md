@@ -61,6 +61,14 @@ python3 -m http.server 8765 --directory site/public    # 本地预览 http://127
 GH_TOKEN="$(gh auth token)" python3 crawl/backfill.py D # 续抓 HN 页面（可断点续抓）
 ```
 
+## 自动运行与监控
+- `daily.yml`：每天 04:23 UTC 运行，09:23、15:23 UTC 是备用（当天已跑过就直接退出）。部署后检查线上 `status.json` 确实更新。
+- `watchdog.yml`：每天 13:41、21:41 UTC。当天没有成功的运行就自动补跑一次；36 小时没有成功运行，或线上网站 36 小时没更新，就报警。手动运行时勾选 test alert 可以测试报警邮件。
+- `test.yml`：每次推送和 PR 跑离线测试 `python3 -m unittest discover -s tests -v`（不联网，不需要密钥）。
+- 报警是带 `alert` 标签的 issue，并 @ 仓库所有者；问题恢复后自动关闭，所以开着的 alert issue 就是当前的问题。
+- 每天的健康检查：HN 有返回、页面失败率、订阅源回应率、OpenRouter 余额不少于 3 美元、没有漏标、费用不超过 0.50 美元、单日新增不超过 40 篇、连续三次运行都没有新增。
+- 运行记录：`state/runs.jsonl`（每次一行，进 git），详细日志在每次运行的 artifact 里保留 30 天。
+
 ## 处理删除请求（removal issue）
 1. 单篇文章写进 `site/optout.json` 的 `urls`；要求停止收集整个网站时写进 `domains`。
 2. `python3 pipeline/optout.py` 立即从 `site/issues/live.json` 删除；不跑也行，下一次每日运行开始时会自动删除。

@@ -2,9 +2,10 @@
 #   1. site/build.py with the Openshelf brand, shelf logo and celadon theme: About pages, feeds, data download, 404, robots, sitemap
 #   2. the stream front page (site/stream.html, the design of demo C) in English at / and Chinese at /zh/
 #   3. shelf-data.js (posts, responses, link counts, both summaries), analytics client, llms.txt, CNAME when a domain is set
+#   4. status.json: data date, build time, post count and commit, read by pipeline/watchdog.py to see that the live site is fresh
 # Votes and sign-in stay off until the Worker backend is deployed (config.json: "features").
 # Usage: python3 site/build_openshelf.py
-import json, os, shutil, subprocess, sys
+import json, os, shutil, subprocess, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, "..")
@@ -57,6 +58,9 @@ def main():
 - [Privacy]({site}/privacy/)
 - [Source code and submissions]({repo})
 """)
+    D = B.apply_editorial(B.ISSUE)
+    B.write(os.path.join(OUT, "status.json"), json.dumps({"generated": D["stats"].get("generated"), "built_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                                                        "posts": len(D["reports"]), "threads": len(D["chains"]), "commit": os.environ.get("GITHUB_SHA", "")}) + "\n")
     if CFG.get("domain"):
         B.write(os.path.join(OUT, "CNAME"), CFG["domain"].strip() + "\n")
     print("openshelf build done:", OUT, "| features", feats)
