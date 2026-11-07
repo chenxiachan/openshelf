@@ -14,3 +14,4 @@ __pycache__/
 worker/wrangler.toml
 worker/.wrangler/
 worker/node_modules/
+tests/browser/node_modules/

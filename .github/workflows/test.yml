@@ -1,5 +1,6 @@
 name: test
-# Offline tests on every push and pull request: no network, no API keys. See tests/test_offline.py.
+# On every push and pull request: offline Python tests, the Worker tests, and a headless Chrome test that clicks every
+# control on the built site. No network beyond package installs, no API keys.
 on:
   push:
     branches: [main]
@@ -10,10 +11,20 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python3 -m unittest discover -s tests -v
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Python tests (also builds the site)
+        run: python3 -m unittest discover -s tests -v
+      - name: Worker tests
+        run: node worker/test/e2e.test.mjs
+      - name: Browser test
+        run: |
+          (cd tests/browser && npm ci --no-audit --no-fund)
+          node tests/browser/smoke.mjs

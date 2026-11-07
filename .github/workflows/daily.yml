@@ -46,6 +46,27 @@ jobs:
           git add site/issues/live.json state/
           git diff --cached --quiet || git commit -q -m "daily: $(date -u +%F)"
           for i in 1 2 3; do git pull --rebase -q && git push -q && exit 0; sleep 10; done; exit 1
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.skip != '1'
+        with:
+          node-version: "24"
+      - name: Browser test before deploy
+        id: browser
+        if: steps.gate.outputs.skip != '1'
+        run: |
+          python3 site/build_openshelf.py
+          (cd tests/browser && npm ci --no-audit --no-fund)
+          node tests/browser/smoke.mjs
+      - name: Alert when the browser test fails (the live site keeps the last good version)
+        if: failure() && steps.browser.outcome == 'failure'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ALERT_GITHUB_REPO: ${{ github.repository }}
+          ALERT_MENTION: ${{ github.repository_owner }}
+        run: >
+          python3 -c "import sys; sys.path.insert(0, 'pipeline'); from runlog import alert;
+          alert('[deploy] the browser test failed, the site was not deployed', 'The data was collected and saved, but the built site failed the headless Chrome test (tests/browser/smoke.mjs), so it was not deployed. '
+          'The live site keeps its last good version. Run log: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}')"
       - name: Build and deploy
         if: steps.gate.outputs.skip != '1'
         env:

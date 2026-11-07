@@ -44,6 +44,7 @@ def check_site(wait):
         st = site_status()
         if st and age_hours(st["built_at"]) <= 0.5:
             print(json.dumps({"site": "fresh", **st}))
+            resolve("[deploy]", "Resolved: the site was deployed and is live.")
             return True
         if time.time() >= t_end:
             break
