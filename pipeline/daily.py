@@ -3,7 +3,7 @@
 #   2. fetch new candidate pages (rule features, excerpt, links, and the text around links to listed posts)
 #   3. Rogue Scholar posts every day; academic homepage feeds once a week (conditional GET)
 #   4. rule filter for HN pages, then LLM labels with the fallback chain; a second model must confirm
-#      research/explainer labels that are not high confidence
+#      every research/explainer label
 #   5. links to listed posts: count independent linking sites, and let the LLM judge which links are responses
 #   6. recompute counts, save the dataset and state; anything left unlabelled waits in state/queue.json for tomorrow
 # Usage: python3 pipeline/daily.py [--dry-run] [--no-feeds]   (--dry-run: no LLM calls, nothing saved; --no-feeds: skip the weekly feed poll)
@@ -179,7 +179,8 @@ def main():
             run.event("daily", "info", "dry run: stopping before LLM calls", items=len(items))
             return
         labels, left = llm.Client(run).label(items) if items else ({}, [])
-        border = [it for it in items if it["id"] in labels and labels[it["id"]]["category"] in KEEP_CAT and labels[it["id"]]["confidence"] != "high"]
+        # every research/explainer label needs a second model to agree (Qwen is lenient and often says "high")
+        border = [it for it in items if it["id"] in labels and labels[it["id"]]["category"] in KEEP_CAT]
         if border:
             second, _ = llm.Client(run, chain=SECOND).label(border)
             for it in border:
