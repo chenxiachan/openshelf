@@ -17,3 +17,16 @@ CREATE TABLE IF NOT EXISTS events (
 );
 CREATE INDEX IF NOT EXISTS events_day_type ON events (day, type);
 CREATE INDEX IF NOT EXISTS events_day_item ON events (day, item);
+
+-- Anonymous votes. voter = sha256(salt|random id kept in the voter's browser); net = sha256(salt|day|ip), used only for
+-- the daily abuse limits and blanked by the cron job after a day. IP addresses are never stored.
+CREATE TABLE IF NOT EXISTS votes (
+  item  TEXT NOT NULL,        -- post id
+  voter TEXT NOT NULL,
+  dir   INTEGER NOT NULL,     -- 1 up, -1 down
+  net   TEXT NOT NULL,
+  day   TEXT NOT NULL,        -- UTC date of the last change
+  ts    INTEGER NOT NULL,
+  PRIMARY KEY (item, voter)
+);
+CREATE INDEX IF NOT EXISTS votes_net_day ON votes (net, day);

@@ -10,3 +10,7 @@ site/public/
 design/demo-b/
 __pycache__/
 .DS_Store
+# the deployed Worker config (database id); copy worker/wrangler.toml.example for your own
+worker/wrangler.toml
+worker/.wrangler/
+worker/node_modules/

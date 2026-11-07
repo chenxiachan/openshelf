@@ -3,6 +3,8 @@
 #   python3 pipeline/watchdog.py                 1. no daily run has succeeded today and none is waiting: start one (self-repair)
 #                                                2. the last success is older than WATCHDOG_MAX_HOURS: alert
 #                                                3. the live site's status.json is older than WATCHDOG_MAX_HOURS: alert
+#                                                4. statistics are on but recorded no page view yesterday: alert
+#                                                   (needs OPENSHELF_PIPELINE_TOKEN; skipped without it)
 #                                                all fine: close open "[watchdog]" alerts
 #   python3 pipeline/watchdog.py --site [--wait SECONDS]   only check that the live site was rebuilt in the last 30 minutes
 #                                                (run right after a deploy; GitHub Pages can take a few minutes)
@@ -107,6 +109,19 @@ def main():
     elif age_hours(st["built_at"]) > max_h:
         problems.append((f"[watchdog] the live site is {int(age_hours(st['built_at']))} hours old",
                          f"{SITE}/status.json: `{json.dumps(st)}`. The daily run may succeed without the site being deployed."))
+    api_base, ptok = (CFG.get("api") or "").rstrip("/"), os.environ.get("OPENSHELF_PIPELINE_TOKEN")
+    if api_base and ptok:
+        y = time.strftime("%Y-%m-%d", time.gmtime(time.time() - 86400))
+        try:
+            req = urllib.request.Request(f"{api_base}/agg?day={y}", headers={"Authorization": "Bearer " + ptok, "User-Agent": "openshelf-watchdog"})
+            with urllib.request.urlopen(req, timeout=30, context=CTX) as r:
+                views = (json.load(r).get("totals") or {}).get("views") or 0
+            print(json.dumps({"statistics": y, "views": views}))
+            if not views:
+                problems.append(("[watchdog] no page views recorded yesterday",
+                                 f"{api_base}/agg?day={y} reports 0 views. The statistics script or the Worker may be broken (check the browser console on the site and `npx wrangler tail` in worker/)."))
+        except Exception as e:
+            problems.append(("[watchdog] cannot read the statistics", f"{api_base}/agg failed: {type(e).__name__}: {e}"))
     print(json.dumps({"workflow": wf, "last_success": last and last["updated_at"], "site": st, "problems": [p[0] for p in problems]}))
     for title, body in problems:
         alert(title, body)

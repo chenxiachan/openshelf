@@ -254,7 +254,7 @@ def page_about(D, lang):
 def privacy_enabled():
     """Features that process visitors' data; each needs its own section in privacy.json before it can go live."""
     f = CFG.get("features", {})
-    return {"analytics": bool(CFG.get("analytics_endpoint")), "login": bool(f.get("login")), "votes": bool(f.get("votes"))}
+    return {"analytics": bool(CFG.get("analytics_endpoint") or CFG.get("api")), "login": bool(f.get("login")), "votes": bool(f.get("votes"))}
 
 
 def page_privacy(D, lang):
@@ -267,13 +267,19 @@ def page_privacy(D, lang):
             "about": rel(lang, "privacy", lang, "about"),
             "maintainer": f'[{m["name"]}]({m.get("url") or m.get("github", "")})' if m.get("name") else BRAND}
 
+    def shown(x):
+        """A section or paragraph may carry "when" (shown while that feature is on) or "unless" (shown while it is off)."""
+        return isinstance(x, str) or ((not x.get("when") or on.get(x["when"])) and (not x.get("unless") or not on.get(x["unless"])))
+
     def para(t):
+        if not isinstance(t, str):
+            t = t["t"]
         t = esc(re.sub(r"\{(\w+)\}", lambda x: vals.get(x.group(1), x.group(0)), t))
         return re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", r'<a href="\2">\1</a>', t)
     subs["privacy_title"], subs["privacy_updated"] = esc(P["title"]), esc(P["updated"].format(date=PRIV["updated"]))
     subs["privacy_sections"] = "\n".join(
-        f'  <section class="s prose"><div class="sec-head"><h2>{esc(s["h"])}</h2></div>' + "".join(f"<p>{para(t)}</p>" for t in s["p"]) + "</section>"
-        for s in P["sections"] if not s.get("when") or on.get(s["when"]))
+        f'  <section class="s prose"><div class="sec-head"><h2>{esc(s["h"])}</h2></div>' + "".join(f"<p>{para(t)}</p>" for t in s["p"] if shown(t)) + "</section>"
+        for s in P["sections"] if shown(s))
     out = re.sub(r"\{\{(\w+)\}\}", lambda x: subs[x.group(1)], TPL_PRIVACY)
     assert "{" + "{" not in out and not re.search(r"\{(brand|maintainer|issues|remove|about)\}", out), "unfilled placeholder in privacy page"
     return out

@@ -94,4 +94,34 @@ await worker.scheduled({}, env);
 assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM events WHERE visitor = 'old'").get().n, 0);
 assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM events").get().n, 5);
 
-console.log("all 6 analytics tests passed", JSON.stringify(agg.totals));
+// 7. anonymous votes: one per post and browser, can be changed or taken back, abuse limits per network, nothing identifying stored
+const vreq = (body, ip = "203.0.113.7", ua = "Mozilla/5.0 (Macintosh) Safari") =>
+  new Request("https://events.example/vote", { method: "POST", body: JSON.stringify(body), headers: { "user-agent": ua, "cf-connecting-ip": ip } });
+const tallyNow = async () => (await (await worker.fetch(new Request("https://events.example/votes"), env)).json()).items;
+const v1 = "a".repeat(16), v2 = "b".repeat(16);
+assert.equal((await worker.fetch(vreq({ id: "3c51f6a", dir: 1, voter: v1 }), env)).status, 204);
+assert.deepEqual((await tallyNow())["3c51f6a"], [1, 0]);
+await worker.fetch(vreq({ id: "3c51f6a", dir: -1, voter: v1 }), env);
+assert.deepEqual((await tallyNow())["3c51f6a"], [0, 1], "changing a vote replaces it");
+await worker.fetch(vreq({ id: "3c51f6a", dir: 1, voter: v2 }, "198.51.100.9"), env);
+assert.deepEqual((await tallyNow())["3c51f6a"], [1, 1]);
+await worker.fetch(vreq({ id: "3c51f6a", dir: 0, voter: v1 }), env);
+assert.deepEqual((await tallyNow())["3c51f6a"], [1, 0], "dir 0 takes the vote back");
+assert.equal((await worker.fetch(vreq({ id: "3c51f6a", dir: 2, voter: v1 }), env)).status, 400);
+assert.equal((await worker.fetch(vreq({ id: "3c51f6a", dir: 1, voter: "not-hex" }), env)).status, 400);
+assert.equal((await worker.fetch(vreq({ id: "bad id!", dir: 1, voter: v1 }), env)).status, 400);
+await worker.fetch(vreq({ id: "3c51f6a", dir: 1, voter: "c".repeat(16) }, "203.0.113.7", "Googlebot/2.1"), env);
+assert.deepEqual((await tallyNow())["3c51f6a"], [1, 0], "bots do not vote");
+for (let i = 0; i < 8; i++) await worker.fetch(vreq({ id: "x1", dir: 1, voter: String(i).repeat(16) }, "192.0.2.1"), env);
+assert.deepEqual((await tallyNow())["x1"], [5, 0], "at most 5 browsers per network and post per day");
+const vdump = JSON.stringify(env.DB.raw.prepare("SELECT * FROM votes").all());
+assert.ok(!vdump.includes("203.0.113.7") && !vdump.includes(v2) && !vdump.includes("Safari"), "no IP, raw voter id or user agent stored");
+const vres = await worker.fetch(new Request("https://events.example/votes"), env);
+assert.equal(vres.headers.get("access-control-allow-origin"), "*");
+assert.match(vres.headers.get("cache-control"), /max-age=60/);
+env.DB.raw.prepare("INSERT INTO votes (item, voter, dir, net, day, ts) VALUES ('old', 'v', 1, 'nethash', '2020-01-01', 0)").run();
+await worker.scheduled({}, env);
+assert.equal(env.DB.raw.prepare("SELECT net FROM votes WHERE item = 'old'").get().net, "", "network hash is blanked after a day");
+assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM votes WHERE item = 'old'").get().n, 1, "the vote itself is kept");
+
+console.log("all 7 analytics and vote tests passed", JSON.stringify(agg.totals));

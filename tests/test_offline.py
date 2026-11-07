@@ -78,14 +78,33 @@ class OptOut(unittest.TestCase):
 class PrivacyGuard(unittest.TestCase):
     def test_feature_without_section_refuses_to_build(self):
         import build as B
-        saved = B.CFG
+        saved_cfg, saved_priv = B.CFG, B.PRIV
         try:
-            for cfg in ({"analytics_endpoint": "https://example.invalid/e"}, {"features": {"login": True}}, {"features": {"votes": True}}):
-                B.CFG = dict(saved, **cfg)
+            B.PRIV = copy.deepcopy(saved_priv)
+            for lang in ("en", "zh"):
+                B.PRIV[lang]["sections"] = [x for x in B.PRIV[lang]["sections"] if not x.get("when")]
+            for cfg in ({"api": "https://example.invalid"}, {"features": {"login": True}}, {"features": {"votes": True}}):
+                B.CFG = dict(saved_cfg, **cfg)
                 with self.assertRaises(AssertionError):
                     B.page_privacy(B.apply_editorial(B.ISSUE), "en")
         finally:
+            B.CFG, B.PRIV = saved_cfg, saved_priv
+
+    def test_sections_follow_the_features(self):
+        import build as B
+        saved = B.CFG
+        try:
+            B.CFG = dict(saved, api="", analytics_endpoint="", features={})
+            off = B.page_privacy(B.apply_editorial(B.ISSUE), "en")
+            B.CFG = dict(saved, api="https://example.invalid", features={"votes": True})
+            on = B.page_privacy(B.apply_editorial(B.ISSUE), "en")
+        finally:
             B.CFG = saved
+        self.assertIn("No cookies, no tracking", off)
+        self.assertNotIn("Usage statistics", off)
+        self.assertNotIn("No cookies, no tracking", on)
+        self.assertIn("Usage statistics", on)
+        self.assertIn("<h2>Votes</h2>", on)
 
 
 class FakeRun:

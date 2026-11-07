@@ -31,4 +31,5 @@ jobs:
           DAILY_WORKFLOW: daily.yml
           WATCHDOG_MAX_HOURS: "36"
           ALERT_MENTION: ${{ github.repository_owner }}
+          OPENSHELF_PIPELINE_TOKEN: ${{ secrets.OPENSHELF_PIPELINE_TOKEN }}
         run: python3 pipeline/watchdog.py ${{ inputs.test_alert && '--test-alert' || '' }}

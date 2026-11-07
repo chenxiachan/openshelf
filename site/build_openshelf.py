@@ -24,9 +24,12 @@ def main():
     os.makedirs(os.path.join(OUT, "static"), exist_ok=True)
     shutil.copy(os.path.join(ROOT, "design", "analytics.js"), os.path.join(OUT, "static", "analytics.js"))
     repo = CFG.get("repo_url", "").rstrip("/")
-    feats = {"votes": False, "login": False, "issue_url": f"{repo}/issues/new?template=submit.yml" if repo else None}
+    api = (CFG.get("api") or "").rstrip("/")         # the Worker (worker/): analytics at /e, votes at /vote and /votes
+    feats = {"votes": False, "login": False, "issue_url": f"{repo}/issues/new?template=submit.yml" if repo else None, "api": api or None}
     feats.update(CFG.get("features", {}))
-    analytics = {"endpoint": CFG["analytics_endpoint"]} if CFG.get("analytics_endpoint") else {}
+    assert api or not feats["votes"], "votes need the Worker: set api in site/config.json"
+    endpoint = CFG.get("analytics_endpoint") or (api + "/e" if api else "")
+    analytics = {"endpoint": endpoint} if endpoint else {}
     tpl = open(os.path.join(HERE, "stream.html"), encoding="utf-8").read()
     for lang, sub in (("en", ""), ("zh", "zh/")):
         root = "../" if sub else ""
