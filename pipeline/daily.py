@@ -7,10 +7,10 @@
 #   5. links to listed posts: count independent linking sites, and let the LLM judge which links are responses
 #   6. recompute counts, save the dataset and state; anything left unlabelled waits in state/queue.json for tomorrow
 # Health checks (a failure opens an alert issue): HN answered, page errors, feeds answered, OpenRouter balance, nothing
-# left unlabelled, cost, not too many additions, and some additions in the last three runs. History: state/runs.jsonl.
+# left unlabelled, cost, not too many additions, and some additions in the last two days. History: state/runs.jsonl.
 # Sites and posts in site/optout.json are skipped everywhere and deleted from the dataset first (pipeline/optout.py).
 # Usage: python3 pipeline/daily.py [--dry-run] [--no-feeds]   (--dry-run: no LLM calls, nothing saved; --no-feeds: skip the weekly feed poll)
-import json, os, sys, time
+import calendar, json, os, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, "..")
@@ -217,9 +217,11 @@ def main():
                 run.count("added_" + rec["source"])
         run.count("posts_added", added)
         run.check(f"at most {MAX_ADDED} posts added", added <= MAX_ADDED, f"{added} added; check whether a model became lenient")
-        prev = [json.loads(l) for l in open(RUNS, encoding="utf-8") if l.strip()][-2:] if os.path.exists(RUNS) else []
-        dry_spell = added == 0 and len(prev) == 2 and all(not (p.get("counts") or {}).get("posts_added") for p in prev)
-        run.check("posts added in the last three runs", not dry_spell, "nothing added three runs in a row; check the sources and the labels")
+        hist = [json.loads(l) for l in open(RUNS, encoding="utf-8") if l.strip()] if os.path.exists(RUNS) else []
+        t_run = lambda r: calendar.timegm(time.strptime(r["run"][:15], "%Y%m%d-%H%M%S"))   # run ids are UTC
+        recent = [r for r in hist if now - t_run(r) <= 2 * 86400]
+        dry_spell = added == 0 and len(recent) < len(hist) and not any((r.get("counts") or {}).get("posts_added") for r in recent)
+        run.check("posts added in the last two days", not dry_spell, "nothing added for two days; check the sources and the labels")
 
         # 5. links to listed posts: linking sites for every link, LLM-judged responses for the rest
         todo_pairs = []
@@ -270,7 +272,7 @@ def main():
         state["hn_since"] = max([s["created_at_i"] for s in fresh] + [state["hn_since"]])
         state["rs_since"] = day(now - 86400)
         state["runs"] = state.get("runs", 0) + 1
-        state["last_run"] = day(now)                     # backup runs in the workflow skip when this is today
+        state["last_run"] = day(now)
         jsave(LIVE, D)
         jsave(os.path.join(STATE, "state.json"), state)
         jsave(os.path.join(STATE, "seen.json"), sorted(seen), indent=0)

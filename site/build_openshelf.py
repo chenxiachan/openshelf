@@ -18,6 +18,14 @@ SLOGAN = {"en": "The latest research from people's own websites, collected every
           "zh": "研究者发在自己网站上的最新研究，每天收集。"}
 
 
+def head_commit():
+    """The commit the site was built from: HEAD after the daily run saved its data (GITHUB_SHA is the commit it started from)."""
+    try:
+        return subprocess.run(["git", "-C", ROOT, "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+    except Exception:
+        return os.environ.get("GITHUB_SHA", "")
+
+
 def main():
     B.main(["--brand", "Openshelf", "--logo", "shelf", "--theme", "celadon"])
     subprocess.run([sys.executable, os.path.join(ROOT, "design", "build_demos.py"), os.path.join(OUT, "shelf-data.js")], check=True)
@@ -63,7 +71,7 @@ def main():
 """)
     D = B.apply_editorial(B.ISSUE)
     B.write(os.path.join(OUT, "status.json"), json.dumps({"generated": D["stats"].get("generated"), "built_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                                                        "posts": len(D["reports"]), "threads": len(D["chains"]), "commit": os.environ.get("GITHUB_SHA", "")}) + "\n")
+                                                        "posts": len(D["reports"]), "threads": len(D["chains"]), "commit": head_commit()}) + "\n")
     if CFG.get("domain"):
         B.write(os.path.join(OUT, "CNAME"), CFG["domain"].strip() + "\n")
     print("openshelf build done:", OUT, "| features", feats)

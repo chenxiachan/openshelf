@@ -1,6 +1,6 @@
 # Watchdog for the daily pipeline, GitHub only. It covers what no in-run alert can: the job did not run at all, or it
 # ran but the public site did not change.
-#   python3 pipeline/watchdog.py                 1. no daily run has succeeded today and none is waiting: start one (self-repair)
+#   python3 pipeline/watchdog.py                 1. no daily run has succeeded in WATCHDOG_RUN_HOURS and none is waiting: start one (self-repair)
 #                                                2. the last success is older than WATCHDOG_MAX_HOURS: alert
 #                                                3. the live site's status.json is older than WATCHDOG_MAX_HOURS: alert
 #                                                4. statistics are on but recorded no page view yesterday: alert
@@ -9,7 +9,8 @@
 #   python3 pipeline/watchdog.py --site [--wait SECONDS]   only check that the live site was rebuilt in the last 30 minutes
 #                                                (run right after a deploy; GitHub Pages can take a few minutes)
 #   python3 pipeline/watchdog.py --test-alert    open a test alert issue, to confirm that the notification email arrives
-# Env: GITHUB_REPOSITORY, GITHUB_TOKEN, DAILY_WORKFLOW (default daily.yml), WATCHDOG_MAX_HOURS (default 36),
+# Env: GITHUB_REPOSITORY, GITHUB_TOKEN, DAILY_WORKFLOW (default daily.yml), WATCHDOG_RUN_HOURS (default 8; daily.yml runs every 6),
+# WATCHDOG_MAX_HOURS (default 36),
 # ALERT_MENTION (login to @-mention). Alerts go to ALERT_GITHUB_REPO if set, else to GITHUB_REPOSITORY.
 import json, os, sys, time, urllib.request
 from datetime import datetime, timezone
@@ -79,22 +80,21 @@ def main():
         sys.exit(0 if check_site(int(sys.argv[i + 1]) if i > 0 else 0) else 1)
 
     wf = os.environ.get("DAILY_WORKFLOW", "daily.yml")
-    max_h = float(os.environ.get("WATCHDOG_MAX_HOURS", "36"))
+    run_h, max_h = float(os.environ.get("WATCHDOG_RUN_HOURS", "8")), float(os.environ.get("WATCHDOG_MAX_HOURS", "36"))
     problems = []
     try:
         runs = api(f"actions/workflows/{wf}/runs?per_page=20").get("workflow_runs", [])
     except Exception as e:
         alert("[watchdog] cannot read workflow runs", f"GitHub API call failed: {type(e).__name__}: {e}")
         sys.exit(1)
-    today = time.strftime("%Y-%m-%d", time.gmtime())
     ok = [r for r in runs if r.get("conclusion") == "success"]
     waiting = [r for r in runs if r.get("status") in ("queued", "in_progress", "waiting", "pending", "requested")]
-    if not any(r["created_at"].startswith(today) for r in ok) and not waiting:
+    if not any(age_hours(r["updated_at"]) <= run_h for r in ok) and not waiting:
         try:
             api(f"actions/workflows/{wf}/dispatches", {"ref": os.environ.get("GITHUB_REF_NAME") or "main"}, "POST")
-            print(f"no successful {wf} run today and none waiting: started one")
+            print(f"no successful {wf} run in {run_h:.0f} hours and none waiting: started one")
         except Exception as e:
-            problems.append((f"[watchdog] cannot start {wf}", f"No successful run today, and starting one failed: {type(e).__name__}: {e}"))
+            problems.append((f"[watchdog] cannot start {wf}", f"No successful run in {run_h:.0f} hours, and starting one failed: {type(e).__name__}: {e}"))
     last = ok[0] if ok else None
     if not last:
         problems.append((f"[watchdog] {wf} has not succeeded recently", f"No successful run of `{wf}` among the last {len(runs)} runs in `{repo}`."))

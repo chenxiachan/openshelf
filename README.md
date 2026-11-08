@@ -62,12 +62,12 @@ GH_TOKEN="$(gh auth token)" python3 crawl/backfill.py D # 续抓 HN 页面（可
 ```
 
 ## 自动运行与监控
-- `daily.yml`：每天 04:23 UTC 运行，09:23、15:23 UTC 是备用（当天已跑过就直接退出）。部署后检查线上 `status.json` 确实更新。
-- `watchdog.yml`：每天 13:41、21:41 UTC。当天没有成功的运行就自动补跑一次；36 小时没有成功运行，或线上网站 36 小时没更新，就报警。手动运行时勾选 test alert 可以测试报警邮件。
+- `daily.yml`：每 6 小时运行一次（03:23、09:23、15:23、21:23 UTC）。每次只处理上次之后新出现的内容，所以当天的文章当天就会出现；GitHub 推迟或漏掉某一次也没关系，下一次会补上。部署后检查线上 `status.json` 确实更新。
+- `watchdog.yml`：每天 13:41、21:41 UTC。8 小时内没有成功的运行就自动补跑一次；36 小时没有成功运行，或线上网站 36 小时没更新，就报警。手动运行时勾选 test alert 可以测试报警邮件。
 - `test.yml`：每次推送和 PR 都跑三组测试：Python 离线测试 `python3 -m unittest discover -s tests -v`、Worker 测试 `node worker/test/e2e.test.mjs`，以及浏览器测试 `node tests/browser/smoke.mjs`（无界面 Chrome 把首页每个控件点一遍，并检查关于页、隐私页、390px 手机宽度、脚本报错，以及每个操作是否交给了统计脚本；先 `cd tests/browser && npm ci`，用本机已安装的 Chrome，不另外下载浏览器）。
 - `daily.yml` 部署前也跑浏览器测试，不通过就不部署，线上保留上一个好的版本，并开 `[deploy]` 报警；下次部署成功后自动关闭。
 - 报警是带 `alert` 标签的 issue，并 @ 仓库所有者；问题恢复后自动关闭，所以开着的 alert issue 就是当前的问题。
-- 每天的健康检查：HN 有返回、页面失败率、订阅源回应率、OpenRouter 余额不少于 3 美元、没有漏标、费用不超过 0.50 美元、单日新增不超过 40 篇、连续三次运行都没有新增。
+- 每天的健康检查：HN 有返回、页面失败率、订阅源回应率、OpenRouter 余额不少于 3 美元、没有漏标、费用不超过 0.50 美元、单次新增不超过 40 篇、两天内一直没有新增。
 - 运行记录：`state/runs.jsonl`（每次一行，进 git），详细日志在每次运行的 artifact 里保留 30 天。
 
 ## 统计与投票（Cloudflare Worker，`worker/`）
