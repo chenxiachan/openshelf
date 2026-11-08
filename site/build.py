@@ -143,7 +143,7 @@ def stream(D, lang):
     assert set(chains) <= in_reports, "a chain original is missing from the reports"
 
     def resp(x):
-        return {"rel": x["relation"], "days": x["days_after"], "url": x["url"], "title": x["title"], "domain": x["domain"],
+        return {"rel": x["relation"], "days": x["days_after"], "date": x.get("date") or "", "url": x["url"], "title": x["title"], "domain": x["domain"],
                 "summary": x.get(key) or "", "via": via(x, comments=False)}
 
     items = []

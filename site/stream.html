@@ -99,6 +99,7 @@ main.ranked { padding-top: 12px; }
 .v a { color: var(--acc); }
 .resp .t .rel { margin-right: 8px; font-weight: 500; color: var(--rel); }
 .resp .g, .resp .off { color: var(--rel); }
+.row .od { color: var(--muted); }
 .r-rebuttal { --rel: var(--rebuttal); } .r-replication { --rel: var(--replication); } .r-extension { --rel: var(--extension); } .r-discussion { --rel: var(--discussion); }
 .more-resp { color: var(--acc); border: 0; background: none; padding: 0 0 0 calc(3.2ch + 12px); text-align: left; cursor: pointer; font-size: 12.5px; display: block; }
 .pager { display: block; margin: 14px 0; color: var(--acc); background: none; border: 0; padding: 0; cursor: pointer; }
@@ -326,7 +327,9 @@ main.ranked { padding-top: 12px; }
     var row = el("div", "row k-" + r.cat);
     if (rank) row.appendChild(el("span", "rank", String(rank)));
     var g = el("span", "g h" + heat(r), r.cat === "research" ? "●" : "○"); g.title = heatTitle(r); row.appendChild(g);
-    row.appendChild(el("span", "d", r.domain));
+    var d0 = el("span", "d");                            // in threads the original's date is where the +Nd of its responses count from
+    if (state.view === "threads") d0.appendChild(el("span", "od", r.date.slice(5) + " "));
+    d0.appendChild(document.createTextNode(r.domain)); row.appendChild(d0);
     var t = el("span", "t"), ta = A(r.url, r.title); ta.dataset.id = r.id; ta.dataset.rank = rank || ""; t.appendChild(ta); row.appendChild(t);
     row.appendChild(rank ? metrics(r) : tags(r));
     row.appendChild(voteBox(r));
@@ -352,6 +355,8 @@ main.ranked { padding-top: 12px; }
   }
   function signals(r) { return (r.interactive ? 1 : 0) + (r.repo ? 1 : 0) + (r.arxiv ? 1 : 0) + (r.doi ? 1 : 0); }
   function within(a, b) { return (a.cat === b.cat ? 0 : a.cat === "research" ? -1 : 1) || b.resp.length - a.resp.length || signals(b) - signals(a) || a.title.localeCompare(b.title); }
+  // threads are filed under the day of their latest response, so a discussion that is still going comes back to the top
+  function lastActive(r) { return r.resp.reduce(function (m, x) { return x.date > m ? x.date : m; }, r.date); }
   function render() {
     views(); controls();
     var root = $("log"), pg = $("pager"); root.textContent = ""; root.className = state.view === "trending" ? "ranked" : "";
@@ -364,8 +369,8 @@ main.ranked { padding-top: 12px; }
       pg.hidden = list.length <= state.shown; pg.disabled = false; pg.textContent = L().more_rank;
       return;
     }
-    var by = {};
-    list.forEach(function (r) { (by[r.date] = by[r.date] || []).push(r); });
+    var by = {}, key = state.view === "threads" ? lastActive : function (r) { return r.date; };
+    list.forEach(function (r) { var k = key(r); (by[k] = by[k] || []).push(r); });
     var days = Object.keys(by).sort().reverse();
     if (!list.length) root.appendChild(el("p", "empty", L().empty));
     days.slice(0, state.days).forEach(function (d) {

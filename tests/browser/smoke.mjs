@@ -91,6 +91,10 @@ async function main() {
     await inViews(page, "threads").click();
     assert.equal(await page.evaluate(() => location.hash), "#threads");
     assert.ok((await visibleRows(page)) > 0, "threads view is empty");
+    const [newest, firstDay] = await page.evaluate(() => [
+      window.SHELF.items.flatMap((r) => r.resp.map((x) => x.date)).sort().pop(),
+      document.querySelector("#log .sep b").textContent]);
+    assert.ok(newest && firstDay.endsWith(newest), `threads should start with the day of the newest response (${newest}), not ${firstDay}`);
     await inViews(page, "latest").click();
     assert.equal(await visibleRows(page), all, "latest does not come back to the full list");
     ok("threads view and back to latest");
