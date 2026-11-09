@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 395,
+  "research": 396,
   "explainer": 109,
   "r_interactive": 56,
   "r_repo": 117,
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 395,
+    "research": 396,
     "explainer": 109,
     "on_hn": null
    },
@@ -115,7 +115,7 @@
     "econ-social": 32,
     "security-privacy": 61,
     "math-theory": 27,
-    "physics-earth": 16,
+    "physics-earth": 17,
     "other": 9,
     "robotics-graphics": 29,
     "bio-health": 10,
@@ -148,11 +148,11 @@
    }
   },
   "topic_totals": {
-   "hn": 504,
+   "hn": 505,
    "fork": 61,
    "rs": 41
   },
-  "research_all": 437,
+  "research_all": 438,
   "explainer_all": 169,
   "backfill": {
    "pages": 20630,
@@ -3939,7 +3939,8 @@
    "summary_zh": "Transformer 电路的数学框架，机制可解释性奠基论文",
    "summary_en": "A mathematical framework for transformer circuits, a foundational paper of mechanistic interpretability.",
    "linkers": [
-    "goodfire.com"
+    "goodfire.com",
+    "operator0x.com"
    ]
   },
   {
@@ -15333,7 +15334,7 @@
    "cit": false,
    "hn_id": "50403097",
    "points": 863,
-   "comments": 459,
+   "comments": 460,
    "date": "2026-11-07",
    "submissions": 1,
    "source": "hn",
@@ -16006,8 +16007,8 @@
    "github_io": true,
    "cit": false,
    "hn_id": "50429734",
-   "points": 127,
-   "comments": 7,
+   "points": 237,
+   "comments": 13,
    "date": "2026-11-09",
    "submissions": 1,
    "source": "hn",
@@ -16125,6 +16126,34 @@
    "source": "hn",
    "summary_zh": "NVIDIA发布GR00T 2基础世界动作模型，支持机器人泛化与灵巧操作。",
    "summary_en": "NVIDIA introduces GR00T 2 foundation world-action models for robot generalization and dexterity.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-09",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50432604",
+   "url": "https://hexagonmath.org/2611.00174v1",
+   "domain": "hexagonmath.org",
+   "title": "The spinless modular bootstrap at large central charge",
+   "category": "research_report",
+   "topic": "physics-earth",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": false,
+   "arxiv": true,
+   "hf": false,
+   "github_io": false,
+   "cit": true,
+   "hn_id": "50432604",
+   "points": 2,
+   "comments": 2,
+   "date": "2026-11-09",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "文章利用自举方法精确计算了二维共形场论中轻态维度的界限。",
+   "summary_en": "The paper derives exact bounds for the lightest primary dimension in 2D CFTs using the modular bootstrap.",
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-09",
