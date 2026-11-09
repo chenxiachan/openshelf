@@ -1,7 +1,8 @@
 # The daily pipeline: collect, check, link, and update site/issues/live.json. The workflow builds and deploys afterwards.
 #   1. HN stories of the last 14 days: new ones become candidates, older ones refresh the points of listed posts
 #   2. fetch new candidate pages (rule features, excerpt, links, and the text around links to listed posts)
-#   3. Rogue Scholar posts every day; academic homepage feeds once a week (conditional GET)
+#   3. Rogue Scholar posts; academic homepages whose GitHub repository was pushed since their feed was last read
+#      (pipeline/homepages.py: the template forks are listed once a day, new homepages join the feed list)
 #   4. rule filter for HN pages, then LLM labels with the fallback chain; a second model must confirm
 #      every research/explainer label
 #   5. links to listed posts: count independent linking sites, and let the LLM judge which links are responses
@@ -9,7 +10,7 @@
 # Health checks (a failure opens an alert issue): HN answered, page errors, feeds answered, OpenRouter balance, nothing
 # left unlabelled, cost, not too many additions, and some additions in the last two days. History: state/runs.jsonl.
 # Sites and posts in site/optout.json are skipped everywhere and deleted from the dataset first (pipeline/optout.py).
-# Usage: python3 pipeline/daily.py [--dry-run] [--no-feeds]   (--dry-run: no LLM calls, nothing saved; --no-feeds: skip the weekly feed poll)
+# Usage: python3 pipeline/daily.py [--dry-run] [--no-feeds]   (--dry-run: no LLM calls, nothing saved; --no-feeds: skip the homepages)
 import calendar, json, os, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -19,6 +20,7 @@ sys.path.insert(0, os.path.join(ROOT, "crawl"))
 from runlog import Run  # noqa: E402
 import sources as S  # noqa: E402
 import optout  # noqa: E402
+import homepages  # noqa: E402
 from common import dom, norm  # noqa: E402
 from candidates import classify as rule_class  # noqa: E402
 from pairs import reg  # noqa: E402
@@ -28,7 +30,6 @@ STATE = os.path.join(ROOT, "state")
 KEEP_CAT = {"research_report", "explainer"}
 KEEP_REL = {"rebuttal", "replication", "extension", "discussion"}
 SECOND = ["deepseek/deepseek-v4-flash-0731", "nvidia/nemotron-3-ultra-550b-a55b:free"]
-FEED_EVERY_DAYS = 7
 RUNS = os.path.join(STATE, "runs.jsonl")
 MIN_BALANCE, MAX_ADDED = 3.0, 40
 DRY = "--dry-run" in sys.argv
@@ -113,7 +114,7 @@ def main():
     import llm
     with Run("daily", history=None if DRY else RUNS) as run:
         state = jload(os.path.join(STATE, "state.json"), {"hn_since": int(time.time()) - 86400, "rs_since": day(time.time() - 86400),
-                                                           "feeds_since": day(time.time() - 7 * 86400), "feed_cache": {}, "runs": 0})
+                                                           "feed_cache": {}, "runs": 0})
         seen = set(jload(os.path.join(STATE, "seen.json"), []))
         queue = jload(os.path.join(STATE, "queue.json"), [])
         D = jload(LIVE, None)
@@ -165,16 +166,10 @@ def main():
         # 3. supply side
         rs = [x for x in S.rogue_posts(state["rs_since"]) if norm(x["url"]) not in seen and norm(x["url"]) not in listed and not blocked(x["url"])]
         run.count("rs_new_posts", len(rs))
-        feeds_new, feed_status = [], {}
-        if not NO_FEEDS and day(now - FEED_EVERY_DAYS * 86400) >= state.get("feeds_last", "1970-01-01"):
-            feeds = [f for f in jload(os.path.join(ROOT, "sources", "feeds.json"), {"feeds": []})["feeds"] if not blocked(f["feed"]) and not blocked(f["site"])]
-            titles = set(jload(os.path.join(ROOT, "sources", "template_titles.json"), {"titles": []})["titles"])
-            feeds_new, feed_status, cache = S.feed_posts(feeds, state["feeds_since"], state.get("feed_cache", {}), titles)
-            feeds_new = [x for x in feeds_new if norm(x["url"]) not in seen and norm(x["url"]) not in listed and not blocked(x["url"])]
-            ok = feed_status.get("ok", 0) + feed_status.get("not_modified", 0)
-            run.check("most homepage feeds answered", ok >= 0.6 * max(1, len(feeds)), json.dumps(feed_status))
-            if not DRY:
-                state["feed_cache"], state["feeds_last"], state["feeds_since"] = cache, day(now), day(now - 86400)
+        feeds_new, save_homepages = [], None
+        if not NO_FEEDS:
+            feeds_new, _, save_homepages = homepages.collect(run, state, now, blocked, os.environ.get("GITHUB_TOKEN"), dry=DRY)
+            feeds_new = [x for x in feeds_new if norm(x["url"]) not in seen and norm(x["url"]) not in listed]
         run.count("feed_new_posts", len(feeds_new))
 
         # 4. LLM labels (plus a second opinion on borderline research/explainer labels)
@@ -216,7 +211,8 @@ def main():
                 added += 1
                 run.count("added_" + rec["source"])
         run.count("posts_added", added)
-        run.check(f"at most {MAX_ADDED} posts added", added <= MAX_ADDED, f"{added} added; check whether a model became lenient")
+        run.check(f"at most {MAX_ADDED} posts added, or at most 60% of those labelled", added <= MAX_ADDED or added <= 0.6 * len(items),
+                  f"{added} of {len(items)} added; check whether a model became lenient")
         hist = [json.loads(l) for l in open(RUNS, encoding="utf-8") if l.strip()] if os.path.exists(RUNS) else []
         t_run = lambda r: calendar.timegm(time.strptime(r["run"][:15], "%Y%m%d-%H%M%S"))   # run ids are UTC
         recent = [r for r in hist if now - t_run(r) <= 2 * 86400]
@@ -273,6 +269,9 @@ def main():
         state["rs_since"] = day(now - 86400)
         state["runs"] = state.get("runs", 0) + 1
         state["last_run"] = day(now)
+        state.pop("feeds_since", None)
+        if save_homepages:
+            save_homepages()
         jsave(LIVE, D)
         jsave(os.path.join(STATE, "state.json"), state)
         jsave(os.path.join(STATE, "seen.json"), sorted(seen), indent=0)

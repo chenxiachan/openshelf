@@ -51,7 +51,7 @@ D["issue"] = {"number": 0, "slug": "openshelf", "window": D["stats"]["window"], 
 os.makedirs(os.path.join(ROOT, "state"), exist_ok=True)
 json.dump(D, open(os.path.join(HERE, "issues", "live.json"), "w"), ensure_ascii=False, indent=1)
 json.dump(sorted(k for k in seen if k), open(os.path.join(ROOT, "state", "seen.json"), "w"), indent=0)
-state = {"hn_since": max(s["created_at_i"] for s in stories), "rs_since": today, "feeds_since": today, "feed_cache": {}, "runs": 0}
+state = {"hn_since": max(s["created_at_i"] for s in stories), "rs_since": today, "feed_cache": {}, "runs": 0}
 json.dump(state, open(os.path.join(ROOT, "state", "state.json"), "w"), indent=1)
 print("live.json posts", len(D["reports"]), "with linkers", sum(1 for r in D["reports"] if r["linkers"]),
       "| seen keys", len(seen), "| hn_since", time.strftime("%Y-%m-%d %H:%M", time.gmtime(state["hn_since"])))

@@ -129,10 +129,102 @@ class FakeRun:
     def add_cost(self, x):
         self.cost += x or 0
 
+    def check(self, name, ok, detail=""):
+        self.events.append((("check", name, bool(ok)), {}))
+
 
 def label_for(it):
     return {"id": it["id"], "category": "research_report", "topic": "ai-ml", "political": "none", "confidence": "high",
             "summary_zh": "摘要", "summary_en": "A summary."}
+
+
+class Homepages(unittest.TestCase):
+    """Only repositories pushed since their feed was last read are read; new homepages join the feed list."""
+    def setUp(self):
+        import homepages as H
+        self.H, self.tmp = H, tempfile.TemporaryDirectory()
+        self.saved = (H.FEEDS, H.TITLES, H.FORKS, H.PER_RUN, H.list_forks, H.S.feed)
+        H.FEEDS, H.TITLES, H.FORKS = (os.path.join(self.tmp.name, f) for f in ("feeds.json", "titles.json", "forks.json"))
+        with open(H.FEEDS, "w") as fh:
+            json.dump({"feeds": [{"feed": "https://known.example/feed.xml", "site": "known.example", "template": "alfolio", "repo": "k/k.github.io"}]}, fh)
+        with open(H.TITLES, "w") as fh:
+            json.dump({"titles": ["a post with math"]}, fh)
+        self.now = int(time.time())
+        today = time.strftime("%Y-%m-%d", time.gmtime(self.now))
+        self.pushed = {"k/k.github.io": "2026-11-01T00:00:00Z", "new/new.github.io": "2026-11-02T00:00:00Z", "plain/plain.github.io": "2026-11-03T00:00:00Z",
+                       "gone/gone.github.io": "2026-11-04T00:00:00Z", **{f"s{i}/s{i}.github.io": "2026-10-01T00:00:00Z" for i in range(5)}}
+        H.list_forks = lambda token: {r: ("alfolio", p) for r, p in self.pushed.items()}
+        self.reads = []
+
+        def feed(f, cache):
+            self.reads.append(f["feed"])
+            post = lambda title, slug: {"title": title, "url": f["feed"].replace("feed.xml", slug), "published": today}
+            if "gone" in f["feed"]:
+                return "http404", [], {}, ""
+            if "known" in f["feed"]:
+                return "ok", [post("Known result", "a/")], {}, f["feed"]
+            if "new.github.io" in f["feed"]:   # redirects to its own domain
+                return "ok", [post("A new result", "b/"), post("A post with math", "c/")], {}, "https://new-person.example/feed.xml"
+            return "ok", [post("Welcome to my blog", "d/")], {}, f["feed"]      # plain and s0..s4: only the template's sample post
+        H.S.feed = feed
+
+    def tearDown(self):
+        H = self.H
+        H.FEEDS, H.TITLES, H.FORKS, H.PER_RUN, H.list_forks, H.S.feed = self.saved
+        self.tmp.cleanup()
+
+    def collect(self, state, now=None):
+        run = FakeRun()
+        posts, status, save = self.H.collect(run, state, now or self.now, lambda u: False, "token")
+        save()
+        return run, posts
+
+    def test_pushed_repositories_only(self):
+        H, state = self.H, {}
+        run, posts = self.collect(state)
+        self.assertEqual(run.counts["feeds_read"], 9)
+        self.assertEqual(sorted(p["title"] for p in posts), ["A new result", "Known result"])
+        self.assertIn("welcome to my blog", json.loads(read(H.TITLES))["titles"], "a title on 5 sites is a template sample")
+        sites = {f["site"]: f for f in json.loads(read(H.FEEDS))["feeds"]}
+        self.assertEqual(set(sites), {"known.example", "new-person.example"}, "only homepages with a real post join the feed list")
+        self.assertEqual(sites["new-person.example"]["feed"], "https://new-person.example/feed.xml")
+        self.assertTrue(all(v[1] == v[2] for v in json.loads(read(H.FORKS)).values()), "every fork is marked as read at its push")
+
+        self.reads.clear()
+        run, posts = self.collect(state)                       # same day: no new list, nothing due
+        self.assertEqual((run.counts["feeds_read"], self.reads), (0, []))
+
+        self.pushed["new/new.github.io"] = "2026-11-09T08:00:00Z"
+        run, posts = self.collect(state, self.now + 86400)     # next day: only the repository that was pushed
+        self.assertEqual(self.reads, ["https://new-person.example/feed.xml"])
+
+    def test_first_read_takes_the_newest_few(self):
+        H, state = self.H, {}
+        def flood(f, cache):
+            days = [time.strftime("%Y-%m-%d", time.gmtime(self.now - i * 86400)) for i in range(10)]
+            return "ok", [{"title": f"Note {d}", "url": f"https://daily.example/{d}/", "published": d} for d in days], {}, f["feed"]
+        H.S.feed = flood
+        iso = lambda ts: time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(ts))
+        self.pushed = {"d/d.github.io": iso(self.now - 86400)}
+        run, posts = self.collect(state)
+        mine = [p for p in posts if p["site"] == "d.github.io"]
+        self.assertEqual(len(mine), H.PER_SITE, "a site that posts every day gives only its newest posts")
+        self.assertEqual(mine[0]["date"], time.strftime("%Y-%m-%d", time.gmtime(self.now)), "newest first")
+
+        old = time.strftime("%Y-%m-%d", time.gmtime(self.now - 20 * 86400))      # in the 30-day window, but long before the last read
+        H.S.feed = lambda f, cache: ("ok", [{"title": "Old note", "url": "https://daily.example/old/", "published": old}], {}, f["feed"])
+        self.pushed = {"d/d.github.io": iso(self.now)}
+        run, posts = self.collect(state, self.now + 86400)
+        self.assertEqual([p for p in posts if p["site"] == "d.github.io"], [], "a later read does not go back before the previous read")
+
+    def test_per_run_cap_carries_over(self):
+        H, state = self.H, {}
+        H.PER_RUN = 4
+        run, _ = self.collect(state)
+        self.assertEqual((run.counts["feeds_read"], run.counts["forks_left_for_next_run"]), (4, 5))
+        self.assertEqual(self.reads[0], "https://gone.github.io/feed.xml", "newest push first")
+        run, _ = self.collect(state)
+        self.assertEqual((run.counts["feeds_read"], run.counts["forks_left_for_next_run"]), (4, 1))
 
 
 class LLMClient(unittest.TestCase):

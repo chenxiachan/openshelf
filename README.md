@@ -25,6 +25,12 @@ GitPost 的网站与数据管线（未来的 git 仓库根目录）。
 - `crawl/candidates.py`：在全部 HN 页面上重跑试运行的规则初筛，挑出还没复核过的候选，分批写到 `data/llm/new_items_N.jsonl`。
 - `crawl/pairs.py`：在全部外链里找指向已收录文章或新候选的链接，输出 `data/llm/pairs_todo.jsonl`。
 - `crawl/context.py`：限速重抓这些链接的来源页，截取链接上下文（`RPM=60`）。人工改正写在 `data/llm/pair_overrides.json`。
+- `pipeline/homepages.py`：学术主页来源（al-folio 和 academicpages 两个模板的 fork）。主页每发一篇文章，GitHub 仓库就会有一次推送，所以每天列一遍两个模板的 fork（约 230 次 GitHub API 请求），只读上次读过之后又推送过的仓库的 `/feed.xml`。发得再少的人，发了第二天就会被读到；新开的主页第一次推送后自动加入。
+  - `state/forks.json`：每个开了 Pages、fork 后改过的仓库一行：模板、最近推送时间、上次读订阅源时对应的推送时间。
+  - `sources/feeds.json`：订阅源里有真实文章（不是模板示例）的主页，也可以手动加（没有对应 fork 的每周读一次）。
+  - `sources/template_titles.json`：模板自带的示例文章标题；同一个标题出现在 5 个以上站点就自动加进来。
+  - 每次运行最多读 2,500 个订阅源，剩下的留给下一次；第一次要把约 9,000 个主页读一遍，分 4 次运行完成。
+  - 每次读一个订阅源最多取最新的 3 篇：第一次从最近 30 天里取，以后从上次读取前一周开始取（很多人推送时文章日期写得更早），已经判断过的文章由每日运行去掉。旧文章不会反复出现，每天自动发文的站点也刷不了屏。列 fork 大约要 10 分钟（GitHub 后面几页响应慢），每天只列一次。
 - `site/merge_backfill.py`：把 LLM 结果（`data/llm/out_*.jsonl`）并入试运行数据，重算统计，输出 `site/issues/pilot.json`（网站现在读这个文件）。
 - `pipeline/runlog.py`：运行日志、健康检查和报警。每次运行写 `data/logs/runs/<run_id>.jsonl`，并在 `data/logs/runs.jsonl` 里追加一行摘要。出错或检查不通过时报警。用户决定（2026-11-07）只开 GitHub 这一个渠道，下面另外两个渠道保留在代码里，默认不开：
   - `ALERT_GITHUB_REPO` 加 `GITHUB_TOKEN`：开一个带 alert 标签的 issue；同一个问题只追加评论，不重复开。
@@ -67,7 +73,7 @@ GH_TOKEN="$(gh auth token)" python3 crawl/backfill.py D # 续抓 HN 页面（可
 - `test.yml`：每次推送和 PR 都跑三组测试：Python 离线测试 `python3 -m unittest discover -s tests -v`、Worker 测试 `node worker/test/e2e.test.mjs`，以及浏览器测试 `node tests/browser/smoke.mjs`（无界面 Chrome 把首页每个控件点一遍，并检查关于页、隐私页、390px 手机宽度、脚本报错，以及每个操作是否交给了统计脚本；先 `cd tests/browser && npm ci`，用本机已安装的 Chrome，不另外下载浏览器）。
 - `daily.yml` 部署前也跑浏览器测试，不通过就不部署，线上保留上一个好的版本，并开 `[deploy]` 报警；下次部署成功后自动关闭。
 - 报警是带 `alert` 标签的 issue，并 @ 仓库所有者；问题恢复后自动关闭，所以开着的 alert issue 就是当前的问题。
-- 每天的健康检查：HN 有返回、页面失败率、订阅源回应率、OpenRouter 余额不少于 3 美元、没有漏标、费用不超过 0.50 美元、单次新增不超过 40 篇、两天内一直没有新增。
+- 每天的健康检查：HN 有返回、页面失败率、模板 fork 列表能读到、已知订阅源回应率、OpenRouter 余额不少于 3 美元、没有漏标、费用不超过 0.50 美元、单次新增不超过 40 篇（或不超过送审文章的 60%）、两天内一直没有新增。
 - 运行记录：`state/runs.jsonl`（每次一行，进 git），详细日志在每次运行的 artifact 里保留 30 天。
 
 ## 统计与投票（Cloudflare Worker，`worker/`）

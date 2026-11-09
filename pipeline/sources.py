@@ -1,7 +1,7 @@
 # Incremental fetchers for the daily pipeline. All requests share one Throttle (<= 6 workers, <= 90 requests/min).
 #   hn_stories(since_ts)        Hacker News stories via Algolia, sliced so no query hits the 1000-result cap
 #   rogue_posts(since_date)     Rogue Scholar records published on or after a date
-#   feed_posts(feeds, since, cache)   academic homepage feeds with conditional GET (ETag / Last-Modified)
+#   feed(f, cache)              read one homepage feed, with conditional GET (ETag / Last-Modified); see homepages.py
 #   page(row)                   fetch one page: rule features, description, excerpt, outbound links
 import concurrent.futures as cf, json, os, re, sys, time, urllib.error, urllib.request
 from email.utils import parsedate_to_datetime
@@ -61,7 +61,7 @@ def rogue_posts(since_date, until_date=None):
     return out
 
 
-def _date(s):
+def feed_date(s):
     s = (s or "").strip()
     try:
         return parsedate_to_datetime(s).strftime("%Y-%m-%d")      # RSS pubDate
@@ -70,7 +70,8 @@ def _date(s):
         return m.group(1) if m else ""
 
 
-def _feed(f, cache):
+def feed(f, cache):
+    """(status, entries, cache headers, final URL after redirects). Never raises."""
     T.wait()
     h = {"User-Agent": UA, "Accept": "application/atom+xml, application/rss+xml, application/xml;q=0.9, */*;q=0.5"}
     c = cache.get(f["feed"]) or {}
@@ -81,29 +82,12 @@ def _feed(f, cache):
     try:
         with urllib.request.urlopen(urllib.request.Request(f["feed"], headers=h), timeout=20, context=CTX) as r:
             xml = r.read(3_000_000).decode("utf-8", "ignore")
-            new_cache = {"etag": r.headers.get("ETag"), "modified": r.headers.get("Last-Modified")}
-        return "ok", parse_feed(xml, f["feed"]), new_cache
+            new_cache, final = {"etag": r.headers.get("ETag"), "modified": r.headers.get("Last-Modified")}, r.geturl()
+        return "ok", parse_feed(xml, final), new_cache, final
     except urllib.error.HTTPError as e:
-        return ("not_modified" if e.code == 304 else f"http{e.code}"), [], c
+        return ("not_modified" if e.code == 304 else f"http{e.code}"), [], c, ""
     except Exception as e:
-        return type(e).__name__, [], c
-
-
-def feed_posts(feeds, since_date, cache, template_titles):
-    """New posts from all feeds since a date. Returns (posts, status counts, updated cache)."""
-    posts, status, new_cache = [], {}, dict(cache)
-    with cf.ThreadPoolExecutor(WORKERS) as ex:
-        for f, (st, entries, c) in zip(feeds, ex.map(lambda f: _feed(f, cache), feeds)):
-            status[st] = status.get(st, 0) + 1
-            new_cache[f["feed"]] = {k: v for k, v in c.items() if v}
-            for e in entries:
-                d = _date(e.get("published"))
-                if not d or d < since_date or not e.get("url") or (e.get("title") or "").strip().lower() in template_titles:
-                    continue
-                posts.append({"id": "fork:" + e["url"], "source": "fork", "url": e["url"], "domain": dom(e["url"]), "title": e.get("title", ""),
-                              "date": d, "site": f["site"], "author": "", "description": e.get("summary", ""), "excerpt": e.get("excerpt", ""),
-                              "links": e.get("links", [])})
-    return posts, status, new_cache
+        return type(e).__name__, [], c, ""
 
 
 def eligible(story):
