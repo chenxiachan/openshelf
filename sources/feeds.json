@@ -44,6 +44,12 @@
    "repo": "1lisalozf/rlaexram.github.io"
   },
   {
+   "feed": "https://1nimajneb.github.io/feed.xml",
+   "site": "1nimajneb.github.io",
+   "template": "alfolio",
+   "repo": "1nimajneb/1nimajneb.github.io"
+  },
+  {
    "feed": "https://1yjd.github.io/feed.xml",
    "site": "1yjd.github.io",
    "template": "academicpages",
@@ -110,10 +116,22 @@
    "repo": "aaguseva/aaguseva.github.io"
   },
   {
+   "feed": "https://aakashkumarnain.github.io/sample_blog.github.io/feed.xml",
+   "site": "aakashkumarnain.github.io",
+   "template": "academicpages",
+   "repo": "AakashKumarNain/sample_blog.github.io"
+  },
+  {
    "feed": "https://aakhmetz.github.io/feed.xml",
    "site": "aakhmetz.github.io",
    "template": "academicpages",
    "repo": "aakhmetz/aakhmetz.github.io"
+  },
+  {
+   "feed": "https://aakprabhu.com/feed.xml",
+   "site": "aakprabhu.com",
+   "template": "alfolio",
+   "repo": "aakash1104/aakash1104.github.io"
   },
   {
    "feed": "https://aaravd18.github.io/feed.xml",
@@ -158,6 +176,12 @@
    "repo": "aasgherali/aasgherali.github.io"
   },
   {
+   "feed": "https://aashrith-saraswathibhatla.github.io/feed.xml",
+   "site": "aashrith-saraswathibhatla.github.io",
+   "template": "alfolio",
+   "repo": "aashrith-saraswathibhatla/aashrith-saraswathibhatla.github.io"
+  },
+  {
    "feed": "https://aattarpour.github.io/feed.xml",
    "site": "aattarpour.github.io",
    "template": "alfolio",
@@ -192,6 +216,12 @@
    "site": "abdelkabir-56.github.io",
    "template": "alfolio",
    "repo": "abdeLKabir-56/abdelkabir-elhamoussi.github.io"
+  },
+  {
+   "feed": "https://abdelkhalikmosa.github.io/feed.xml",
+   "site": "abdelkhalikmosa.github.io",
+   "template": "alfolio",
+   "repo": "abdelkhalikmosa/abdelkhalikmosa.github.io"
   },
   {
    "feed": "https://abdullahsafi.github.io/feed.xml",
@@ -234,6 +264,12 @@
    "site": "academic.lifequality.org.in",
    "template": "academicpages",
    "repo": "dr-rakesh-sarwal/dr-rakesh-sarwal.github.io"
+  },
+  {
+   "feed": "https://acandeloro.github.io/aquantumsheet/feed.xml",
+   "site": "acandeloro.github.io",
+   "template": "alfolio",
+   "repo": "acandeloro/aquantumsheet"
   },
   {
    "feed": "https://aciampaglia.github.io/feed.xml",
@@ -296,6 +332,12 @@
    "repo": "aditichoudharyecon/aditichoudharyecon.github.io"
   },
   {
+   "feed": "https://adityajain.in/feed.xml",
+   "site": "adityajain.in",
+   "template": "alfolio",
+   "repo": "adityajain93/adityajain93.github.io"
+  },
+  {
    "feed": "https://adk0101.github.io/feed.xml",
    "site": "adk0101.github.io",
    "template": "academicpages",
@@ -318,6 +360,18 @@
    "site": "adrianefresh.com",
    "template": "academicpages",
    "repo": "adrianefresh/adrianefresh.github.io"
+  },
+  {
+   "feed": "https://adricasab.github.io/feed.xml",
+   "site": "adricasab.github.io",
+   "template": "alfolio",
+   "repo": "AdriCasab/AdriCasab.github.io"
+  },
+  {
+   "feed": "https://adtarie.net/old-blog-jekyll/feed.xml",
+   "site": "adtarie.net",
+   "template": "alfolio",
+   "repo": "ariewjy/old-blog-jekyll"
   },
   {
    "feed": "https://ae20cg.github.io/feed.xml",
@@ -542,6 +596,12 @@
    "repo": "aleey-lawal/aleey-lawal.github.io"
   },
   {
+   "feed": "https://aleks-py.github.io/feed.xml",
+   "site": "aleks-py.github.io",
+   "template": "alfolio",
+   "repo": "aleks-py/aleks-py.github.io"
+  },
+  {
    "feed": "https://aleksandrshneider.github.io/feed.xml",
    "site": "aleksandrshneider.github.io",
    "template": "academicpages",
@@ -734,6 +794,12 @@
    "repo": "alpsencer/alpsencer.github.io"
   },
   {
+   "feed": "https://alternativehypothesis.github.io/feed.xml",
+   "site": "alternativehypothesis.github.io",
+   "template": "alfolio",
+   "repo": "alternativehypothesis/alternativehypothesis.github.io"
+  },
+  {
    "feed": "https://alyssavanerelli.github.io/feed.xml",
    "site": "alyssavanerelli.github.io",
    "template": "alfolio",
@@ -810,6 +876,18 @@
    "site": "anandsr724.github.io",
    "template": "alfolio",
    "repo": "anandsr724/anandsr724.github.io"
+  },
+  {
+   "feed": "https://ananyamalik.github.io/old_website/feed.xml",
+   "site": "ananyamalik.github.io",
+   "template": "academicpages",
+   "repo": "ananyamalik/old_website"
+  },
+  {
+   "feed": "https://anaprietonem.github.io/feed.xml",
+   "site": "anaprietonem.github.io",
+   "template": "academicpages",
+   "repo": "anaprietonem/anaprietonem.github.io"
   },
   {
    "feed": "https://anarichter.github.io/feed.xml",
@@ -950,6 +1028,12 @@
    "repo": "aniquetahir/aniquetahir.github.io"
   },
   {
+   "feed": "https://aniratha.github.io/feed.xml",
+   "site": "aniratha.github.io",
+   "template": "alfolio",
+   "repo": "Aniratha/aniratha.github.io"
+  },
+  {
    "feed": "https://aniruddhsikdar1.github.io/feed.xml",
    "site": "aniruddhsikdar1.github.io",
    "template": "alfolio",
@@ -1022,6 +1106,12 @@
    "repo": "antonjheil/antonjheil.github.io"
   },
   {
+   "feed": "http://antreas.io/antreasantoniou-old.github.io/feed.xml",
+   "site": "antreas.io",
+   "template": "academicpages",
+   "repo": "AntreasAntoniou/antreasantoniou-old.github.io"
+  },
+  {
    "feed": "https://anupmalani.com/feed.xml",
    "site": "anupmalani.com",
    "template": "alfolio",
@@ -1056,6 +1146,12 @@
    "site": "apaykani.github.io",
    "template": "alfolio",
    "repo": "apaykani/apaykani.github.io"
+  },
+  {
+   "feed": "https://apoorvreddy.github.io/feed.xml",
+   "site": "apoorvreddy.github.io",
+   "template": "alfolio",
+   "repo": "apoorvreddy/apoorvreddy.github.io"
   },
   {
    "feed": "https://apostolosbisas.github.io/feed.xml",
@@ -1214,6 +1310,12 @@
    "repo": "arupsarkar91/arupsarkar91.github.io"
   },
   {
+   "feed": "https://arushikhokhar.github.io/feed.xml",
+   "site": "arushikhokhar.github.io",
+   "template": "alfolio",
+   "repo": "arushikhokhar/arushikhokhar.github.io"
+  },
+  {
    "feed": "https://arvind6599.github.io/old-website-2/feed.xml",
    "site": "arvind6599.github.io",
    "template": "alfolio",
@@ -1370,6 +1472,12 @@
    "repo": "Avina20/avina20.github.io"
   },
   {
+   "feed": "https://avrahamrosenberg.github.io/feed.xml",
+   "site": "avrahamrosenberg.github.io",
+   "template": "alfolio",
+   "repo": "avrahamrosenberg/avrahamrosenberg.github.io"
+  },
+  {
    "feed": "https://avrohr.com/feed.xml",
    "site": "avrohr.com",
    "template": "alfolio",
@@ -1400,6 +1508,12 @@
    "repo": "awxlong/awxlong.github.io"
   },
   {
+   "feed": "https://axelbogos.github.io/feed.xml",
+   "site": "axelbogos.github.io",
+   "template": "alfolio",
+   "repo": "AxelBogos/AxelBogos.github.io"
+  },
+  {
    "feed": "https://axelnorgren.github.io/feed.xml",
    "site": "axelnorgren.github.io",
    "template": "academicpages",
@@ -1416,6 +1530,12 @@
    "site": "aye21874.github.io",
    "template": "alfolio",
    "repo": "aye21874/aye21874.github.io"
+  },
+  {
+   "feed": "https://aymenjelal.github.io/feed.xml",
+   "site": "aymenjelal.github.io",
+   "template": "alfolio",
+   "repo": "aymenjelal/aymenjelal.github.io"
   },
   {
    "feed": "https://ayoubajarra.github.io/feed.xml",
@@ -1574,6 +1694,12 @@
    "repo": "benjaminavuwadah/benjaminavuwadah.github.io"
   },
   {
+   "feed": "https://benjaminbush.github.io/feed.xml",
+   "site": "benjaminbush.github.io",
+   "template": "alfolio",
+   "repo": "BenjaminBush/BenjaminBush.github.io"
+  },
+  {
    "feed": "https://benoitdostie.com/feed.xml",
    "site": "benoitdostie.com",
    "template": "alfolio",
@@ -1590,6 +1716,12 @@
    "site": "benyco-dev.github.io",
    "template": "academicpages",
    "repo": "benyco-dev/benyco-dev.github.io"
+  },
+  {
+   "feed": "https://ber666.github.io/notes/feed.xml",
+   "site": "ber666.github.io",
+   "template": "alfolio",
+   "repo": "Ber666/notes"
   },
   {
    "feed": "https://www.bgodson.space/academicpages.github.io/feed.xml",
@@ -1616,6 +1748,18 @@
    "repo": "BhasuraSuseen/BhasuraSuseen.github.io"
   },
   {
+   "feed": "https://bhaswara.github.io/feed.xml",
+   "site": "bhaswara.github.io",
+   "template": "alfolio",
+   "repo": "bhaswara/bhaswara.github.io"
+  },
+  {
+   "feed": "https://bhattarai842.github.io/feed.xml",
+   "site": "bhattarai842.github.io",
+   "template": "alfolio",
+   "repo": "bhattarai842/bhattarai842.github.io"
+  },
+  {
    "feed": "https://bhupenderbindal.github.io/feed.xml",
    "site": "bhupenderbindal.github.io",
    "template": "alfolio",
@@ -1626,6 +1770,12 @@
    "site": "bidhanchandra.github.io",
    "template": "academicpages",
    "repo": "BidhanChandra/bidhanchandra.github.io"
+  },
+  {
+   "feed": "https://bigblubruin.github.io/feed.xml",
+   "site": "bigblubruin.github.io",
+   "template": "academicpages",
+   "repo": "BigBluBruin/BigBluBruin.github.io"
   },
   {
    "feed": "https://bilal1718.github.io/feed.xml",
@@ -1716,6 +1866,12 @@
    "site": "blog.cachedstudios.com",
    "template": "alfolio",
    "repo": "romainiac/blog.cachedstudios.github.io"
+  },
+  {
+   "feed": "https://blogofmat.github.io/feed.xml",
+   "site": "blogofmat.github.io",
+   "template": "alfolio",
+   "repo": "blogOfMat/blogOfMat.github.io"
   },
   {
    "feed": "https://blu-bird.github.io/feed.xml",
@@ -1812,6 +1968,12 @@
    "site": "brantjwalker.github.io",
    "template": "academicpages",
    "repo": "brantjwalker/brantjwalker.github.io"
+  },
+  {
+   "feed": "https://briannawimer.github.io/academicpage/feed.xml",
+   "site": "briannawimer.github.io",
+   "template": "academicpages",
+   "repo": "briannawimer/academicpage"
   },
   {
    "feed": "https://brindha-sivakumar.github.io/feed.xml",
@@ -2228,6 +2390,12 @@
    "repo": "ChirayuSalgarkar/ChirayuSalgarkar.github.io"
   },
   {
+   "feed": "https://choipostech.github.io/feed.xml",
+   "site": "choipostech.github.io",
+   "template": "alfolio",
+   "repo": "choipostech/choipostech.github.io"
+  },
+  {
    "feed": "https://chongwangstat.github.io/feed.xml",
    "site": "chongwangstat.github.io",
    "template": "academicpages",
@@ -2268,6 +2436,12 @@
    "site": "chrislevn.github.io",
    "template": "alfolio",
    "repo": "chrislevn/chrislevn.github.io"
+  },
+  {
+   "feed": "http://christophertull.org/feed.xml",
+   "site": "christophertull.org",
+   "template": "academicpages",
+   "repo": "christophertull/christophertull.github.io"
   },
   {
    "feed": "https://chrvt.github.io/feed.xml",
@@ -2358,6 +2532,12 @@
    "site": "cliobserver.github.io",
    "template": "academicpages",
    "repo": "Cliobserver/zhiran-AgEcon.github.io"
+  },
+  {
+   "feed": "https://clydeston.github.io/feed.xml",
+   "site": "clydeston.github.io",
+   "template": "academicpages",
+   "repo": "Clydeston/clydeston.github.io"
   },
   {
    "feed": "https://cn-r-tsai.github.io/feed.xml",
@@ -2486,6 +2666,12 @@
    "repo": "cotrag/cotrag.github.io"
   },
   {
+   "feed": "https://craighawes.me/feed.xml",
+   "site": "craighawes.me",
+   "template": "alfolio",
+   "repo": "seahorseing-around/seahorseing-around.github.io"
+  },
+  {
    "feed": "https://crankler.github.io/feed.xml",
    "site": "crankler.github.io",
    "template": "alfolio",
@@ -2538,6 +2724,12 @@
    "site": "cterry001.github.io",
    "template": "alfolio",
    "repo": "CTerry001/cterry001.github.io"
+  },
+  {
+   "feed": "https://ctt0720.github.io/feed.xml",
+   "site": "ctt0720.github.io",
+   "template": "alfolio",
+   "repo": "ctt0720/ctt0720.github.io"
   },
   {
    "feed": "https://cuberyyc808.github.io/feed.xml",
@@ -2600,6 +2792,12 @@
    "repo": "damian-romero/damian-romero.github.io"
   },
   {
+   "feed": "https://daenuprobst.github.io/feed.xml",
+   "site": "daenuprobst.github.io",
+   "template": "alfolio",
+   "repo": "daenuprobst/daenuprobst.github.io"
+  },
+  {
    "feed": "https://daffan.github.io/feed.xml",
    "site": "daffan.github.io",
    "template": "alfolio",
@@ -2660,6 +2858,12 @@
    "repo": "itsdaniele/itsdaniele.github.io"
   },
   {
+   "feed": "https://danielmimimi.github.io/feed.xml",
+   "site": "danielmimimi.github.io",
+   "template": "alfolio",
+   "repo": "danielmimimi/danielmimimi.github.io"
+  },
+  {
    "feed": "https://danni-beaulieu.github.io/feed.xml",
    "site": "danni-beaulieu.github.io",
    "template": "academicpages",
@@ -2682,6 +2886,12 @@
    "site": "darcykenworthy.com",
    "template": "alfolio",
    "repo": "darcykenworthy/darcykenworthy.github.io"
+  },
+  {
+   "feed": "https://www.dariosanfilippo.com/_2dariosanfilippo.github.io/feed.xml",
+   "site": "dariosanfilippo.com",
+   "template": "alfolio",
+   "repo": "dariosanfilippo/_2dariosanfilippo.github.io"
   },
   {
    "feed": "https://dariotrujanoochoa.github.io/feed.xml",
@@ -2990,6 +3200,12 @@
    "repo": "dkchisho/dkchisho.github.io"
   },
   {
+   "feed": "https://dkdkkim.github.io/feed.xml",
+   "site": "dkdkkim.github.io",
+   "template": "alfolio",
+   "repo": "dkdkkim/dkdkkim.github.io"
+  },
+  {
    "feed": "https://dkzhang.cn/feed.xml",
    "site": "dkzhang.cn",
    "template": "academicpages",
@@ -3104,6 +3320,12 @@
    "repo": "DrDang/DrDang.github.io"
   },
   {
+   "feed": "https://drdoom-evogen.github.io/feed.xml",
+   "site": "drdoom-evogen.github.io",
+   "template": "alfolio",
+   "repo": "DrDoom-EvoGen/drdoom-evogen.github.io"
+  },
+  {
    "feed": "https://drliamoneil.github.io/feed.xml",
    "site": "drliamoneil.github.io",
    "template": "academicpages",
@@ -3126,6 +3348,12 @@
    "site": "drsunsun.github.io",
    "template": "academicpages",
    "repo": "drsunsun/drsunsun.github.io"
+  },
+  {
+   "feed": "https://druvpai.github.io/personal_website_backup/feed.xml",
+   "site": "druvpai.github.io",
+   "template": "alfolio",
+   "repo": "DruvPai/personal_website_backup"
   },
   {
    "feed": "https://dsai-nlp.github.io/feed.xml",
@@ -3218,6 +3446,12 @@
    "repo": "dyahadila/dyahadila.github.io"
   },
   {
+   "feed": "https://dylangeng.github.io/feed.xml",
+   "site": "dylangeng.github.io",
+   "template": "academicpages",
+   "repo": "dylanGeng/dylanGeng.github.io"
+  },
+  {
    "feed": "https://dylanjjleong.github.io/feed.xml",
    "site": "dylanjjleong.github.io",
    "template": "alfolio",
@@ -3308,6 +3542,12 @@
    "repo": "eidophor/eidophor.github.io"
   },
   {
+   "feed": "https://elateifsara.github.io/feed.xml",
+   "site": "elateifsara.github.io",
+   "template": "alfolio",
+   "repo": "elateifsara/elateifsara.github.io"
+  },
+  {
    "feed": "https://electricshadok.github.io/feed.xml",
    "site": "electricshadok.github.io",
    "template": "academicpages",
@@ -3368,6 +3608,12 @@
    "repo": "elsapoupelin/elsapoupelin.github.io"
   },
   {
+   "feed": "https://emanuele-moscato.github.io/feed.xml",
+   "site": "emanuele-moscato.github.io",
+   "template": "alfolio",
+   "repo": "emanuele-moscato/emanuele-moscato.github.io"
+  },
+  {
    "feed": "https://emhastings.github.io/feed.xml",
    "site": "emhastings.github.io",
    "template": "academicpages",
@@ -3384,6 +3630,12 @@
    "site": "emir3d.github.io",
    "template": "academicpages",
    "repo": "Emir3d/muhendislik-cv"
+  },
+  {
+   "feed": "https://emlynlj.co.uk/oldgithubpages/feed.xml",
+   "site": "emlynlj.co.uk",
+   "template": "academicpages",
+   "repo": "emlynlj/oldgithubpages"
   },
   {
    "feed": "https://emorymichaelsis.github.io/feed.xml",
@@ -3540,6 +3792,12 @@
    "site": "euxhenh.github.io",
    "template": "alfolio",
    "repo": "euxhenh/euxhenh-jekyll-site"
+  },
+  {
+   "feed": "https://evanfebrianto.github.io/feed.xml",
+   "site": "evanfebrianto.github.io",
+   "template": "alfolio",
+   "repo": "evanfebrianto/evanfebrianto.github.io"
   },
   {
    "feed": "https://evansdoe.github.io/feed.xml",
@@ -3710,6 +3968,18 @@
    "repo": "filipeom/old-webpage"
   },
   {
+   "feed": "https://firmansyahyunus.github.io/feed.xml",
+   "site": "firmansyahyunus.github.io",
+   "template": "alfolio",
+   "repo": "firmansyahyunus/firmansyahyunus.github.io"
+  },
+  {
+   "feed": "https://flammingraven.github.io/feed.xml",
+   "site": "flammingraven.github.io",
+   "template": "alfolio",
+   "repo": "flammingRaven/flammingRaven.github.io"
+  },
+  {
    "feed": "https://flanagan-lab.github.io/feed.xml",
    "site": "flanagan-lab.github.io",
    "template": "academicpages",
@@ -3776,6 +4046,12 @@
    "repo": "fomenGgl/fomenGgl.github.io"
   },
   {
+   "feed": "https://formetnicolas.github.io/feed.xml",
+   "site": "formetnicolas.github.io",
+   "template": "alfolio",
+   "repo": "formetnicolas/formetnicolas.github.io"
+  },
+  {
    "feed": "https://foselab.github.io/feed.xml",
    "site": "foselab.github.io",
    "template": "alfolio",
@@ -3798,6 +4074,12 @@
    "site": "francescoferrini.github.io",
    "template": "alfolio",
    "repo": "francescoferrini/francescoferrini.github.io"
+  },
+  {
+   "feed": "https://franciscocalatrava.github.io/feed.xml",
+   "site": "franciscocalatrava.github.io",
+   "template": "alfolio",
+   "repo": "FranciscoCalatrava/franciscocalatrava.github.io"
   },
   {
    "feed": "https://frankjing420.github.io/feed.xml",
@@ -3840,6 +4122,12 @@
    "site": "from-sea-to-summit.github.io",
    "template": "alfolio",
    "repo": "from-sea-to-summit/from-sea-to-summit.github.io"
+  },
+  {
+   "feed": "https://frontierkodiak.github.io/clbswrs.co-v1/feed.xml",
+   "site": "frontierkodiak.github.io",
+   "template": "alfolio",
+   "repo": "frontierkodiak/clbswrs.co-v1"
   },
   {
    "feed": "https://frosty-jackal.github.io/feed.xml",
@@ -3998,6 +4286,12 @@
    "repo": "GeWangXJTU/GeWangXJTU.github.io"
   },
   {
+   "feed": "https://gezi81889.github.io/feed.xml",
+   "site": "gezi81889.github.io",
+   "template": "alfolio",
+   "repo": "gezi81889/gezi81889.github.io"
+  },
+  {
    "feed": "https://gggzy1.github.io/feed.xml",
    "site": "gggzy1.github.io",
    "template": "academicpages",
@@ -4044,6 +4338,12 @@
    "site": "gio-choi.github.io",
    "template": "alfolio",
    "repo": "Gio-Choi/gio-choi.github.io"
+  },
+  {
+   "feed": "https://giolucasd.github.io/feed.xml",
+   "site": "giolucasd.github.io",
+   "template": "alfolio",
+   "repo": "giolucasd/giolucasd.github.io"
   },
   {
    "feed": "https://giorgiomondini.github.io/feed.xml",
@@ -4400,6 +4700,12 @@
    "repo": "hangjianli/hangjianli.github.io"
   },
   {
+   "feed": "https://hangliao.github.io/feed.xml",
+   "site": "hangliao.github.io",
+   "template": "alfolio",
+   "repo": "HangLiao/hangliao.github.io"
+  },
+  {
    "feed": "https://hanhanxioyoge.github.io/feed.xml",
    "site": "hanhanxioyoge.github.io",
    "template": "academicpages",
@@ -4466,10 +4772,28 @@
    "repo": "HaoyingZhang/haoyingzhang.github.io"
   },
   {
+   "feed": "https://harangju.github.io/feed.xml",
+   "site": "harangju.github.io",
+   "template": "alfolio",
+   "repo": "harangju/harangju.github.io"
+  },
+  {
    "feed": "https://hardchip22.github.io/feed.xml",
    "site": "hardchip22.github.io",
    "template": "alfolio",
    "repo": "HardChip22/hardchip22.github.io"
+  },
+  {
+   "feed": "https://hare1039.github.io/feed.xml",
+   "site": "hare1039.github.io",
+   "template": "alfolio",
+   "repo": "hare1039/hare1039.github.io"
+  },
+  {
+   "feed": "https://www.harichoudhury.com/feed.xml",
+   "site": "harichoudhury.com",
+   "template": "alfolio",
+   "repo": "choudhuryh/choudhuryh.github.io"
   },
   {
    "feed": "https://haripriyaaharikumar.github.io/feed.xml",
@@ -4494,6 +4818,18 @@
    "site": "harshbhosale01.github.io",
    "template": "alfolio",
    "repo": "harshbhosale01/harshbhosale01.github.io"
+  },
+  {
+   "feed": "https://harshilnaikk.github.io/blog_final/feed.xml",
+   "site": "harshilnaikk.github.io",
+   "template": "alfolio",
+   "repo": "HarshilNaikk/blog_final"
+  },
+  {
+   "feed": "https://harshnisar.github.io/feed.xml",
+   "site": "harshnisar.github.io",
+   "template": "alfolio",
+   "repo": "harshnisar/harshnisar.github.io"
   },
   {
    "feed": "https://hasanulkabir-md.github.io/feed.xml",
@@ -4598,6 +4934,12 @@
    "repo": "hcorinna/hcorinna.github.io"
   },
   {
+   "feed": "https://hding9.github.io/feed.xml",
+   "site": "hding9.github.io",
+   "template": "alfolio",
+   "repo": "hding9/hding9.github.io"
+  },
+  {
    "feed": "https://hdocmsu.github.io/feed.xml",
    "site": "hdocmsu.github.io",
    "template": "alfolio",
@@ -4632,6 +4974,12 @@
    "site": "heifolier.github.io",
    "template": "academicpages",
    "repo": "Heifolier/Heifolier.github.io"
+  },
+  {
+   "feed": "https://heiwaitang.github.io/feed.xml",
+   "site": "heiwaitang.github.io",
+   "template": "alfolio",
+   "repo": "heiwaitang/heiwaitang.github.io"
   },
   {
    "feed": "https://henryhan05.github.io/feed.xml",
@@ -4766,6 +5114,12 @@
    "repo": "hrliangmath/hrliangmath.github.io"
   },
   {
+   "feed": "https://hshiferaw.github.io/focus85.github.io/feed.xml",
+   "site": "hshiferaw.github.io",
+   "template": "alfolio",
+   "repo": "hshiferaw/focus85.github.io"
+  },
+  {
    "feed": "http://www.hshrestha.com/feed.xml",
    "site": "hshrestha.com",
    "template": "alfolio",
@@ -4794,6 +5148,12 @@
    "site": "htyu6.github.io",
    "template": "academicpages",
    "repo": "htyu6/htyu6.github.io"
+  },
+  {
+   "feed": "https://hua910.github.io/feed.xml",
+   "site": "hua910.github.io",
+   "template": "alfolio",
+   "repo": "hua910/hua910.github.io"
   },
   {
    "feed": "https://huan-cao.github.io/hc.github.io/feed.xml",
@@ -4826,6 +5186,12 @@
    "repo": "huifeng0527/huifeng0527.github.io"
   },
   {
+   "feed": "https://huil1.github.io/feed.xml",
+   "site": "huil1.github.io",
+   "template": "alfolio",
+   "repo": "HUIl1/huil1.github.io"
+  },
+  {
    "feed": "https://huilin0220.github.io/feed.xml",
    "site": "huilin0220.github.io",
    "template": "alfolio",
@@ -4842,6 +5208,12 @@
    "site": "hujincn.github.io",
    "template": "alfolio",
    "repo": "hujinCN/hujinCN.github.io"
+  },
+  {
+   "feed": "https://humanlee1011.github.io/feed.xml",
+   "site": "humanlee1011.github.io",
+   "template": "alfolio",
+   "repo": "humanlee1011/humanlee1011.github.io"
   },
   {
    "feed": "https://hundrieser.github.io/feed.xml",
@@ -4946,6 +5318,12 @@
    "repo": "hyunsukim-politics/hyunsukim-politics.github.io"
   },
   {
+   "feed": "https://iamu99.github.io/feed.xml",
+   "site": "iamu99.github.io",
+   "template": "alfolio",
+   "repo": "iamu99/iamu99.github.io"
+  },
+  {
    "feed": "https://ianaraujoeng.github.io/feed.xml",
    "site": "ianaraujoeng.github.io",
    "template": "academicpages",
@@ -4988,6 +5366,12 @@
    "repo": "igorsokolovic/igorsokolovic.github.io"
   },
   {
+   "feed": "https://ihojun887.github.io/feed.xml",
+   "site": "ihojun887.github.io",
+   "template": "alfolio",
+   "repo": "ihojun887/ihojun887.github.io"
+  },
+  {
    "feed": "https://ikercb2000.github.io/feed.xml",
    "site": "ikercb2000.github.io",
    "template": "academicpages",
@@ -5024,6 +5408,12 @@
    "repo": "imransolanki/imransolanki.github.io"
   },
   {
+   "feed": "https://imyanyang.github.io/imyanyang.github.io-ing/feed.xml",
+   "site": "imyanyang.github.io",
+   "template": "alfolio",
+   "repo": "imyanyang/imyanyang.github.io-ing"
+  },
+  {
    "feed": "https://inamullah-colab.github.io/feed.xml",
    "site": "inamullah-colab.github.io",
    "template": "academicpages",
@@ -5054,6 +5444,12 @@
    "repo": "indraneelpatil/indraneelpatil.github.io"
   },
   {
+   "feed": "https://infiniteverma.github.io/infiniteverma.github.old/feed.xml",
+   "site": "infiniteverma.github.io",
+   "template": "alfolio",
+   "repo": "InfiniteVerma/infiniteverma.github.old"
+  },
+  {
    "feed": "https://inkiankyeong.github.io/feed.xml",
    "site": "inkiankyeong.github.io",
    "template": "alfolio",
@@ -5076,6 +5472,12 @@
    "site": "insistimoslab.github.io",
    "template": "academicpages",
    "repo": "insistimoslab/blog"
+  },
+  {
+   "feed": "https://inyongshin.github.io/feed.xml",
+   "site": "inyongshin.github.io",
+   "template": "alfolio",
+   "repo": "InYongShin/inyongshin.github.io"
   },
   {
    "feed": "https://ipsitmantri.github.io/feed.xml",
@@ -5390,6 +5792,12 @@
    "repo": "JasperVisterin/JasperVisterin.github.io"
   },
   {
+   "feed": "https://jatk.github.io/feed.xml",
+   "site": "jatk.github.io",
+   "template": "alfolio",
+   "repo": "jatk/jatk.github.io"
+  },
+  {
    "feed": "https://jaydenzawang.github.io/feed.xml",
    "site": "jaydenzawang.github.io",
    "template": "academicpages",
@@ -5468,6 +5876,12 @@
    "repo": "jcsandov/jcsandov.github.io"
   },
   {
+   "feed": "https://jduarte00.github.io/feed.xml",
+   "site": "jduarte00.github.io",
+   "template": "alfolio",
+   "repo": "jduarte00/jduarte00.github.io"
+  },
+  {
    "feed": "https://jeannesorin.github.io/feed.xml",
    "site": "jeannesorin.github.io",
    "template": "alfolio",
@@ -5502,6 +5916,12 @@
    "site": "jegaete.github.io",
    "template": "academicpages",
    "repo": "jegaete/jegaete.github.io"
+  },
+  {
+   "feed": "https://jenniferisasi.github.io/outdated_jenniferisasi.github.io/feed.xml",
+   "site": "jenniferisasi.github.io",
+   "template": "alfolio",
+   "repo": "jenniferisasi/outdated_jenniferisasi.github.io"
   },
   {
    "feed": "https://jennychang32.github.io/feed.xml",
@@ -5678,6 +6098,12 @@
    "repo": "Jiaqishi777/Jiaqishi777.github.io"
   },
   {
+   "feed": "https://jiaweizzhao.github.io/feed.xml",
+   "site": "jiaweizzhao.github.io",
+   "template": "alfolio",
+   "repo": "jiaweizzhao/jiaweizzhao.github.io"
+  },
+  {
    "feed": "https://jiaxuanchang.github.io/feed.xml",
    "site": "jiaxuanchang.github.io",
    "template": "alfolio",
@@ -5786,6 +6212,12 @@
    "repo": "jjginga/jjginga.github.io"
   },
   {
+   "feed": "https://jkboualavong.github.io/feed.xml",
+   "site": "jkboualavong.github.io",
+   "template": "academicpages",
+   "repo": "jkboualavong/jkboualavong.github.io"
+  },
+  {
    "feed": "https://jkkim-irim.github.io/feed.xml",
    "site": "jkkim-irim.github.io",
    "template": "alfolio",
@@ -5808,6 +6240,12 @@
    "site": "jkschin.com",
    "template": "alfolio",
    "repo": "jkschin/jkschin.github.io"
+  },
+  {
+   "feed": "https://jlehrer1.github.io/feed.xml",
+   "site": "jlehrer1.github.io",
+   "template": "alfolio",
+   "repo": "jlehrer1/jlehrer1.github.io"
   },
   {
    "feed": "https://jlgleason.github.io/feed.xml",
@@ -5864,6 +6302,12 @@
    "repo": "joaquinauzenne/joaquinauzenne.github.io"
   },
   {
+   "feed": "https://jobobdev.github.io/feed.xml",
+   "site": "jobobdev.github.io",
+   "template": "alfolio",
+   "repo": "jobobdev/jobobdev.github.io"
+  },
+  {
    "feed": "https://joebakcoleman.com/old_website/feed.xml",
    "site": "joebakcoleman.com",
    "template": "alfolio",
@@ -5880,6 +6324,12 @@
    "site": "joerg-weber.github.io",
    "template": "alfolio",
    "repo": "joerg-weber/joerg-weber.github.io"
+  },
+  {
+   "feed": "https://joewrose.github.io/feed.xml",
+   "site": "joewrose.github.io",
+   "template": "alfolio",
+   "repo": "joewrose/joewrose.github.io"
   },
   {
    "feed": "https://joeycheng.me/feed.xml",
@@ -5978,6 +6428,12 @@
    "repo": "jordan-mccarney/jordan-mccarney.github.io"
   },
   {
+   "feed": "https://jordan-pierre.github.io/feed.xml",
+   "site": "jordan-pierre.github.io",
+   "template": "academicpages",
+   "repo": "jordan-pierre/jordan-pierre.github.io"
+  },
+  {
    "feed": "https://jorgeapenas.github.io/feed.xml",
    "site": "jorgeapenas.github.io",
    "template": "alfolio",
@@ -6030,6 +6486,12 @@
    "site": "josephzhu.com",
    "template": "alfolio",
    "repo": "JunzheJosephZhu/junzhejosephzhu.github.io"
+  },
+  {
+   "feed": "https://joseuscamayta.github.io/feed.xml",
+   "site": "joseuscamayta.github.io",
+   "template": "academicpages",
+   "repo": "joseuscamayta/joseuscamayta.github.io"
   },
   {
    "feed": "https://joshnguyen.net/feed.xml",
@@ -6332,6 +6794,12 @@
    "repo": "jz-fun/jz-fun.github.io"
   },
   {
+   "feed": "https://jzchan132.github.io/feed.xml",
+   "site": "jzchan132.github.io",
+   "template": "alfolio",
+   "repo": "jzchan132/jzchan132.github.io"
+  },
+  {
    "feed": "https://k-kieslich.github.io/home/feed.xml",
    "site": "k-kieslich.github.io",
    "template": "academicpages",
@@ -6506,6 +6974,12 @@
    "repo": "kdmalc/kdmalc.github.io"
   },
   {
+   "feed": "https://keguanguan.github.io/feed.xml",
+   "site": "keguanguan.github.io",
+   "template": "alfolio",
+   "repo": "keguanguan/keguanguan.github.io"
+  },
+  {
    "feed": "https://keisuke-sakaguchi.github.io/feed.xml",
    "site": "keisuke-sakaguchi.github.io",
    "template": "alfolio",
@@ -6516,6 +6990,12 @@
    "site": "kelichloe.github.io",
    "template": "alfolio",
    "repo": "KeLiChloe/KeLiChloe.github.io"
+  },
+  {
+   "feed": "http://www.kellieottoboni.com/feed.xml",
+   "site": "kellieottoboni.com",
+   "template": "academicpages",
+   "repo": "kellieotto/kellieotto.github.io"
   },
   {
    "feed": "https://kelsdoerksen.github.io/feed.xml",
@@ -6662,10 +7142,22 @@
    "repo": "kinianlo/old_kinianlo.github.io"
   },
   {
+   "feed": "https://kiriakidou.github.io/feed.xml",
+   "site": "kiriakidou.github.io",
+   "template": "alfolio",
+   "repo": "kiriakidou/kiriakidou.github.io"
+  },
+  {
    "feed": "https://kiwonju.github.io/feed.xml",
    "site": "kiwonju.github.io",
    "template": "academicpages",
    "repo": "KiwonJu/KiwonJu.github.io"
+  },
+  {
+   "feed": "https://kjabon.github.io/feed.xml",
+   "site": "kjabon.github.io",
+   "template": "alfolio",
+   "repo": "kjabon/kjabon.github.io"
   },
   {
    "feed": "https://kkdxtd.github.io/feed.xml",
@@ -6686,10 +7178,22 @@
    "repo": "klasmodin/klasmodin.github.io"
   },
   {
+   "feed": "https://klory.github.io/feed.xml",
+   "site": "klory.github.io",
+   "template": "alfolio",
+   "repo": "klory/klory.github.io"
+  },
+  {
    "feed": "https://ko-junsung.github.io/feed.xml",
    "site": "ko-junsung.github.io",
    "template": "academicpages",
    "repo": "KO-JUNSUNG/KO-JUNSUNG.github.io"
+  },
+  {
+   "feed": "https://koileee.github.io/feed.xml",
+   "site": "koileee.github.io",
+   "template": "alfolio",
+   "repo": "koileee/koileee.github.io"
   },
   {
    "feed": "https://kolbk.github.io/feed.xml",
@@ -6720,6 +7224,12 @@
    "site": "koyayoshizawa.github.io",
    "template": "academicpages",
    "repo": "koyayoshizawa/koyayoshizawa.github.io"
+  },
+  {
+   "feed": "https://kpahwa16.github.io/feed.xml",
+   "site": "kpahwa16.github.io",
+   "template": "alfolio",
+   "repo": "kpahwa16/kpahwa16.github.io"
   },
   {
    "feed": "https://kpsarakis.com/feed.xml",
@@ -6770,6 +7280,12 @@
    "repo": "ksheersagaragrawal/ksheersagaragrawal.github.io"
   },
   {
+   "feed": "https://kshitij9192.github.io/feed.xml",
+   "site": "kshitij9192.github.io",
+   "template": "alfolio",
+   "repo": "kshitij9192/kshitij9192.github.io"
+  },
+  {
    "feed": "https://kshitijbithel.github.io/feed.xml",
    "site": "kshitijbithel.github.io",
    "template": "alfolio",
@@ -6804,6 +7320,12 @@
    "site": "kunying-lee.github.io",
    "template": "alfolio",
    "repo": "KunYing-Lee/KunYing-Lee.github.io"
+  },
+  {
+   "feed": "https://kurtwzhao.github.io/feed.xml",
+   "site": "kurtwzhao.github.io",
+   "template": "alfolio",
+   "repo": "kurtwzhao/kurtwzhao.github.io"
   },
   {
    "feed": "https://kushasareen.github.io/feed.xml",
@@ -6846,6 +7368,12 @@
    "site": "kyungyunlee.github.io",
    "template": "alfolio",
    "repo": "kyungyunlee/kyungyunlee.github.io"
+  },
+  {
+   "feed": "https://l-cui.github.io/feed.xml",
+   "site": "l-cui.github.io",
+   "template": "alfolio",
+   "repo": "L-Cui/L-Cui.github.io"
   },
   {
    "feed": "https://labrinidis.com/feed.xml",
@@ -7040,6 +7568,12 @@
    "repo": "leiqianstat/leiqianstat.github.io"
   },
   {
+   "feed": "https://lekhanhh.github.io/feed.xml",
+   "site": "lekhanhh.github.io",
+   "template": "alfolio",
+   "repo": "lekhanhh/lekhanhh.github.io"
+  },
+  {
    "feed": "https://lenarddome.com/feed.xml",
    "site": "lenarddome.com",
    "template": "alfolio",
@@ -7136,6 +7670,12 @@
    "repo": "liaoning97/liaoning97.github.io"
   },
   {
+   "feed": "https://libinliang866.github.io/feed.xml",
+   "site": "libinliang866.github.io",
+   "template": "alfolio",
+   "repo": "libinliang866/libinliang866.github.io"
+  },
+  {
    "feed": "https://lifeofarindam.github.io/feed.xml",
    "site": "lifeofarindam.github.io",
    "template": "academicpages",
@@ -7176,6 +7716,12 @@
    "site": "linfeng-tang.github.io",
    "template": "alfolio",
    "repo": "Linfeng-Tang/Linfeng-Tang.github.io"
+  },
+  {
+   "feed": "https://lingboshen.github.io/feed.xml",
+   "site": "lingboshen.github.io",
+   "template": "alfolio",
+   "repo": "lingboshen/lingboshen.github.io"
   },
   {
    "feed": "https://lingxiao-li.github.io/feed.xml",
@@ -7502,6 +8048,12 @@
    "repo": "Luyao787/luyao787.github.io"
   },
   {
+   "feed": "https://luyj2018.github.io/feed.xml",
+   "site": "luyj2018.github.io",
+   "template": "academicpages",
+   "repo": "luyj2018/luyj2018.github.io"
+  },
+  {
    "feed": "https://lwmath.github.io/feed.xml",
    "site": "lwmath.github.io",
    "template": "academicpages",
@@ -7524,6 +8076,12 @@
    "site": "lyliyangyang.github.io",
    "template": "alfolio",
    "repo": "lyliyangyang/lyliyangyang.github.io"
+  },
+  {
+   "feed": "https://lyubomirshoylev.github.io/feed.xml",
+   "site": "lyubomirshoylev.github.io",
+   "template": "alfolio",
+   "repo": "lyubomirShoylev/lyubomirShoylev.github.io"
   },
   {
    "feed": "https://lyy-river.github.io/feed.xml",
@@ -7670,6 +8228,12 @@
    "repo": "manfreddiaz/manfreddiaz.github.io"
   },
   {
+   "feed": "https://manqiul.github.io/feed.xml",
+   "site": "manqiul.github.io",
+   "template": "alfolio",
+   "repo": "manqiul/manqiul.github.io"
+  },
+  {
    "feed": "https://mansisak.com/feed.xml",
    "site": "mansisak.com",
    "template": "alfolio",
@@ -7710,6 +8274,12 @@
    "site": "marcomax96.github.io",
    "template": "academicpages",
    "repo": "MarcoMax96/MarcoMax96.github.io"
+  },
+  {
+   "feed": "https://marcotoscano-job.github.io/feed.xml",
+   "site": "marcotoscano-job.github.io",
+   "template": "academicpages",
+   "repo": "marcotoscano-job/marcotoscano-job.github.io"
   },
   {
    "feed": "https://maria-kostopoulou.github.io/feed.xml",
@@ -7808,6 +8378,12 @@
    "repo": "MarkusStrucks/markusstrucks.github.io"
   },
   {
+   "feed": "https://marlonbraga.dev/feed.xml",
+   "site": "marlonbraga.dev",
+   "template": "alfolio",
+   "repo": "marlonbraga/marlonbraga.github.io"
+  },
+  {
    "feed": "https://marshalarijona.github.io/feed.xml",
    "site": "marshalarijona.github.io",
    "template": "alfolio",
@@ -7818,6 +8394,18 @@
    "site": "martinmunguia.com",
    "template": "alfolio",
    "repo": "nearground/nearground.github.io"
+  },
+  {
+   "feed": "https://maryambiibii.github.io/mywebsite/feed.xml",
+   "site": "maryambiibii.github.io",
+   "template": "alfolio",
+   "repo": "maryambiibii/mywebsite"
+  },
+  {
+   "feed": "https://maryamhonari.github.io/feed.xml",
+   "site": "maryamhonari.github.io",
+   "template": "alfolio",
+   "repo": "maryamhonari/maryamhonari.github.io"
   },
   {
    "feed": "https://marymoto.github.io/feed.xml",
@@ -7832,10 +8420,22 @@
    "repo": "Mas-Ghifari/mas-ghifari.github.io"
   },
   {
+   "feed": "https://masarunakajima.github.io/feed.xml",
+   "site": "masarunakajima.github.io",
+   "template": "alfolio",
+   "repo": "masarunakajima/masarunakajima.github.io"
+  },
+  {
    "feed": "https://masashihino.github.io/feed.xml",
    "site": "masashihino.github.io",
    "template": "academicpages",
    "repo": "MasashiHino/masashihino.github.io"
+  },
+  {
+   "feed": "https://masonchan314159.github.io/feed.xml",
+   "site": "masonchan314159.github.io",
+   "template": "alfolio",
+   "repo": "MasonChan314159/masonchan314159.github.io"
   },
   {
    "feed": "https://www.matheusalbino.com/feed.xml",
@@ -7854,6 +8454,12 @@
    "site": "mathias.toothgap.at",
    "template": "alfolio",
    "repo": "MathiasBaumgartinger/MathiasBaumgartinger.github.io"
+  },
+  {
+   "feed": "https://mathklim.github.io/feed.xml",
+   "site": "mathklim.github.io",
+   "template": "alfolio",
+   "repo": "MathKlim/MathKlim.github.io"
   },
   {
    "feed": "https://mathsch1997.github.io/feed.xml",
@@ -7890,6 +8496,12 @@
    "site": "matthias-flueckiger.github.io",
    "template": "alfolio",
    "repo": "Matthias-Flueckiger/Matthias-Flueckiger.github.io"
+  },
+  {
+   "feed": "http://mattmcdermott.me/feed.xml",
+   "site": "mattmcdermott.me",
+   "template": "alfolio",
+   "repo": "mattmcdermott/mattmcdermott.github.io"
   },
   {
    "feed": "https://matyas-molnar.github.io/feed.xml",
@@ -8054,6 +8666,12 @@
    "repo": "melissashi2002/melissashi2002.github.io"
   },
   {
+   "feed": "https://melodyincopenhagen.github.io/feed.xml",
+   "site": "melodyincopenhagen.github.io",
+   "template": "alfolio",
+   "repo": "melodyincopenhagen/melodyincopenhagen.github.io"
+  },
+  {
    "feed": "https://memduhardic.github.io/feed.xml",
    "site": "memduhardic.github.io",
    "template": "academicpages",
@@ -8096,6 +8714,12 @@
    "repo": "Mezosky/mezosky.github.io"
   },
   {
+   "feed": "https://mgr-cse.github.io/feed.xml",
+   "site": "mgr-cse.github.io",
+   "template": "alfolio",
+   "repo": "mgr-cse/mgr-cse.github.io"
+  },
+  {
    "feed": "https://mhidalgoaraya.github.io/feed.xml",
    "site": "mhidalgoaraya.github.io",
    "template": "alfolio",
@@ -8136,6 +8760,12 @@
    "site": "mianzhi8588.github.io",
    "template": "academicpages",
    "repo": "mianzhi8588/mianzhi8588.github.io"
+  },
+  {
+   "feed": "https://miccol.github.io/feed.xml",
+   "site": "miccol.github.io",
+   "template": "academicpages",
+   "repo": "miccol/miccol.github.io"
   },
   {
    "feed": "https://michael-nath.github.io/feed.xml",
@@ -8186,6 +8816,12 @@
    "repo": "michellejtao/michellejtao.github.io"
   },
   {
+   "feed": "https://micnied.github.io/feed.xml",
+   "site": "micnied.github.io",
+   "template": "academicpages",
+   "repo": "micnied/micnied.github.io"
+  },
+  {
    "feed": "https://midasdming.github.io/feed.xml",
    "site": "midasdming.github.io",
    "template": "alfolio",
@@ -8208,6 +8844,12 @@
    "site": "miguelcorralesg.github.io",
    "template": "alfolio",
    "repo": "miguelcorralesg/miguelcorralesg.github.io"
+  },
+  {
+   "feed": "https://migueltaibo.github.io/feed.xml",
+   "site": "migueltaibo.github.io",
+   "template": "alfolio",
+   "repo": "MiguelTaibo/MiguelTaibo.github.io"
   },
   {
    "feed": "https://mikayeghi.github.io/feed.xml",
@@ -8306,6 +8948,12 @@
    "repo": "minhaocui/minhaocui.github.io"
   },
   {
+   "feed": "https://minseeo.github.io/minseo.github.io/feed.xml",
+   "site": "minseeo.github.io",
+   "template": "alfolio",
+   "repo": "Minseeo/minseo.github.io"
+  },
+  {
    "feed": "https://minsikcho.com/feed.xml",
    "site": "minsikcho.com",
    "template": "alfolio",
@@ -8366,6 +9014,12 @@
    "repo": "mkoyuncu-boun/mkoyuncu-boun.github.io"
   },
   {
+   "feed": "https://mleonardblair.github.io/mkbcodes.github.io/feed.xml",
+   "site": "mleonardblair.github.io",
+   "template": "alfolio",
+   "repo": "mleonardblair/mkbcodes.github.io"
+  },
+  {
    "feed": "https://mlgardens.github.io/feed.xml",
    "site": "mlgardens.github.io",
    "template": "alfolio",
@@ -8408,6 +9062,12 @@
    "repo": "mogeraditya/mogeraditya.github.io"
   },
   {
+   "feed": "https://mohamedragabanas.github.io/feed.xml",
+   "site": "mohamedragabanas.github.io",
+   "template": "academicpages",
+   "repo": "MohamedRagabAnas/MohamedRagabAnas.github.io"
+  },
+  {
    "feed": "https://moinulshdu.github.io/feed.xml",
    "site": "moinulshdu.github.io",
    "template": "academicpages",
@@ -8448,6 +9108,12 @@
    "site": "monirul305.github.io",
    "template": "alfolio",
    "repo": "Monirul305/Monirul305.github.io"
+  },
+  {
+   "feed": "https://moon1x21.github.io/feed.xml",
+   "site": "moon1x21.github.io",
+   "template": "alfolio",
+   "repo": "Moon1x21/moon1x21.github.io"
   },
   {
    "feed": "https://moritzscherrmann.com/feed.xml",
@@ -8540,6 +9206,12 @@
    "repo": "mtcq/mtcq.github.io"
   },
   {
+   "feed": "https://mu-cai.github.io/mu-cai-v1.github.io/feed.xml",
+   "site": "mu-cai.github.io",
+   "template": "alfolio",
+   "repo": "mu-cai/mu-cai-v1.github.io"
+  },
+  {
    "feed": "https://muhammadsalek.github.io/feed.xml",
    "site": "muhammadsalek.github.io",
    "template": "academicpages",
@@ -8556,6 +9228,12 @@
    "site": "mukulkhanna.github.io",
    "template": "alfolio",
    "repo": "mukulkhanna/mukulkhanna.github.io"
+  },
+  {
+   "feed": "https://murali1996.github.io/feed.xml",
+   "site": "murali1996.github.io",
+   "template": "alfolio",
+   "repo": "murali1996/murali1996.github.io"
   },
   {
    "feed": "https://murilotsilva.github.io/feed.xml",
@@ -8648,6 +9326,12 @@
    "repo": "n1hark/n1hark.github.io"
   },
   {
+   "feed": "https://n1r.github.io/feed.xml",
+   "site": "n1r.github.io",
+   "template": "alfolio",
+   "repo": "N1r/N1r.github.io"
+  },
+  {
    "feed": "https://n473cl0.github.io/feed.xml",
    "site": "n473cl0.github.io",
    "template": "academicpages",
@@ -8678,6 +9362,12 @@
    "repo": "naesseth/naesseth.github.io"
   },
   {
+   "feed": "https://naeunoh.github.io/feed.xml",
+   "site": "naeunoh.github.io",
+   "template": "alfolio",
+   "repo": "naeunoh/naeunoh.github.io"
+  },
+  {
    "feed": "https://nahiansalsabil.github.io/feed.xml",
    "site": "nahiansalsabil.github.io",
    "template": "academicpages",
@@ -8688,6 +9378,12 @@
    "site": "nainanijatinz.github.io",
    "template": "alfolio",
    "repo": "NainaniJatinZ/nainanijatinz.github.io"
+  },
+  {
+   "feed": "https://nanastassacos.github.io/feed.xml",
+   "site": "nanastassacos.github.io",
+   "template": "academicpages",
+   "repo": "nanastassacos/nanastassacos.github.io"
   },
   {
    "feed": "https://naponjatusripitak.github.io/naponjatusripitak.github.io-blog2/feed.xml",
@@ -8708,10 +9404,22 @@
    "repo": "NathanLabiosa/NathanLabiosa.github.io"
   },
   {
+   "feed": "https://nathesec.com/feed.xml",
+   "site": "nathesec.com",
+   "template": "alfolio",
+   "repo": "nathe97/nathe97.github.io"
+  },
+  {
    "feed": "https://natural-programming-lab.github.io/feed.xml",
    "site": "natural-programming-lab.github.io",
    "template": "academicpages",
    "repo": "natural-programming-lab/natural-programming-lab.github.io"
+  },
+  {
+   "feed": "https://naturegeorge.github.io/feed.xml",
+   "site": "naturegeorge.github.io",
+   "template": "alfolio",
+   "repo": "NatureGeorge/naturegeorge.github.io"
   },
   {
    "feed": "https://navyabattula.github.io/feed.xml",
@@ -8720,10 +9428,22 @@
    "repo": "navyabattula/navyabattula.github.io"
   },
   {
+   "feed": "https://nayanvats.github.io/feed.xml",
+   "site": "nayanvats.github.io",
+   "template": "alfolio",
+   "repo": "Nayanvats/nayanvats.github.io"
+  },
+  {
    "feed": "https://nbucella.github.io/feed.xml",
    "site": "nbucella.github.io",
    "template": "academicpages",
    "repo": "nbucella/nbucella.github.io"
+  },
+  {
+   "feed": "https://ncoop57.github.io/al-folio/feed.xml",
+   "site": "ncoop57.github.io",
+   "template": "alfolio",
+   "repo": "ncoop57/al-folio"
   },
   {
    "feed": "https://neakail.github.io/feed.xml",
@@ -8766,6 +9486,12 @@
    "site": "neschenbaum.github.io",
    "template": "alfolio",
    "repo": "neschenbaum/neschenbaum.github.io"
+  },
+  {
+   "feed": "https://nessmayker.github.io/feed.xml",
+   "site": "nessmayker.github.io",
+   "template": "alfolio",
+   "repo": "NessMayker/NessMayker.github.io"
   },
   {
    "feed": "https://netanel-tamir.github.io/feed.xml",
@@ -8984,16 +9710,34 @@
    "repo": "noyelsebastian/noyelsebastian.github.io"
   },
   {
+   "feed": "https://nrsegovia.github.io/nrsegovia.github.io_old/feed.xml",
+   "site": "nrsegovia.github.io",
+   "template": "alfolio",
+   "repo": "nrsegovia/nrsegovia.github.io_old"
+  },
+  {
    "feed": "https://nsambuco.github.io/feed.xml",
    "site": "nsambuco.github.io",
    "template": "academicpages",
    "repo": "nsambuco/nsambuco.github.io"
   },
   {
+   "feed": "https://ntgllr.github.io/blog_academics/feed.xml",
+   "site": "ntgllr.github.io",
+   "template": "alfolio",
+   "repo": "Ntgllr/blog_academics"
+  },
+  {
    "feed": "https://ntufusion.github.io/feed.xml",
    "site": "ntufusion.github.io",
    "template": "alfolio",
    "repo": "ntufusion/ntufusion.github.io"
+  },
+  {
+   "feed": "https://nunenuh.me/feed.xml",
+   "site": "nunenuh.me",
+   "template": "alfolio",
+   "repo": "nunenuh/nunenuh.github.io"
   },
   {
    "feed": "https://nunobrazz.github.io/feed.xml",
@@ -9032,10 +9776,22 @@
    "repo": "obi-wan-shinobi/obi-wan-shinobi.github.io"
   },
   {
+   "feed": "https://obriena.github.io/feed.xml",
+   "site": "obriena.github.io",
+   "template": "alfolio",
+   "repo": "obriena/obriena.github.io"
+  },
+  {
    "feed": "https://observingclouds.github.io/feed.xml",
    "site": "observingclouds.github.io",
    "template": "academicpages",
    "repo": "observingClouds/observingClouds.github.io"
+  },
+  {
+   "feed": "https://ocadni.github.io/feed.xml",
+   "site": "ocadni.github.io",
+   "template": "alfolio",
+   "repo": "ocadni/ocadni.github.io"
   },
   {
    "feed": "https://ocmykr2.github.io/feed.xml",
@@ -9120,6 +9876,12 @@
    "site": "onechaeva.com",
    "template": "alfolio",
    "repo": "olyanechaeva/olyanechaeva.github.io"
+  },
+  {
+   "feed": "https://onvungocminh.github.io/feed.xml",
+   "site": "onvungocminh.github.io",
+   "template": "alfolio",
+   "repo": "onvungocminh/onvungocminh.github.io"
   },
   {
    "feed": "https://osmangult.github.io/feed.xml",
@@ -9488,6 +10250,12 @@
    "repo": "pku-wuwei/pku-wuwei.github.io"
   },
   {
+   "feed": "https://pkudair.github.io/feed.xml",
+   "site": "pkudair.github.io",
+   "template": "alfolio",
+   "repo": "PKUdair/PKUdair.github.io"
+  },
+  {
    "feed": "https://pnu-opt-lab.github.io/feed.xml",
    "site": "pnu-opt-lab.github.io",
    "template": "academicpages",
@@ -9536,6 +10304,12 @@
    "repo": "ppalkar/ppalkar.github.io"
   },
   {
+   "feed": "https://prabod.github.io/feed.xml",
+   "site": "prabod.github.io",
+   "template": "alfolio",
+   "repo": "prabod/prabod.github.io"
+  },
+  {
    "feed": "https://pradnyansuryawanshi.github.io/feed.xml",
    "site": "pradnyansuryawanshi.github.io",
    "template": "academicpages",
@@ -9554,10 +10328,22 @@
    "repo": "pranav997/pranav997.github.io"
   },
   {
+   "feed": "https://pranshubheda.github.io/feed.xml",
+   "site": "pranshubheda.github.io",
+   "template": "alfolio",
+   "repo": "pranshubheda/pranshubheda.github.io"
+  },
+  {
    "feed": "https://prateekadurty.github.io/feed.xml",
    "site": "prateekadurty.github.io",
    "template": "alfolio",
    "repo": "PrateekAdurty/prateekadurty.github.io"
+  },
+  {
+   "feed": "https://pratikgujjar.github.io/feed.xml",
+   "site": "pratikgujjar.github.io",
+   "template": "alfolio",
+   "repo": "pratikgujjar/pratikgujjar.github.io"
   },
   {
    "feed": "https://pratiksomaiya.in/feed.xml",
@@ -9638,6 +10424,12 @@
    "repo": "PuXia-tox/puxia-tox.github.io"
   },
   {
+   "feed": "https://pwren.me/feed.xml",
+   "site": "pwren.me",
+   "template": "alfolio",
+   "repo": "rpw199912j/rpw199912j.github.io"
+  },
+  {
    "feed": "https://qiangxu1996.github.io/feed.xml",
    "site": "qiangxu1996.github.io",
    "template": "alfolio",
@@ -9684,6 +10476,12 @@
    "site": "qinyu631-boop.github.io",
    "template": "academicpages",
    "repo": "qinyu631-boop/qinyu631-boop.github.io"
+  },
+  {
+   "feed": "https://qiukuz.github.io/feed.xml",
+   "site": "qiukuz.github.io",
+   "template": "alfolio",
+   "repo": "QiukuZ/qiukuz.github.io"
   },
   {
    "feed": "https://qiushi-zhang.github.io/qiushizhang.github.io/feed.xml",
@@ -9866,6 +10664,12 @@
    "repo": "Ralyhu/ralyhu.github.io"
   },
   {
+   "feed": "https://rameshkrsah.github.io/feed.xml",
+   "site": "rameshkrsah.github.io",
+   "template": "alfolio",
+   "repo": "rameshKrSah/rameshKrSah.github.io"
+  },
+  {
    "feed": "https://ranutdog.github.io/academicpages.github.io/feed.xml",
    "site": "ranutdog.github.io",
    "template": "academicpages",
@@ -10034,6 +10838,12 @@
    "repo": "rickwillemsen/rickwillemsen.github.io"
   },
   {
+   "feed": "https://rickylsr.github.io/blogforked/feed.xml",
+   "site": "rickylsr.github.io",
+   "template": "academicpages",
+   "repo": "rickylsr/blogforked"
+  },
+  {
    "feed": "https://ridongen031110.github.io/ridongen.github.io/feed.xml",
    "site": "ridongen031110.github.io",
    "template": "academicpages",
@@ -10080,6 +10890,12 @@
    "site": "ritaahmadi.github.io",
    "template": "alfolio",
    "repo": "RitaAhmadi/oldwebsite"
+  },
+  {
+   "feed": "https://rkdass.github.io/feed.xml",
+   "site": "rkdass.github.io",
+   "template": "alfolio",
+   "repo": "rkdass/rkdass.github.io"
   },
   {
    "feed": "https://rkg92.github.io/feed.xml",
@@ -10148,6 +10964,12 @@
    "repo": "RocketSumit/rocketsumit.github.io"
   },
   {
+   "feed": "https://rodolfoamancio.github.io/feed.xml",
+   "site": "rodolfoamancio.github.io",
+   "template": "alfolio",
+   "repo": "rodolfoamancio/rodolfoamancio.github.io"
+  },
+  {
    "feed": "https://rodosingh.github.io/feed.xml",
    "site": "rodosingh.github.io",
    "template": "alfolio",
@@ -10176,6 +10998,12 @@
    "site": "rohan-vernekar.github.io",
    "template": "alfolio",
    "repo": "rohan-vernekar/rohan-vernekar.github.io"
+  },
+  {
+   "feed": "https://www.rohrman.dev/feed.xml",
+   "site": "rohrman.dev",
+   "template": "alfolio",
+   "repo": "jrohrman/rohrman.dev"
   },
   {
    "feed": "https://romainfillon.github.io/feed.xml",
@@ -10436,6 +11264,12 @@
    "repo": "sae-young/sae-young.github.io"
   },
   {
+   "feed": "https://saeednj.github.io/feed.xml",
+   "site": "saeednj.github.io",
+   "template": "alfolio",
+   "repo": "saeednj/saeednj.github.io"
+  },
+  {
    "feed": "https://safficauthon.github.io/feed.xml",
    "site": "safficauthon.github.io",
    "template": "alfolio",
@@ -10452,6 +11286,12 @@
    "site": "sagnik-epigen.github.io",
    "template": "academicpages",
    "repo": "Sagnik-Epigen/SagnikSen.github.io"
+  },
+  {
+   "feed": "https://saiamrit.github.io/saiamritpp.github.io/feed.xml",
+   "site": "saiamrit.github.io",
+   "template": "alfolio",
+   "repo": "saiamrit/saiamritpp.github.io"
   },
   {
    "feed": "https://saicoco.github.io/al-folio/feed.xml",
@@ -10518,6 +11358,12 @@
    "site": "sally-00.github.io",
    "template": "alfolio",
    "repo": "sally-00/sally-00.github.io"
+  },
+  {
+   "feed": "https://www.samaneskandarzadeh.com/feed.xml",
+   "site": "samaneskandarzadeh.com",
+   "template": "alfolio",
+   "repo": "samanesk/al-folio"
   },
   {
    "feed": "https://sambaiga.github.io/sambaiga.github.io-org/feed.xml",
@@ -10592,6 +11438,12 @@
    "repo": "SangShinBaak/SangShinBaak.github.io"
   },
   {
+   "feed": "https://sankalp-prabhakar.github.io/feed.xml",
+   "site": "sankalp-prabhakar.github.io",
+   "template": "alfolio",
+   "repo": "sankalp-prabhakar/sankalp-prabhakar.github.io"
+  },
+  {
    "feed": "https://sanurag563.github.io/sanurag.github.io/feed.xml",
    "site": "sanurag563.github.io",
    "template": "academicpages",
@@ -10622,6 +11474,12 @@
    "repo": "SarahiRB/sarahirb.github.io"
   },
   {
+   "feed": "https://sarahjaneschmidt.com/feed.xml",
+   "site": "sarahjaneschmidt.com",
+   "template": "alfolio",
+   "repo": "sjschmidt/sjschmidt.github.io"
+  },
+  {
    "feed": "https://saraoid4.github.io/feed.xml",
    "site": "saraoid4.github.io",
    "template": "alfolio",
@@ -10632,6 +11490,12 @@
    "site": "sarbagyakafle.com",
    "template": "academicpages",
    "repo": "sarbagyakafle/sarbagyakafle-academic.github.io"
+  },
+  {
+   "feed": "https://sarthakv7.github.io/my_folio/feed.xml",
+   "site": "sarthakv7.github.io",
+   "template": "alfolio",
+   "repo": "SarthakV7/my_folio"
   },
   {
    "feed": "https://sarvinbahmani.github.io/feed.xml",
@@ -10766,6 +11630,12 @@
    "repo": "scinv22/scinv22.github.io"
   },
   {
+   "feed": "https://scmsag.github.io/feed.xml",
+   "site": "scmsag.github.io",
+   "template": "alfolio",
+   "repo": "scmsag/scmsag.github.io"
+  },
+  {
    "feed": "https://seancho1996.github.io/feed.xml",
    "site": "seancho1996.github.io",
    "template": "academicpages",
@@ -10794,6 +11664,12 @@
    "site": "searhein.github.io",
    "template": "alfolio",
    "repo": "searhein/searhein.github.io"
+  },
+  {
+   "feed": "https://seclab.cs.northwestern.edu/feed.xml",
+   "site": "seclab.cs.northwestern.edu",
+   "template": "alfolio",
+   "repo": "NUseclab/nuseclab.github.io"
   },
   {
    "feed": "https://sellersgaard.github.io/feed.xml",
@@ -10842,6 +11718,12 @@
    "site": "seoyoungh.github.io",
    "template": "alfolio",
    "repo": "seoyoungh/seoyoungh.github.io"
+  },
+  {
+   "feed": "https://sergiares.github.io/feed.xml",
+   "site": "sergiares.github.io",
+   "template": "alfolio",
+   "repo": "SergiARES/SergiARES.github.io"
   },
   {
    "feed": "https://serhatadik.github.io/feed.xml",
@@ -10946,6 +11828,12 @@
    "repo": "shailjagangrade/shailjagangrade.github.io"
   },
   {
+   "feed": "https://shailymishra.github.io/feed.xml",
+   "site": "shailymishra.github.io",
+   "template": "alfolio",
+   "repo": "shailymishra/shailymishra.github.io"
+  },
+  {
    "feed": "https://shakthibalas.com/feed.xml",
    "site": "shakthibalas.com",
    "template": "academicpages",
@@ -10998,6 +11886,12 @@
    "site": "shaz-hash.github.io",
    "template": "alfolio",
    "repo": "Shaz-hash/Shaz-hash.github.io"
+  },
+  {
+   "feed": "https://shc02.github.io/feed.xml",
+   "site": "shc02.github.io",
+   "template": "alfolio",
+   "repo": "SHC02/SHC02.github.io"
   },
   {
    "feed": "https://shenzheyu.github.io/feed.xml",
@@ -11154,6 +12048,12 @@
    "site": "silchenn.github.io",
    "template": "academicpages",
    "repo": "silchenn/silchenn.github.io"
+  },
+  {
+   "feed": "https://simonegiancola09.github.io/simonegiancola09.github.io.old/feed.xml",
+   "site": "simonegiancola09.github.io",
+   "template": "academicpages",
+   "repo": "simonegiancola09/simonegiancola09.github.io.old"
   },
   {
    "feed": "https://simonqueric.github.io/feed.xml",
@@ -11390,6 +12290,12 @@
    "repo": "soohyuncho/soohyuncho.github.io"
   },
   {
+   "feed": "https://soufianedatafan.github.io/feed.xml",
+   "site": "soufianedatafan.github.io",
+   "template": "academicpages",
+   "repo": "SoufianeDataFan/SoufianeDataFan.github.io"
+  },
+  {
    "feed": "https://soumik-kanad.github.io/feed.xml",
    "site": "soumik-kanad.github.io",
    "template": "alfolio",
@@ -11460,6 +12366,12 @@
    "site": "srimanpankaj.github.io",
    "template": "academicpages",
    "repo": "srimanpankaj/srimanpankaj.github.io"
+  },
+  {
+   "feed": "https://ss26.github.io/ss26-old-website/feed.xml",
+   "site": "ss26.github.io",
+   "template": "alfolio",
+   "repo": "ss26/ss26-old-website"
   },
   {
    "feed": "https://ssawarn.github.io/feed.xml",
@@ -11720,6 +12632,12 @@
    "repo": "syncdoth/syncdoth.github.io"
   },
   {
+   "feed": "https://systems-theory-in-systems-biology.github.io/feed.xml",
+   "site": "systems-theory-in-systems-biology.github.io",
+   "template": "alfolio",
+   "repo": "Systems-Theory-in-Systems-Biology/Systems-Theory-in-Systems-Biology.github.io"
+  },
+  {
    "feed": "https://sz2629.github.io/sitongz.github.io/feed.xml",
    "site": "sz2629.github.io",
    "template": "academicpages",
@@ -11730,6 +12648,12 @@
    "site": "tachella.github.io",
    "template": "alfolio",
    "repo": "tachella/tachella.github.io"
+  },
+  {
+   "feed": "https://taejupark.com/academicpages/feed.xml",
+   "site": "taejupark.com",
+   "template": "academicpages",
+   "repo": "philippark89/academicpages"
   },
   {
    "feed": "https://taeyii.github.io/feed.xml",
@@ -11766,6 +12690,12 @@
    "site": "tallsong.github.io",
    "template": "academicpages",
    "repo": "tallsong/tallsong.github.io"
+  },
+  {
+   "feed": "https://tanaynarshana.github.io/feed.xml",
+   "site": "tanaynarshana.github.io",
+   "template": "alfolio",
+   "repo": "TanayNarshana/TanayNarshana.github.io"
   },
   {
    "feed": "http://tancao.org/feed.xml",
@@ -11840,6 +12770,12 @@
    "repo": "Tasneem-Jahan/Tasneem-Jahan.github.io"
   },
   {
+   "feed": "https://tassaphonzen.github.io/feed.xml",
+   "site": "tassaphonzen.github.io",
+   "template": "alfolio",
+   "repo": "TassaphonZen/tassaphonzen.github.io"
+  },
+  {
    "feed": "https://tatwik19.github.io/feed.xml",
    "site": "tatwik19.github.io",
    "template": "academicpages",
@@ -11912,10 +12848,22 @@
    "repo": "tfjgeorge/tfjgeorge.github.io"
   },
   {
+   "feed": "https://tgalizzi.github.io/feed.xml",
+   "site": "tgalizzi.github.io",
+   "template": "alfolio",
+   "repo": "tgalizzi/tgalizzi.github.io"
+  },
+  {
    "feed": "https://thanhhff.github.io/feed.xml",
    "site": "thanhhff.github.io",
    "template": "alfolio",
    "repo": "thanhhff/thanhhff.github.io"
+  },
+  {
+   "feed": "https://thegomeslab.github.io/feed.xml",
+   "site": "thegomeslab.github.io",
+   "template": "academicpages",
+   "repo": "thegomeslab/thegomeslab.github.io"
   },
   {
    "feed": "https://theophilegervet.github.io/feed.xml",
@@ -11928,6 +12876,12 @@
    "site": "theronwang.github.io",
    "template": "alfolio",
    "repo": "TheronWang/theronwang.github.io"
+  },
+  {
+   "feed": "https://thetoptian.github.io/tian/feed.xml",
+   "site": "thetoptian.github.io",
+   "template": "alfolio",
+   "repo": "TheTopTian/tian"
   },
   {
    "feed": "https://theweizhou.github.io/feed.xml",
@@ -11964,6 +12918,12 @@
    "site": "thomaseskridge.com",
    "template": "alfolio",
    "repo": "tce/tce.github.io"
+  },
+  {
+   "feed": "https://thomasunderwood.github.io/feed.xml",
+   "site": "thomasunderwood.github.io",
+   "template": "alfolio",
+   "repo": "thomasunderwood/thomasunderwood.github.io"
   },
   {
    "feed": "https://thuraaungjune.github.io/feed.xml",
@@ -12030,6 +12990,12 @@
    "site": "timshaubold.github.io",
    "template": "alfolio",
    "repo": "TimSHaubold/timshaubold.github.io"
+  },
+  {
+   "feed": "https://tingkelvin.github.io/feed.xml",
+   "site": "tingkelvin.github.io",
+   "template": "alfolio",
+   "repo": "tingkelvin/tingkelvin.github.io"
   },
   {
    "feed": "https://tingtang2.github.io/feed.xml",
@@ -12182,6 +13148,12 @@
    "repo": "tropaafsara/tropaafsara.github.io"
   },
   {
+   "feed": "https://trustworthy-ml-resources.github.io/feed.xml",
+   "site": "trustworthy-ml-resources.github.io",
+   "template": "alfolio",
+   "repo": "trustworthy-ml-resources/trustworthy-ml-resources.github.io"
+  },
+  {
    "feed": "https://tscmacdonald.github.io/feed.xml",
    "site": "tscmacdonald.github.io",
    "template": "alfolio",
@@ -12308,6 +13280,12 @@
    "repo": "Vansh28Kapoor/Vansh28Kapoor.github.io"
   },
   {
+   "feed": "https://vantaa89.github.io/feed.xml",
+   "site": "vantaa89.github.io",
+   "template": "alfolio",
+   "repo": "vantaa89/vantaa89.github.io"
+  },
+  {
    "feed": "https://varungohil.github.io/varungohil.github.io.old2/feed.xml",
    "site": "varungohil.github.io",
    "template": "alfolio",
@@ -12356,6 +13334,12 @@
    "repo": "vhxnyh/vhxnyh.github.io"
   },
   {
+   "feed": "https://vicaws.github.io/feed.xml",
+   "site": "vicaws.github.io",
+   "template": "alfolio",
+   "repo": "vicaws/vicaws.github.io"
+  },
+  {
    "feed": "https://vickyli99.github.io/feed.xml",
    "site": "vickyli99.github.io",
    "template": "alfolio",
@@ -12380,6 +13364,12 @@
    "repo": "Vihanga97/vihanga97.github.io"
   },
   {
+   "feed": "https://vikramjeetd.github.io/feed.xml",
+   "site": "vikramjeetd.github.io",
+   "template": "alfolio",
+   "repo": "VikramjeetD/vikramjeetd.github.io"
+  },
+  {
    "feed": "https://viktor-wu.github.io/feed.xml",
    "site": "viktor-wu.github.io",
    "template": "academicpages",
@@ -12392,10 +13382,22 @@
    "repo": "Vimalakirti/vimalakirti.github.io"
   },
   {
+   "feed": "https://vinapp.github.io/feed.xml",
+   "site": "vinapp.github.io",
+   "template": "alfolio",
+   "repo": "vinapp/vinapp.github.io"
+  },
+  {
    "feed": "https://vince-lam.github.io/feed.xml",
    "site": "vince-lam.github.io",
    "template": "academicpages",
    "repo": "vince-lam/vince-lam.github.io"
+  },
+  {
+   "feed": "https://vinicius-deoliveira.github.io/feed.xml",
+   "site": "vinicius-deoliveira.github.io",
+   "template": "academicpages",
+   "repo": "vinicius-deoliveira/vinicius-deoliveira.github.io"
   },
   {
    "feed": "https://vipasu.github.io/feed.xml",
@@ -12498,6 +13500,12 @@
    "site": "wangchengwei-cher.github.io",
    "template": "academicpages",
    "repo": "wangchengwei-cher/wangchengwei-cher.github.io"
+  },
+  {
+   "feed": "https://wangjenny.github.io/feed.xml",
+   "site": "wangjenny.github.io",
+   "template": "academicpages",
+   "repo": "wangjenny/wangjenny.github.io"
   },
   {
    "feed": "https://wangjw6.github.io/feed.xml",
@@ -12774,6 +13782,12 @@
    "site": "wonbeomjang.kr",
    "template": "alfolio",
    "repo": "wonbeomjang/wonbeomjang.github.io"
+  },
+  {
+   "feed": "https://wp-research-uk.github.io/cw-erm/feed.xml",
+   "site": "wp-research-uk.github.io",
+   "template": "alfolio",
+   "repo": "wp-research-uk/cw-erm"
   },
   {
    "feed": "https://wrborrelli.github.io/feed.xml",
@@ -13184,6 +14198,12 @@
    "repo": "XianWeiLee/XianWeiLee.github.io"
   },
   {
+   "feed": "https://xiaofeng-d.github.io/feed.xml",
+   "site": "xiaofeng-d.github.io",
+   "template": "alfolio",
+   "repo": "xiaofeng-d/xiaofeng-d.github.io"
+  },
+  {
    "feed": "https://xiaoheng123.github.io/feed.xml",
    "site": "xiaoheng123.github.io",
    "template": "academicpages",
@@ -13230,6 +14250,12 @@
    "site": "xiayu-zhao.github.io",
    "template": "academicpages",
    "repo": "xiayu-zhao/xiayu-zhao.github.io"
+  },
+  {
+   "feed": "https://xibrian.github.io/feed.xml",
+   "site": "xibrian.github.io",
+   "template": "alfolio",
+   "repo": "xibrian/xibrian.github.io"
   },
   {
    "feed": "https://xieeco.github.io/feed.xml",
@@ -13296,6 +14322,12 @@
    "site": "xiyudu.github.io",
    "template": "alfolio",
    "repo": "xiyudu/xiyudu.github.io"
+  },
+  {
+   "feed": "https://xkcococo.github.io/feed.xml",
+   "site": "xkcococo.github.io",
+   "template": "alfolio",
+   "repo": "xkcococo/xkcococo.github.io"
   },
   {
    "feed": "https://xlcbingo1999.github.io/feed.xml",
@@ -13368,6 +14400,12 @@
    "site": "xujj3.github.io",
    "template": "academicpages",
    "repo": "xujj3/xujj3.github.io"
+  },
+  {
+   "feed": "https://xupu.me/feed.xml",
+   "site": "xupu.me",
+   "template": "alfolio",
+   "repo": "xu-pu/xu-pu.github.io"
   },
   {
    "feed": "https://xuqisheng062.github.io/feed.xml",
@@ -13496,6 +14534,12 @@
    "repo": "yanjunchi3-oss/yanjc.github.io"
   },
   {
+   "feed": "https://yanliang-wang.github.io/feed.xml",
+   "site": "yanliang-wang.github.io",
+   "template": "alfolio",
+   "repo": "yanliang-wang/yanliang-wang.github.io"
+  },
+  {
    "feed": "https://yanwang202199.github.io/feed.xml",
    "site": "yanwang202199.github.io",
    "template": "academicpages",
@@ -13578,6 +14622,12 @@
    "site": "ydfengbu.github.io",
    "template": "academicpages",
    "repo": "ydfengbu/ydfengbu.github.io"
+  },
+  {
+   "feed": "https://yeongjin96.github.io/feed.xml",
+   "site": "yeongjin96.github.io",
+   "template": "alfolio",
+   "repo": "YeongJin96/YeongJin96.github.io"
   },
   {
    "feed": "https://yesols.github.io/feed.xml",
@@ -13808,6 +14858,12 @@
    "repo": "yjunghun28-wq/profile"
   },
   {
+   "feed": "https://yjw113080.github.io/feed.xml",
+   "site": "yjw113080.github.io",
+   "template": "alfolio",
+   "repo": "yjw113080/yjw113080.github.io"
+  },
+  {
    "feed": "https://yjwu17.github.io/feed.xml",
    "site": "yjwu17.github.io",
    "template": "academicpages",
@@ -13874,10 +14930,22 @@
    "repo": "joshzyj/joshzyj.github.io"
   },
   {
+   "feed": "https://yongkyul.github.io/feed.xml",
+   "site": "yongkyul.github.io",
+   "template": "alfolio",
+   "repo": "yongkyul/yongkyul.github.io"
+  },
+  {
    "feed": "https://yongninglei.github.io/feed.xml",
    "site": "yongninglei.github.io",
    "template": "academicpages",
    "repo": "yongninglei/yongninglei.github.io"
+  },
+  {
+   "feed": "https://yoocane.github.io/feed.xml",
+   "site": "yoocane.github.io",
+   "template": "alfolio",
+   "repo": "yoocane/yoocane.github.io"
   },
   {
    "feed": "https://yorgos.xyz/feed.xml",
@@ -14036,6 +15104,12 @@
    "repo": "Zheng-Yunhao/Zheng-Yunhao.github.io"
   },
   {
+   "feed": "https://yunhokim21.github.io/yunhokim21.github.io_/feed.xml",
+   "site": "yunhokim21.github.io",
+   "template": "alfolio",
+   "repo": "YunhoKim21/yunhokim21.github.io_"
+  },
+  {
    "feed": "https://yunoa64.github.io/feed.xml",
    "site": "yunoa64.github.io",
    "template": "alfolio",
@@ -14064,6 +15138,12 @@
    "site": "yusin2chen.github.io",
    "template": "alfolio",
    "repo": "Yusin2Chen/Yusin2Chen.github.io"
+  },
+  {
+   "feed": "https://yuxiangcui.github.io/feed.xml",
+   "site": "yuxiangcui.github.io",
+   "template": "alfolio",
+   "repo": "YuxiangCui/YuxiangCui.github.io"
   },
   {
    "feed": "https://yuxiliu6666.github.io/feed.xml",
@@ -14324,6 +15404,12 @@
    "repo": "zhejz/zhejz.github.io"
   },
   {
+   "feed": "https://zhenglin-charlie-li.github.io/charlie-li-789.github.io.al-folio/feed.xml",
+   "site": "zhenglin-charlie-li.github.io",
+   "template": "alfolio",
+   "repo": "zhenglin-charlie-li/charlie-li-789.github.io.al-folio"
+  },
+  {
    "feed": "https://zhenglingyangli.github.io/feed.xml",
    "site": "zhenglingyangli.github.io",
    "template": "alfolio",
@@ -14352,6 +15438,12 @@
    "site": "zhengzhster.github.io",
    "template": "alfolio",
    "repo": "zhengzhster/zhengzhster.github.io"
+  },
+  {
+   "feed": "https://zheninghuang.github.io/old_page/feed.xml",
+   "site": "zheninghuang.github.io",
+   "template": "alfolio",
+   "repo": "ZheningHuang/old_page"
   },
   {
    "feed": "https://zhenqi-stat.github.io/feed.xml",
@@ -14406,6 +15498,12 @@
    "site": "zhongguojie1998.github.io",
    "template": "alfolio",
    "repo": "zhongguojie1998/GuojieZhong"
+  },
+  {
+   "feed": "https://zhouzhengfw.github.io/feed.xml",
+   "site": "zhouzhengfw.github.io",
+   "template": "alfolio",
+   "repo": "zhouzhengfw/zhouzhengfw.github.io"
   },
   {
    "feed": "https://zhuan-ning.github.io/feed.xml",
@@ -14486,6 +15584,12 @@
    "repo": "ziyangz5/ziyangz5.github.io"
   },
   {
+   "feed": "https://zizhang02.github.io/feed.xml",
+   "site": "zizhang02.github.io",
+   "template": "academicpages",
+   "repo": "zizhang02/zizhang02.github.io"
+  },
+  {
    "feed": "https://zjq0717.github.io/feed.xml",
    "site": "zjq0717.github.io",
    "template": "academicpages",
@@ -14562,6 +15666,12 @@
    "site": "ztang-yit-xiaang.github.io",
    "template": "academicpages",
    "repo": "Ztang-Yit-Xiaang/ztang-yit-xiaang.github.io-old"
+  },
+  {
+   "feed": "https://zunction.github.io/feed.xml",
+   "site": "zunction.github.io",
+   "template": "alfolio",
+   "repo": "zunction/zunction.github.io"
   },
   {
    "feed": "https://zw-siyuan.github.io/feed.xml",
