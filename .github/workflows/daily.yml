@@ -2,8 +2,9 @@ name: daily
 # Collect new posts, label them, link responses, then save the dataset and redeploy the site.
 # Errors open an "alert" issue (pipeline/runlog.py); a failed run also triggers GitHub's own failure email.
 on:
-  schedule:                   # every six hours; each run takes only what is new since the last one (state/state.json),
-    - cron: "23 3 * * *"      # so the day's posts show up during the day, and a run GitHub delays or skips costs nothing
+  schedule:                   # every six hours; each run takes only what is new since the last one (state/state.json).
+    - cron: "23 3 * * *"      # The Worker's cron (worker/src/index.js) starts these on time; GitHub's own schedule, often
+                              # hours late or skipped, is the backup. A run started twice costs nothing.
     - cron: "23 9 * * *"
     - cron: "23 15 * * *"
     - cron: "23 21 * * *"

@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
-import worker, { ingest } from "../src/index.js";
+import worker, { ingest, dispatch } from "../src/index.js";
 
 const here = (p) => fileURLToPath(new URL(p, import.meta.url));
 
@@ -134,4 +134,20 @@ console.log("all 7 analytics and vote tests passed", JSON.stringify(agg.totals))
   assert.equal((await ingest(req(d.beacons[0].body), flaky)).status, 204);
   assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM events").get().n, before + 1, "the retried batch is stored");
   console.log("retry test passed");
+}
+
+// 9. the cron starts the daily GitHub workflow with the dispatch token, and says so when it cannot
+{
+  const calls = [];
+  const gh = (status) => async (url, init) => { calls.push({ url, init }); return new Response(status === 204 ? null : "Bad credentials", { status }); };
+  assert.match(await dispatch({}, gh(204)), /^skipped/, "no token: nothing is sent");
+  assert.equal(calls.length, 0);
+  const denv = { GH_DISPATCH_TOKEN: "t0k", GH_REPO: "owner/repo" };
+  assert.equal(await dispatch(denv, gh(204)), "started");
+  assert.equal(calls[0].url, "https://api.github.com/repos/owner/repo/actions/workflows/daily.yml/dispatches");
+  assert.equal(calls[0].init.headers.authorization, "Bearer t0k");
+  assert.deepEqual(JSON.parse(calls[0].init.body), { ref: "main" });
+  await assert.rejects(dispatch(denv, gh(401)), /HTTP 401/, "an expired token fails loudly");
+  assert.equal(calls.length, 2, "a 401 is not retried");
+  console.log("workflow dispatch test passed");
 }

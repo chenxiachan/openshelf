@@ -62,7 +62,7 @@ GH_TOKEN="$(gh auth token)" python3 crawl/backfill.py D # 续抓 HN 页面（可
 ```
 
 ## 自动运行与监控
-- `daily.yml`：每 6 小时运行一次（03:23、09:23、15:23、21:23 UTC）。每次只处理上次之后新出现的内容，所以当天的文章当天就会出现；GitHub 推迟或漏掉某一次也没关系，下一次会补上。部署后检查线上 `status.json` 确实更新。
+- `daily.yml`：每 6 小时运行一次（03:23、09:23、15:23、21:23 UTC），由 Cloudflare Worker 的定时任务准时触发（GitHub 自己的定时常晚 3 到 7 小时，还会漏掉，所以只作后备）。触发要用 Worker 密钥 `GH_DISPATCH_TOKEN`：一个只对本仓库、权限为 Actions 读写的 fine-grained token，用 `sh worker/set_dispatch_token.sh` 保存。token 过期后 GitHub 的后备定时和看门狗仍会运行，只是会变晚。每次只处理上次之后新出现的内容，所以当天的文章当天就会出现；GitHub 推迟或漏掉某一次也没关系，下一次会补上。部署后检查线上 `status.json` 确实更新。
 - `watchdog.yml`：每天 13:41、21:41 UTC。8 小时内没有成功的运行就自动补跑一次；36 小时没有成功运行，或线上网站 36 小时没更新，就报警。手动运行时勾选 test alert 可以测试报警邮件。
 - `test.yml`：每次推送和 PR 都跑三组测试：Python 离线测试 `python3 -m unittest discover -s tests -v`、Worker 测试 `node worker/test/e2e.test.mjs`，以及浏览器测试 `node tests/browser/smoke.mjs`（无界面 Chrome 把首页每个控件点一遍，并检查关于页、隐私页、390px 手机宽度、脚本报错，以及每个操作是否交给了统计脚本；先 `cd tests/browser && npm ci`，用本机已安装的 Chrome，不另外下载浏览器）。
 - `daily.yml` 部署前也跑浏览器测试，不通过就不部署，线上保留上一个好的版本，并开 `[deploy]` 报警；下次部署成功后自动关闭。

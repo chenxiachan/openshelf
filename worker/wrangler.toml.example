@@ -2,6 +2,7 @@
 # Secrets are set with wrangler, never written here:
 #   npx wrangler secret put SALT             (long random string; rotate to cut all visitor hashes)
 #   npx wrangler secret put PIPELINE_TOKEN   (the daily pipeline uses it to read /agg; also stored as a GitHub secret)
+#   sh worker/set_dispatch_token.sh          (GH_DISPATCH_TOKEN: lets the cron start the daily workflow on time)
 name = "openshelf-events"
 main = "src/index.js"
 compatibility_date = "2026-11-01"
@@ -9,6 +10,7 @@ compatibility_date = "2026-11-01"
 [vars]
 ALLOW_ORIGIN = "https://openshelf.pub"
 RETENTION_DAYS = "90"
+GH_REPO = "chenxiachan/openshelf"
 
 [[d1_databases]]
 binding = "DB"
@@ -16,7 +18,7 @@ database_name = "openshelf"
 database_id = "REPLACE_WITH_ID"
 
 [triggers]
-crons = ["17 3 * * *"]
+crons = ["23 3,9,15,21 * * *"]   # retention, and start the daily GitHub workflow (see src/index.js)
 
 [observability]
 enabled = true

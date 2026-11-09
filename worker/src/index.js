@@ -3,7 +3,9 @@
 //   GET  /agg   per-day aggregates for the daily pipeline (needs "Authorization: Bearer <PIPELINE_TOKEN>")
 //   POST /vote  {id, dir: 1 | -1 | 0, voter}: one anonymous vote per post and browser (0 takes it back)
 //   GET  /votes {items: {post id: [up, down]}}, cached for a minute
-//   cron        deletes raw events older than RETENTION_DAYS (default 90)
+//   cron        deletes raw events older than RETENTION_DAYS (default 90), and starts the daily GitHub workflow
+//               (GitHub's own schedule runs hours late or not at all; Cloudflare's cron is on time). Needs the secret
+//               GH_DISPATCH_TOKEN (fine-grained, this repository only, Actions read and write) and the var GH_REPO.
 // Privacy: IP addresses and user agents are never stored. A visitor is a hash of (secret salt, day, IP, user agent),
 // so the same person cannot be linked across days. Bots are dropped. Votes: see vote() and worker/schema.sql.
 const TYPES = new Set(["view", "open", "expand", "vote", "view_switch", "range", "layout", "filter", "topic", "search", "more", "lang", "signin", "submit"]);
@@ -121,6 +123,24 @@ export async function aggregate(req, env, url) {
   return Response.json({ day, totals, items: items.results || [], searches: searches.results || [] });
 }
 
+// start .github/workflows/daily.yml; a run started twice is harmless (each run only takes what is new)
+export async function dispatch(env, fetchImpl = fetch) {
+  if (!env.GH_DISPATCH_TOKEN || !env.GH_REPO) return "skipped: GH_DISPATCH_TOKEN or GH_REPO not set";
+  const url = `https://api.github.com/repos/${env.GH_REPO}/actions/workflows/${env.GH_WORKFLOW || "daily.yml"}/dispatches`;
+  let last = "";
+  for (let i = 0; i < 3; i++) {
+    try {
+      const r = await fetchImpl(url, { method: "POST", body: JSON.stringify({ ref: env.GH_REF || "main" }),
+        headers: { authorization: `Bearer ${env.GH_DISPATCH_TOKEN}`, accept: "application/vnd.github+json", "user-agent": "openshelf-worker", "x-github-api-version": "2022-11-28" } });
+      if (r.status === 204) return "started";
+      last = `HTTP ${r.status}: ${(await r.text()).slice(0, 200)}`;
+      if (r.status === 401 || r.status === 403 || r.status === 404) break;   // the token expired or lost its permission: retrying will not help
+    } catch (e) { last = String(e); }
+    await new Promise((res) => setTimeout(res, 2000 * (i + 1)));
+  }
+  throw new Error(`could not start the daily workflow: ${last}`);   // shows up as a failed cron in the Worker's logs
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -135,5 +155,6 @@ export default {
     const days = Number(env.RETENTION_DAYS || 90);
     await env.DB.prepare("DELETE FROM events WHERE day < date('now', ?)").bind(`-${days} day`).run();
     await env.DB.prepare("UPDATE votes SET net = '' WHERE net != '' AND day < date('now', '-1 day')").run();   // abuse limits only need today
+    console.log("daily workflow:", await dispatch(env));
   },
 };
