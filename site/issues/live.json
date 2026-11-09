@@ -2,7 +2,7 @@
  "stats": {
   "window": [
    "2026-10-07",
-   "2026-11-08"
+   "2026-11-09"
   ],
   "stories": 30882,
   "with_url": 29815,
@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 385,
+  "research": 386,
   "explainer": 107,
   "r_interactive": 56,
   "r_repo": 117,
@@ -73,12 +73,12 @@
    }
   ],
   "median_resp_rest": 2,
-  "generated": "2026-11-08",
+  "generated": "2026-11-09",
   "sources": {
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 385,
+    "research": 386,
     "explainer": 107,
     "on_hn": null
    },
@@ -109,7 +109,7 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 216,
+    "ai-ml": 217,
     "interpretability-alignment": 34,
     "systems-hardware": 57,
     "econ-social": 31,
@@ -147,11 +147,11 @@
    }
   },
   "topic_totals": {
-   "hn": 492,
+   "hn": 493,
    "fork": 56,
    "rs": 40
   },
-  "research_all": 425,
+  "research_all": 426,
   "explainer_all": 163,
   "backfill": {
    "pages": 20630,
@@ -944,7 +944,8 @@
     "substack.com",
     "venkateshrao.com",
     "sgiannopoulos.github.io",
-    "doubleai.com"
+    "doubleai.com",
+    "bolte.cc"
    ]
   },
   {
@@ -1180,7 +1181,7 @@
    "cit": false,
    "hn_id": "50272479",
    "points": 277,
-   "comments": 58,
+   "comments": 59,
    "date": "2026-10-28",
    "submissions": 1,
    "source": "hn",
@@ -13874,8 +13875,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50352518",
-   "points": 62,
-   "comments": 56,
+   "points": 64,
+   "comments": 60,
    "date": "2026-11-03",
    "submissions": 1,
    "source": "hn",
@@ -14551,7 +14552,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50385490",
-   "points": 1,
+   "points": 2,
    "comments": 0,
    "date": "2026-11-05",
    "submissions": 1,
@@ -15313,8 +15314,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50403097",
-   "points": 825,
-   "comments": 438,
+   "points": 844,
+   "comments": 446,
    "date": "2026-11-07",
    "submissions": 1,
    "source": "hn",
@@ -15341,8 +15342,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50406222",
-   "points": 375,
-   "comments": 101,
+   "points": 385,
+   "comments": 103,
    "date": "2026-11-07",
    "submissions": 1,
    "source": "hn",
@@ -15509,8 +15510,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50412830",
-   "points": 39,
-   "comments": 3,
+   "points": 63,
+   "comments": 7,
    "date": "2026-11-08",
    "submissions": 1,
    "source": "hn",
@@ -15565,7 +15566,7 @@
    "github_io": true,
    "cit": false,
    "hn_id": "50415106",
-   "points": 2,
+   "points": 4,
    "comments": 0,
    "date": "2026-11-08",
    "submissions": 1,
@@ -15593,7 +15594,7 @@
    "github_io": true,
    "cit": false,
    "hn_id": "50415877",
-   "points": 2,
+   "points": 3,
    "comments": 0,
    "date": "2026-11-08",
    "submissions": 1,
@@ -15603,6 +15604,34 @@
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-08",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50417052",
+   "url": "https://morethanamachine.com/posts/handy-context/",
+   "domain": "morethanamachine.com",
+   "title": "Handy Context: Offline Context-Aware Dictation Without Screenshots, LLMs or Fine-Tuning",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": true,
+   "hf": true,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50417052",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-08",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "作者修改开源听写应用，利用屏幕上下文在本地实现更准确的语音识别。",
+   "summary_en": "Author modified an open-source dictation app to use on-screen context for better local speech recognition.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-09",
    "model": "qwen/qwen3.7-flash"
   }
  ],
