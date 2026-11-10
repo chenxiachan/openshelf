@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 398,
+  "research": 400,
   "explainer": 109,
   "r_interactive": 56,
   "r_repo": 117,
@@ -54,8 +54,8 @@
    "discussion": 7,
    "rebuttal": 6
   },
-  "chains": 12,
-  "responses": 27,
+  "chains": 13,
+  "responses": 28,
   "median_orig_points": 202,
   "median_resp_points": 2,
   "resp_hi": [
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 398,
+    "research": 400,
     "explainer": 109,
     "on_hn": null
    },
@@ -109,9 +109,9 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 222,
+    "ai-ml": 223,
     "interpretability-alignment": 34,
-    "systems-hardware": 58,
+    "systems-hardware": 59,
     "econ-social": 32,
     "security-privacy": 61,
     "math-theory": 27,
@@ -148,11 +148,11 @@
    }
   },
   "topic_totals": {
-   "hn": 507,
+   "hn": 509,
    "fork": 61,
    "rs": 41
   },
-  "research_all": 440,
+  "research_all": 442,
   "explainer_all": 169,
   "backfill": {
    "pages": 20630,
@@ -197,7 +197,7 @@
     "github_io": true,
     "cit": true,
     "hn_id": "50341174",
-    "points": 2962,
+    "points": 2963,
     "comments": 897,
     "date": "2026-11-02",
     "submissions": 1,
@@ -213,7 +213,7 @@
      "domain": "seangoedecke.com",
      "date": "2026-11-02",
      "days_after": 0.2,
-     "points": 151,
+     "points": 152,
      "hn_id": "50344861",
      "relation": "rebuttal",
      "confidence": "high",
@@ -920,6 +920,49 @@
      "origin": "daily"
     }
    ]
+  },
+  {
+   "original": {
+    "id": "50381415",
+    "url": "https://tvm.apache.org/2026/11/03/rethinking-abstractions-in-the-agentic-era",
+    "domain": "tvm.apache.org",
+    "title": "Rethinking Abstractions in the Agentic Era: Towards a DSL and Compiler Foundation for Agentic Kernel Development",
+    "category": "research_report",
+    "topic": "systems-hardware",
+    "confidence": "medium",
+    "interactive": true,
+    "repo": true,
+    "arxiv": true,
+    "hf": false,
+    "github_io": false,
+    "cit": false,
+    "hn_id": "50381415",
+    "points": 1,
+    "comments": 0,
+    "date": "2026-11-05",
+    "submissions": 1,
+    "source": "hn",
+    "summary_zh": "展示用Claude与Codex构建DSL与编译器基础",
+    "summary_en": "TVM community report on using coding agents to build DSL and compiler foundations."
+   },
+   "responses": [
+    {
+     "id": "50435962",
+     "title": "Make this forward pass as fast as possible",
+     "url": "https://ianbarber.blog/2026/11/09/make-this-forward-pass-as-fast-as-possible/",
+     "domain": "ianbarber.blog",
+     "date": "2026-11-10",
+     "days_after": 4.5,
+     "points": 2,
+     "hn_id": "50435962",
+     "relation": "discussion",
+     "confidence": "high",
+     "source": "hn",
+     "summary_zh": "Ian Barber分析TVM关于AI代理时代编译器基础设施的新观点。",
+     "summary_en": "Ian Barber discusses TVM's arguments for maintaining compiler infrastructure in the agentic era.",
+     "origin": "daily"
+    }
+   ]
   }
  ],
  "reports": [
@@ -938,7 +981,7 @@
    "github_io": true,
    "cit": true,
    "hn_id": "50341174",
-   "points": 2962,
+   "points": 2963,
    "comments": 900,
    "date": "2026-11-02",
    "submissions": 1,
@@ -14479,7 +14522,9 @@
    "summary_zh": "展示用Claude与Codex构建DSL与编译器基础",
    "summary_en": "TVM community report on using coding agents to build DSL and compiler foundations.",
    "origin": "backfill",
-   "linkers": []
+   "linkers": [
+    "ianbarber.blog"
+   ]
   },
   {
    "id": "50382567",
@@ -14829,7 +14874,9 @@
    "summary_zh": "论文页面:Together Compiler",
    "summary_en": "Paper page describing the Together Compiler for rapidly changing AI workloads.",
    "origin": "backfill",
-   "linkers": []
+   "linkers": [
+    "ianbarber.blog"
+   ]
   },
   {
    "id": "50393198",
@@ -14946,7 +14993,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50393482",
-   "points": 16,
+   "points": 18,
    "comments": 4,
    "date": "2026-11-06",
    "submissions": 1,
@@ -15334,7 +15381,7 @@
    "cit": false,
    "hn_id": "50403097",
    "points": 863,
-   "comments": 461,
+   "comments": 465,
    "date": "2026-11-07",
    "submissions": 1,
    "source": "hn",
@@ -15529,7 +15576,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50412830",
-   "points": 78,
+   "points": 79,
    "comments": 8,
    "date": "2026-11-08",
    "submissions": 1,
@@ -16007,8 +16054,8 @@
    "github_io": true,
    "cit": false,
    "hn_id": "50429734",
-   "points": 297,
-   "comments": 24,
+   "points": 396,
+   "comments": 37,
    "date": "2026-11-09",
    "submissions": 1,
    "source": "hn",
@@ -16203,13 +16250,69 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50435105",
-   "points": 2,
-   "comments": 0,
+   "points": 64,
+   "comments": 27,
    "date": "2026-11-10",
    "submissions": 1,
    "source": "hn",
    "summary_zh": "AI代理将CPython重写为Lean形式化证明，发现418个Python错误。",
    "summary_en": "AI agents formalized CPython in Lean, identifying 418 bugs in the process.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-10",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50436074",
+   "url": "https://flashstates.ai/",
+   "domain": "flashstates.ai",
+   "title": "FlashStates",
+   "category": "research_report",
+   "topic": "systems-hardware",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": false,
+   "hf": false,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50436074",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-10",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "FlashStates通过混合状态管理提升LLM推理吞吐量并降低成本。",
+   "summary_en": "FlashStates improves LLM inference throughput and reduces costs via hybrid state management.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-10",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50436119",
+   "url": "https://shopify.engineering/gisting",
+   "domain": "shopify.engineering",
+   "title": "Gisting: Compressing LLM Agent context to ↑ throughput and ↓ cost (2026)",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": false,
+   "arxiv": true,
+   "hf": false,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50436119",
+   "points": 2,
+   "comments": 0,
+   "date": "2026-11-10",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "Shopify发布Gisting技术，通过压缩上下文提升LLM Agent效率。",
+   "summary_en": "Shopify presents Gisting, compressing context to improve LLM Agent efficiency and reduce cost.",
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-10",
