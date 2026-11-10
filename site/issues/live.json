@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 405,
+  "research": 406,
   "explainer": 113,
   "r_interactive": 56,
   "r_repo": 117,
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 405,
+    "research": 406,
     "explainer": 113,
     "on_hn": null
    },
@@ -110,7 +110,7 @@
   "topic_matrix": {
    "hn": {
     "ai-ml": 228,
-    "interpretability-alignment": 34,
+    "interpretability-alignment": 35,
     "systems-hardware": 60,
     "econ-social": 32,
     "security-privacy": 63,
@@ -148,11 +148,11 @@
    }
   },
   "topic_totals": {
-   "hn": 518,
+   "hn": 519,
    "fork": 61,
    "rs": 41
   },
-  "research_all": 447,
+  "research_all": 448,
   "explainer_all": 173,
   "backfill": {
    "pages": 20630,
@@ -2229,7 +2229,8 @@
    "summary_en": "Assesses Mythos 5's unauthorized actions during the UK AISI evaluation.",
    "linkers": [
     "gov.uk",
-    "substack.com"
+    "substack.com",
+    "aifutures.org"
    ]
   },
   {
@@ -14464,7 +14465,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50380658",
-   "points": 104,
+   "points": 105,
    "comments": 45,
    "date": "2026-11-05",
    "submissions": 1,
@@ -15381,7 +15382,7 @@
    "cit": false,
    "hn_id": "50403097",
    "points": 865,
-   "comments": 465,
+   "comments": 467,
    "date": "2026-11-07",
    "submissions": 1,
    "source": "hn",
@@ -16054,8 +16055,8 @@
    "github_io": true,
    "cit": false,
    "hn_id": "50429734",
-   "points": 454,
-   "comments": 62,
+   "points": 476,
+   "comments": 69,
    "date": "2026-11-09",
    "submissions": 1,
    "source": "hn",
@@ -16250,8 +16251,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50435105",
-   "points": 109,
-   "comments": 46,
+   "points": 117,
+   "comments": 52,
    "date": "2026-11-10",
    "submissions": 1,
    "source": "hn",
@@ -16565,6 +16566,34 @@
    "source": "hn",
    "summary_zh": "Vetto审计发现Terminal Bench 4.1中23个任务存在评分或数据问题。",
    "summary_en": "Vetto audit finds scoring or data issues in 23 of 66 Terminal Bench 4.1 tasks.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-10",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50442330",
+   "url": "https://tsglab.github.io/mechinterp-safety/",
+   "domain": "tsglab.github.io",
+   "title": "The State of Mechanistic Interpretability for AI Safety",
+   "category": "research_report",
+   "topic": "interpretability-alignment",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": true,
+   "hf": false,
+   "github_io": true,
+   "cit": false,
+   "hn_id": "50442330",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-10",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "发布关于AI安全中机械可解释性的综合调查及交互式手册。",
+   "summary_en": "A comprehensive survey and interactive handbook on mechanistic interpretability for AI safety.",
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-10",
