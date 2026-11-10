@@ -21,6 +21,9 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main      # the branch as it is now, not the commit the run was started at: a run that waited in the queue
+                         # behind another must start from the state that run saved, or the two collide when saving
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
