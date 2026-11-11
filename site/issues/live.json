@@ -17,7 +17,7 @@
    "explainer": 41
   },
   "research": 415,
-  "explainer": 116,
+  "explainer": 117,
   "r_interactive": 56,
   "r_repo": 117,
   "r_arxiv": 145,
@@ -79,7 +79,7 @@
     "scope": 30882,
     "pool": 928,
     "research": 415,
-    "explainer": 116,
+    "explainer": 117,
     "on_hn": null
    },
    "fork": {
@@ -109,7 +109,7 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 232,
+    "ai-ml": 233,
     "interpretability-alignment": 36,
     "systems-hardware": 64,
     "econ-social": 32,
@@ -148,12 +148,12 @@
    }
   },
   "topic_totals": {
-   "hn": 531,
+   "hn": 532,
    "fork": 61,
    "rs": 41
   },
   "research_all": 457,
-  "explainer_all": 176,
+  "explainer_all": 177,
   "backfill": {
    "pages": 20630,
    "errors": 2217,
@@ -13497,7 +13497,8 @@
    "origin": "backfill",
    "linkers": [
     "kmaliszewski9.github.io",
-    "stackness.dev"
+    "stackness.dev",
+    "sethserver.com"
    ]
   },
   {
@@ -15385,8 +15386,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50403097",
-   "points": 865,
-   "comments": 468,
+   "points": 867,
+   "comments": 469,
    "date": "2026-11-07",
    "submissions": 1,
    "source": "hn",
@@ -16255,7 +16256,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50435105",
-   "points": 128,
+   "points": 130,
    "comments": 55,
    "date": "2026-11-10",
    "submissions": 1,
@@ -16619,7 +16620,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50443714",
-   "points": 70,
+   "points": 74,
    "comments": 8,
    "date": "2026-11-10",
    "submissions": 1,
@@ -16934,6 +16935,34 @@
    "source": "hn",
    "summary_zh": "Meta发布TLX，一个基于Triton的硬件原生GPU编译器扩展以优化生产级ML性能。",
    "summary_en": "Meta releases TLX, a hardware-native GPU compiler extension for Triton to optimize production ML performance.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-11",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50448976",
+   "url": "https://jechevarria.com/blog/2026/11/11/tokenizers/",
+   "domain": "jechevarria.com",
+   "title": "Tokenizers",
+   "category": "explainer",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": false,
+   "arxiv": true,
+   "hf": true,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50448976",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-11",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "作者解释了分词器的作用并介绍了BPE算法。",
+   "summary_en": "The author explains the utility of tokenizers and introduces the BPE algorithm.",
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-11",
