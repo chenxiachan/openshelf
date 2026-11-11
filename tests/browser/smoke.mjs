@@ -40,6 +40,11 @@ async function newPage(ctx, errors) {
 }
 
 const visibleRows = (page) => page.$$eval("a[data-id]", (els) => els.filter((a) => a.offsetParent).length);
+// the posts behind the visible rows; a filter pages by its own recent days, so it can show more rows than the full list
+const visiblePosts = (page) => page.$$eval("a[data-id]", (els) => {
+  const by = Object.fromEntries(window.SHELF.items.map((r) => [r.id, r]));
+  return els.filter((a) => a.offsetParent).map((a) => by[a.dataset.id] || {});
+});
 const topIds = (page) => page.$$eval("a[data-id]", (els) => els.filter((a) => a.offsetParent).slice(0, 20).map((a) => a.dataset.id));
 const inViews = (page, text) => page.locator("#views button, #views a", { hasText: new RegExp(`^\\s*${text}\\s*$`) }).first();
 const flag = (page, re) => page.locator("#flags .flag, #topics .flag", { hasText: re }).first();
@@ -106,9 +111,11 @@ async function main() {
     assert.equal(await page.$$eval(".sm", (els) => els.filter((x) => x.offsetParent).length), 0, "compact layout still shows summaries");
     ok(`compact/summary layout (${sums} summaries)`);
 
+    const cats = new Set((await visiblePosts(page)).map((r) => r.cat));
     await flag(page, /^\s*research\s*$/).click();
-    const research = await visibleRows(page);
-    assert.ok(research > 0 && research < all, `research filter: ${research} of ${all}`);
+    const shownCats = (await visiblePosts(page)).map((r) => r.cat), research = shownCats.length;
+    assert.ok(research > 0 && shownCats.every((c) => c === "research"), `research filter shows ${research} posts, of types ${[...new Set(shownCats)]}`);
+    assert.ok(cats.size > 1, `the full list should mix types, got ${[...cats]}`);
     await flag(page, /^\s*research\s*$/).click();
     assert.equal(await visibleRows(page), all, "research filter does not switch off");
     ok(`type filter (${research} research posts)`);
@@ -118,8 +125,8 @@ async function main() {
       return (t.find((s) => /^math/.test(s)) || t[0]).replace(/\d+$/, "");
     });
     await flag(page, new RegExp(`^\\s*${topicName}\\s*\\d*\\s*$`)).click();
-    const topicRows = await visibleRows(page);
-    assert.ok(topicRows > 0 && topicRows < all, `topic ${topicName}: ${topicRows} of ${all}`);
+    const shownTopics = (await visiblePosts(page)).map((r) => r.topic), topicRows = shownTopics.length;
+    assert.ok(topicRows > 0 && new Set(shownTopics).size === 1, `topic ${topicName}: ${topicRows} posts, of topics ${[...new Set(shownTopics)]}`);
     await flag(page, /^\s*all topics/).click();
     assert.equal(await visibleRows(page), all, "all topics does not restore the list");
     ok(`topic chip "${topicName}" (${topicRows} posts)`);
