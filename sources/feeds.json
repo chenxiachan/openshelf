@@ -7754,6 +7754,12 @@
    "repo": "linjian5477/linjian5477.github.io"
   },
   {
+   "feed": "https://linnlett03.github.io/feed.xml",
+   "site": "linnlett03.github.io",
+   "template": "academicpages",
+   "repo": "linnlett03/linnlett03.github.io"
+  },
+  {
    "feed": "https://linxicindyzeng.com/feed.xml",
    "site": "linxicindyzeng.com",
    "template": "alfolio",
@@ -12206,6 +12212,12 @@
    "repo": "snakehaihai/snakehaihai.github.io"
   },
   {
+   "feed": "https://snoyfax.github.io/feed.xml",
+   "site": "snoyfax.github.io",
+   "template": "academicpages",
+   "repo": "Snoyfax/snoyfax.github.io"
+  },
+  {
    "feed": "https://socratesclub.github.io/feed.xml",
    "site": "socratesclub.github.io",
    "template": "alfolio",
@@ -13800,6 +13812,12 @@
    "site": "wujuihsuan2016.github.io",
    "template": "alfolio",
    "repo": "wujuihsuan2016/wujuihsuan2016.github.io"
+  },
+  {
+   "feed": "https://wuwon8020.github.io/feed.xml",
+   "site": "wuwon8020.github.io",
+   "template": "academicpages",
+   "repo": "wuwon8020/wuwon8020.github.io"
   },
   {
    "feed": "https://wuyang98.github.io/feed.xml",
