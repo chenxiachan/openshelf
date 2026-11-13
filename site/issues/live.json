@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 454,
+  "research": 456,
   "explainer": 122,
   "r_interactive": 56,
   "r_repo": 117,
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 454,
+    "research": 456,
     "explainer": 122,
     "on_hn": null
    },
@@ -110,7 +110,7 @@
   "topic_matrix": {
    "hn": {
     "ai-ml": 257,
-    "interpretability-alignment": 37,
+    "interpretability-alignment": 38,
     "systems-hardware": 70,
     "econ-social": 32,
     "security-privacy": 69,
@@ -121,7 +121,7 @@
     "bio-health": 12,
     "scholarly-communication": 2,
     "humanities": 1,
-    "engineering-env": 5
+    "engineering-env": 6
    },
    "fork": {
     "bio-health": 4,
@@ -149,11 +149,11 @@
    }
   },
   "topic_totals": {
-   "hn": 576,
+   "hn": 578,
    "fork": 67,
    "rs": 44
   },
-  "research_all": 498,
+  "research_all": 500,
   "explainer_all": 189,
   "backfill": {
    "pages": 20630,
@@ -6265,7 +6265,8 @@
     "xingjianbai.com",
     "openathena.ai",
     "mvakde.github.io",
-    "domyn.com"
+    "domyn.com",
+    "sevren.ai"
    ]
   },
   {
@@ -17894,8 +17895,8 @@
    "github_io": true,
    "cit": false,
    "hn_id": "50465352",
-   "points": 361,
-   "comments": 176,
+   "points": 364,
+   "comments": 177,
    "date": "2026-11-12",
    "submissions": 1,
    "source": "hn",
@@ -18258,8 +18259,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50474883",
-   "points": 290,
-   "comments": 92,
+   "points": 304,
+   "comments": 110,
    "date": "2026-11-12",
    "submissions": 1,
    "source": "hn",
@@ -18579,6 +18580,62 @@
    "model": "qwen/qwen3.7-flash",
    "doi": "10.59350/fgmjq-80885",
    "blog": "Polyhedral Oligomeric Silsesquioxane (POSS) Chemistry"
+  },
+  {
+   "id": "50481321",
+   "url": "https://operator0x.com/field-notes/qwen-conversation-state-space/",
+   "domain": "operator0x.com",
+   "title": "What thousands of conversations look like inside a language model",
+   "category": "research_report",
+   "topic": "interpretability-alignment",
+   "confidence": "high",
+   "political": "none",
+   "interactive": true,
+   "repo": false,
+   "arxiv": false,
+   "hf": false,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50481321",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-13",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "作者构建了Qwen3-1.7B模型内部表示的交互式地图以分析对话状态。",
+   "summary_en": "The author built an interactive map of Qwen3-1.7B's internal representations to analyze conversation states.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-13",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50481337",
+   "url": "https://barabasi.com/science/publications#extraordinary-materials-shaped-by-the-principles-of-complex-networks",
+   "domain": "barabasi.com",
+   "title": "BARABASI LAB·SCIENCE",
+   "category": "research_report",
+   "topic": "engineering-env",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": true,
+   "hf": false,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50481337",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-13",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "Barabási团队提出基于复杂网络的尺度丰富超材料，实现机械性能突破。",
+   "summary_en": "Barabási's team introduces scale-rich metamaterials based on complex networks for enhanced mechanical properties.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-13",
+   "model": "qwen/qwen3.7-flash"
   }
  ],
  "issue": {
