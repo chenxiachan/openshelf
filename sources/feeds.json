@@ -1430,6 +1430,12 @@
    "repo": "atyoshi/atyoshi.github.io"
   },
   {
+   "feed": "https://aungmayzin494-ctrl.github.io/feed.xml",
+   "site": "aungmayzin494-ctrl.github.io",
+   "template": "alfolio",
+   "repo": "aungmayzin494-ctrl/aungmayzin494-ctrl.github.io"
+  },
+  {
    "feed": "https://austraea.github.io/feed.xml",
    "site": "austraea.github.io",
    "template": "academicpages",
@@ -12674,6 +12680,12 @@
    "repo": "taeyii/taeyii.github.io"
   },
   {
+   "feed": "https://tahaahmad4411.github.io/feed.xml",
+   "site": "tahaahmad4411.github.io",
+   "template": "academicpages",
+   "repo": "TahaAhmad4411/TahaAhmad4411.github.io"
+  },
+  {
    "feed": "https://tahamousa2023-prog.github.io/feed.xml",
    "site": "tahamousa2023-prog.github.io",
    "template": "academicpages",
@@ -15180,6 +15192,12 @@
    "site": "yuying-lab.com",
    "template": "academicpages",
    "repo": "yukiyyu/yukiyyu.github.io"
+  },
+  {
+   "feed": "https://yv-hyvlc.github.io/feed.xml",
+   "site": "yv-hyvlc.github.io",
+   "template": "academicpages",
+   "repo": "yv-hyvlc/yv-hyvlc.github.io"
   },
   {
    "feed": "https://yw99.github.io/feed.xml",
