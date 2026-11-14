@@ -9464,6 +9464,12 @@
    "repo": "Neakail/Neakail.github.io"
   },
   {
+   "feed": "https://neguro-j.github.io/feed.xml",
+   "site": "neguro-j.github.io",
+   "template": "academicpages",
+   "repo": "Neguro-J/Neguro-J.github.io"
+  },
+  {
    "feed": "https://nehapusalkar.com/feed.xml",
    "site": "nehapusalkar.com",
    "template": "academicpages",
