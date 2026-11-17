@@ -12080,6 +12080,12 @@
    "repo": "simonqueric/simonqueric.github.io"
   },
   {
+   "feed": "https://simonqueric.github.io/simonqueri/feed.xml",
+   "site": "simonqueric.github.io",
+   "template": "alfolio",
+   "repo": "simonqueric/simonqueri"
+  },
+  {
    "feed": "https://simonseibt.org/feed.xml",
    "site": "simonseibt.org",
    "template": "alfolio",

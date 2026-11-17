@@ -2,7 +2,7 @@
  "stats": {
   "window": [
    "2026-10-07",
-   "2026-11-16"
+   "2026-11-17"
   ],
   "stories": 30882,
   "with_url": 29815,
@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 499,
+  "research": 500,
   "explainer": 136,
   "r_interactive": 56,
   "r_repo": 117,
@@ -55,7 +55,7 @@
    "rebuttal": 6
   },
   "chains": 16,
-  "responses": 41,
+  "responses": 42,
   "median_orig_points": 202,
   "median_resp_points": 2,
   "resp_hi": [
@@ -73,12 +73,12 @@
    }
   ],
   "median_resp_rest": 2,
-  "generated": "2026-11-16",
+  "generated": "2026-11-17",
   "sources": {
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 499,
+    "research": 500,
     "explainer": 136,
     "on_hn": null
    },
@@ -91,10 +91,10 @@
     "sites_with_posts": 306,
     "pool": 99,
     "pool_sites": 54,
-    "research": 19,
+    "research": 20,
     "explainer": 53,
     "on_hn": 0,
-    "re_sites": 37,
+    "re_sites": 38,
     "template_titles": 41
    },
    "rs": {
@@ -109,7 +109,7 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 286,
+    "ai-ml": 287,
     "interpretability-alignment": 40,
     "systems-hardware": 80,
     "econ-social": 32,
@@ -125,7 +125,7 @@
    },
    "fork": {
     "bio-health": 4,
-    "ai-ml": 16,
+    "ai-ml": 17,
     "math-theory": 15,
     "robotics-graphics": 7,
     "interpretability-alignment": 1,
@@ -149,11 +149,11 @@
    }
   },
   "topic_totals": {
-   "hn": 635,
-   "fork": 72,
+   "hn": 636,
+   "fork": 73,
    "rs": 45
   },
-  "research_all": 547,
+  "research_all": 549,
   "explainer_all": 205,
   "backfill": {
    "pages": 20630,
@@ -499,6 +499,22 @@
      "source": "hn",
      "summary_zh": "源实验复现并扩展了权重空间编程的结果。",
      "summary_en": "The source experiment replicates and extends the results of weight-space programming.",
+     "origin": "daily"
+    },
+    {
+     "id": "50526734",
+     "title": "Directly editing a VLA's weights improved its performance, with no fine-tuning",
+     "url": "https://www.abdulrahimmirani.com/research/vla-weight-editing",
+     "domain": "abdulrahimmirani.com",
+     "date": "2026-11-17",
+     "days_after": 0,
+     "points": 1,
+     "hn_id": "50526734",
+     "relation": "extension",
+     "confidence": "high",
+     "source": "hn",
+     "summary_zh": "源文受目标启发，在VLA模型上直接编辑权重以改进性能。",
+     "summary_en": "The source extends the target's concept by directly editing VLA weights to improve performance.",
      "origin": "daily"
     }
    ]
@@ -1304,7 +1320,8 @@
     "alphaxiv.org",
     "harlyn1.github.io",
     "vercel.app",
-    "balajsaleem.github.io"
+    "balajsaleem.github.io",
+    "abdulrahimmirani.com"
    ]
   },
   {
@@ -17239,7 +17256,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50446055",
-   "points": 2,
+   "points": 3,
    "comments": 0,
    "date": "2026-11-10",
    "submissions": 1,
@@ -17407,7 +17424,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50451903",
-   "points": 354,
+   "points": 355,
    "comments": 131,
    "date": "2026-11-11",
    "submissions": 1,
@@ -18818,7 +18835,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50481321",
-   "points": 128,
+   "points": 129,
    "comments": 31,
    "date": "2026-11-13",
    "submissions": 1,
@@ -19607,7 +19624,7 @@
    "cit": false,
    "hn_id": "50496811",
    "points": 214,
-   "comments": 49,
+   "comments": 50,
    "date": "2026-11-14",
    "submissions": 1,
    "source": "hn",
@@ -19663,7 +19680,7 @@
    "cit": false,
    "hn_id": "50498945",
    "points": 73,
-   "comments": 225,
+   "comments": 226,
    "date": "2026-11-14",
    "submissions": 1,
    "source": "hn",
@@ -19970,7 +19987,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50506376",
-   "points": 241,
+   "points": 244,
    "comments": 27,
    "date": "2026-11-15",
    "submissions": 1,
@@ -20334,7 +20351,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50516629",
-   "points": 7,
+   "points": 8,
    "comments": 0,
    "date": "2026-11-16",
    "submissions": 1,
@@ -20390,7 +20407,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50518543",
-   "points": 1,
+   "points": 3,
    "comments": 0,
    "date": "2026-11-16",
    "submissions": 1,
@@ -20624,6 +20641,62 @@
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-16",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50526068",
+   "url": "https://research.google/blog/timesfm-3-a-zero-shot-foundation-model-for-multivariate-forecasting/",
+   "domain": "research.google",
+   "title": "TimesFM-3: A zero-shot foundation model for multivariate forecasting",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": true,
+   "hf": true,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50526068",
+   "points": 4,
+   "comments": 3,
+   "date": "2026-11-17",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "Google发布TimesFM-3多变量时间序列预测基础模型。",
+   "summary_en": "Google introduces TimesFM-3, a zero-shot foundation model for multivariate time series forecasting.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-17",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "fork:https://xinmingtu.github.io/blog/2026/claude-opus-5-5-protein-sequences/",
+   "url": "https://xinmingtu.github.io/blog/2026/claude-opus-5-5-protein-sequences/",
+   "domain": "xinmingtu.github.io",
+   "title": "Claude Opus 5.5 was trained on protein sequences at scale",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": false,
+   "hf": false,
+   "github_io": true,
+   "cit": false,
+   "hn_id": null,
+   "points": 0,
+   "comments": 0,
+   "date": "2026-11-16",
+   "submissions": 0,
+   "source": "fork",
+   "summary_zh": "实验证明Claude Opus 5.5在蛋白质序列预测中使用了训练数据。",
+   "summary_en": "Experiments show Claude Opus 5.5 predicts protein sequences better than shuffled controls, indicating training data usage.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-17",
    "model": "qwen/qwen3.7-flash"
   }
  ],
