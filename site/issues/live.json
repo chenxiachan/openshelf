@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 513,
+  "research": 514,
   "explainer": 140,
   "r_interactive": 56,
   "r_repo": 117,
@@ -55,7 +55,7 @@
    "rebuttal": 6
   },
   "chains": 17,
-  "responses": 45,
+  "responses": 46,
   "median_orig_points": 202,
   "median_resp_points": 2,
   "resp_hi": [
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 513,
+    "research": 514,
     "explainer": 140,
     "on_hn": null
    },
@@ -109,7 +109,7 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 300,
+    "ai-ml": 301,
     "interpretability-alignment": 40,
     "systems-hardware": 83,
     "econ-social": 32,
@@ -149,11 +149,11 @@
    }
   },
   "topic_totals": {
-   "hn": 653,
+   "hn": 654,
    "fork": 73,
    "rs": 46
   },
-  "research_all": 562,
+  "research_all": 563,
   "explainer_all": 210,
   "backfill": {
    "pages": 20630,
@@ -547,6 +547,22 @@
      "source": "hn",
      "summary_zh": "作者复现了Sparks of Weight-Space Programming中的概念，并在经典ML问题上进行了实验。",
      "summary_en": "The author replicates the concept from Sparks of Weight-Space Programming and conducts experiments on classic ML problems.",
+     "origin": "daily"
+    },
+    {
+     "id": "50538977",
+     "title": "Weight-Space Programming builds neural networks like a 1990s researcher",
+     "url": "https://notesbylex.com/weight-space-programming-1990s",
+     "domain": "notesbylex.com",
+     "date": "2026-11-17",
+     "days_after": 0,
+     "points": 1,
+     "hn_id": "50538977",
+     "relation": "extension",
+     "confidence": "high",
+     "source": "hn",
+     "summary_zh": "作者复现并扩展了目标论文中的权重空间编程实验。",
+     "summary_en": "The source extends the target's work by running new weight-writing experiments.",
      "origin": "daily"
     }
    ]
@@ -1397,7 +1413,8 @@
     "vercel.app",
     "balajsaleem.github.io",
     "abdulrahimmirani.com",
-    "bearblog.dev"
+    "bearblog.dev",
+    "notesbylex.com"
    ]
   },
   {
@@ -18414,8 +18431,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50470523",
-   "points": 148,
-   "comments": 50,
+   "points": 153,
+   "comments": 52,
    "date": "2026-11-12",
    "submissions": 1,
    "source": "hn",
@@ -21289,6 +21306,34 @@
    "source": "hn",
    "summary_zh": "Mark Shroyer提出一种快速算法，用于在地球椭球体上计算测地线路径与点的拦截。",
    "summary_en": "Mark Shroyer proposes a fast algorithm for calculating interceptions between geodesic paths and points on the Earth spheroid.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-17",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50538977",
+   "url": "https://notesbylex.com/weight-space-programming-1990s",
+   "domain": "notesbylex.com",
+   "title": "Weight-Space Programming builds neural networks like a 1990s researcher",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": true,
+   "repo": true,
+   "arxiv": false,
+   "hf": false,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50538977",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-17",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "作者通过实验发现LLM构建的神经网络权重类似于1990年代的手工特征工程。",
+   "summary_en": "Experiments show LLM-built networks resemble 1990s hand-crafted feature engineering.",
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-17",
