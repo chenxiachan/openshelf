@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 509,
+  "research": 513,
   "explainer": 140,
   "r_interactive": 56,
   "r_repo": 117,
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 509,
+    "research": 513,
     "explainer": 140,
     "on_hn": null
    },
@@ -109,12 +109,12 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 298,
+    "ai-ml": 300,
     "interpretability-alignment": 40,
-    "systems-hardware": 82,
+    "systems-hardware": 83,
     "econ-social": 32,
     "security-privacy": 78,
-    "math-theory": 28,
+    "math-theory": 29,
     "physics-earth": 18,
     "other": 10,
     "robotics-graphics": 41,
@@ -149,11 +149,11 @@
    }
   },
   "topic_totals": {
-   "hn": 649,
+   "hn": 653,
    "fork": 73,
    "rs": 46
   },
-  "research_all": 558,
+  "research_all": 562,
   "explainer_all": 210,
   "backfill": {
    "pages": 20630,
@@ -1560,7 +1560,8 @@
     "eff.org",
     "gizmodo.com",
     "pluralistic.net",
-    "politico.eu"
+    "politico.eu",
+    "vulnerability.garden"
    ]
   },
   {
@@ -1641,7 +1642,8 @@
    "summary_zh": "Google提出sleep框架用于持续学习",
    "summary_en": "Google proposes a sleep framework for continual learning.",
    "linkers": [
-    "anthropic.com"
+    "anthropic.com",
+    "posthog.com"
    ]
   },
   {
@@ -17936,7 +17938,9 @@
    "source": "hn",
    "summary_zh": "研究揭示强化学习代理即使有明确规则仍会违反上下文安全约束。",
    "summary_en": "Research shows RL agents violate contextual safety constraints despite explicit rules and rewards.",
-   "linkers": [],
+   "linkers": [
+    "lesswrong.com"
+   ],
    "origin": "daily",
    "added": "2026-11-12",
    "model": "qwen/qwen3.7-flash"
@@ -18410,8 +18414,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50470523",
-   "points": 76,
-   "comments": 27,
+   "points": 130,
+   "comments": 45,
    "date": "2026-11-12",
    "submissions": 1,
    "source": "hn",
@@ -19254,7 +19258,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50487185",
-   "points": 295,
+   "points": 296,
    "comments": 50,
    "date": "2026-11-13",
    "submissions": 1,
@@ -19993,7 +19997,9 @@
    "source": "hn",
    "summary_zh": "SKYFALL攻击利用AMD处理器缓存方式预测漏洞，跨隔离边界窃取敏感数据。",
    "summary_en": "SKYFALL attack exploits AMD cache way prediction to steal sensitive data across isolation boundaries.",
-   "linkers": [],
+   "linkers": [
+    "vulnerability.garden"
+   ],
    "origin": "daily",
    "added": "2026-11-15",
    "model": "qwen/qwen3.7-flash"
@@ -21175,6 +21181,118 @@
    "model": "qwen/qwen3.7-flash",
    "doi": "10.59350/p4hnb-nqr11",
    "blog": "Pensoft Blog"
+  },
+  {
+   "id": "50533361",
+   "url": "https://www.lesswrong.com/posts/yNYco6JrA3Q9rLMJS/rl-misalignment-under-accurate-rewards-and-explicit",
+   "domain": "lesswrong.com",
+   "title": "RL Misalignment Under Accurate Rewards and Explicit Requirements",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": false,
+   "arxiv": true,
+   "hf": false,
+   "github_io": false,
+   "cit": true,
+   "hn_id": "50533361",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-17",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "Frank Shen研究强化学习在准确奖励下仍可能违反明确要求的对齐问题。",
+   "summary_en": "Frank Shen studies RL misalignment where agents violate explicit requirements despite accurate rewards.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-17",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50533542",
+   "url": "https://horizon-labs.ai/",
+   "domain": "horizon-labs.ai",
+   "title": "Horizon Labs Report",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": true,
+   "hf": true,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50533542",
+   "points": 2,
+   "comments": 0,
+   "date": "2026-11-17",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "Horizon Labs报告其AI代理Horizon自主创建模型并在Hugging Face获得真实用户采用。",
+   "summary_en": "Horizon Labs reports its AI agent Horizon autonomously created models gaining real user adoption on Hugging Face.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-17",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50534387",
+   "url": "https://valkey.io/blog/from-skiplist-to-b+tree/",
+   "domain": "valkey.io",
+   "title": "Valkey · From Skiplists to B+ Trees: Making Valkey Sorted Sets More Memory Efficient",
+   "category": "research_report",
+   "topic": "systems-hardware",
+   "confidence": "high",
+   "political": "none",
+   "interactive": true,
+   "repo": true,
+   "arxiv": true,
+   "hf": false,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50534387",
+   "points": 3,
+   "comments": 1,
+   "date": "2026-11-17",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "Valkey 9.2用B+树替代跳表，显著降低排序集合的内存开销并提升性能。",
+   "summary_en": "Valkey 9.2 replaces skiplists with B+ trees to significantly reduce memory overhead and improve performance for sorted sets.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-17",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50535484",
+   "url": "https://markshroyer.com/2026/11/coursepointer/",
+   "domain": "markshroyer.com",
+   "title": "Fast Interception of a Path of Geodesic Segments on the Earth Spheroid",
+   "category": "research_report",
+   "topic": "math-theory",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": false,
+   "hf": false,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50535484",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-17",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "Mark Shroyer提出一种快速算法，用于在地球椭球体上计算测地线路径与点的拦截。",
+   "summary_en": "Mark Shroyer proposes a fast algorithm for calculating interceptions between geodesic paths and points on the Earth spheroid.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-17",
+   "model": "qwen/qwen3.7-flash"
   }
  ],
  "issue": {
