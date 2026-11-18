@@ -8552,6 +8552,12 @@
    "repo": "maximelucas/maximelucas.github.io"
   },
   {
+   "feed": "https://maxliuyy.github.io/feed.xml",
+   "site": "maxliuyy.github.io",
+   "template": "academicpages",
+   "repo": "MaxLiuyy/MaxLiuyy.github.io"
+  },
+  {
    "feed": "https://may0mei.github.io/feed.xml",
    "site": "may0mei.github.io",
    "template": "alfolio",
