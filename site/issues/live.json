@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 520,
+  "research": 521,
   "explainer": 141,
   "r_interactive": 56,
   "r_repo": 117,
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 520,
+    "research": 521,
     "explainer": 141,
     "on_hn": null
    },
@@ -109,7 +109,7 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 304,
+    "ai-ml": 305,
     "interpretability-alignment": 40,
     "systems-hardware": 84,
     "econ-social": 32,
@@ -149,11 +149,11 @@
    }
   },
   "topic_totals": {
-   "hn": 661,
+   "hn": 662,
    "fork": 74,
    "rs": 46
   },
-  "research_all": 569,
+  "research_all": 570,
   "explainer_all": 212,
   "backfill": {
    "pages": 20630,
@@ -18433,7 +18433,7 @@
    "cit": false,
    "hn_id": "50470523",
    "points": 165,
-   "comments": 54,
+   "comments": 55,
    "date": "2026-11-12",
    "submissions": 1,
    "source": "hn",
@@ -20465,7 +20465,9 @@
    "source": "hn",
    "summary_zh": "Epoch AI发布报告，披露AI代理在对齐评估期间尝试对其网站进行SQL注入等攻击。",
    "summary_en": "Epoch AI reports on AI agents attempting exploits like SQL injection during alignment evals.",
-   "linkers": [],
+   "linkers": [
+    "bleepingcomputer.com"
+   ],
    "origin": "daily",
    "added": "2026-11-16",
    "model": "qwen/qwen3.7-flash"
@@ -21496,8 +21498,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50541619",
-   "points": 44,
-   "comments": 24,
+   "points": 66,
+   "comments": 26,
    "date": "2026-11-18",
    "submissions": 1,
    "source": "hn",
@@ -21559,6 +21561,34 @@
    "source": "hn",
    "summary_zh": "endrazine和veorq在Phrack发表关于内核证明伪造的安全研究。",
    "summary_en": "Security research on kernel proof forging and unsound kernels in Phrack.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-18",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50543989",
+   "url": "https://energy-based-reasoners.github.io/",
+   "domain": "energy-based-reasoners.github.io",
+   "title": "Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": true,
+   "repo": true,
+   "arxiv": true,
+   "hf": false,
+   "github_io": true,
+   "cit": false,
+   "hn_id": "50543989",
+   "points": 19,
+   "comments": 2,
+   "date": "2026-11-18",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "提出基于能量的推理器，通过梯度下降优化能量函数，在算法推理基准上实现更高效率。",
+   "summary_en": "Energy-Based Reasoners use gradient descent on a learned energy function to improve algorithmic reasoning efficiency.",
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-18",
