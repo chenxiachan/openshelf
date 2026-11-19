@@ -6758,6 +6758,12 @@
    "repo": "juvelas/juvelas.github.io"
   },
   {
+   "feed": "https://juya0.github.io/feed.xml",
+   "site": "juya0.github.io",
+   "template": "academicpages",
+   "repo": "juya0/juya0.github.io"
+  },
+  {
    "feed": "https://jwhite48.github.io/feed.xml",
    "site": "jwhite48.github.io",
    "template": "alfolio",
@@ -11286,6 +11292,12 @@
    "site": "sae-young.github.io",
    "template": "alfolio",
    "repo": "sae-young/sae-young.github.io"
+  },
+  {
+   "feed": "https://saeed1262.github.io/feed.xml",
+   "site": "saeed1262.github.io",
+   "template": "alfolio",
+   "repo": "saeed1262/saeed1262.github.io"
   },
   {
    "feed": "https://saeednj.github.io/feed.xml",
