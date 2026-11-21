@@ -1,0 +1,32 @@
+/* Celadon theme: quiet off-white paper, charcoal ink, one sage-green accent. Loaded after site.css.
+   Text pairs >= 4.5:1 in both modes; heat ramps validated with the dataviz script (ordinal, light and dark). */
+:root {
+  --paper: #f7f8f5; --surface: #ffffff; --ink: #23282b; --muted: #646d6a; --rule: #e2e7e2;
+  --accent: #5f9a84; --accent-text: #3a6b5b; --accent-soft: #e3efe8; --chip-bg: #eef1ed;
+  --rebuttal: #a9503a; --replication: #8a6512; --extension: #4d7535; --discussion: #47659a;
+  --heat-1: #8dbfa9; --heat-2: #6fa78f; --heat-3: #467d68; --heat-4: #335f4f; --heat-5: #224a3c;
+  --heat-ink-1: #23282b; --heat-ink-2: #23282b; --heat-ink-3: #ffffff; --heat-ink-4: #ffffff; --heat-ink-5: #ffffff;
+  --chip-on-bg: #e3efe8; --chip-on-ink: #3a6b5b; --chip-on-rule: #d3e6db;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121514; --surface: #191d1c; --ink: #e3e8e5; --muted: #9aa39f; --rule: #2a302e;
+    --accent: #7fb5a0; --accent-text: #93cdb6; --accent-soft: #20302a; --chip-bg: #222826;
+    --rebuttal: #f08f78; --replication: #d9b25a; --extension: #9ccc7e; --discussion: #93b2ec;
+    --heat-1: #30574a; --heat-2: #3f6d5d; --heat-3: #5b917c; --heat-4: #7aae98; --heat-5: #a3cfbd;
+    --heat-ink-1: #e3e8e5; --heat-ink-2: #e3e8e5; --heat-ink-3: #121514; --heat-ink-4: #121514; --heat-ink-5: #121514;
+    --chip-on-bg: #20302a; --chip-on-ink: #93cdb6; --chip-on-rule: #284036;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121514; --surface: #191d1c; --ink: #e3e8e5; --muted: #9aa39f; --rule: #2a302e;
+  --accent: #7fb5a0; --accent-text: #93cdb6; --accent-soft: #20302a; --chip-bg: #222826;
+  --rebuttal: #f08f78; --replication: #d9b25a; --extension: #9ccc7e; --discussion: #93b2ec;
+  --heat-1: #30574a; --heat-2: #3f6d5d; --heat-3: #5b917c; --heat-4: #7aae98; --heat-5: #a3cfbd;
+  --heat-ink-1: #e3e8e5; --heat-ink-2: #e3e8e5; --heat-ink-3: #121514; --heat-ink-4: #121514; --heat-ink-5: #121514;
+  --chip-on-bg: #20302a; --chip-on-ink: #93cdb6; --chip-on-rule: #284036;
+}
+/* softer selected chips than the default ink fill */
+.chip[aria-pressed="true"] { background: var(--chip-on-bg); color: var(--chip-on-ink); border-color: var(--chip-on-rule); font-weight: 600; }
+.brand svg .lean { fill: var(--accent); }
+.intro h1 { font-weight: 650; }
