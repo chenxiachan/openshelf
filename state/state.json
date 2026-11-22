@@ -1,6 +1,6 @@
 {
- "hn_since": 1795296166,
- "rs_since": "2026-11-20",
+ "hn_since": 1795310529,
+ "rs_since": "2026-11-21",
  "feed_cache": {
   "https://constantinamarkou.github.io/feed.xml": {
    "etag": "\"6acffcae-19de\"",
@@ -27,8 +27,8 @@
    "modified": "Sat, 21 Nov 2026 02:33:48 GMT"
   }
  },
- "runs": 117,
+ "runs": 118,
  "feeds_last": "2026-11-21",
- "last_run": "2026-11-21",
- "forks_scan": "2026-11-21"
+ "last_run": "2026-11-22",
+ "forks_scan": "2026-11-22"
 }
