@@ -7118,6 +7118,12 @@
    "repo": "kiki-zyq/kiki-zyq.github.io"
   },
   {
+   "feed": "https://kimiah.github.io/feed.xml",
+   "site": "kimiah.github.io",
+   "template": "alfolio",
+   "repo": "kimiah/kimiah.github.io"
+  },
+  {
    "feed": "https://kimjongwoo-cell.github.io/feed.xml",
    "site": "kimjongwoo-cell.github.io",
    "template": "academicpages",
