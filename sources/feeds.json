@@ -7058,6 +7058,12 @@
    "repo": "kevdozer1/kevdozer1.github.io"
   },
   {
+   "feed": "https://kevin-reniers.github.io/website/feed.xml",
+   "site": "kevin-reniers.github.io",
+   "template": "academicpages",
+   "repo": "kevin-reniers/website"
+  },
+  {
    "feed": "https://keving396.github.io/binglin.j/feed.xml",
    "site": "keving396.github.io",
    "template": "alfolio",
