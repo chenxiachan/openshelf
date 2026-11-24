@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 587,
+  "research": 589,
   "explainer": 160,
   "r_interactive": 56,
   "r_repo": 117,
@@ -54,8 +54,8 @@
    "discussion": 7,
    "rebuttal": 6
   },
-  "chains": 20,
-  "responses": 54,
+  "chains": 21,
+  "responses": 55,
   "median_orig_points": 202,
   "median_resp_points": 2,
   "resp_hi": [
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 587,
+    "research": 589,
     "explainer": 160,
     "on_hn": null
    },
@@ -109,8 +109,8 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 341,
-    "interpretability-alignment": 41,
+    "ai-ml": 342,
+    "interpretability-alignment": 42,
     "systems-hardware": 99,
     "econ-social": 34,
     "security-privacy": 91,
@@ -150,11 +150,11 @@
    }
   },
   "topic_totals": {
-   "hn": 747,
+   "hn": 749,
    "fork": 88,
    "rs": 50
   },
-  "research_all": 645,
+  "research_all": 647,
   "explainer_all": 240,
   "backfill": {
    "pages": 20630,
@@ -1572,6 +1572,49 @@
      "origin": "daily"
     }
    ]
+  },
+  {
+   "original": {
+    "id": "50209939",
+    "url": "https://www.anthropic.com/research/alignment-assessment-ukaisi",
+    "domain": "anthropic.com",
+    "title": "An alignment assessment of the UK AISI cybertesting incident",
+    "category": "research_report",
+    "topic": "interpretability-alignment",
+    "confidence": "high",
+    "interactive": false,
+    "repo": false,
+    "arxiv": true,
+    "hf": false,
+    "github_io": false,
+    "cit": false,
+    "hn_id": "50209939",
+    "points": 19,
+    "comments": 3,
+    "date": "2026-10-23",
+    "submissions": 2,
+    "source": "hn",
+    "summary_zh": "评估 Mythos 5 在 UK AISI 评测中的越权行为",
+    "summary_en": "Assesses Mythos 5's unauthorized actions during the UK AISI evaluation."
+   },
+   "responses": [
+    {
+     "id": "50625666",
+     "title": "Why models believe in skepticism",
+     "url": "https://www.lesswrong.com/posts/r2aAGgfFcFfRikEdb/why-models-believe-in-skepticism",
+     "domain": "lesswrong.com",
+     "date": "2026-11-24",
+     "days_after": 0,
+     "points": 1,
+     "hn_id": "50625666",
+     "relation": "discussion",
+     "confidence": "high",
+     "source": "hn",
+     "summary_zh": "文章分析Anthropic关于UK AISI事件调查以支持其假设。",
+     "summary_en": "The source discusses the target to support its hypothesis.",
+     "origin": "daily"
+    }
+   ]
   }
  ],
  "reports": [
@@ -2865,7 +2908,8 @@
    "linkers": [
     "gov.uk",
     "substack.com",
-    "aifutures.org"
+    "aifutures.org",
+    "lesswrong.com"
    ]
   },
   {
@@ -15889,7 +15933,8 @@
    "linkers": [
     "claude.com",
     "metemorris.com",
-    "rorz.io"
+    "rorz.io",
+    "morethanamachine.com"
    ],
    "origin": "daily",
    "added": "2026-11-07",
@@ -18464,7 +18509,7 @@
    "github_io": true,
    "cit": false,
    "hn_id": "50465352",
-   "points": 376,
+   "points": 377,
    "comments": 186,
    "date": "2026-11-12",
    "submissions": 1,
@@ -23040,7 +23085,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50577353",
-   "points": 64,
+   "points": 65,
    "comments": 1,
    "date": "2026-11-20",
    "submissions": 1,
@@ -23712,8 +23757,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50594935",
-   "points": 88,
-   "comments": 13,
+   "points": 89,
+   "comments": 17,
    "date": "2026-11-22",
    "submissions": 1,
    "source": "hn",
@@ -23824,7 +23869,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50597612",
-   "points": 1029,
+   "points": 1031,
    "comments": 1007,
    "date": "2026-11-22",
    "submissions": 1,
@@ -24330,7 +24375,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50615250",
-   "points": 2,
+   "points": 3,
    "comments": 0,
    "date": "2026-11-23",
    "submissions": 1,
@@ -24358,7 +24403,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50615520",
-   "points": 50,
+   "points": 51,
    "comments": 23,
    "date": "2026-11-23",
    "submissions": 1,
@@ -24694,8 +24739,8 @@
    "github_io": false,
    "cit": true,
    "hn_id": "50622863",
-   "points": 3,
-   "comments": 0,
+   "points": 6,
+   "comments": 1,
    "date": "2026-11-24",
    "submissions": 1,
    "source": "hn",
@@ -24723,12 +24768,68 @@
    "cit": true,
    "hn_id": "50623827",
    "points": 1,
-   "comments": 0,
+   "comments": 1,
    "date": "2026-11-24",
    "submissions": 1,
    "source": "hn",
    "summary_zh": "证明实数域上计算矩阵行列式的算术电路具有超多项式下界。",
    "summary_en": "Proves superpolynomial lower bounds for arithmetic circuits computing the permanent over every field.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-24",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50624145",
+   "url": "https://postgres.ai/blog/20261123-pgaibench",
+   "domain": "postgres.ai",
+   "title": "PGAIBench and AAA: can AI safely change production Postgres?",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": true,
+   "repo": true,
+   "arxiv": true,
+   "hf": false,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50624145",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-24",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "PostgresAI发布PGAIBench基准测试，评估AI修改生产数据库的安全性。",
+   "summary_en": "PostgresAI releases PGAIBench benchmark to evaluate the safety of AI modifying production Postgres databases.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-24",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50625666",
+   "url": "https://www.lesswrong.com/posts/r2aAGgfFcFfRikEdb/why-models-believe-in-skepticism",
+   "domain": "lesswrong.com",
+   "title": "Why models believe in skepticism",
+   "category": "research_report",
+   "topic": "interpretability-alignment",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": false,
+   "arxiv": true,
+   "hf": false,
+   "github_io": false,
+   "cit": true,
+   "hn_id": "50625666",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-24",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "LessWrong文章分析前沿模型为何在思维链中表现出对现实性的怀疑。",
+   "summary_en": "A LessWrong post analyzes why frontier models exhibit skepticism about reality during their chain-of-thought reasoning.",
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-24",
