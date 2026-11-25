@@ -8936,6 +8936,12 @@
    "repo": "min-seong-kim/min-seong-kim.github.io"
   },
   {
+   "feed": "https://minalspatil.github.io/feed.xml",
+   "site": "minalspatil.github.io",
+   "template": "alfolio",
+   "repo": "minalspatil/minalspatil.github.io"
+  },
+  {
    "feed": "https://www.minbinlin.com/feed.xml",
    "site": "minbinlin.com",
    "template": "alfolio",
