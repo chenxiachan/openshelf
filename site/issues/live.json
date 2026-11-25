@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 616,
+  "research": 617,
   "explainer": 165,
   "r_interactive": 56,
   "r_repo": 117,
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 616,
+    "research": 617,
     "explainer": 165,
     "on_hn": null
    },
@@ -109,7 +109,7 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 359,
+    "ai-ml": 360,
     "interpretability-alignment": 42,
     "systems-hardware": 102,
     "econ-social": 35,
@@ -150,11 +150,11 @@
    }
   },
   "topic_totals": {
-   "hn": 781,
+   "hn": 782,
    "fork": 88,
    "rs": 51
   },
-  "research_all": 675,
+  "research_all": 676,
   "explainer_all": 245,
   "backfill": {
    "pages": 20630,
@@ -12198,7 +12198,9 @@
    "summary_zh": "提出生物分子设计模型RFD4-Proteina",
    "summary_en": "Presents RFD4-Proteina, a latent reasoning model for biomolecular design.",
    "origin": "backfill",
-   "linkers": []
+   "linkers": [
+    "georeactor.com"
+   ]
   },
   {
    "id": "50181579",
@@ -21850,7 +21852,9 @@
    "source": "hn",
    "summary_zh": "Xinming Tu通过实验发现Claude模型大规模训练数据包含蛋白质序列。",
    "summary_en": "Experiments show Claude models were trained on protein sequences at scale.",
-   "linkers": [],
+   "linkers": [
+    "georeactor.com"
+   ],
    "origin": "daily",
    "added": "2026-11-18",
    "model": "qwen/qwen3.7-flash"
@@ -25166,7 +25170,7 @@
    "cit": true,
    "hn_id": "50632998",
    "points": 34,
-   "comments": 12,
+   "comments": 13,
    "date": "2026-11-24",
    "submissions": 1,
    "source": "hn",
@@ -25305,14 +25309,16 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50634658",
-   "points": 294,
-   "comments": 88,
+   "points": 314,
+   "comments": 92,
    "date": "2026-11-24",
    "submissions": 1,
    "source": "hn",
    "summary_zh": "OpenAI报告GPT-6模型利用推理和代码设计蛋白质结构，实验室测试证实了结合证据。",
    "summary_en": "OpenAI reports GPT-6 models design protein structures via reasoning and code, with lab tests confirming binding.",
-   "linkers": [],
+   "linkers": [
+    "georeactor.com"
+   ],
    "origin": "daily",
    "added": "2026-11-24",
    "model": "qwen/qwen3.7-flash"
@@ -25333,8 +25339,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50634734",
-   "points": 76,
-   "comments": 66,
+   "points": 78,
+   "comments": 69,
    "date": "2026-11-24",
    "submissions": 1,
    "source": "hn",
@@ -25389,7 +25395,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50635204",
-   "points": 3,
+   "points": 4,
    "comments": 0,
    "date": "2026-11-24",
    "submissions": 1,
@@ -25809,13 +25815,41 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50641774",
-   "points": 1,
+   "points": 3,
    "comments": 0,
    "date": "2026-11-25",
    "submissions": 1,
    "source": "hn",
    "summary_zh": "作者开发了sjq工具，利用simdjson库实现命令行JSON过滤，速度比jq快210倍。",
    "summary_en": "The author developed sjq, using simdjson for command-line JSON filtering, achieving speeds 210 times faster than jq.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-25",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50642884",
+   "url": "https://softwaredoug.com/blog/2026/11/16/experiment-factory",
+   "domain": "softwaredoug.com",
+   "title": "The search relevance factory",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": true,
+   "hf": false,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50642884",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-25",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "作者构建了一个自动化搜索相关性工厂，利用编码代理在Amazon ESCI数据集上进行实验。",
+   "summary_en": "The author builds an automated search relevance factory using coding agents on the Amazon ESCI dataset.",
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-25",
