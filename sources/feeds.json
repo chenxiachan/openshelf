@@ -7376,6 +7376,12 @@
    "repo": "kylemarkjensen/portfolio-website"
   },
   {
+   "feed": "https://kylesmithnonprofit.github.io/feed.xml",
+   "site": "kylesmithnonprofit.github.io",
+   "template": "academicpages",
+   "repo": "kylesmithnonprofit/kylesmithnonprofit.github.io"
+  },
+  {
    "feed": "https://kyrinzou.github.io/feed.xml",
    "site": "kyrinzou.github.io",
    "template": "academicpages",
