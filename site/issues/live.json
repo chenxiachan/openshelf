@@ -2,7 +2,7 @@
  "stats": {
   "window": [
    "2026-10-07",
-   "2026-11-26"
+   "2026-11-27"
   ],
   "stories": 30882,
   "with_url": 29815,
@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 636,
+  "research": 637,
   "explainer": 171,
   "r_interactive": 56,
   "r_repo": 117,
@@ -73,12 +73,12 @@
    }
   ],
   "median_resp_rest": 2,
-  "generated": "2026-11-26",
+  "generated": "2026-11-27",
   "sources": {
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 636,
+    "research": 637,
     "explainer": 171,
     "on_hn": null
    },
@@ -91,10 +91,10 @@
     "sites_with_posts": 306,
     "pool": 99,
     "pool_sites": 54,
-    "research": 29,
-    "explainer": 59,
+    "research": 30,
+    "explainer": 60,
     "on_hn": 0,
-    "re_sites": 47,
+    "re_sites": 48,
     "template_titles": 41
    },
    "rs": {
@@ -109,7 +109,7 @@
   },
   "topic_matrix": {
    "hn": {
-    "ai-ml": 376,
+    "ai-ml": 377,
     "interpretability-alignment": 43,
     "systems-hardware": 106,
     "econ-social": 36,
@@ -125,7 +125,7 @@
    },
    "fork": {
     "bio-health": 5,
-    "ai-ml": 25,
+    "ai-ml": 26,
     "math-theory": 18,
     "robotics-graphics": 7,
     "interpretability-alignment": 1,
@@ -133,7 +133,7 @@
     "humanities": 2,
     "security-privacy": 2,
     "systems-hardware": 11,
-    "engineering-env": 11,
+    "engineering-env": 12,
     "econ-social": 1,
     "other": 1
    },
@@ -150,12 +150,12 @@
    }
   },
   "topic_totals": {
-   "hn": 807,
-   "fork": 88,
+   "hn": 808,
+   "fork": 90,
    "rs": 53
   },
-  "research_all": 696,
-  "explainer_all": 252,
+  "research_all": 698,
+  "explainer_all": 253,
   "backfill": {
    "pages": 20630,
    "errors": 2217,
@@ -19449,7 +19449,9 @@
    "source": "rs",
    "summary_zh": "模拟试验证明幸存者比较法在死亡前测量响应变量时存在误导。",
    "summary_en": "Simulation shows survivor comparison is misleading when death precedes response measurement.",
-   "linkers": [],
+   "linkers": [
+    "substack.com"
+   ],
    "origin": "daily",
    "added": "2026-11-13",
    "model": "qwen/qwen3.7-flash",
@@ -21703,7 +21705,9 @@
    "source": "hn",
    "summary_zh": "作者通过实验发现LLM构建的神经网络权重类似于1990年代的手工特征工程。",
    "summary_en": "Experiments show LLM-built networks resemble 1990s hand-crafted feature engineering.",
-   "linkers": [],
+   "linkers": [
+    "substack.com"
+   ],
    "origin": "daily",
    "added": "2026-11-17",
    "model": "qwen/qwen3.7-flash"
@@ -21961,7 +21965,9 @@
    "source": "hn",
    "summary_zh": "提出基于能量的推理器，通过梯度下降优化能量函数，在算法推理基准上实现更高效率。",
    "summary_en": "Energy-Based Reasoners use gradient descent on a learned energy function to improve algorithmic reasoning efficiency.",
-   "linkers": [],
+   "linkers": [
+    "substack.com"
+   ],
    "origin": "daily",
    "added": "2026-11-18",
    "model": "qwen/qwen3.7-flash"
@@ -24346,7 +24352,7 @@
    "github_io": true,
    "cit": false,
    "hn_id": "50611593",
-   "points": 128,
+   "points": 129,
    "comments": 13,
    "date": "2026-11-23",
    "submissions": 1,
@@ -25893,7 +25899,7 @@
    "cit": false,
    "hn_id": "50643199",
    "points": 125,
-   "comments": 195,
+   "comments": 196,
    "date": "2026-11-25",
    "submissions": 1,
    "source": "hn",
@@ -26510,7 +26516,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50658498",
-   "points": 5,
+   "points": 20,
    "comments": 0,
    "date": "2026-11-26",
    "submissions": 1,
@@ -26545,7 +26551,9 @@
    "source": "rs",
    "summary_zh": "Stephen Royle计算学者仅靠自引能达到的最大H指数。",
    "summary_en": "Stephen Royle calculates the maximum H-index achievable through self-citation alone.",
-   "linkers": [],
+   "linkers": [
+    "substack.com"
+   ],
    "origin": "daily",
    "added": "2026-11-26",
    "model": "qwen/qwen3.7-flash",
@@ -26568,7 +26576,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50659381",
-   "points": 2,
+   "points": 4,
    "comments": 0,
    "date": "2026-11-26",
    "submissions": 1,
@@ -26634,6 +26642,90 @@
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-26",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50661253",
+   "url": "https://mit-han-lab.github.io/qda-blog/",
+   "domain": "mit-han-lab.github.io",
+   "title": "QDA: Closed-Loop LLM Quantization Design with Agents",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": true,
+   "hf": false,
+   "github_io": true,
+   "cit": false,
+   "hn_id": "50661253",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-27",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "QDA uses an agent to automatically design post-training quantization recipes for LLMs.",
+   "summary_en": "MIT NVIDIA researchers use an agent to automatically design optimal quantization recipes for large language models.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-27",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "fork:https://zhanxingzhu.github.io//blog/2026/learning-sparse-boolean-functions/",
+   "url": "https://zhanxingzhu.github.io//blog/2026/learning-sparse-boolean-functions/",
+   "domain": "zhanxingzhu.github.io",
+   "title": "RL and SFT both teach a transformer to reason step by step, but not in the same order",
+   "category": "research_report",
+   "topic": "ai-ml",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": false,
+   "arxiv": false,
+   "hf": false,
+   "github_io": true,
+   "cit": false,
+   "hn_id": null,
+   "points": 0,
+   "comments": 0,
+   "date": "2026-11-26",
+   "submissions": 0,
+   "source": "fork",
+   "summary_zh": "ICML 2026 paper analyzes how RL and SFT teach transformers to learn sparse Boolean functions.",
+   "summary_en": "An ICML 2026 paper proves that RL and SFT teach one-layer transformers to reason in different orders.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-27",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "fork:https://jhspatial.github.io/research/urban-research-2026-11-25/",
+   "url": "https://jhspatial.github.io/research/urban-research-2026-11-25/",
+   "domain": "jhspatial.github.io",
+   "title": "[Research] 스마트시티 기술 연구 동향",
+   "category": "explainer",
+   "topic": "engineering-env",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": false,
+   "arxiv": false,
+   "hf": false,
+   "github_io": true,
+   "cit": false,
+   "hn_id": null,
+   "points": 0,
+   "comments": 0,
+   "date": "2026-11-25",
+   "submissions": 0,
+   "source": "fork",
+   "summary_zh": "The page summarizes current trends in smart city technology including IoT, AI, and digital twins.",
+   "summary_en": "A summary of recent trends in smart city technologies such as IoT, AI analytics, and digital twins.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-27",
    "model": "qwen/qwen3.7-flash"
   }
  ],
