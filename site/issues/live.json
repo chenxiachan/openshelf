@@ -16,7 +16,7 @@
    "other": 26,
    "explainer": 41
   },
-  "research": 639,
+  "research": 640,
   "explainer": 173,
   "r_interactive": 56,
   "r_repo": 117,
@@ -54,8 +54,8 @@
    "discussion": 7,
    "rebuttal": 6
   },
-  "chains": 21,
-  "responses": 59,
+  "chains": 22,
+  "responses": 60,
   "median_orig_points": 202,
   "median_resp_points": 2,
   "resp_hi": [
@@ -78,7 +78,7 @@
    "hn": {
     "scope": 30882,
     "pool": 928,
-    "research": 639,
+    "research": 640,
     "explainer": 173,
     "on_hn": null
    },
@@ -111,7 +111,7 @@
    "hn": {
     "ai-ml": 379,
     "interpretability-alignment": 43,
-    "systems-hardware": 107,
+    "systems-hardware": 108,
     "econ-social": 36,
     "security-privacy": 95,
     "math-theory": 40,
@@ -150,11 +150,11 @@
    }
   },
   "topic_totals": {
-   "hn": 812,
+   "hn": 813,
    "fork": 90,
    "rs": 53
   },
-  "research_all": 700,
+  "research_all": 701,
   "explainer_all": 255,
   "backfill": {
    "pages": 20630,
@@ -1676,6 +1676,50 @@
      "source": "hn",
      "summary_zh": "文章分析Anthropic关于UK AISI事件调查以支持其假设。",
      "summary_en": "The source discusses the target to support its hypothesis.",
+     "origin": "daily"
+    }
+   ]
+  },
+  {
+   "original": {
+    "id": "50488278",
+    "url": "https://www.siliconcontinent.com/p/are-we-approaching-an-intelligence",
+    "domain": "siliconcontinent.com",
+    "title": "Are we approaching an intelligence explosion?",
+    "category": "research_report",
+    "topic": "ai-ml",
+    "confidence": "high",
+    "political": "none",
+    "interactive": false,
+    "repo": false,
+    "arxiv": true,
+    "hf": false,
+    "github_io": false,
+    "cit": false,
+    "hn_id": "50488278",
+    "points": 7,
+    "comments": 2,
+    "date": "2026-11-13",
+    "submissions": 1,
+    "source": "hn",
+    "summary_zh": "作者利用METR数据估算AI能力增长的研究生产函数。",
+    "summary_en": "The authors estimate the research production function for AI capability growth using METR data."
+   },
+   "responses": [
+    {
+     "id": "50668995",
+     "title": "Does it really matter if there’s an intelligence explosion?",
+     "url": "https://www.noahpinion.blog/p/does-it-really-matter-if-theres-an",
+     "domain": "noahpinion.blog",
+     "date": "2026-11-27",
+     "days_after": 13.9,
+     "points": 2,
+     "hn_id": "50668995",
+     "relation": "discussion",
+     "confidence": "high",
+     "source": "hn",
+     "summary_zh": "Noah Smith分析Garicano和Imas关于智能爆炸的论文。",
+     "summary_en": "Noah Smith analyzes the target post's arguments on intelligence explosions.",
      "origin": "daily"
     }
    ]
@@ -19735,7 +19779,9 @@
    "source": "hn",
    "summary_zh": "作者利用METR数据估算AI能力增长的研究生产函数。",
    "summary_en": "The authors estimate the research production function for AI capability growth using METR data.",
-   "linkers": [],
+   "linkers": [
+    "noahpinion.blog"
+   ],
    "origin": "daily",
    "added": "2026-11-13",
    "model": "qwen/qwen3.7-flash"
@@ -25366,7 +25412,7 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50634734",
-   "points": 90,
+   "points": 91,
    "comments": 78,
    "date": "2026-11-24",
    "submissions": 1,
@@ -25898,8 +25944,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50643199",
-   "points": 127,
-   "comments": 197,
+   "points": 128,
+   "comments": 198,
    "date": "2026-11-25",
    "submissions": 1,
    "source": "hn",
@@ -26516,8 +26562,8 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50658498",
-   "points": 115,
-   "comments": 11,
+   "points": 137,
+   "comments": 12,
    "date": "2026-11-26",
    "submissions": 1,
    "source": "hn",
@@ -26828,13 +26874,41 @@
    "github_io": false,
    "cit": false,
    "hn_id": "50666169",
-   "points": 1,
+   "points": 2,
    "comments": 0,
    "date": "2026-11-27",
    "submissions": 1,
    "source": "hn",
    "summary_zh": "IEEE Spectrum文章分析Swahili语音识别在肯尼亚面临的挑战及数据构建进展。",
    "summary_en": "IEEE Spectrum analyzes challenges in Swahili speech recognition and efforts to build datasets.",
+   "linkers": [],
+   "origin": "daily",
+   "added": "2026-11-27",
+   "model": "qwen/qwen3.7-flash"
+  },
+  {
+   "id": "50668282",
+   "url": "https://alexselzer.com/posts/large-batch-local-inference/",
+   "domain": "alexselzer.com",
+   "title": "Large-batch DeepSeek-V4.1-Flash on four 16 GB AMD GPUs: API accuracy at API cost",
+   "category": "research_report",
+   "topic": "systems-hardware",
+   "confidence": "high",
+   "political": "none",
+   "interactive": false,
+   "repo": true,
+   "arxiv": true,
+   "hf": true,
+   "github_io": false,
+   "cit": false,
+   "hn_id": "50668282",
+   "points": 1,
+   "comments": 0,
+   "date": "2026-11-27",
+   "submissions": 1,
+   "source": "hn",
+   "summary_zh": "Alexander Selzer在AMD GPU上运行DeepSeek-V4.1-Flash的基准测试报告。",
+   "summary_en": "Alexander Selzer reports benchmarks for running DeepSeek-V4.1-Flash on AMD GPUs.",
    "linkers": [],
    "origin": "daily",
    "added": "2026-11-27",
