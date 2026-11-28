@@ -6860,6 +6860,12 @@
    "repo": "kaiyanfan/kaiyanfan.github.io"
   },
   {
+   "feed": "https://kalpshah18.github.io/feed.xml",
+   "site": "kalpshah18.github.io",
+   "template": "alfolio",
+   "repo": "kalpshah18/kalpshah18.github.io"
+  },
+  {
    "feed": "https://kamenialexnea.github.io/feed.xml",
    "site": "kamenialexnea.github.io",
    "template": "academicpages",
@@ -7182,6 +7188,12 @@
    "site": "kjabon.github.io",
    "template": "alfolio",
    "repo": "kjabon/kjabon.github.io"
+  },
+  {
+   "feed": "https://kkd96.github.io/feed.xml",
+   "site": "kkd96.github.io",
+   "template": "academicpages",
+   "repo": "kkd96/kkd96.github.io"
   },
   {
    "feed": "https://kkdxtd.github.io/feed.xml",
