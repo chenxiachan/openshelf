@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://chenxiachan.github.io/openshelf/sitemap.xml

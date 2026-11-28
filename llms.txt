@@ -1,0 +1,16 @@
+# Openshelf
+
+> The latest research from people's own websites, collected every day. Research reports and explainers that people publish on their own websites (personal pages, lab blogs,
+> company research sites), found through author feeds, archives and discussion sites, each checked by a language model,
+> with the posts that answer them linked as threads. Chinese edition: https://chenxiachan.github.io/openshelf/zh/
+
+## Data (free to reuse under CC BY 4.0; linked works belong to their authors)
+- [All posts, responses and editorial decisions (JSON)](https://chenxiachan.github.io/openshelf/data/openshelf.json)
+- [Front-page data with summaries in English and Chinese (JS)](https://chenxiachan.github.io/openshelf/shelf-data.js)
+- [Atom feed, English](https://chenxiachan.github.io/openshelf/feed.xml)
+- [Atom feed, Chinese](https://chenxiachan.github.io/openshelf/zh/feed.xml)
+
+## About
+- [About](https://chenxiachan.github.io/openshelf/about/)
+- [Privacy](https://chenxiachan.github.io/openshelf/privacy/)
+- [Source code and submissions](https://github.com/chenxiachan/openshelf)
